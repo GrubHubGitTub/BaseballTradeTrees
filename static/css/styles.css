@@ -1,0 +1,680 @@
+body {
+font-family: 'Ubuntu', sans-serif;
+background-color: #DEDFE3;
+margin-bottom:50px;
+}
+
+
+.navbar {
+    background-color: #041E43;
+}
+
+
+.navbar-nav .nav-link {
+    color: #E03C00;
+}
+
+.navbar-nav .nav-link:hover {
+    color: OrangeRed;
+}
+
+.navbar-brand.abs {
+        position: absolute;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #E03C00;
+}
+
+.navbar-brand.abs:hover {
+        position: absolute;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: OrangeRed;
+}
+
+
+h1{
+  padding: 5% 0 0 0;
+  text-align: center;
+  color: #041E43;
+}
+
+
+h2 {
+text-align: center;
+color: #041E43;
+}
+
+h3{
+  padding: 5% 0 0 0;
+  text-align: center;
+  color: #041E43;
+}
+
+h6 {
+text-align: center;
+color: #041E43;
+}
+
+.col-md-8{
+border-right: 5px solid red;
+}
+
+.about {
+margin: 3% 0 0 0;
+}
+
+.about-text {
+margin: 3% 0 0 0;
+}
+
+.contact {
+margin: 9% 0 2% 0;
+}
+
+.contact-text{
+margin: 3% 0
+}
+
+.error {
+  padding: 5% 0 0 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.table thead th {
+    width: 50%;
+    vertical-align: bottom;
+    border-bottom: 2px solid black;
+    }
+
+.table {
+margin: 0 25%;
+width: 50%;
+text-align: center;
+}
+
+
+button {
+margin: 0 0 5% 42%;
+width: 15%;
+background-color: #041E43 !important;
+}
+
+
+button:hover {
+background-color: #A33241 !important;
+}
+
+
+.form-control {
+width: 50%;
+margin: 5% auto 1% auto;
+text-align: center;
+border: 2px solid red;
+border-radius: 4px;
+}
+
+
+.myNodeClass {
+background-color: #041E43;
+color: #DEDFE3;
+font-weight: bold;
+  width:120px;
+  padding:50px;
+  border: 1px solid black;
+  font-size: 15px !important;
+}
+
+.mySelectedNodeClass {
+background-color: MidnightBlue;
+}
+
+
+.footer {
+  margin: 10% 0 0 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 80%;
+}
+
+
+
+.BS1:before, .BS12:before {
+    content: "Boston Braves";
+}
+.CH1:before, .CH12:before {
+    content: "Chicago White Stockings";
+}
+.CL1:before, .CL12:before {
+    content: "Cleveland Forest Cities";
+}
+.FW1:before, .FW12:before {
+    content: "Ft. Wayne Kekiongas";
+}
+.NY2:before, .NY22:before {
+    content: "New York Mutuals";
+}
+.PH1:before, .PH12:before {
+    content: "Philadelphia Athletics";
+}
+.RC1:before, .RC12:before {
+    content: "Rockford Forest Citys";
+}
+.TRO:before, .TRO2:before {
+    content: "Troy Haymakers";
+}
+.WS3:before, .WS32:before {
+    content: "Washington Olympics";
+}
+.BL1:before, .BL12:before {
+    content: "Baltimore Lord Baltimores";
+}
+.BR1:before, .BR12:before {
+    content: "Brooklyn Eckfords";
+}
+.BR2:before, .BR22:before {
+    content: "Brooklyn Atlantics";
+}
+.MID:before, .MID2:before {
+    content: "Middletown Mansfields";
+}
+.WS4:before, .WS42:before {
+    content: "Washington Nationals";
+}
+.BL4:before, .BL42:before {
+    content: "Baltimore Marylands";
+}
+.ELI:before, .ELI2:before {
+    content: "Elizabeth Resolutes";
+}
+.PH2:before, .PH22:before {
+    content: "Philadelphia White Stockings";
+}
+.WS5:before, .WS52:before {
+    content: "Washington Nationals";
+}
+.CH2:before, .CH22:before {
+    content: "Chicago White Stockings";
+}
+.HR1:before, .HR12:before {
+    content: "Hartford Dark Blues";
+}
+.KEO:before, .KEO2:before {
+    content: "Keokuk Westerns";
+}
+.NH1:before, .NH12:before {
+    content: "New Haven New Havens";
+}
+.PH3:before, .PH32:before {
+    content: "Philadelphia Centennials";
+}
+.SL1:before, .SL12:before {
+    content: "St. Louis Red Stockings";
+}
+.SL2:before, .SL22:before {
+    content: "St. Louis Brown Stockings";
+}
+.WS6:before, .WS62:before {
+    content: "Washington Olympics";
+}
+.BSN:before, .BSN2:before {
+    content: "Boston Braves";
+}
+.CN1:before, .CN12:before {
+    content: "Cincinnati Reds";
+}
+.CN4:before, .CN42:before {
+    content: "Cincinnati Stars";
+}
+.HAR:before, .HAR2:before {
+    content: "Hartford Dark Blues";
+}
+.LS1:before, .LS12:before {
+    content: "Louisville Grays";
+}
+.NY3:before, .NY32:before {
+    content: "New York Mutuals";
+}
+.PHN:before, .PHN2:before {
+    content: "Philadelphia Athletics";
+}
+.SL3:before, .SL32:before {
+    content: "St. Louis Brown Stockings";
+}
+.IN1:before, .IN12:before {
+    content: "Indianapolis Blues";
+}
+.ML2:before, .ML22:before {
+    content: "Milwaukee Cream Citys";
+}
+.PRO:before, .PRO2:before {
+    content: "Providence Grays";
+}
+.BFN:before, .BFN2:before {
+    content: "Buffalo Bisons";
+}
+.CL2:before, .CL22:before {
+    content: "Cleveland Spiders";
+}
+.SR1:before, .SR12:before {
+    content: "Syracuse Stars";
+}
+.TRN:before, .TRN2:before {
+    content: "Troy Trojans";
+}
+.WOR:before, .WOR2:before {
+    content: "Worcester Ruby Legs";
+}
+.DTN:before, .DTN2:before {
+    content: "Detroit Wolverines";
+}
+.BL2:before, .BL22:before {
+    content: "Baltimore Orioles";
+}
+.CN2:before, .CN22:before {
+    content: "Cincinnati Reds";
+}
+.LS2:before, .LS22:before {
+    content: "Louisville Colonels";
+}
+.PH4:before, .PH42:before {
+    content: "Philadelphia Athletics";
+}
+.PT1:before, .PT12:before {
+    content: "Pittsburgh Pirates";
+}
+.SL4:before, .SL42:before {
+    content: "St.  Louis Cardinals";
+}
+.CL5:before, .CL52:before {
+    content: "Columbus Colts";
+}
+.NY4:before, .NY42:before {
+    content: "New York Metropolitans";
+}
+.NY1:before, .NY12:before {
+    content: "New York Giants";
+}
+.BR3:before, .BR32:before {
+    content: "Brooklyn Dodgers";
+}
+.IN2:before, .IN22:before {
+    content: "Indianapolis Blues";
+}
+.RIC:before, .RIC2:before {
+    content: "Richmond Virginias";
+}
+.TL1:before, .TL12:before {
+    content: "Toledo Blue Stockings";
+}
+.WS7:before, .WS72:before {
+    content: "Washington Nationals";
+}
+.ALT:before, .ALT2:before {
+    content: "Altoona Mountain Citys";
+}
+.BLU:before, .BLU2:before {
+    content: "Baltimore Monumentals";
+}
+.BSU:before, .BSU2:before {
+    content: "Boston Reds";
+}
+.CHU:before, .CHU2:before {
+    content: "Chicago-Pittsburgh Browns";
+}
+.CNU:before, .CNU2:before {
+    content: "Cincinnati Outlaw Reds";
+}
+.KCU:before, .KCU2:before {
+    content: "Kansas City Cowboys";
+}
+.MLU:before, .MLU2:before {
+    content: "Milwaukee Brewers";
+}
+.PHU:before, .PHU2:before {
+    content: "Philadelphia Keystones";
+}
+.SLU:before, .SLU2:before {
+    content: "St. Louis Maroons";
+}
+.SPU:before, .SPU2:before {
+    content: "St. Paul Saints";
+}
+.WSU:before, .WSU2:before {
+    content: "Washington Nationals";
+}
+.WIL:before, .WIL2:before {
+    content: "Wilmington Quicksteps";
+}
+.SL5:before, .SL52:before {
+    content: "St. Louis Maroons";
+}
+.KCN:before, .KCN2:before {
+    content: "Kansas City Cowboys";
+}
+.WS8:before, .WS82:before {
+    content: "Washington Senators";
+}
+.CL3:before, .CL32:before {
+    content: "Cleveland Spiders";
+}
+.IN3:before, .IN32:before {
+    content: "Indianapolis Hoosiers";
+}
+.KC2:before, .KC22:before {
+    content: "Kansas City Cowboys";
+}
+.CL6:before, .CL62:before {
+    content: "Columbus Colts";
+}
+.CL4:before, .CL42:before {
+    content: "Cleveland Spiders";
+}
+.BL3:before, .BL32:before {
+    content: "Baltimore Orioles";
+}
+.BR4:before, .BR42:before {
+    content: "Brooklyn Gladiators";
+}
+.RC2:before, .RC22:before {
+    content: "Rochester Hop Bitters";
+}
+.SR2:before, .SR22:before {
+    content: "Syracuse Stars";
+}
+.TL2:before, .TL22:before {
+    content: "Toledo Maumees";
+}
+.BRO:before, .BRO2:before {
+    content: "Brooklyn Dodgers";
+}
+.BSP:before, .BSP2:before {
+    content: "Boston Reds";
+}
+.BRP:before, .BRP2:before {
+    content: "Brooklyn Wonders";
+}
+.BFP:before, .BFP2:before {
+    content: "Buffalo Bisons";
+}
+.CHP:before, .CHP2:before {
+    content: "Chicago Pirates";
+}
+.CLP:before, .CLP2:before {
+    content: "Cleveland Infants";
+}
+.NYP:before, .NYP2:before {
+    content: "New York Giants";
+}
+.PHP:before, .PHP2:before {
+    content: "Philadelphia Quakers";
+}
+.PTP:before, .PTP2:before {
+    content: "Pittsburgh Burghers";
+}
+.BS2:before, .BS22:before {
+    content: "Boston Reds";
+}
+.CN3:before, .CN32:before {
+    content: "Cincinnati Kelly's Killers";
+}
+.ML3:before, .ML32:before {
+    content: "Milwaukee Brewers";
+}
+.WS9:before, .WS92:before {
+    content: "Washington Senators";
+}
+.BLN:before, .BLN2:before {
+    content: "Baltimore Orioles";
+}
+.LS3:before, .LS32:before {
+    content: "Louisville Colonels";
+}
+.WSN:before, .WSN2:before {
+    content: "Washington Senators";
+}
+.BLA:before, .BLA2:before {
+    content: "Baltimore Orioles";
+}
+.MLA:before, .MLA2:before {
+    content: "Milwaukee Brewers";
+}
+.PHA:before, .PHA2:before {
+    content: "Philadelphia Athletics";
+}
+.WS1:before, .WS12:before {
+    content: "Washington Senators";
+}
+.SLA:before, .SLA2:before {
+    content: "St.Louis Browns";
+}
+.BLF:before, .BLF2:before {
+    content: "Baltimore Terrapins";
+}
+.BRF:before, .BRF2:before {
+    content: "Brooklyn Tip-Tops";
+}
+.BUF:before, .BUF2:before {
+    content: "Buffalo Blues";
+}
+.CHF:before, .CHF2:before {
+    content: "Chicago Whales";
+}
+.IND:before, .IND2:before {
+    content: "Indianapolis Hoosiers";
+}
+.KCF:before, .KCF2:before {
+    content: "Kansas City Packers";
+}
+.PTF:before, .PTF2:before {
+    content: "Pittsburgh Rebels";
+}
+.SLF:before, .SLF2:before {
+    content: "St.Louis Terriers";
+}
+.NEW:before, .NEW2:before {
+    content: "Newark Peppers";
+}
+.MLN:before, .MLN2:before {
+    content: "Milwaukee Braves";
+}
+.FLO:before, .FLO2:before {
+    content: "Florida Marlins";
+}
+.KC1:before, .KC12:before {
+    content: "Kansas City Athletics";
+}
+.LAA:before, .LAA2:before {
+    content: "Los Angeles Angels";
+}
+.CAL:before, .CAL2:before {
+    content: "California Angels";
+}
+.SE1:before, .SE12:before {
+    content: "Seattle Pilots";
+}
+.MON:before, .MON2:before {
+    content: "Montreal Expos";
+}
+.WS2:before, .WS22:before {
+    content: "Washington Senators";
+}
+.MIL:before, .MIL2:before {
+    content: "Milwaukee Brewers";
+}
+.HOU:before, .HOU2:before {
+    content: "Houston Colts";
+}
+.ANA:before, .ANA2:before {
+    content: "Anaheim Angels";
+}
+.BAL:before, .BAL2:before {
+    content: "Baltimore Orioles";
+}
+.BOS:before, .BOS2:before {
+    content: "Boston Red Sox";
+}
+.CHA:before, .CHA2:before {
+    content: "Chicago White Sox";
+}
+.CLE:before, .CLE2:before {
+    content: "Cleveland Indians";
+}
+.DET:before, .DET2:before {
+    content: "Detroit Tigers";
+}
+.HOU:before, .HOU2:before {
+    content: "Houston Astros";
+}
+.KCA:before, .KCA2:before {
+    content: "Kansas City Royals";
+}
+.MIN:before, .MIN2:before {
+    content: "Minnesota Twins";
+}
+.NYA:before, .NYA2:before {
+    content: "New York Yankees";
+}
+.OAK:before, .OAK2:before {
+    content: "Oakland Athletics";
+}
+.SEA:before, .SEA2:before {
+    content: "Seattle Mariners";
+}
+.TBA:before, .TBA2:before {
+    content: "Tampa Bay Devil Rays";
+}
+.TEX:before, .TEX2:before {
+    content: "Texas Rangers";
+}
+.TOR:before, .TOR2:before {
+    content: "Toronto Blue Jays";
+}
+.ARI:before, .ARI2:before {
+    content: "Arizona Diamondbacks";
+}
+.ATL:before, .ATL2:before {
+    content: "Atlanta Braves";
+}
+.CHN:before, .CHN2:before {
+    content: "Chicago Cubs";
+}
+.CIN:before, .CIN2:before {
+    content: "Cincinnati Reds";
+}
+.COL:before, .COL2:before {
+    content: "Colorado Rockies";
+}
+.LAN:before, .LAN2:before {
+    content: "Los Angeles Dodgers";
+}
+.SDN:before, .SDN2:before {
+    content: "San Diego Padres";
+}
+.MIA:before, .MIA2:before {
+    content: "Miami Marlins";
+}
+.MIL:before, .MIL2:before {
+    content: "Milwaukee Brewers";
+}
+.NYN:before, .NYN2:before {
+    content: "New York Mets";
+}
+.PHI:before, .PHI2:before {
+    content: "Philadelphia Phillies";
+}
+.PIT:before, .PIT2:before {
+    content: "Pittsburgh Pirates";
+}
+.SFN:before, .SFN2:before {
+    content: "San Francisco Giants";
+}
+.SanFrancisco:before, .SanFrancisco2:before {
+    content: "San Francisco";
+}
+
+.SLN:before, .SLN2:before {
+    content: "St.Louis Cardinals";
+}
+.WAS:before, .WAS2:before {
+    content: "Washington Nationals";
+}
+
+.FLOMIA:before, .FLOMIA2:before {
+    content: "Florida/Miami Marlins";
+}
+
+.SanDiego:before, .SanDiego2:before {
+    content: "San Diego (PCL)";
+}
+
+.Portland:before, .Portland2:before {
+    content: "Portland";
+}
+
+.StPaul:before, .StPaul2:before {
+    content: "St. Paul";
+}
+
+.Toledo:before, .Toledo2:before {
+    content: "Toledo";
+}
+
+.Oakland:before, .Oakland2:before {
+    content: "Oakland";
+}
+
+.Milwaukee:before, .Milwaukee2:before {
+    content: "Milwaukee";
+}
+
+.Memphis:before, .Memphis2:before {
+    content: "Memphis";
+}
+
+.NewHaven:before, .NewHaven2:before {
+    content: "New Haven";
+}
+
+.Seattle:before, .Seattle2:before {
+    content: "Seattle";
+}
+
+.Toronto:before, .Toronto2:before {
+    content: "Toronto";
+}
+
+.LittleRock:before, .LittleRock2:before {
+    content: "Little Rock";
+}
+
+.KansasCity:before, .KansasCity2:before {
+    content: "Kansas City";
+}
+.MexicoCityTigers:before, .MexicoCityTigers2:before {
+   content: "MexicoCityTigers";
+ }
+.AtlanticCity:before, .AtlanticCity2:before {
+   content: "AtlanticCity";
+ }
+.MexicoCityReds:before, .MexicoCityReds2:before {
+   content: "MexicoCityReds";
+ }
+.OklahomaCity:before, .OklahomaCity2:before {
+   content: "OklahomaCity";
+ }
+.SaltLakeCity:before, .SaltLakeCity2:before {
+   content: "SaltLakeCity";
+ }
+.JerseyCity:before, .JerseyCity2:before {
+   content: "JerseyCity";
+ }
