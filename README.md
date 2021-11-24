@@ -9,15 +9,15 @@ A trade tree will show you the complete details of a trade made by a team. Let's
 
 Here is the simplest form of his tree: [![Cliff Lee Phils](https://i.imgur.com/xNO9GWU.png "Cliff Lee Phils")](http://https://i.imgur.com/xNO9GWU.png "Cliff Lee Phils")
 
-As you can see, Cliff Lee was traded to the Mariners in 2009, and the Phillies recieved 3 players in return. All players the Phillies recieved in return either retired or became free agents, ending the tree with them. 
+Cliff Lee was traded to the Mariners in 2009, and the Phillies received 3 players in return. All players the Phillies received in return either retired or became free agents, ending the tree with them. 
 
 Let's take a look at a more complicated example:
 
 [![Cliff Lee Phils](https://i.imgur.com/Nj8BtQB.png "Cliff Lee Phils")](https://i.imgur.com/Nj8BtQB.png "Cliff Lee Mariners")
 
-As we can see, the Mariners traded away Cliff Lee in 2010, receiving 4 players in return. 2 Players' lines end due to free agency and being picked up on waivers. 2 players' lines continue due to being traded away the next year. Some of those players' lines end however some continue to be traded away, so the tree grows. The tree finally ends in 2014 due to the final player hitting free agency. 
+We can see the Mariners traded away Cliff Lee in 2010, receiving 4 players in return. 2 Players' lines end due to free agency and being picked up on waivers. 2 players' lines continue due to being traded away the next year. Some of those players' lines end however some continue to be traded away, so the tree grows. The tree finally ends in 2014 due to the final player hitting free agency. 
 
-If you're follwing you might realize some of these trees can get pretty massive, spanning decades and dozens of trades. An example is [Harry Simpson](http://www.mlbtradetrees.com/player/simph101 "Harry Simpson").
+Some of these trees can get pretty massive, spanning decades and dozens of trades. An example is [Harry Simpson](http://www.mlbtradetrees.com/player/simph101 "Harry Simpson").
 
 ## The Database
 The transaction, team and player databases are thanks to [Retrosheet](https://www.retrosheet.org/ "Retrosheet"). I will only update transactions when they update the database.
