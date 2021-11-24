@@ -2,7 +2,9 @@ import pandas as pd
 from transaction_wizard import TransactionWizard as tw
 from flask import Flask, render_template, url_for, redirect
 from flask_jsglue import JSGlue
+import random
 
+RANDOMS = pd.read_csv("data/random_ids.csv")
 PLAYERS = pd.read_csv("data/players.csv")
 TEAMS = pd.read_csv("data/teams.csv")
 OUTCOME_KEYS = {"A " : "assigned from one team to another without compensation",
@@ -475,8 +477,8 @@ def home():
 
 @app.route('/random')
 def random():
-    random_row = PLAYERS.sample(n=1)
-    random_id = random_row.ID.item()
+    random_row = RANDOMS.sample(1)
+    random_id = random_row.player_id.item()
     return redirect(url_for(".player", users_player_id=random_id))
 
 

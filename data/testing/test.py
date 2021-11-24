@@ -12,14 +12,21 @@
 # trans.to_csv("trans_with_franchise.csv", index=False)
 import pandas as pd
 
-trans = pd.read_csv("sorted_transactions_final.csv")
+trans = pd.read_csv("../sorted_transactions_final.csv")
 
-non = trans["from-franchise"].fillna(0, inplace = True)
-nont = trans["to-franchise"].fillna(0, inplace = True)
+allT = trans[trans["typeof"] == "T "]
 
-fromf = trans[(trans["typeof"] == "T ") & (trans["from-franchise"] == 0)]
-tof = trans[(trans["typeof"] == "T ") & (trans["to-franchise"] == 0)]
+IDS = allT["player"].tolist()
 
-fromf.to_csv("fromf.csv")
-tof.to_csv("tof.csv")
+new_id = []
+for id in IDS:
+    if " " in id:
+        pass
+    elif id in new_id:
+        pass
+    else:
+        new_id.append(id)
 
+
+just_trades = pd.DataFrame(new_id)
+just_trades.to_csv("random_ids.csv", index=False)
