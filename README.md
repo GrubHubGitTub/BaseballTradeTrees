@@ -20,7 +20,10 @@ We can see the Mariners traded away Cliff Lee in 2010, receiving 4 players in re
 Some of these trees can get pretty massive, spanning decades and dozens of trades. An example is [Harry Simpson](http://www.mlbtradetrees.com/player/simph101 "Harry Simpson").
 
 ## The Database
-The transaction, team and player databases are thanks to [Retrosheet](https://www.retrosheet.org/ "Retrosheet"). I will only update transactions when they update the database.
+    
+ The information used here was obtained free of
+ charge from and is copyrighted by Retrosheet.  Interested
+ parties may contact Retrosheet at "www.retrosheet.org".
 
 I have made some adjustments to the database that allows the search to go more smoothly:
 
