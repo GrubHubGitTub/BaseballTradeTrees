@@ -1,6 +1,6 @@
 # MLB Trade Trees
 
-###  2.0.1 Release: December 30, 2021
+###  2.0.2 Release: December 30, 2021
 
 ## [www.mlbtradetrees.com](http://www.mlbtradetrees.com "www.mlbtradetrees.com") allows you to view the trade tree of any player in MLB history. 
 

@@ -90,7 +90,6 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                         transaction_info["outcome"] = "No further transactions- likely in organization"
                         transaction_info["date"] = last_date
                         trade_tree.append(transaction_info)
-
     get_player_outcomes(outcomes, trade_tree, franchise_choice)
 
 
@@ -280,8 +279,7 @@ def format_tree(trade_tree):
 
 
 def check_for_double_names(formatted_tree):
-    """If players are involved multiple times in one tree, the names to be adjusted to display in the OrgChart"""
-
+    """If players are involved multiple times in one tree, the names need to be adjusted to display in the OrgChart"""
     #  check if a player is in a traded for list, if so then change the traded for name and the next name match found
     maxlen = len(formatted_tree) - 1
     n = 0
@@ -337,7 +335,7 @@ def check_for_double_names(formatted_tree):
                             for player_n in tdict["traded_for"]:
                                 match = False
 
-                                if player_n == name:
+                                if name != "PTBNL/Cash" and player_n == name:
                                     tdict["traded_for"].remove(player_n)
                                     tdict["traded_for"].append(f"{name} ")
                                     match = True
@@ -355,7 +353,6 @@ def check_for_double_names(formatted_tree):
                                             match = False
             n += 1
             s += 1
-
     return formatted_tree
 
 
@@ -523,10 +520,10 @@ def player(users_player_id):
         get_outcome_data(transaction_details=transaction_list, trade_tree=trade_tree, franchise_choice=franchise_choice)
 
         # delete any duplicate transaction entries
-        trade_tree = delete_dupes(trade_tree=trade_tree)
+        no_dupes_trade_tree = delete_dupes(trade_tree=trade_tree)
 
         # format the trade tree to full text
-        formatted_tree_with_doubles = format_tree(trade_tree=trade_tree)
+        formatted_tree_with_doubles = format_tree(trade_tree=no_dupes_trade_tree)
 
         # edit players that appear multiple times in a tree so they display properly in the orgchart
         formatted_tree = check_for_double_names(formatted_tree=formatted_tree_with_doubles)
