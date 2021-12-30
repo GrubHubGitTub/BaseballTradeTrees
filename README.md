@@ -1,6 +1,6 @@
 # MLB Trade Trees
 
-###  2.0.0 Release: November 24, 2021
+###  2.0.1 Release: December 30, 2021
 
 ## [www.mlbtradetrees.com](http://www.mlbtradetrees.com "www.mlbtradetrees.com") allows you to view the trade tree of any player in MLB history. 
 
@@ -35,8 +35,8 @@ I have made some adjustments to the database that allows the search to go more s
 ### Team database (data/teams.csv)
 - All teams in the database received a franchise tag if they are part of the same franchise. They received a unique franchise code if they are an independant team. 
 
-### Player database (data/teams.csv)
-- Nothing changed, just made a copy with the full name to easily get the user input. (static/css/searchable_players.csv)
+### Player database (data/players.csv)
+- Nothing changed, just made a copy with the full name to easily get the user input from the homepage. (static/css/searchable_players.csv)
 
 ## Installing Locally
 If you want to run the website locally:
@@ -48,12 +48,12 @@ Run server.py
 
 
 ## What am I working on? 
-#### Updated Nov. 24 2021
-- Some players don&#39;t display properly due to having very old teams not listed in the teams database. Usually these are players before 1920. I just need to update the transactions database to find all teams without the franchise tag. 
-
-- Adding stat support with pybaseball. I'd like to add total war contributed by players in a trade on the tree. 
+#### Updated Dec. 30 2021
+- Adding stat support. I'd like to add total WAR contributed by players in a trade on the tree.
 
 - Searching for and filtering trees based on team, year, players in a tree, length of trees, etc.
+
+- Some players don&#39;t display properly due to having very old teams not listed in the teams database. Usually these are players before 1920. I just need to update the transactions database to find all teams without the franchise tag. 
 
 - Various UI enhancements, like clickable nodes to get a player's tree, collapsable nodes for easier readability. 
 
