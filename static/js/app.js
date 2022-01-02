@@ -1,4 +1,4 @@
-d3.csv("/static/js/searchable_players.csv").then(function (data) {
+d3.csv("/static/js/Searchable_Players_2022.csv").then(function (data) {
 console.log(data);
 var players = data;
 var button = d3.select("#button");

@@ -2,10 +2,9 @@ import pandas as pd
 from transaction_wizard import TransactionWizard as tw
 from flask import Flask, render_template, url_for, redirect
 from flask_jsglue import JSGlue
-import random
 
-RANDOMS = pd.read_csv("data/random_ids.csv")
-PLAYERS = pd.read_csv("data/players.csv")
+ALL_TRADED_PLAYERS = pd.read_csv("data/traded_players_2022.csv")
+PLAYERS = pd.read_csv("data/Players2022.csv")
 TEAMS = pd.read_csv("data/teams.csv")
 OUTCOME_KEYS = {"A " : "assigned from one team to another without compensation",
                 "C " : "signed to another team on a conditional deal",
@@ -193,8 +192,9 @@ def format_tree(trade_tree):
         if " " in trans_dict["name"]:
             player_name = trans_dict["name"]
         else:
+            print(trans_dict["name"])
             row_with_name = PLAYERS[PLAYERS.ID == trans_dict["name"]]
-            player_name = f"{row_with_name.First.item()} {row_with_name.Last.item()}"
+            player_name = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
 
         # format traded_for names
         if "traded_for" in trans_dict:
@@ -206,7 +206,7 @@ def format_tree(trade_tree):
                 else:
                     try:
                         row_with_name = PLAYERS[PLAYERS.ID == player_received]
-                        player_traded = f"{row_with_name.First.item()} {row_with_name.Last.item()}"
+                        player_traded = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
                     except ValueError:
                         player_traded = player_received
                 traded_for.append(player_traded)
@@ -221,7 +221,7 @@ def format_tree(trade_tree):
                 else:
                     try:
                         row_with_name = PLAYERS[PLAYERS.ID == player_with]
-                        player_traded_with = f"{row_with_name.First.item()} {row_with_name.Last.item()}"
+                        player_traded_with = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
                     except ValueError:
                         player_traded_with = player_with
                 traded_with.append(player_traded_with)
@@ -474,8 +474,8 @@ def home():
 
 @app.route('/random')
 def random():
-    random_row = RANDOMS.sample(1)
-    random_id = random_row.player_id.item()
+    random_row = ALL_TRADED_PLAYERS.sample(1)
+    random_id = random_row.ID.item()
     return redirect(url_for(".player", users_player_id=random_id))
 
 
@@ -541,9 +541,11 @@ def player(users_player_id):
         tree_with_team_name[team_choice] = org_tree
         all_trade_trees.append(tree_with_team_name)
 
+        print(tree_with_team_name)
+
     # get name of player to add to his page
     row_with_name = PLAYERS[PLAYERS.ID == users_player_id]
-    player_name = f"{row_with_name.First.item()} {row_with_name.Last.item()}"
+    player_name = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
 
     if len(all_trade_trees) > 0:
         return render_template("player_page.html", trees=all_trade_trees, name=player_name)

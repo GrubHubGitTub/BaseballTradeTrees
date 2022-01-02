@@ -1,5 +1,5 @@
 import pandas as pd
-transactions = pd.read_csv("data/sorted_transactions_final.csv")
+transactions = pd.read_csv("data/transac2021cleaned.csv")
 
 
 class TransactionWizard:
@@ -13,7 +13,6 @@ class TransactionWizard:
         self.traded_from_franchise_list = []
         self.traded_for_ids_list = []
         self.traded_with_ids_list= []
-        # self.from_team_choice = None
         self.get_transactions()
 
     def get_transactions(self):
