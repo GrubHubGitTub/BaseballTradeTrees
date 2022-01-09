@@ -1,5 +1,5 @@
 import pandas as pd
-transactions = pd.read_csv("data/transac2021cleaned.csv")
+transactions = pd.read_csv("data/transac2022cleaned.csv")
 
 
 class TransactionWizard:
@@ -11,8 +11,8 @@ class TransactionWizard:
         self.all_trans = None
         self.trades = None
         self.traded_from_franchise_list = []
-        self.traded_for_ids_list = []
-        self.traded_with_ids_list= []
+        self.traded_for_ids_dict = {}
+        self.traded_with_ids_dict = {}
         self.get_transactions()
 
     def get_transactions(self):
@@ -25,15 +25,19 @@ class TransactionWizard:
         self.trades = self.all_trans[self.all_trans.typeof == "T "]
         self.traded_from_franchise_list = self.trades["from-franchise"].tolist()
 
-    def get_traded_ids_list(self):
+    def get_traded_ids_dict(self):
         traded_to_user_choice = self.trades[self.trades["to-franchise"] == self.choice]
-        self.traded_for_ids_list = traded_to_user_choice["player"].tolist()
-        return self.traded_for_ids_list
+        traded_for_ids_list = traded_to_user_choice["player"].tolist()
+        for id in traded_for_ids_list:
+            self.traded_for_ids_dict[id] = id
+        return self.traded_for_ids_dict
 
-    def get_traded_with_ids_list(self):
+    def get_traded_with_ids_dict(self):
         traded_to_user_choice = self.trades[self.trades["from-franchise"] == self.choice]
-        self.traded_with_ids_list = traded_to_user_choice["player"].tolist()
-        return self.traded_with_ids_list
+        traded_with_ids_list = traded_to_user_choice["player"].tolist()
+        for id in traded_with_ids_list:
+            self.traded_with_ids_dict[id] = id
+        return self.traded_with_ids_dict
 
 
 

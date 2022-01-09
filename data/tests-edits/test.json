@@ -1,0 +1,37 @@
+{
+  "name" : "Jonah Eisen",
+  "retro_id": "Jesien11",
+
+  "trades": [
+
+    { "team": id,
+  "Franchise": id,
+      transaction_id:
+  	  "date": date,
+    	"other_team": team,
+    	"other_franchise" : franchise,
+        "players_out" :{
+          id: name},
+         "players_in" :{
+           "id": name
+         },
+    	"player_stats" : {
+          name: stats
+        }
+        "trade_stats" : {
+          "WAR_in": 34,
+          "WAR_out": 40,
+          "WAR_value": 6 ..... etc
+
+
+   "tree_stats" : {
+  "tree_WAR": {"WAR_in": 25, "WAR_out": 30, "WAR_Total":  5},
+  "tree_G": {"G_in": 25, "G_out": 30, "G_Total":  5},
+  "tree_PA": {"PA_in": 25, "PA_out": 30, "PA_Total":  5},
+  "tree_IP": {"IP_in": 25, "IP_out": 30, "IP_Total":  5}
+    }
+
+  "Goog_tree": final output I send in flask
+
+  ]
+}

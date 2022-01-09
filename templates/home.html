@@ -28,7 +28,11 @@
                     <a class="nav-link" href="/random">Random Player</a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/stats">Stats | Advanced Search</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">About | Contact</a>
                 </li>
@@ -37,19 +41,22 @@
 </nav>
 <!--END NAVBAR-->
 
-<div class="container align-items-center">
+
     <div class="row">
         <div class="col-md-12">
+            <div class="header">
 
-            <h1>Did your team make a good trade?</h1>
-            <h2>Search for a player to find out.</h2>
-            <form id="form">
+
+            <h1 class="main">Analyze any trade in baseball history.</h1>
+            <h3 class="main2">Search for a player to get started</h3>
+            <h5 class="main3">or go to <a class ="main" href="/stats">advanced search</a></h5>
+                <form id="form">
             <input class="form-control" id="user-input" placeholder="Enter a player">
             <button id="button" class="btn btn-primary">Search for trades</button>
+            <h6 class='click'>Click the player's name to view his trade trees.</h6>
             </form>
+            </div>
 
-
-            <h6 class=>Click the player's name to view his trade trees.</h6>
             <table class="table" cellpadding="10">
             <thead>
             <tr>
