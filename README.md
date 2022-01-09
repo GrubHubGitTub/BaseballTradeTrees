@@ -2,10 +2,13 @@
 
 ## [www.mlbtradetrees.com](http://www.mlbtradetrees.com "www.mlbtradetrees.com") allows you to view the trade tree of any player in MLB history. 
 
-###  2.1.0 Release: January 2, 2022
+###  3.0.0 Release: January 9, 2022
 #### Changelog
 - New Retrosheet transaction database (all 2021 transactions) was cleaned and added to the website. Check transaction database info below for all changes made.
-- Franchise/ Team bug was fixed, so all trees should now display properly (some obscure teams will be missing their headings) 
+- Stat support! All trade now has a stat value, and they are added up to create a total tree value. See below for more information about stats. 
+- Lots of UI changes, including clickable nodes for easier traversal. 
+- new stats/ search page for all tree values. www.mlbtradetrees.com/stats
+- you can hover over a node to see the complete trade breakdown, Google Org chart kinda sucks so it looks pretty bad. Will update later.
 
 ### What is a trade tree? 
 A trade tree will show you the complete details of a trade made by a team. Let's use Hall Of Fame candidate Cliff Lee for some examples, as he was traded multiple times throughout his career..
@@ -22,7 +25,7 @@ We can see the Mariners traded away Cliff Lee in 2010, receiving 4 players in re
 
 Some of these trees can get pretty massive, spanning decades and dozens of trades. An example is [Harry Simpson](http://www.mlbtradetrees.com/player/simph101 "Harry Simpson").
 
-## The Database
+## The Database (check tests-edits files for complete breakdown of changes made)
     
  The information used here was obtained free of
  charge from and is copyrighted by Retrosheet.  Interested
@@ -33,13 +36,18 @@ I have made some adjustments to the database that allows the search to go more s
 ### Transaction database (data/transac2021cleaned.csv)
 - Check "edit_transactions.py" for step by step breakdown of what I changed in the database as outlined here: 
 - Nan players involved in trades were changed to "PTBNL/Cash" (player to be named later). Most of the time you see this in a tree, it is a cash transaction. 
-- Transactions of players that were released or granted free agency, then signed back with the team as their next transaction were deleted as it caused trees to end prematurely. 
 - Franchise tags were added to the database to ensure that a team name change doesn't end a tree. 
 
 ### Team database (data/teams.csv)
-- All teams in the database received a franchise tag if they are part of the same franchise. They received a unique franchise code if they are an independant team. Franchise information was taken from https://www.baseball-almanac.com/teammenu.shtml
-### Player database (data/players.csv)
+- All teams in the database received a franchise tag if they are part of the same franchise. They received a unique franchise code if they are an independent team. Franchise information was taken from https://www.baseball-almanac.com/teammenu.shtml
+### Player database (data/players2022.csv)
 - Nothing changed, filtered and made a copy with the full name to easily get the user input from the homepage. (static/css/searchable_players.csv)
+
+## Stats
+- The following stats are viewable in a tree- WAR, Games, Plate Appearances, Innings Pitched(outs), Salary. These were all taken from BaseballReference WAR daily files.
+- Every trade, the traded with players' and the node player's stats on the traded to team are searched for, for the entirety of the time they are on the new team. It is the same for the players received.
+- Salary is calculated from the players' salary ON THAT YEAR ONLY. 
+
 
 ## Installing Locally
 If you want to run the website locally:
@@ -51,12 +59,8 @@ Run server.py
 
 
 ## What am I working on? 
-#### Updated Jan. 2 2022
-- Adding stat support. Total WAR contributed by players in a trade on the tree subtracted by WAR given up. 
-
-- Searching for and filtering trees based on team, WAR, year, players in a tree, length of trees, etc.
-
-- Various UI enhancements, like clickable nodes to get a player's tree, collapsable nodes for easier readability. 
+#### Updated Jan. 9 2022
+- Google Org Chart sucks so I want to use a new OrgChat UI. 
 
 
 
