@@ -5,7 +5,7 @@
 ###  3.0.0 Release: January 9, 2022
 #### Changelog
 - New Retrosheet transaction database (all 2021 transactions) was cleaned and added to the website. Check transaction database info below for all changes made.
-- Stat support! All trade now has a stat value, and they are added up to create a total tree value. See below for more information about stats. 
+- Stat support! All trade now has a stat value, and they are added up to create a total tree value. You can hover over a trade to see detailed stats. See below for more information about stats. 
 - Lots of UI changes, including clickable nodes for easier traversal. 
 - new stats/ search page for all tree values. www.mlbtradetrees.com/stats
 - you can hover over a node to see the complete trade breakdown, Google Org chart kinda sucks so it looks pretty bad. Will update later.
