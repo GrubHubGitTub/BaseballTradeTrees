@@ -218,7 +218,6 @@ def format_tree(trade_tree):
             if " " in trans_dict["name"]:
                 pass
             else:
-                print(trans_dict["name"])
                 try:
                     row_with_name = PLAYERS[PLAYERS.ID == trans_dict["name"]]
                     trans_dict["name"] = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
@@ -866,7 +865,6 @@ def player(users_player_id):
 
         # edit players that appear multiple times in a tree so they display properly in the orgchart
         formatted_tree = check_for_double_names(formatted_tree=tree_with_stats)
-        print(formatted_tree)
 
         # formatting for google orgchart
         org_tree = format_for_google_chart(formatted_tree=formatted_tree)
