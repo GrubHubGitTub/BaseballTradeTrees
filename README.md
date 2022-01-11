@@ -60,6 +60,7 @@ Run server.py
 
 ## What am I working on? 
 #### Updated Jan. 9 2022
+- Looking into adding Compensation picks to make trees even bigger. 
 - Google Org Chart sucks so I want to use a new OrgChat UI. 
 
 
