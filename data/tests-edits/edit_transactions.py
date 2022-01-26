@@ -25,24 +25,7 @@ trans = pd.read_csv()
 # trans["to-franchise"].fillna(trans["to-team"], inplace=True)
 # trans.to_csv("transac2022cleaned.csv", index=False)
 
-# """sort trans by name and date and then check for F/Fg or R/Fg """ THIS WAS PUT INTO THE SEARCH FUNCTION
-# sorted = trans.sort_values(["player", "primary_date"], ascending=[True, True])
-# sorted["typeof_prev_row"] = sorted["typeof"].shift(1)
-# sorted["from-franchise_prev_row"] = sorted["from-franchise"].shift(1)
-# sorted["player_prev_row"] = sorted["player"].shift(1)
-# all_r = sorted[(sorted["typeof"] == "F ") & (sorted["typeof_prev_row"] == "R ") & (sorted["from-franchise_prev_row"] == sorted["to-franchise"]) & (sorted["player_prev_row"] == sorted["player"])]
-# ind = all_r.index.values.tolist()
-# new_index = []
-# for n in ind:
-#     new1 = n-1
-#     new2 = n
-#     new_index.append(new1)
-#     new_index.append(new2)
-# print(new_index)
-# sorted = trans.sort_index()
-# ## sorted.to_csv("sorted.csv", index=False)
-# deleted = sorted.drop(sorted.index[new_index])
-# deleted.to_csv("transac2022cleaned.csv", index=False)
+
 
 
 

@@ -10,6 +10,7 @@ from flask_jsglue import JSGlue
 
 ALL_TRADED_PLAYERS = pd.read_csv("data/traded_players_2022.csv")
 PLAYERS = pd.read_csv("data/Players2022.csv")
+PICKS = pd.read_csv("data/comp_picks_retroid.csv")
 TEAMS = pd.read_csv("data/teams.csv")
 OUTCOME_KEYS = {"A ": "assigned from one team to another without compensation",
                 "C ": "signed to another team on a conditional deal",
@@ -60,7 +61,7 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                 pass
             else:
                 player_search = tw(player=player_id)
-                # check if a player was resigned
+                # check if a player was re signed
                 sorted = player_search.all_trans.sort_values(["primary_date"], ascending=True)
 
                 sorted["typeof_next_row"] = sorted["typeof"].shift(-1)
@@ -92,23 +93,34 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                 # if player is retired or a newer player, add to the dictionary- dates can be changed for more accuracy
                 elif outcome.empty:
                     sorted_trans = player_search.all_trans.sort_values(by="primary_date")
-                    last_row = sorted_trans.tail(1)
-                    last_date = last_row.primary_date.item()
-                    if last_date <= 20130000:
+                    if sorted_trans.empty:
                         transaction_info = {}
                         transaction_info["name"] = player_id
                         transaction_info["retro_id"] = player_id
-                        transaction_info["outcome"] = "No further transactions- likely retired"
-                        transaction_info["date"] = last_date
+                        transaction_info["outcome"] = "Did not play in MLB"
+                        transaction_info["date"] = date
                         trade_tree.append(transaction_info)
+                        pass
 
                     else:
-                        transaction_info = {}
-                        transaction_info["name"] = player_id
-                        transaction_info["retro_id"] = player_id
-                        transaction_info["outcome"] = "No further transactions- likely in organization"
-                        transaction_info["date"] = last_date
-                        trade_tree.append(transaction_info)
+
+                        last_row = sorted_trans.tail(1)
+                        last_date = last_row.primary_date.item()
+                        if last_date <= 20130000:
+                            transaction_info = {}
+                            transaction_info["name"] = player_id
+                            transaction_info["retro_id"] = player_id
+                            transaction_info["outcome"] = "No further transactions- likely retired"
+                            transaction_info["date"] = last_date
+                            trade_tree.append(transaction_info)
+
+                        else:
+                            transaction_info = {}
+                            transaction_info["name"] = player_id
+                            transaction_info["retro_id"] = player_id
+                            transaction_info["outcome"] = "No further transactions- likely in organization"
+                            transaction_info["date"] = last_date
+                            trade_tree.append(transaction_info)
     get_player_outcomes(outcomes, trade_tree, franchise_choice)
 
 
@@ -121,10 +133,37 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice):
     for outcome in outcomes:
         code = outcome.typeof.item()
         outcome_date = outcome.primary_date.item()
+        year = int(str(outcome_date)[0:4]) + 1
         player_id = outcome.player.item()
 
         # end line if player was not traded
-        if code != "T ":
+        if code == "Fg":
+            player_comp_picks = PICKS[PICKS["fa_retroid"] == player_id]
+            player_comp_picks_year = player_comp_picks[player_comp_picks["year"] == year]
+            all_comp_picks = player_comp_picks_year["signed_retroid"].tolist()
+            if len(all_comp_picks) > 0:
+                comp_picks_dict = {}
+                for id in all_comp_picks:
+                    comp_picks_dict[id] = id
+                print(comp_picks_dict)
+                transaction = {}
+                transaction["name"] = player_id
+                transaction["transaction_id"] = "Compensation Picks"
+                transaction["signed"] = comp_picks_dict
+                transaction["date"] = outcome.primary_date.item()
+
+                transactions_list.append(transaction)
+
+            else:
+                transaction_info = {}
+                transaction_info["name"] = player_id
+                transaction_info["retro_id"] = player_id
+                transaction_info["outcome"] = code
+                transaction_info["date"] = outcome_date
+                trade_tree.append(transaction_info)
+
+
+        elif code != "T ":
             transaction_info = {}
             transaction_info["name"] = player_id
             transaction_info["retro_id"] = player_id
@@ -155,40 +194,61 @@ def get_players_by_trans_id(transactions_list, trade_tree, franchise_choice):
     traded_for_list = []
 
     for trans in transactions_list:
-        transaction = tw(trans_id=trans["transaction_id"], choice=franchise_choice)
-        transaction.get_trades()
-        # add new player ids to dict to search
-        traded_for = transaction.get_traded_ids_dict()
+        if trans["transaction_id"] == "Compensation Picks":
+            # add picks to trade tree and new ids to search on the next loop
+            player_id = trans["name"]
+            transaction_id = trans["transaction_id"]
+            signed = trans["signed"]
+            trans_date = trans["date"]
 
-        # in the rare occurrence a player was traded for himself in same transaction- Jeff Terpko- remove that player
-        if trans["name"] in traded_for:
-            traded_for.pop(trans["name"])
+            add_to_tree_list = {}
+            add_to_tree_list["name"] = player_id
+            add_to_tree_list["retro_id"] = player_id
+            add_to_tree_list["transaction_id"] = transaction_id
+            add_to_tree_list["date"] = trans_date
+            add_to_tree_list["traded_for"] = signed
+            print(add_to_tree_list)
 
-        # add transaction to trade tree and new ids to search on the next loop
-        player_id = trans["name"]
-        transaction_id = trans["transaction_id"]
-        trans_date = trans["date"]
-        to_team = trans["to_team"]
-        to_franchise = trans["to_franchise"]
+            traded_for_list.append(signed)
 
-        add_to_tree_list = {}
-        add_to_tree_list["name"] = player_id
-        add_to_tree_list["retro_id"] = player_id
-        add_to_tree_list["transaction_id"] = transaction_id
-        add_to_tree_list["traded_to_id"] = to_team
-        add_to_tree_list["traded_to"] = to_team
-        add_to_tree_list["traded_to_franchise"] = to_franchise
-        add_to_tree_list["date"] = trans_date
-        add_to_tree_list["traded_for"] = transaction.get_traded_ids_dict()
-        traded_with = transaction.get_traded_with_ids_dict()
-        if player_id in traded_with:
-            traded_with.pop(player_id)
-        add_to_tree_list["traded_with"] = traded_with
+            trade_tree.append(add_to_tree_list)
+            transaction_details.append(add_to_tree_list)
 
-        trade_tree.append(add_to_tree_list)
+        else:
+            transaction = tw(trans_id=trans["transaction_id"], choice=franchise_choice)
+            transaction.get_trades()
+            # add new player ids to dict to search
+            traded_for = transaction.get_traded_ids_dict()
 
-        traded_for_list.append(transaction.get_traded_ids_dict())
-        transaction_details.append(add_to_tree_list)
+            # in the rare occurrence a player was traded for himself in same transaction- Jeff Terpko- remove that player
+            if trans["name"] in traded_for:
+                traded_for.pop(trans["name"])
+
+            # add transaction to trade tree and new ids to search on the next loop
+            player_id = trans["name"]
+            transaction_id = trans["transaction_id"]
+            trans_date = trans["date"]
+            to_team = trans["to_team"]
+            to_franchise = trans["to_franchise"]
+
+            add_to_tree_list = {}
+            add_to_tree_list["name"] = player_id
+            add_to_tree_list["retro_id"] = player_id
+            add_to_tree_list["transaction_id"] = transaction_id
+            add_to_tree_list["traded_to_id"] = to_team
+            add_to_tree_list["traded_to"] = to_team
+            add_to_tree_list["traded_to_franchise"] = to_franchise
+            add_to_tree_list["date"] = trans_date
+            add_to_tree_list["traded_for"] = transaction.get_traded_ids_dict()
+            traded_with = transaction.get_traded_with_ids_dict()
+            if player_id in traded_with:
+                traded_with.pop(player_id)
+            add_to_tree_list["traded_with"] = traded_with
+
+            trade_tree.append(add_to_tree_list)
+
+            traded_for_list.append(transaction.get_traded_ids_dict())
+            transaction_details.append(add_to_tree_list)
 
     if len(traded_for_list) > 0:
         get_outcome_data(transaction_details=transaction_details, trade_tree=trade_tree,
@@ -289,6 +349,8 @@ def calculate_stats(trade_tree):
     choice_team = trade_tree[0]["choice_team_id"]
     choice_franchise = trade_tree[0]["choice_franchise"]
     for trans in trade_tree:
+        stats_start_date = int(str(trans["date"])[0:4])
+
         WAR_out = 0
         G_out = 0
         PA_out = 0
@@ -297,53 +359,53 @@ def calculate_stats(trade_tree):
         all_player_stats = {}
         trade_stats = {}
         if "outcome" not in trans:
-            retro_id = trans["retro_id"]
-            name = trans["name"]
-            stats_start_date = int(str(trans["date"])[0:4])
-            traded_to_franchise = trans["traded_to_franchise"]
-            player_stats = sw(retro_id, stats_start_date, from_franchise=choice_franchise,
-                              to_franchise=traded_to_franchise)
-            player_stats.get_stats()
-            player_stats.get_salary_from()
+            if trans["transaction_id"] != "Compensation Picks":
+                traded_to_franchise = trans["traded_to_franchise"]
+                retro_id = trans["retro_id"]
+                name = trans["name"]
+                player_stats = sw(retro_id, stats_start_date, from_franchise=choice_franchise,
+                                  to_franchise=traded_to_franchise)
+                player_stats.get_stats()
+                player_stats.get_salary_from()
 
-            WAR_out += player_stats.WAR_on_team
-            G_out += player_stats.G_on_team
-            PA_out += player_stats.PA_on_team
-            IP_out += player_stats.IPouts_on_team
-            salary_out += player_stats.trade_year_salary
+                WAR_out += player_stats.WAR_on_team
+                G_out += player_stats.G_on_team
+                PA_out += player_stats.PA_on_team
+                IP_out += player_stats.IPouts_on_team
+                salary_out += player_stats.trade_year_salary
 
-            player_stats = {"id": retro_id, "name": name, "stats": {"WAR out": player_stats.WAR_on_team,
-                                                                    "G out": player_stats.G_on_team,
-                                                                    "PA out": player_stats.PA_on_team,
-                                                                    "IP out": player_stats.IPouts_on_team,
-                                                                    "salary out": salary_out}}
-            all_player_stats[retro_id] = player_stats
-            if "traded_with" in trans and len("traded_with") > 0:
-                for id, name in trans["traded_with"].items():
-                    if id == "PTBNL/Cash":
-                        pass
-                    else:
-                        retro_id = id
-                        name = name
-                        player_stats = sw(retro_id, stats_start_date, from_franchise=choice_franchise,
-                                          to_franchise=traded_to_franchise)
-                        player_stats.get_stats()
-                        player_stats.get_salary_from()
-                        WAR_out += player_stats.WAR_on_team
-                        G_out += player_stats.G_on_team
-                        PA_out += player_stats.PA_on_team
-                        IP_out += player_stats.IPouts_on_team
-                        salary_out += player_stats.trade_year_salary
+                player_stats = {"id": retro_id, "name": name, "stats": {"WAR out": player_stats.WAR_on_team,
+                                                                        "G out": player_stats.G_on_team,
+                                                                        "PA out": player_stats.PA_on_team,
+                                                                        "IP out": player_stats.IPouts_on_team,
+                                                                        "salary out": salary_out}}
+                all_player_stats[retro_id] = player_stats
+                if "traded_with" in trans and len("traded_with") > 0:
+                    for id, name in trans["traded_with"].items():
+                        if id == "PTBNL/Cash":
+                            pass
+                        else:
+                            retro_id = id
+                            name = name
+                            player_stats = sw(retro_id, stats_start_date, from_franchise=choice_franchise,
+                                              to_franchise=traded_to_franchise)
+                            player_stats.get_stats()
+                            player_stats.get_salary_from()
+                            WAR_out += player_stats.WAR_on_team
+                            G_out += player_stats.G_on_team
+                            PA_out += player_stats.PA_on_team
+                            IP_out += player_stats.IPouts_on_team
+                            salary_out += player_stats.trade_year_salary
 
-                        stats = {"id": retro_id, "name": name, "stats": {"WAR out": player_stats.WAR_on_team,
-                                                                         "G out": player_stats.G_on_team,
-                                                                         "PA out": player_stats.PA_on_team,
-                                                                         "IP out": player_stats.IPouts_on_team},
-                                 "salary out": salary_out}
-                        all_player_stats[id] = stats
+                            stats = {"id": retro_id, "name": name, "stats": {"WAR out": player_stats.WAR_on_team,
+                                                                             "G out": player_stats.G_on_team,
+                                                                             "PA out": player_stats.PA_on_team,
+                                                                             "IP out": player_stats.IPouts_on_team},
+                                     "salary out": salary_out}
+                            all_player_stats[id] = stats
 
-            trans["player_stats"] = all_player_stats
-            trans["trade_stats"] = trade_stats
+                trans["player_stats"] = all_player_stats
+                trans["trade_stats"] = trade_stats
 
             WAR_in = 0
             G_in = 0
@@ -362,7 +424,7 @@ def calculate_stats(trade_tree):
                         if retro_id == transac["retro_id"]:
                             stats_end_date = int(str(transac["date"])[0:4])
                     player_stats = sw(retro_id, stats_start_date, to_franchise=choice_franchise,
-                                      from_franchise=traded_to_franchise, stats_end_date=stats_end_date)
+                                      from_franchise=None, stats_end_date=stats_end_date)
                     player_stats.get_stats()
                     player_stats.get_salary_to()
                     WAR_in += player_stats.WAR_on_team
@@ -376,6 +438,7 @@ def calculate_stats(trade_tree):
                                                                      "IP in": player_stats.IPouts_on_team,
                                                                      "Salary in": salary_in}}
                     all_player_stats[id] = stats
+                    trans["player_stats"] = all_player_stats
 
             # calculate total for transaction
             trade_stats["WAR out"] = round(WAR_out, 2)
@@ -669,11 +732,12 @@ def format_for_google_chart(formatted_tree):
                            f"{transaction['date']}</div>"
                 google_org_tree.append([style_dict, parent, ""])
 
-        elif "traded_to" in transaction:
+        elif "transaction_id" in transaction:
             parent = ""
             for tr in formatted_tree:
                 if "traded_for" in tr and transaction["name"] in tr["traded_for"].values():
                     parent = tr["name"]
+
             if "traded_with" in transaction:
                 # edit this to include formatting for anchor tags
                 traded_with = ""
@@ -756,7 +820,26 @@ def format_for_google_chart(formatted_tree):
                     player_stats.append(stats)
                 stats = ''.join(player_stats)
 
-                if " " in transaction['retro_id']:
+                if transaction["transaction_id"] == "Compensation Picks":
+                    if " " in transaction['retro_id']:
+                        style_dict = {}
+                        style_dict["v"] = transaction["name"]
+                        style_dict["f"] = f"<div class='player-name'>{transaction['name']}<//div> " \
+                                          f"<div class='comp-pick'> Compensation picks for leaving team on {transaction['date']}</div>" \
+                                          f"<div class='{salary_value_class}'> Payroll: {salary} </div>" \
+                                          f"<div class='{WAR_value_class}'>Pick value: {transaction['trade_stats']['WAR value']} WAR </div>"
+                        google_org_tree.append([style_dict, parent, stats])
+                    else:
+                        style_dict = {}
+                        style_dict["v"] = transaction["name"]
+                        style_dict[
+                            "f"] = f"<a class='player-name' href=/player/{transaction['retro_id']}>{transaction['name']}</a> " \
+                                   f"<div class='comp-pick'> Compensation picks for leaving team on {transaction['date']}</div>" \
+                                          f"<div class='{salary_value_class}'> Payroll: {salary} </div>" \
+                                          f"<div class='{WAR_value_class}'>Pick value: {transaction['trade_stats']['WAR value']} WAR </div>"
+                        google_org_tree.append([style_dict, parent, stats])
+
+                elif " " in transaction['retro_id']:
                     style_dict = {}
                     style_dict["v"] = transaction["name"]
                     style_dict["f"] = f"<div class='player-name'>{transaction['name']}<//div> " \
@@ -857,9 +940,9 @@ def player(users_player_id):
 
         # format the trade tree to full text
         formatted_tree_with_doubles = format_tree(trade_tree=no_dupes_trade_tree)
-
         # Stats for each trade
         tree_with_stats = calculate_stats(trade_tree=formatted_tree_with_doubles)
+        print(tree_with_stats)
         # Stats total for entire tree
         total_tree_value = get_whole_tree_value(trade_tree=tree_with_stats)
 
@@ -898,6 +981,35 @@ def contact():
 @app.route('/stats')
 def stats():
     return render_template("stats.html")
+
+@app.route('/stats/WARpos')
+def WARpos():
+    return render_template("WARpos.html")
+
+@app.route('/stats/WARneg')
+def WARneg():
+    return render_template("WARneg.html")
+
+@app.route('/stats/players')
+def players():
+    return render_template("players.html")
+
+@app.route('/stats/transactions')
+def transactions():
+    return render_template("transactions.html")
+
+@app.route('/stats/year-span')
+def yearspan():
+    return render_template("yearspan.html")
+
+
+@app.route('/stats/tree-search')
+def adv_search():
+    return render_template("search.html")
+
+@app.route('/stats/franchises')
+def franchises():
+    return render_template("franchises.html")
 
 
 if __name__ == "__main__":

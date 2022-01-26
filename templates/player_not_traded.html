@@ -12,9 +12,13 @@
 </head>
 <body>
 <!-- NAVBAR-->
-<nav class="navbar navbar-expand-md">
+<nav class="main navbar navbar-expand-md">
     <div class="container-fluid">
-        <a class="navbar-brand abs" href="/">MLB Trade Trees</a>
+    <a class="navbar-brand abs" href="/">MLB Trade Trees</a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="collapseNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/">New Search</a>
@@ -22,19 +26,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href=""></a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/random">Random Player</a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/stats">Stats | Advanced Search</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tree Stats and Search</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/stats/franchises">Top Trees and Franchises</a></li>
+                    <li><a class="dropdown-item" href="/stats/tree-search">Search All Trees</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">About | Contact</a>
                 </li>
             </ul>
+        </div>
     </div>
 </nav>
 <!--END NAVBAR-->
@@ -42,5 +51,9 @@
 <h2> <a href="/random">Click here</a> to go to a random player's page. </h2>
 <h6 class="error"> Transactions are current until the end of 2021. Players purchased for cash will not have a tree. </a></h6>
 <h6 class="error">If you believe this is an error, please <a href="/contact"> contact me. </a></h6>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
 </body>
 </html>

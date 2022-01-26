@@ -4,7 +4,7 @@ background-color: #DEDFE3;
 margin: 0;
 }
 
-.navbar {
+.main.navbar {
     background-color: #041E43;
     border-bottom: 1px solid #DEDFE3;
 }
@@ -35,6 +35,32 @@ margin: 0;
         text-align: center;
         color: OrangeRed;
 }
+
+.active{
+border-bottom: 3px solid red;
+}
+
+.statsbar a:hover{
+border-bottom: 3px solid red;
+}
+
+.statsbar.navbar {
+margin: 2% 0;
+background-color: #B0B3BC;
+border: 1px solid black;
+
+}
+
+.statsbar .navbar-nav .nav-link {
+    color: #041E43;
+}
+
+
+.statsbar.navbar-nav > li {
+  padding-left:30px;
+  padding-right:30px;
+}
+
 
 .header {
   margin: 0;
@@ -122,7 +148,7 @@ text-align: center;
 color: #041E43;
 }
 
-.col-md-8{
+.col-md-7{
 border-right: 5px solid red;
 }
 
@@ -150,16 +176,24 @@ margin: 3% 0
   text-align: center;
 }
 
-.table thead th {
+.homeTable thead th {
     width: 50%;
     vertical-align: bottom;
     border-bottom: 2px solid black;
 }
 
-.table {
+.homeTable {
 margin: 0 25%;
 width: 50%;
 text-align: center;
+}
+
+.statsTable {
+border-right: none;
+}
+
+.dataTables_wrapper {
+padding: 0 10%;
 }
 
 button {
@@ -172,6 +206,21 @@ button:hover {
 background-color: #A33241 !important;
 }
 
+.navbar-toggler {
+background-color: #A33241 !important;
+ border-color: black !important;
+}
+
+.navbar-toggler-icon {
+            background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+
+
+.dropdown-menu {
+background-color: #DEDFE3 !important;
+
+}
 
 .form-control {
 width: 50%;
@@ -206,6 +255,13 @@ color: CadetBlue;
 font-style:italic;
 font-size:small;
 }
+
+.comp-pick {
+color:Gold;
+font-style:italic;
+font-size:small;
+}
+
 
 .traded-to {
 color:deepskyblue;
@@ -280,7 +336,7 @@ input[type='checkbox'] {
 
 .lbl-toggle {
 
-margin: 0 32%;
+margin: 0 31%;
 
   border-top: 2px solid #041E43;
   border-bottom: 0px solid #041E43;
@@ -290,7 +346,7 @@ margin: 0 32%;
   text-align: center;
   color: #041E43;
 
-  padding: 1%;
+  padding: 1% 5%;
 
   background: #DEDFE3;
 
@@ -343,3 +399,8 @@ margin: 0 32%;
   border-bottom-right-radius: 7px;
   padding: .5rem 1rem;
 }
+
+table.google-visualization-orgchart-table {
+    border-collapse: separate;
+}
+

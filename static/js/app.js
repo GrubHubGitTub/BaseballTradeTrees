@@ -1,5 +1,5 @@
 d3.csv("/static/js/Searchable_Players_2022.csv").then(function (data) {
-console.log(data);
+
 var players = data;
 var button = d3.select("#button");
 var form = d3.select("#form");

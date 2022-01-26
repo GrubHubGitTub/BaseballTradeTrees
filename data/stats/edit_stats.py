@@ -21,9 +21,9 @@ pd.set_option('display.width', 1000)
 # stats = pd.read_csv("combined_WAR.csv")
 # id_dict = all.set_index("bbrefID").to_dict()["retroID"]
 # stats["retroID"] = stats["player_ID"].map(id_dict)
-# stats.to_csv("test.csv", index= False)
+# stats.to_csv("franchise_averages.csv", index= False)
 #
-# stats = pd.read_csv("test.csv")
+# stats = pd.read_csv("franchise_averages.csv")
 # stats = stats[["name_common","retroID","player_ID","year_ID","team_ID", "G", "PA", "IPouts", "WAR"]]
 # stats.to_csv("Stats_Combined_IDs.csv", index=False)
 
