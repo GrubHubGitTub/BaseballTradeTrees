@@ -6,9 +6,9 @@ import pandas as pd
 # # #
 # # tree_info = pd.concat([df1, df2])
 # #
-# # trees_info.to_csv("tree_info.csv",index=False)
+# # trees_info.to_csv("all_tree_info.csv",index=False)
 #
-# tree_info = pd.read_csv("../../tree_info.csv")
+# tree_info = pd.read_csv("../../all_tree_info.csv")
 #
 # tree_info = tree_info[["Player ID","Name","Traded From- Team Name","Traded From- Franchise","Total Transactions",
 #                        "Amount Players Traded Away","Amount Players Traded For","Amount Players Total","Earliest Year",
@@ -41,7 +41,7 @@ import pandas as pd
 franchises = pd.read_csv("../teams.csv")
 list_franchises = franchises["Franchise"].to_list()
 
-trees = pd.read_csv("../../all_trees_with_links.csv")
+trees = pd.read_csv("../all_trees_with_links.csv")
 
 all_csv = []
 

@@ -86,7 +86,7 @@
 </div>
 
 
-  <table border="1" class="dataframe statsTable table table-striped" id="transactions">
+  <table border="1" class="dataframe statsTable table table-striped" id="transactions" style="display:none">
   <thead>
     <tr style="text-align: centre;">
       <th>Link</th>
@@ -2105,9 +2105,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 
-<script>$(document).ready( function () {
+<script>
+$(document).ready( function () {
 $('#transactions').DataTable();
-} );</script>
+$('#transactions').show();
+} );
+
+</script>
 
 </body>
 </html>
