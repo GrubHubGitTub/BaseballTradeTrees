@@ -87,32 +87,34 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                 # if player is retired or a newer player, add to the dictionary- dates can be changed for more accuracy
                 elif outcome.empty:
                     sorted_trans = player_search.all_trans.sort_values(by="primary_date")
-                    if sorted_trans.empty:
+                    to_choice = sorted_trans[sorted["to-franchise"] == franchise_choice]
+
+                    if to_choice.empty and " " in player_id:
                         transaction_info = {}
                         transaction_info["name"] = player_id
                         transaction_info["retro_id"] = player_id
                         transaction_info["outcome"] = "Did not play in MLB"
                         transaction_info["date"] = date
                         trade_tree.append(transaction_info)
-                        break
-
-                    last_row = sorted_trans.tail(1)
-                    last_date = last_row.primary_date.item()
-                    if last_date <= 20130000:
-                        transaction_info = {}
-                        transaction_info["name"] = player_id
-                        transaction_info["retro_id"] = player_id
-                        transaction_info["outcome"] = "No further transactions- likely retired"
-                        transaction_info["date"] = last_date
-                        trade_tree.append(transaction_info)
 
                     else:
-                        transaction_info = {}
-                        transaction_info["name"] = player_id
-                        transaction_info["retro_id"] = player_id
-                        transaction_info["outcome"] = "No further transactions- likely in organization"
-                        transaction_info["date"] = last_date
-                        trade_tree.append(transaction_info)
+                        last_row = sorted_trans.tail(1)
+                        last_date = last_row.primary_date.item()
+                        if last_date <= 20130000:
+                            transaction_info = {}
+                            transaction_info["name"] = player_id
+                            transaction_info["retro_id"] = player_id
+                            transaction_info["outcome"] = "No further transactions- likely retired"
+                            transaction_info["date"] = last_date
+                            trade_tree.append(transaction_info)
+
+                        else:
+                            transaction_info = {}
+                            transaction_info["name"] = player_id
+                            transaction_info["retro_id"] = player_id
+                            transaction_info["outcome"] = "No further transactions- likely in organization"
+                            transaction_info["date"] = last_date
+                            trade_tree.append(transaction_info)
     get_player_outcomes(outcomes, trade_tree, franchise_choice)
 
 
@@ -137,6 +139,7 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice):
                 comp_picks_dict = {}
                 for id in all_comp_picks:
                     comp_picks_dict[id] = id
+
                 transaction = {}
                 transaction["name"] = player_id
                 transaction["transaction_id"] = "Compensation Picks"
@@ -646,7 +649,7 @@ for player in all_trades[5000:]:
         tree_csv = {"Player ID": player_output["id"],
                     "Link": f"<a href=/player/{player_output['id']}>{player_output['id']}</a>",
                     "Name": player_output["name"],
-                    "From-Team ": player_output["trades"][0]["choice_team"],
+                    "From-Team": player_output["trades"][0]["choice_team"],
                     "From-Franchise":player_output["trades"][0]["choice_franchise"],
                     "# Transactions": total_transactions,
                     "# Players Traded Away": traded_away,
@@ -678,7 +681,17 @@ all_trees = pd.concat(all_data, ignore_index=True)
 # 5000:
 all_trees.to_csv("test2.csv", index=False)
 
+df1 = pd.read_csv("test1.csv")
+df2 = pd.read_csv("test2.csv")
 
+tree_info = pd.concat([df1, df2])
+tree_info = tree_info[["Link","Name","From-Team","From-Franchise","# Transactions","# Players Traded Away",
+                       "# Players Traded For","# Players Total","First Year","Last Year","Year Span","Ongoing",
+                       "Comp Picks","total_WAR_out","total_WAR_in","WAR_total","total_G_out","total_G_in",
+                       "G_total","total_PA_out","total_PA_in","PA_total","total_IP_out","total_IP_in","IP_total",
+                       "total_salary_out","total_salary_in","salary_total"]]
+
+tree_info.to_csv("all_tree_info.csv", index=False)
 
 
 

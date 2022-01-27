@@ -38,7 +38,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tree Stats and Search</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/stats/franchises">Top Trees and Franchises</a></li>
+                    <li><a class="dropdown-item" href="/stats">Top Trees and Franchises</a></li>
                     <li><a class="dropdown-item" href="/stats/tree-search">Search All Trees</a></li>
                   </ul>
                 </li>
@@ -88,15 +88,18 @@
     </nav>
 </div>
 
-<table border="1" class="dataframe statsTable table table-striped" id="WARneg" style="display:none">
+<table border="1" class="dataframe statsTable table table-striped" id="WARneg">
   <thead>
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
       <th>Link</th>
       <th>Name</th>
       <th>From-Team</th>
       <th>From-Franchise</th>
       <th># Transactions</th>
-      <th>WAR Total</th>
+      <th>First Year</th>
+      <th>Last Year</th>
+      <th>Year Span</th>
+      <th>WAR_total</th>
     </tr>
   </thead>
   <tbody>
@@ -106,45 +109,8 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/wadsj101>wadsj101</a></td>
-      <td>Jack Wadsworth</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
-      <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/ritcc101>ritcc101</a></td>
-      <td>Claude Ritchey</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
-      <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/waddr101>waddr101</a></td>
-      <td>Rube Waddell</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
-      <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/latit101>latit101</a></td>
-      <td>Tacks Latimer</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
-      <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/wagnh101>wagnh101</a></td>
-      <td>Honus Wagner</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
+      <td>1899</td>
+      <td>1900</td>
       <td>1</td>
       <td>-267.10</td>
     </tr>
@@ -154,6 +120,42 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wagnh101>wagnh101</a></td>
+      <td>Honus Wagner</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wadsj101>wadsj101</a></td>
+      <td>Jack Wadsworth</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/waddr101>waddr101</a></td>
+      <td>Rube Waddell</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
       <td>-267.10</td>
     </tr>
     <tr>
@@ -162,13 +164,8 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>1</td>
-      <td>-267.10</td>
-    </tr>
-    <tr>
-      <td><a href=/player/leact101>leact101</a></td>
-      <td>Tommy Leach</td>
-      <td>Louisville Colonels</td>
-      <td>LS3</td>
+      <td>1899</td>
+      <td>1900</td>
       <td>1</td>
       <td>-267.10</td>
     </tr>
@@ -178,6 +175,20 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/leact101>leact101</a></td>
+      <td>Tommy Leach</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
       <td>-267.10</td>
     </tr>
     <tr>
@@ -185,6 +196,9 @@
       <td>Mike Kelley</td>
       <td>Louisville Colonels</td>
       <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
       <td>1</td>
       <td>-267.10</td>
     </tr>
@@ -194,6 +208,31 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/latit101>latit101</a></td>
+      <td>Tacks Latimer</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
+      <td>-267.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ritcc101>ritcc101</a></td>
+      <td>Claude Ritchey</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1899</td>
+      <td>1900</td>
+      <td>1</td>
       <td>-267.10</td>
     </tr>
     <tr>
@@ -202,6 +241,9 @@
       <td>Louisville Colonels</td>
       <td>LS3</td>
       <td>2</td>
+      <td>1898</td>
+      <td>1902</td>
+      <td>4</td>
       <td>-261.58</td>
     </tr>
     <tr>
@@ -209,6 +251,9 @@
       <td>Ted Williams</td>
       <td>SanDiego</td>
       <td>SanDiego</td>
+      <td>2</td>
+      <td>1937</td>
+      <td>1939</td>
       <td>2</td>
       <td>-130.77</td>
     </tr>
@@ -218,6 +263,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>40</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-111.39</td>
     </tr>
     <tr>
@@ -226,6 +274,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>1</td>
+      <td>1900</td>
+      <td>1900</td>
+      <td>0</td>
       <td>-106.61</td>
     </tr>
     <tr>
@@ -234,6 +285,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>51</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
       <td>-102.99</td>
     </tr>
     <tr>
@@ -242,15 +296,10 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>52</td>
+      <td>1952</td>
+      <td>1976</td>
+      <td>24</td>
       <td>-102.15</td>
-    </tr>
-    <tr>
-      <td><a href=/player/pilaa101>pilaa101</a></td>
-      <td>Al Pilarcik</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>52</td>
-      <td>-101.54</td>
     </tr>
     <tr>
       <td><a href=/player/cecca101>cecca101</a></td>
@@ -258,15 +307,21 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>52</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-101.54</td>
     </tr>
     <tr>
-      <td><a href=/player/pisoj101>pisoj101</a></td>
-      <td>Jim Pisoni</td>
+      <td><a href=/player/pilaa101>pilaa101</a></td>
+      <td>Al Pilarcik</td>
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
-      <td>50</td>
-      <td>-99.23</td>
+      <td>52</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
+      <td>-101.54</td>
     </tr>
     <tr>
       <td><a href=/player/durer101>durer101</a></td>
@@ -274,6 +329,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>50</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
       <td>-99.23</td>
     </tr>
     <tr>
@@ -282,6 +340,20 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>50</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-99.23</td>
+    </tr>
+    <tr>
+      <td><a href=/player/pisoj101>pisoj101</a></td>
+      <td>Jim Pisoni</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>50</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
       <td>-99.23</td>
     </tr>
     <tr>
@@ -290,6 +362,9 @@
       <td>St. Louis Cardinals</td>
       <td>CARDS</td>
       <td>11</td>
+      <td>1972</td>
+      <td>1978</td>
+      <td>6</td>
       <td>-97.10</td>
     </tr>
     <tr>
@@ -298,6 +373,9 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>11</td>
+      <td>1916</td>
+      <td>1937</td>
+      <td>21</td>
       <td>-95.47</td>
     </tr>
     <tr>
@@ -306,14 +384,20 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>14</td>
+      <td>1948</td>
+      <td>1968</td>
+      <td>20</td>
       <td>-90.06</td>
     </tr>
     <tr>
-      <td><a href=/player/tiptj101>tiptj101</a></td>
-      <td>Joe Tipton</td>
+      <td><a href=/player/robie101>robie101</a></td>
+      <td>Eddie Robinson</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>15</td>
+      <td>14</td>
+      <td>1948</td>
+      <td>1968</td>
+      <td>20</td>
       <td>-90.06</td>
     </tr>
     <tr>
@@ -322,14 +406,20 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>14</td>
+      <td>1948</td>
+      <td>1968</td>
+      <td>20</td>
       <td>-90.06</td>
     </tr>
     <tr>
-      <td><a href=/player/robie101>robie101</a></td>
-      <td>Eddie Robinson</td>
+      <td><a href=/player/tiptj101>tiptj101</a></td>
+      <td>Joe Tipton</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>14</td>
+      <td>15</td>
+      <td>1948</td>
+      <td>1968</td>
+      <td>20</td>
       <td>-90.06</td>
     </tr>
     <tr>
@@ -338,6 +428,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>8</td>
+      <td>1957</td>
+      <td>1968</td>
+      <td>11</td>
       <td>-86.55</td>
     </tr>
     <tr>
@@ -346,6 +439,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>8</td>
+      <td>1957</td>
+      <td>1968</td>
+      <td>11</td>
       <td>-86.55</td>
     </tr>
     <tr>
@@ -354,14 +450,9 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>14</td>
-      <td>-86.44</td>
-    </tr>
-    <tr>
-      <td><a href=/player/martt001>martt001</a></td>
-      <td>Tippy Martinez</td>
-      <td>New York Yankees</td>
-      <td>YANKS</td>
-      <td>14</td>
+      <td>1976</td>
+      <td>2001</td>
+      <td>25</td>
       <td>-86.44</td>
     </tr>
     <tr>
@@ -370,14 +461,9 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>14</td>
-      <td>-86.44</td>
-    </tr>
-    <tr>
-      <td><a href=/player/dempr001>dempr001</a></td>
-      <td>Rick Dempsey</td>
-      <td>New York Yankees</td>
-      <td>YANKS</td>
-      <td>14</td>
+      <td>1976</td>
+      <td>2001</td>
+      <td>25</td>
       <td>-86.44</td>
     </tr>
     <tr>
@@ -386,6 +472,31 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>14</td>
+      <td>1976</td>
+      <td>2001</td>
+      <td>25</td>
+      <td>-86.44</td>
+    </tr>
+    <tr>
+      <td><a href=/player/martt001>martt001</a></td>
+      <td>Tippy Martinez</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>14</td>
+      <td>1976</td>
+      <td>2001</td>
+      <td>25</td>
+      <td>-86.44</td>
+    </tr>
+    <tr>
+      <td><a href=/player/dempr001>dempr001</a></td>
+      <td>Rick Dempsey</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>14</td>
+      <td>1976</td>
+      <td>2001</td>
+      <td>25</td>
       <td>-86.44</td>
     </tr>
     <tr>
@@ -394,6 +505,9 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>8</td>
+      <td>1989</td>
+      <td>1998</td>
+      <td>9</td>
       <td>-86.21</td>
     </tr>
     <tr>
@@ -402,15 +516,10 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>8</td>
+      <td>1989</td>
+      <td>1998</td>
+      <td>9</td>
       <td>-86.21</td>
-    </tr>
-    <tr>
-      <td><a href=/player/mitcb102>mitcb102</a></td>
-      <td>Bobby Mitchell</td>
-      <td>New York Yankees</td>
-      <td>YANKS</td>
-      <td>16</td>
-      <td>-85.03</td>
     </tr>
     <tr>
       <td><a href=/player/tepef101>tepef101</a></td>
@@ -418,6 +527,20 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>16</td>
+      <td>1971</td>
+      <td>2001</td>
+      <td>30</td>
+      <td>-85.03</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mitcb102>mitcb102</a></td>
+      <td>Bobby Mitchell</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>16</td>
+      <td>1971</td>
+      <td>2001</td>
+      <td>30</td>
       <td>-85.03</td>
     </tr>
     <tr>
@@ -426,6 +549,9 @@
       <td>Texas Rangers</td>
       <td>RNGRS</td>
       <td>5</td>
+      <td>2004</td>
+      <td>2010</td>
+      <td>6</td>
       <td>-84.81</td>
     </tr>
     <tr>
@@ -434,6 +560,9 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>15</td>
+      <td>1972</td>
+      <td>2001</td>
+      <td>29</td>
       <td>-84.48</td>
     </tr>
     <tr>
@@ -442,6 +571,9 @@
       <td>Pittsburgh Pirates</td>
       <td>PIRATS</td>
       <td>7</td>
+      <td>1973</td>
+      <td>1988</td>
+      <td>15</td>
       <td>-83.17</td>
     </tr>
     <tr>
@@ -450,6 +582,9 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>9</td>
+      <td>1984</td>
+      <td>1998</td>
+      <td>14</td>
       <td>-80.94</td>
     </tr>
     <tr>
@@ -458,6 +593,9 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>9</td>
+      <td>1984</td>
+      <td>1998</td>
+      <td>14</td>
       <td>-80.94</td>
     </tr>
     <tr>
@@ -466,15 +604,10 @@
       <td>San Francisco Giants</td>
       <td>GIANTS</td>
       <td>2</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
       <td>-80.78</td>
-    </tr>
-    <tr>
-      <td><a href=/player/hared001>hared001</a></td>
-      <td>Dan Haren</td>
-      <td>Oakland Athletics</td>
-      <td>ATLTCS</td>
-      <td>15</td>
-      <td>-80.77</td>
     </tr>
     <tr>
       <td><a href=/player/robec002>robec002</a></td>
@@ -482,6 +615,20 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>15</td>
+      <td>2007</td>
+      <td>2018</td>
+      <td>11</td>
+      <td>-80.77</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hared001>hared001</a></td>
+      <td>Dan Haren</td>
+      <td>Oakland Athletics</td>
+      <td>ATLTCS</td>
+      <td>15</td>
+      <td>2007</td>
+      <td>2018</td>
+      <td>11</td>
       <td>-80.77</td>
     </tr>
     <tr>
@@ -490,14 +637,20 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>3</td>
+      <td>1990</td>
+      <td>1995</td>
+      <td>5</td>
       <td>-79.76</td>
     </tr>
     <tr>
-      <td><a href=/player/byrdh101>byrdh101</a></td>
-      <td>Harry Byrd</td>
+      <td><a href=/player/hamit101>hamit101</a></td>
+      <td>Tom Hamilton</td>
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>46</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
       <td>-79.69</td>
     </tr>
     <tr>
@@ -506,14 +659,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>46</td>
-      <td>-79.69</td>
-    </tr>
-    <tr>
-      <td><a href=/player/hamit101>hamit101</a></td>
-      <td>Tom Hamilton</td>
-      <td>Philadelphia Athletics</td>
-      <td>ATLTCS</td>
-      <td>46</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
       <td>-79.69</td>
     </tr>
     <tr>
@@ -522,6 +670,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>46</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
       <td>-79.69</td>
     </tr>
     <tr>
@@ -530,13 +681,30 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>46</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
       <td>-79.69</td>
     </tr>
     <tr>
-      <td><a href=/player/eganb101>eganb101</a></td>
-      <td>Ben Egan</td>
+      <td><a href=/player/byrdh101>byrdh101</a></td>
+      <td>Harry Byrd</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>46</td>
+      <td>1953</td>
+      <td>1976</td>
+      <td>23</td>
+      <td>-79.69</td>
+    </tr>
+    <tr>
+      <td><a href=/player/johnr104>johnr104</a></td>
+      <td>Rankin Johnson</td>
       <td>Boston Red Sox</td>
       <td>RSOX</td>
+      <td>23</td>
+      <td>1914</td>
+      <td>1937</td>
       <td>23</td>
       <td>-79.26</td>
     </tr>
@@ -546,13 +714,19 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>23</td>
+      <td>1914</td>
+      <td>1937</td>
+      <td>23</td>
       <td>-79.26</td>
     </tr>
     <tr>
-      <td><a href=/player/johnr104>johnr104</a></td>
-      <td>Rankin Johnson</td>
+      <td><a href=/player/eganb101>eganb101</a></td>
+      <td>Ben Egan</td>
       <td>Boston Red Sox</td>
       <td>RSOX</td>
+      <td>23</td>
+      <td>1914</td>
+      <td>1937</td>
       <td>23</td>
       <td>-79.26</td>
     </tr>
@@ -562,6 +736,9 @@
       <td>SanFrancisco</td>
       <td>SanFrancisco</td>
       <td>1</td>
+      <td>1934</td>
+      <td>1935</td>
+      <td>1</td>
       <td>-79.19</td>
     </tr>
     <tr>
@@ -570,6 +747,9 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>10</td>
+      <td>1985</td>
+      <td>1998</td>
+      <td>13</td>
       <td>-78.40</td>
     </tr>
     <tr>
@@ -578,14 +758,20 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>9</td>
+      <td>1986</td>
+      <td>1998</td>
+      <td>12</td>
       <td>-78.35</td>
     </tr>
     <tr>
-      <td><a href=/player/ditma101>ditma101</a></td>
-      <td>Art Ditmar</td>
+      <td><a href=/player/belaw101>belaw101</a></td>
+      <td>Wayne Belardi</td>
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
       <td>-77.66</td>
     </tr>
     <tr>
@@ -594,30 +780,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>38</td>
-      <td>-77.66</td>
-    </tr>
-    <tr>
-      <td><a href=/player/belaw101>belaw101</a></td>
-      <td>Wayne Belardi</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>38</td>
-      <td>-77.66</td>
-    </tr>
-    <tr>
-      <td><a href=/player/shanb102>shanb102</a></td>
-      <td>Bobby Shantz</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>38</td>
-      <td>-77.66</td>
-    </tr>
-    <tr>
-      <td><a href=/player/boyec102>boyec102</a></td>
-      <td>Clete Boyer</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
       <td>-77.66</td>
     </tr>
     <tr>
@@ -626,6 +791,42 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-77.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/boyec102>boyec102</a></td>
+      <td>Clete Boyer</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-77.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ditma101>ditma101</a></td>
+      <td>Art Ditmar</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-77.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/shanb102>shanb102</a></td>
+      <td>Bobby Shantz</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>38</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
       <td>-77.66</td>
     </tr>
     <tr>
@@ -634,6 +835,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>11</td>
+      <td>1955</td>
+      <td>1968</td>
+      <td>13</td>
       <td>-77.25</td>
     </tr>
     <tr>
@@ -642,22 +846,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>6</td>
-      <td>-76.75</td>
-    </tr>
-    <tr>
-      <td><a href=/player/strij102>strij102</a></td>
-      <td>Jake Striker</td>
-      <td>Cleveland Indians</td>
-      <td>INDINS</td>
-      <td>6</td>
-      <td>-76.75</td>
-    </tr>
-    <tr>
-      <td><a href=/player/browd102>browd102</a></td>
-      <td>Dick Brown</td>
-      <td>Cleveland Indians</td>
-      <td>INDINS</td>
-      <td>6</td>
+      <td>1959</td>
+      <td>1968</td>
+      <td>9</td>
       <td>-76.75</td>
     </tr>
     <tr>
@@ -666,15 +857,32 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>6</td>
+      <td>1959</td>
+      <td>1968</td>
+      <td>9</td>
       <td>-76.75</td>
     </tr>
     <tr>
-      <td><a href=/player/randw001>randw001</a></td>
-      <td>Willie Randolph</td>
-      <td>Pittsburgh Pirates</td>
-      <td>PIRATS</td>
+      <td><a href=/player/strij102>strij102</a></td>
+      <td>Jake Striker</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
       <td>6</td>
-      <td>-76.39</td>
+      <td>1959</td>
+      <td>1968</td>
+      <td>9</td>
+      <td>-76.75</td>
+    </tr>
+    <tr>
+      <td><a href=/player/browd102>browd102</a></td>
+      <td>Dick Brown</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>6</td>
+      <td>1959</td>
+      <td>1968</td>
+      <td>9</td>
+      <td>-76.75</td>
     </tr>
     <tr>
       <td><a href=/player/bretk101>bretk101</a></td>
@@ -682,6 +890,20 @@
       <td>Pittsburgh Pirates</td>
       <td>PIRATS</td>
       <td>6</td>
+      <td>1975</td>
+      <td>1988</td>
+      <td>13</td>
+      <td>-76.39</td>
+    </tr>
+    <tr>
+      <td><a href=/player/randw001>randw001</a></td>
+      <td>Willie Randolph</td>
+      <td>Pittsburgh Pirates</td>
+      <td>PIRATS</td>
+      <td>6</td>
+      <td>1975</td>
+      <td>1988</td>
+      <td>13</td>
       <td>-76.39</td>
     </tr>
     <tr>
@@ -690,6 +912,9 @@
       <td>Pittsburgh Pirates</td>
       <td>PIRATS</td>
       <td>6</td>
+      <td>1975</td>
+      <td>1988</td>
+      <td>13</td>
       <td>-76.39</td>
     </tr>
     <tr>
@@ -698,6 +923,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>24</td>
+      <td>1958</td>
+      <td>1976</td>
+      <td>18</td>
       <td>-76.27</td>
     </tr>
     <tr>
@@ -706,7 +934,21 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>24</td>
+      <td>1958</td>
+      <td>1976</td>
+      <td>18</td>
       <td>-76.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/koppm101>koppm101</a></td>
+      <td>Merlin Kopp</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>22</td>
+      <td>1917</td>
+      <td>1937</td>
+      <td>20</td>
+      <td>-74.56</td>
     </tr>
     <tr>
       <td><a href=/player/gregv101>gregv101</a></td>
@@ -714,6 +956,9 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>22</td>
+      <td>1917</td>
+      <td>1937</td>
+      <td>20</td>
       <td>-74.56</td>
     </tr>
     <tr>
@@ -722,14 +967,9 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>22</td>
-      <td>-74.56</td>
-    </tr>
-    <tr>
-      <td><a href=/player/koppm101>koppm101</a></td>
-      <td>Merlin Kopp</td>
-      <td>Boston Red Sox</td>
-      <td>RSOX</td>
-      <td>22</td>
+      <td>1917</td>
+      <td>1937</td>
+      <td>20</td>
       <td>-74.56</td>
     </tr>
     <tr>
@@ -738,15 +978,10 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>9</td>
+      <td>1957</td>
+      <td>1968</td>
+      <td>11</td>
       <td>-73.17</td>
-    </tr>
-    <tr>
-      <td><a href=/player/leita001>leita001</a></td>
-      <td>Al Leiter</td>
-      <td>Florida Marlins</td>
-      <td>MARLNS</td>
-      <td>13</td>
-      <td>-69.01</td>
     </tr>
     <tr>
       <td><a href=/player/millr003>millr003</a></td>
@@ -754,6 +989,20 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>13</td>
+      <td>1998</td>
+      <td>2013</td>
+      <td>15</td>
+      <td>-69.01</td>
+    </tr>
+    <tr>
+      <td><a href=/player/leita001>leita001</a></td>
+      <td>Al Leiter</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>13</td>
+      <td>1998</td>
+      <td>2013</td>
+      <td>15</td>
       <td>-69.01</td>
     </tr>
     <tr>
@@ -762,6 +1011,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>8</td>
+      <td>1958</td>
+      <td>1968</td>
+      <td>10</td>
       <td>-68.86</td>
     </tr>
     <tr>
@@ -770,6 +1022,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>8</td>
+      <td>1958</td>
+      <td>1968</td>
+      <td>10</td>
       <td>-68.86</td>
     </tr>
     <tr>
@@ -778,15 +1033,10 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>8</td>
-      <td>-68.86</td>
-    </tr>
-    <tr>
-      <td><a href=/player/wrigr002>wrigr002</a></td>
-      <td>Ron Wright</td>
-      <td>Atlanta Braves</td>
-      <td>BRAVES</td>
+      <td>1958</td>
+      <td>1968</td>
       <td>10</td>
-      <td>-67.78</td>
+      <td>-68.86</td>
     </tr>
     <tr>
       <td><a href=/player/schmj001>schmj001</a></td>
@@ -794,6 +1044,20 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>10</td>
+      <td>1996</td>
+      <td>2015</td>
+      <td>19</td>
+      <td>-67.78</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wrigr002>wrigr002</a></td>
+      <td>Ron Wright</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>10</td>
+      <td>1996</td>
+      <td>2015</td>
+      <td>19</td>
       <td>-67.78</td>
     </tr>
     <tr>
@@ -802,6 +1066,9 @@
       <td>St. Louis Cardinals</td>
       <td>CARDS</td>
       <td>6</td>
+      <td>1895</td>
+      <td>1899</td>
+      <td>4</td>
       <td>-67.31</td>
     </tr>
     <tr>
@@ -810,6 +1077,9 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>10</td>
+      <td>1997</td>
+      <td>2015</td>
+      <td>18</td>
       <td>-67.10</td>
     </tr>
     <tr>
@@ -818,6 +1088,9 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>10</td>
+      <td>1997</td>
+      <td>2015</td>
+      <td>18</td>
       <td>-67.10</td>
     </tr>
     <tr>
@@ -826,6 +1099,9 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>2</td>
+      <td>1939</td>
+      <td>1947</td>
+      <td>8</td>
       <td>-66.84</td>
     </tr>
     <tr>
@@ -834,6 +1110,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>9</td>
+      <td>1950</td>
+      <td>1965</td>
+      <td>15</td>
       <td>-66.65</td>
     </tr>
     <tr>
@@ -842,6 +1121,9 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>2</td>
+      <td>1982</td>
+      <td>1986</td>
+      <td>4</td>
       <td>-66.40</td>
     </tr>
     <tr>
@@ -850,14 +1132,20 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>2</td>
+      <td>1982</td>
+      <td>1986</td>
+      <td>4</td>
       <td>-66.40</td>
     </tr>
     <tr>
-      <td><a href=/player/bellr003>bellr003</a></td>
-      <td>Rob Bell</td>
+      <td><a href=/player/neagd001>neagd001</a></td>
+      <td>Denny Neagle</td>
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>9</td>
+      <td>1998</td>
+      <td>2015</td>
+      <td>17</td>
       <td>-65.52</td>
     </tr>
     <tr>
@@ -866,14 +1154,20 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>9</td>
+      <td>1998</td>
+      <td>2015</td>
+      <td>17</td>
       <td>-65.52</td>
     </tr>
     <tr>
-      <td><a href=/player/neagd001>neagd001</a></td>
-      <td>Denny Neagle</td>
+      <td><a href=/player/bellr003>bellr003</a></td>
+      <td>Rob Bell</td>
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>9</td>
+      <td>1998</td>
+      <td>2015</td>
+      <td>17</td>
       <td>-65.52</td>
     </tr>
     <tr>
@@ -882,15 +1176,10 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>10</td>
+      <td>1949</td>
+      <td>1965</td>
+      <td>16</td>
       <td>-65.31</td>
-    </tr>
-    <tr>
-      <td><a href=/player/baerc001>baerc001</a></td>
-      <td>Carlos Baerga</td>
-      <td>Cleveland Indians</td>
-      <td>INDINS</td>
-      <td>5</td>
-      <td>-65.19</td>
     </tr>
     <tr>
       <td><a href=/player/espia001>espia001</a></td>
@@ -898,14 +1187,31 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>5</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
       <td>-65.19</td>
     </tr>
     <tr>
-      <td><a href=/player/jamec001>jamec001</a></td>
-      <td>Chris James</td>
+      <td><a href=/player/baerc001>baerc001</a></td>
+      <td>Carlos Baerga</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>5</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
+      <td>-65.19</td>
+    </tr>
+    <tr>
+      <td><a href=/player/baerc001>baerc001</a></td>
+      <td>Carlos Baerga</td>
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>7</td>
+      <td>1989</td>
+      <td>1998</td>
+      <td>9</td>
       <td>-64.69</td>
     </tr>
     <tr>
@@ -914,14 +1220,20 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>7</td>
+      <td>1989</td>
+      <td>1998</td>
+      <td>9</td>
       <td>-64.69</td>
     </tr>
     <tr>
-      <td><a href=/player/baerc001>baerc001</a></td>
-      <td>Carlos Baerga</td>
+      <td><a href=/player/jamec001>jamec001</a></td>
+      <td>Chris James</td>
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>7</td>
+      <td>1989</td>
+      <td>1998</td>
+      <td>9</td>
       <td>-64.69</td>
     </tr>
     <tr>
@@ -930,6 +1242,9 @@
       <td>Detroit Tigers</td>
       <td>TIGRS</td>
       <td>1</td>
+      <td>1987</td>
+      <td>1989</td>
+      <td>2</td>
       <td>-63.23</td>
     </tr>
     <tr>
@@ -938,15 +1253,10 @@
       <td>New York Mets</td>
       <td>METS</td>
       <td>9</td>
+      <td>1978</td>
+      <td>1993</td>
+      <td>15</td>
       <td>-63.04</td>
-    </tr>
-    <tr>
-      <td><a href=/player/westw102>westw102</a></td>
-      <td>Wally Westlake</td>
-      <td>Cleveland Indians</td>
-      <td>INDINS</td>
-      <td>9</td>
-      <td>-62.45</td>
     </tr>
     <tr>
       <td><a href=/player/poped101>poped101</a></td>
@@ -954,6 +1264,20 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>9</td>
+      <td>1955</td>
+      <td>1968</td>
+      <td>13</td>
+      <td>-62.45</td>
+    </tr>
+    <tr>
+      <td><a href=/player/westw102>westw102</a></td>
+      <td>Wally Westlake</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>9</td>
+      <td>1955</td>
+      <td>1968</td>
+      <td>13</td>
       <td>-62.45</td>
     </tr>
     <tr>
@@ -962,6 +1286,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>41</td>
+      <td>1955</td>
+      <td>1976</td>
+      <td>21</td>
       <td>-61.18</td>
     </tr>
     <tr>
@@ -970,6 +1297,9 @@
       <td>New York Mets</td>
       <td>METS</td>
       <td>6</td>
+      <td>1987</td>
+      <td>1993</td>
+      <td>6</td>
       <td>-61.17</td>
     </tr>
     <tr>
@@ -977,16 +1307,11 @@
       <td>Buddy Bell</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>15</td>
+      <td>16</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
       <td>-60.99</td>
-    </tr>
-    <tr>
-      <td><a href=/player/ryanc102>ryanc102</a></td>
-      <td>Connie Ryan</td>
-      <td>Cincinnati Reds</td>
-      <td>REDS</td>
-      <td>8</td>
-      <td>-60.86</td>
     </tr>
     <tr>
       <td><a href=/player/fox-h101>fox-h101</a></td>
@@ -994,6 +1319,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>8</td>
+      <td>1951</td>
+      <td>1965</td>
+      <td>14</td>
       <td>-60.86</td>
     </tr>
     <tr>
@@ -1002,15 +1330,21 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>8</td>
+      <td>1951</td>
+      <td>1965</td>
+      <td>14</td>
       <td>-60.86</td>
     </tr>
     <tr>
-      <td><a href=/player/pattk001>pattk001</a></td>
-      <td>Ken Patterson</td>
-      <td>Chicago White Sox</td>
-      <td>WSOX</td>
-      <td>1</td>
-      <td>-60.83</td>
+      <td><a href=/player/ryanc102>ryanc102</a></td>
+      <td>Connie Ryan</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>8</td>
+      <td>1951</td>
+      <td>1965</td>
+      <td>14</td>
+      <td>-60.86</td>
     </tr>
     <tr>
       <td><a href=/player/sosas001>sosas001</a></td>
@@ -1018,15 +1352,21 @@
       <td>Chicago White Sox</td>
       <td>WSOX</td>
       <td>1</td>
+      <td>1992</td>
+      <td>1993</td>
+      <td>1</td>
       <td>-60.83</td>
     </tr>
     <tr>
-      <td><a href=/player/finij101>finij101</a></td>
-      <td>Jim Finigan</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>40</td>
-      <td>-60.82</td>
+      <td><a href=/player/pattk001>pattk001</a></td>
+      <td>Ken Patterson</td>
+      <td>Chicago White Sox</td>
+      <td>WSOX</td>
+      <td>1</td>
+      <td>1992</td>
+      <td>1993</td>
+      <td>1</td>
+      <td>-60.83</td>
     </tr>
     <tr>
       <td><a href=/player/crimj101>crimj101</a></td>
@@ -1034,14 +1374,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>40</td>
-      <td>-60.82</td>
-    </tr>
-    <tr>
-      <td><a href=/player/robie101>robie101</a></td>
-      <td>Eddie Robinson</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>40</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-60.82</td>
     </tr>
     <tr>
@@ -1050,6 +1385,31 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>40</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
+      <td>-60.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/finij101>finij101</a></td>
+      <td>Jim Finigan</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>40</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
+      <td>-60.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/robie101>robie101</a></td>
+      <td>Eddie Robinson</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>40</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-60.82</td>
     </tr>
     <tr>
@@ -1058,6 +1418,9 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>12</td>
+      <td>1991</td>
+      <td>2015</td>
+      <td>24</td>
       <td>-59.46</td>
     </tr>
     <tr>
@@ -1066,6 +1429,9 @@
       <td>Chicago White Sox</td>
       <td>WSOX</td>
       <td>2</td>
+      <td>1987</td>
+      <td>1993</td>
+      <td>6</td>
       <td>-59.23</td>
     </tr>
     <tr>
@@ -1074,6 +1440,9 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>16</td>
+      <td>2004</td>
+      <td>2018</td>
+      <td>14</td>
       <td>-59.22</td>
     </tr>
     <tr>
@@ -1082,6 +1451,9 @@
       <td>Milwaukee</td>
       <td>Milwaukee</td>
       <td>5</td>
+      <td>1923</td>
+      <td>1937</td>
+      <td>14</td>
       <td>-58.42</td>
     </tr>
     <tr>
@@ -1090,6 +1462,9 @@
       <td>Chicago White Sox</td>
       <td>WSOX</td>
       <td>6</td>
+      <td>1987</td>
+      <td>1997</td>
+      <td>10</td>
       <td>-57.89</td>
     </tr>
     <tr>
@@ -1098,6 +1473,9 @@
       <td>Chicago White Sox</td>
       <td>WSOX</td>
       <td>6</td>
+      <td>1987</td>
+      <td>1997</td>
+      <td>10</td>
       <td>-57.89</td>
     </tr>
     <tr>
@@ -1106,6 +1484,9 @@
       <td>Boston Red Sox</td>
       <td>RSOX</td>
       <td>1</td>
+      <td>1930</td>
+      <td>1930</td>
+      <td>0</td>
       <td>-57.32</td>
     </tr>
     <tr>
@@ -1114,6 +1495,9 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>5</td>
+      <td>2007</td>
+      <td>2013</td>
+      <td>6</td>
       <td>-57.11</td>
     </tr>
     <tr>
@@ -1122,15 +1506,10 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>5</td>
+      <td>2007</td>
+      <td>2013</td>
+      <td>6</td>
       <td>-57.11</td>
-    </tr>
-    <tr>
-      <td><a href=/player/kenwd101>kenwd101</a></td>
-      <td>Duke Kenworthy</td>
-      <td>KansasCity</td>
-      <td>KansasCity</td>
-      <td>3</td>
-      <td>-56.90</td>
     </tr>
     <tr>
       <td><a href=/player/gallb103>gallb103</a></td>
@@ -1138,15 +1517,21 @@
       <td>KansasCity</td>
       <td>KansasCity</td>
       <td>3</td>
+      <td>1912</td>
+      <td>1915</td>
+      <td>3</td>
       <td>-56.90</td>
     </tr>
     <tr>
-      <td><a href=/player/killb101>killb101</a></td>
-      <td>Bill Killefer</td>
-      <td>Philadelphia Phillies</td>
-      <td>PHILS</td>
-      <td>5</td>
-      <td>-56.63</td>
+      <td><a href=/player/kenwd101>kenwd101</a></td>
+      <td>Duke Kenworthy</td>
+      <td>KansasCity</td>
+      <td>KansasCity</td>
+      <td>3</td>
+      <td>1912</td>
+      <td>1915</td>
+      <td>3</td>
+      <td>-56.90</td>
     </tr>
     <tr>
       <td><a href=/player/alexg102>alexg102</a></td>
@@ -1154,6 +1539,20 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>5</td>
+      <td>1917</td>
+      <td>1929</td>
+      <td>12</td>
+      <td>-56.63</td>
+    </tr>
+    <tr>
+      <td><a href=/player/killb101>killb101</a></td>
+      <td>Bill Killefer</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>5</td>
+      <td>1917</td>
+      <td>1929</td>
+      <td>12</td>
       <td>-56.63</td>
     </tr>
     <tr>
@@ -1162,6 +1561,9 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>1</td>
+      <td>1966</td>
+      <td>1968</td>
+      <td>2</td>
       <td>-56.05</td>
     </tr>
     <tr>
@@ -1170,6 +1572,9 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>1</td>
+      <td>1966</td>
+      <td>1968</td>
+      <td>2</td>
       <td>-56.05</td>
     </tr>
     <tr>
@@ -1178,6 +1583,9 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>1</td>
+      <td>1966</td>
+      <td>1968</td>
+      <td>2</td>
       <td>-56.05</td>
     </tr>
     <tr>
@@ -1186,6 +1594,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>42</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-54.87</td>
     </tr>
     <tr>
@@ -1194,7 +1605,21 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>42</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
       <td>-54.87</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hadlk101>hadlk101</a></td>
+      <td>Kent Hadley</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>23</td>
+      <td>1959</td>
+      <td>1976</td>
+      <td>17</td>
+      <td>-54.55</td>
     </tr>
     <tr>
       <td><a href=/player/marir101>marir101</a></td>
@@ -1202,6 +1627,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>23</td>
+      <td>1959</td>
+      <td>1976</td>
+      <td>17</td>
       <td>-54.55</td>
     </tr>
     <tr>
@@ -1210,14 +1638,9 @@
       <td>Montreal Expos</td>
       <td>NATEX</td>
       <td>3</td>
-      <td>-54.55</td>
-    </tr>
-    <tr>
-      <td><a href=/player/hadlk101>hadlk101</a></td>
-      <td>Kent Hadley</td>
-      <td>Kansas City Athletics</td>
-      <td>ATLTCS</td>
-      <td>23</td>
+      <td>2000</td>
+      <td>2004</td>
+      <td>4</td>
       <td>-54.55</td>
     </tr>
     <tr>
@@ -1226,6 +1649,9 @@
       <td>Kansas City Athletics</td>
       <td>ATLTCS</td>
       <td>23</td>
+      <td>1959</td>
+      <td>1976</td>
+      <td>17</td>
       <td>-54.55</td>
     </tr>
     <tr>
@@ -1234,6 +1660,9 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>8</td>
+      <td>2001</td>
+      <td>2013</td>
+      <td>12</td>
       <td>-54.54</td>
     </tr>
     <tr>
@@ -1242,14 +1671,20 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>8</td>
+      <td>2001</td>
+      <td>2013</td>
+      <td>12</td>
       <td>-54.54</td>
     </tr>
     <tr>
-      <td><a href=/player/haddh101>haddh101</a></td>
-      <td>Harvey Haddix</td>
+      <td><a href=/player/hoakd101>hoakd101</a></td>
+      <td>Don Hoak</td>
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>4</td>
+      <td>1959</td>
+      <td>1965</td>
+      <td>6</td>
       <td>-54.05</td>
     </tr>
     <tr>
@@ -1258,23 +1693,21 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>4</td>
+      <td>1959</td>
+      <td>1965</td>
+      <td>6</td>
       <td>-54.05</td>
     </tr>
     <tr>
-      <td><a href=/player/hoakd101>hoakd101</a></td>
-      <td>Don Hoak</td>
+      <td><a href=/player/haddh101>haddh101</a></td>
+      <td>Harvey Haddix</td>
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>4</td>
+      <td>1959</td>
+      <td>1965</td>
+      <td>6</td>
       <td>-54.05</td>
-    </tr>
-    <tr>
-      <td><a href=/player/dipoj001>dipoj001</a></td>
-      <td>Jerry DiPoto</td>
-      <td>Cleveland Indians</td>
-      <td>INDINS</td>
-      <td>5</td>
-      <td>-53.96</td>
     </tr>
     <tr>
       <td><a href=/player/mlicd001>mlicd001</a></td>
@@ -1282,6 +1715,20 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>5</td>
+      <td>1994</td>
+      <td>2001</td>
+      <td>7</td>
+      <td>-53.96</td>
+    </tr>
+    <tr>
+      <td><a href=/player/dipoj001>dipoj001</a></td>
+      <td>Jerry DiPoto</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>5</td>
+      <td>1994</td>
+      <td>2001</td>
+      <td>7</td>
       <td>-53.96</td>
     </tr>
     <tr>
@@ -1290,6 +1737,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>5</td>
+      <td>1994</td>
+      <td>2001</td>
+      <td>7</td>
       <td>-53.96</td>
     </tr>
     <tr>
@@ -1298,6 +1748,9 @@
       <td>Houston Astros</td>
       <td>ASTROS</td>
       <td>2</td>
+      <td>1991</td>
+      <td>1995</td>
+      <td>4</td>
       <td>-53.83</td>
     </tr>
     <tr>
@@ -1306,15 +1759,10 @@
       <td>Houston Astros</td>
       <td>ASTROS</td>
       <td>2</td>
+      <td>1991</td>
+      <td>1995</td>
+      <td>4</td>
       <td>-53.83</td>
-    </tr>
-    <tr>
-      <td><a href=/player/pramj101>pramj101</a></td>
-      <td>Johnny Pramesa</td>
-      <td>Cincinnati Reds</td>
-      <td>REDS</td>
-      <td>10</td>
-      <td>-53.06</td>
     </tr>
     <tr>
       <td><a href=/player/usheb101>usheb101</a></td>
@@ -1322,6 +1770,20 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>10</td>
+      <td>1951</td>
+      <td>1965</td>
+      <td>14</td>
+      <td>-53.06</td>
+    </tr>
+    <tr>
+      <td><a href=/player/pramj101>pramj101</a></td>
+      <td>Johnny Pramesa</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>10</td>
+      <td>1951</td>
+      <td>1965</td>
+      <td>14</td>
       <td>-53.06</td>
     </tr>
     <tr>
@@ -1330,6 +1792,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>5</td>
+      <td>1957</td>
+      <td>1965</td>
+      <td>8</td>
       <td>-52.95</td>
     </tr>
     <tr>
@@ -1338,6 +1803,9 @@
       <td>Washington Senators</td>
       <td>WSN</td>
       <td>2</td>
+      <td>1893</td>
+      <td>1894</td>
+      <td>1</td>
       <td>-52.76</td>
     </tr>
     <tr>
@@ -1346,6 +1814,9 @@
       <td>Columbus</td>
       <td>Columbus</td>
       <td>1</td>
+      <td>1912</td>
+      <td>1912</td>
+      <td>0</td>
       <td>-52.68</td>
     </tr>
     <tr>
@@ -1354,6 +1825,9 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>1</td>
+      <td>1960</td>
+      <td>1960</td>
+      <td>0</td>
       <td>-51.82</td>
     </tr>
     <tr>
@@ -1362,6 +1836,9 @@
       <td>Pittsburgh Pirates</td>
       <td>PIRATS</td>
       <td>1</td>
+      <td>1966</td>
+      <td>1968</td>
+      <td>2</td>
       <td>-51.30</td>
     </tr>
     <tr>
@@ -1370,21 +1847,8 @@
       <td>Montreal Expos</td>
       <td>NATEX</td>
       <td>2</td>
-      <td>-51.21</td>
-    </tr>
-    <tr>
-      <td><a href=/player/stevl001>stevl001</a></td>
-      <td>Lee Stevens</td>
-      <td>Montreal Expos</td>
-      <td>NATEX</td>
-      <td>2</td>
-      <td>-51.21</td>
-    </tr>
-    <tr>
-      <td><a href=/player/sizeg001>sizeg001</a></td>
-      <td>Grady Sizemore</td>
-      <td>Montreal Expos</td>
-      <td>NATEX</td>
+      <td>2002</td>
+      <td>2004</td>
       <td>2</td>
       <td>-51.21</td>
     </tr>
@@ -1394,6 +1858,31 @@
       <td>Montreal Expos</td>
       <td>NATEX</td>
       <td>2</td>
+      <td>2002</td>
+      <td>2004</td>
+      <td>2</td>
+      <td>-51.21</td>
+    </tr>
+    <tr>
+      <td><a href=/player/stevl001>stevl001</a></td>
+      <td>Lee Stevens</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>2</td>
+      <td>2002</td>
+      <td>2004</td>
+      <td>2</td>
+      <td>-51.21</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sizeg001>sizeg001</a></td>
+      <td>Grady Sizemore</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>2</td>
+      <td>2002</td>
+      <td>2004</td>
+      <td>2</td>
       <td>-51.21</td>
     </tr>
     <tr>
@@ -1402,6 +1891,9 @@
       <td>Montreal Expos</td>
       <td>NATEX</td>
       <td>3</td>
+      <td>1997</td>
+      <td>2006</td>
+      <td>9</td>
       <td>-50.58</td>
     </tr>
     <tr>
@@ -1410,7 +1902,21 @@
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
       <td>6</td>
+      <td>1911</td>
+      <td>1929</td>
+      <td>18</td>
       <td>-49.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/grovl101>grovl101</a></td>
+      <td>Lefty Grove</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>1</td>
+      <td>1933</td>
+      <td>1936</td>
+      <td>3</td>
+      <td>-49.45</td>
     </tr>
     <tr>
       <td><a href=/player/bishm102>bishm102</a></td>
@@ -1418,6 +1924,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>1</td>
+      <td>1933</td>
+      <td>1936</td>
+      <td>3</td>
       <td>-49.45</td>
     </tr>
     <tr>
@@ -1426,14 +1935,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>1</td>
-      <td>-49.45</td>
-    </tr>
-    <tr>
-      <td><a href=/player/grovl101>grovl101</a></td>
-      <td>Lefty Grove</td>
-      <td>Philadelphia Athletics</td>
-      <td>ATLTCS</td>
-      <td>1</td>
+      <td>1933</td>
+      <td>1936</td>
+      <td>3</td>
       <td>-49.45</td>
     </tr>
     <tr>
@@ -1442,15 +1946,10 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>6</td>
+      <td>1954</td>
+      <td>1965</td>
+      <td>11</td>
       <td>-49.18</td>
-    </tr>
-    <tr>
-      <td><a href=/player/logab101>logab101</a></td>
-      <td>Bob Logan</td>
-      <td>Indianapolis</td>
-      <td>Indianapolis</td>
-      <td>1</td>
-      <td>-49.01</td>
     </tr>
     <tr>
       <td><a href=/player/troud101>troud101</a></td>
@@ -1458,6 +1957,20 @@
       <td>Indianapolis</td>
       <td>Indianapolis</td>
       <td>1</td>
+      <td>1936</td>
+      <td>1936</td>
+      <td>0</td>
+      <td>-49.01</td>
+    </tr>
+    <tr>
+      <td><a href=/player/logab101>logab101</a></td>
+      <td>Bob Logan</td>
+      <td>Indianapolis</td>
+      <td>Indianapolis</td>
+      <td>1</td>
+      <td>1936</td>
+      <td>1936</td>
+      <td>0</td>
       <td>-49.01</td>
     </tr>
     <tr>
@@ -1465,6 +1978,9 @@
       <td>Huston Street</td>
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
+      <td>6</td>
+      <td>2008</td>
+      <td>2014</td>
       <td>6</td>
       <td>-48.97</td>
     </tr>
@@ -1474,6 +1990,9 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>6</td>
+      <td>2008</td>
+      <td>2014</td>
+      <td>6</td>
       <td>-48.97</td>
     </tr>
     <tr>
@@ -1482,15 +2001,10 @@
       <td>Oakland Athletics</td>
       <td>ATLTCS</td>
       <td>6</td>
+      <td>2008</td>
+      <td>2014</td>
+      <td>6</td>
       <td>-48.97</td>
-    </tr>
-    <tr>
-      <td><a href=/player/alfoa001>alfoa001</a></td>
-      <td>Antonio Alfonseca</td>
-      <td>Florida Marlins</td>
-      <td>MARLNS</td>
-      <td>7</td>
-      <td>-48.33</td>
     </tr>
     <tr>
       <td><a href=/player/clemm001>clemm001</a></td>
@@ -1498,15 +2012,21 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>7</td>
+      <td>2002</td>
+      <td>2013</td>
+      <td>11</td>
       <td>-48.33</td>
     </tr>
     <tr>
-      <td><a href=/player/jablr101>jablr101</a></td>
-      <td>Ray Jablonski</td>
-      <td>Cincinnati Reds</td>
-      <td>REDS</td>
-      <td>5</td>
-      <td>-48.19</td>
+      <td><a href=/player/alfoa001>alfoa001</a></td>
+      <td>Antonio Alfonseca</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>7</td>
+      <td>2002</td>
+      <td>2013</td>
+      <td>11</td>
+      <td>-48.33</td>
     </tr>
     <tr>
       <td><a href=/player/singe101>singe101</a></td>
@@ -1514,6 +2034,20 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>5</td>
+      <td>1956</td>
+      <td>1965</td>
+      <td>9</td>
+      <td>-48.19</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jablr101>jablr101</a></td>
+      <td>Ray Jablonski</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>5</td>
+      <td>1956</td>
+      <td>1965</td>
+      <td>9</td>
       <td>-48.19</td>
     </tr>
     <tr>
@@ -1522,14 +2056,9 @@
       <td>Chicago Cubs</td>
       <td>CUBS</td>
       <td>6</td>
-      <td>-47.38</td>
-    </tr>
-    <tr>
-      <td><a href=/player/halld001>halld001</a></td>
-      <td>Drew Hall</td>
-      <td>Chicago Cubs</td>
-      <td>CUBS</td>
-      <td>6</td>
+      <td>1988</td>
+      <td>1995</td>
+      <td>7</td>
       <td>-47.38</td>
     </tr>
     <tr>
@@ -1538,6 +2067,20 @@
       <td>Chicago Cubs</td>
       <td>CUBS</td>
       <td>6</td>
+      <td>1988</td>
+      <td>1995</td>
+      <td>7</td>
+      <td>-47.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/halld001>halld001</a></td>
+      <td>Drew Hall</td>
+      <td>Chicago Cubs</td>
+      <td>CUBS</td>
+      <td>6</td>
+      <td>1988</td>
+      <td>1995</td>
+      <td>7</td>
       <td>-47.38</td>
     </tr>
     <tr>
@@ -1545,6 +2088,9 @@
       <td>Bob Johnson</td>
       <td>New York Mets</td>
       <td>METS</td>
+      <td>1</td>
+      <td>1969</td>
+      <td>1970</td>
       <td>1</td>
       <td>-47.23</td>
     </tr>
@@ -1554,7 +2100,21 @@
       <td>New York Mets</td>
       <td>METS</td>
       <td>1</td>
+      <td>1969</td>
+      <td>1970</td>
+      <td>1</td>
       <td>-47.23</td>
+    </tr>
+    <tr>
+      <td><a href=/player/flooc101>flooc101</a></td>
+      <td>Curt Flood</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>3</td>
+      <td>1957</td>
+      <td>1960</td>
+      <td>3</td>
+      <td>-46.93</td>
     </tr>
     <tr>
       <td><a href=/player/taylj103>taylj103</a></td>
@@ -1562,13 +2122,8 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>3</td>
-      <td>-46.93</td>
-    </tr>
-    <tr>
-      <td><a href=/player/flooc101>flooc101</a></td>
-      <td>Curt Flood</td>
-      <td>Cincinnati Reds</td>
-      <td>REDS</td>
+      <td>1957</td>
+      <td>1960</td>
       <td>3</td>
       <td>-46.93</td>
     </tr>
@@ -1578,7 +2133,21 @@
       <td>San Diego Padres</td>
       <td>PADRS</td>
       <td>8</td>
+      <td>2010</td>
+      <td>2021</td>
+      <td>11</td>
       <td>-46.60</td>
+    </tr>
+    <tr>
+      <td><a href=/player/greej102>greej102</a></td>
+      <td>Jim Greengrass</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>5</td>
+      <td>1955</td>
+      <td>1965</td>
+      <td>10</td>
+      <td>-46.54</td>
     </tr>
     <tr>
       <td><a href=/player/gorbg101>gorbg101</a></td>
@@ -1586,6 +2155,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>5</td>
+      <td>1955</td>
+      <td>1965</td>
+      <td>10</td>
       <td>-46.54</td>
     </tr>
     <tr>
@@ -1594,14 +2166,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>5</td>
-      <td>-46.54</td>
-    </tr>
-    <tr>
-      <td><a href=/player/greej102>greej102</a></td>
-      <td>Jim Greengrass</td>
-      <td>Cincinnati Reds</td>
-      <td>REDS</td>
-      <td>5</td>
+      <td>1955</td>
+      <td>1965</td>
+      <td>10</td>
       <td>-46.54</td>
     </tr>
     <tr>
@@ -1609,6 +2176,9 @@
       <td>Ad Brennan</td>
       <td>Cincinnati Reds</td>
       <td>REDS</td>
+      <td>4</td>
+      <td>1910</td>
+      <td>1914</td>
       <td>4</td>
       <td>-46.42</td>
     </tr>
@@ -1618,6 +2188,9 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>4</td>
+      <td>1910</td>
+      <td>1914</td>
+      <td>4</td>
       <td>-46.42</td>
     </tr>
     <tr>
@@ -1626,6 +2199,9 @@
       <td>SaltLakeCity</td>
       <td>SaltLakeCity</td>
       <td>1</td>
+      <td>1925</td>
+      <td>1934</td>
+      <td>9</td>
       <td>-46.39</td>
     </tr>
     <tr>
@@ -1634,15 +2210,10 @@
       <td>Texas Rangers</td>
       <td>RNGRS</td>
       <td>4</td>
+      <td>2000</td>
+      <td>2007</td>
+      <td>7</td>
       <td>-46.24</td>
-    </tr>
-    <tr>
-      <td><a href=/player/handb101>handb101</a></td>
-      <td>Bill Hands</td>
-      <td>San Francisco Giants</td>
-      <td>GIANTS</td>
-      <td>2</td>
-      <td>-45.50</td>
     </tr>
     <tr>
       <td><a href=/player/hundr101>hundr101</a></td>
@@ -1650,15 +2221,21 @@
       <td>San Francisco Giants</td>
       <td>GIANTS</td>
       <td>2</td>
+      <td>1965</td>
+      <td>1968</td>
+      <td>3</td>
       <td>-45.50</td>
     </tr>
     <tr>
-      <td><a href=/player/wynne101>wynne101</a></td>
-      <td>Early Wynn</td>
-      <td>Washington Senators</td>
-      <td>TWINS</td>
-      <td>13</td>
-      <td>-45.44</td>
+      <td><a href=/player/handb101>handb101</a></td>
+      <td>Bill Hands</td>
+      <td>San Francisco Giants</td>
+      <td>GIANTS</td>
+      <td>2</td>
+      <td>1965</td>
+      <td>1968</td>
+      <td>3</td>
+      <td>-45.50</td>
     </tr>
     <tr>
       <td><a href=/player/vernm101>vernm101</a></td>
@@ -1666,6 +2243,20 @@
       <td>Washington Senators</td>
       <td>TWINS</td>
       <td>13</td>
+      <td>1948</td>
+      <td>1963</td>
+      <td>15</td>
+      <td>-45.44</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wynne101>wynne101</a></td>
+      <td>Early Wynn</td>
+      <td>Washington Senators</td>
+      <td>TWINS</td>
+      <td>13</td>
+      <td>1948</td>
+      <td>1963</td>
+      <td>15</td>
       <td>-45.44</td>
     </tr>
     <tr>
@@ -1674,6 +2265,9 @@
       <td>Washington Senators</td>
       <td>TWINS</td>
       <td>19</td>
+      <td>1948</td>
+      <td>1963</td>
+      <td>15</td>
       <td>-45.25</td>
     </tr>
     <tr>
@@ -1682,14 +2276,20 @@
       <td>Washington Senators</td>
       <td>TWINS</td>
       <td>19</td>
+      <td>1948</td>
+      <td>1963</td>
+      <td>15</td>
       <td>-45.25</td>
     </tr>
     <tr>
-      <td><a href=/player/grohh101>grohh101</a></td>
-      <td>Heinie Groh</td>
+      <td><a href=/player/devoj101>devoj101</a></td>
+      <td>Josh Devore</td>
       <td>New York Giants</td>
       <td>GIANTS</td>
       <td>1</td>
+      <td>1913</td>
+      <td>1913</td>
+      <td>0</td>
       <td>-45.11</td>
     </tr>
     <tr>
@@ -1698,14 +2298,20 @@
       <td>New York Giants</td>
       <td>GIANTS</td>
       <td>1</td>
+      <td>1913</td>
+      <td>1913</td>
+      <td>0</td>
       <td>-45.11</td>
     </tr>
     <tr>
-      <td><a href=/player/devoj101>devoj101</a></td>
-      <td>Josh Devore</td>
+      <td><a href=/player/grohh101>grohh101</a></td>
+      <td>Heinie Groh</td>
       <td>New York Giants</td>
       <td>GIANTS</td>
       <td>1</td>
+      <td>1913</td>
+      <td>1913</td>
+      <td>0</td>
       <td>-45.11</td>
     </tr>
     <tr>
@@ -1714,23 +2320,10 @@
       <td>Detroit Tigers</td>
       <td>TIGRS</td>
       <td>1</td>
+      <td>1948</td>
+      <td>1951</td>
+      <td>3</td>
       <td>-45.05</td>
-    </tr>
-    <tr>
-      <td><a href=/player/ryann001>ryann001</a></td>
-      <td>Nolan Ryan</td>
-      <td>New York Mets</td>
-      <td>METS</td>
-      <td>1</td>
-      <td>-45.02</td>
-    </tr>
-    <tr>
-      <td><a href=/player/rosed102>rosed102</a></td>
-      <td>Don Rose</td>
-      <td>New York Mets</td>
-      <td>METS</td>
-      <td>1</td>
-      <td>-45.02</td>
     </tr>
     <tr>
       <td><a href=/player/stanl102>stanl102</a></td>
@@ -1738,6 +2331,20 @@
       <td>New York Mets</td>
       <td>METS</td>
       <td>1</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
+      <td>-45.02</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ryann001>ryann001</a></td>
+      <td>Nolan Ryan</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>1</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
       <td>-45.02</td>
     </tr>
     <tr>
@@ -1746,6 +2353,20 @@
       <td>New York Mets</td>
       <td>METS</td>
       <td>1</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
+      <td>-45.02</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rosed102>rosed102</a></td>
+      <td>Don Rose</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>1</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
       <td>-45.02</td>
     </tr>
     <tr>
@@ -1754,6 +2375,9 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>5</td>
+      <td>1997</td>
+      <td>2005</td>
+      <td>8</td>
       <td>-44.97</td>
     </tr>
     <tr>
@@ -1762,15 +2386,10 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>5</td>
+      <td>1997</td>
+      <td>2005</td>
+      <td>8</td>
       <td>-44.97</td>
-    </tr>
-    <tr>
-      <td><a href=/player/peith101>peith101</a></td>
-      <td>Heinie Peitz</td>
-      <td>St. Louis Cardinals</td>
-      <td>CARDS</td>
-      <td>5</td>
-      <td>-44.95</td>
     </tr>
     <tr>
       <td><a href=/player/ehrer101>ehrer101</a></td>
@@ -1778,6 +2397,20 @@
       <td>St. Louis Cardinals</td>
       <td>CARDS</td>
       <td>5</td>
+      <td>1895</td>
+      <td>1899</td>
+      <td>4</td>
+      <td>-44.95</td>
+    </tr>
+    <tr>
+      <td><a href=/player/peith101>peith101</a></td>
+      <td>Heinie Peitz</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>5</td>
+      <td>1895</td>
+      <td>1899</td>
+      <td>4</td>
       <td>-44.95</td>
     </tr>
     <tr>
@@ -1786,6 +2419,9 @@
       <td>Minnesota Twins</td>
       <td>TWINS</td>
       <td>4</td>
+      <td>2008</td>
+      <td>2014</td>
+      <td>6</td>
       <td>-44.92</td>
     </tr>
     <tr>
@@ -1794,6 +2430,9 @@
       <td>Louisville</td>
       <td>Louisville</td>
       <td>1</td>
+      <td>1924</td>
+      <td>1924</td>
+      <td>0</td>
       <td>-44.77</td>
     </tr>
     <tr>
@@ -1802,6 +2441,9 @@
       <td>Philadelphia Athletics</td>
       <td>ATLTCS</td>
       <td>1</td>
+      <td>1949</td>
+      <td>1952</td>
+      <td>3</td>
       <td>-44.72</td>
     </tr>
     <tr>
@@ -1810,6 +2452,9 @@
       <td>Tampa Bay Devil Rays</td>
       <td>RAYS</td>
       <td>1</td>
+      <td>1997</td>
+      <td>2000</td>
+      <td>3</td>
       <td>-44.46</td>
     </tr>
     <tr>
@@ -1818,15 +2463,10 @@
       <td>Cleveland Indians</td>
       <td>INDINS</td>
       <td>5</td>
+      <td>1950</td>
+      <td>1960</td>
+      <td>10</td>
       <td>-44.06</td>
-    </tr>
-    <tr>
-      <td><a href=/player/bensk001>bensk001</a></td>
-      <td>Kris Benson</td>
-      <td>Pittsburgh Pirates</td>
-      <td>PIRATS</td>
-      <td>2</td>
-      <td>-43.84</td>
     </tr>
     <tr>
       <td><a href=/player/keppj001>keppj001</a></td>
@@ -1834,6 +2474,20 @@
       <td>Pittsburgh Pirates</td>
       <td>PIRATS</td>
       <td>2</td>
+      <td>2004</td>
+      <td>2009</td>
+      <td>5</td>
+      <td>-43.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bensk001>bensk001</a></td>
+      <td>Kris Benson</td>
+      <td>Pittsburgh Pirates</td>
+      <td>PIRATS</td>
+      <td>2</td>
+      <td>2004</td>
+      <td>2009</td>
+      <td>5</td>
       <td>-43.84</td>
     </tr>
     <tr>
@@ -1842,14 +2496,9 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>12</td>
-      <td>-43.60</td>
-    </tr>
-    <tr>
-      <td><a href=/player/gagng001>gagng001</a></td>
-      <td>Greg Gagne</td>
-      <td>New York Yankees</td>
-      <td>YANKS</td>
-      <td>12</td>
+      <td>1982</td>
+      <td>2001</td>
+      <td>19</td>
       <td>-43.60</td>
     </tr>
     <tr>
@@ -1858,6 +2507,20 @@
       <td>New York Yankees</td>
       <td>YANKS</td>
       <td>12</td>
+      <td>1982</td>
+      <td>2001</td>
+      <td>19</td>
+      <td>-43.60</td>
+    </tr>
+    <tr>
+      <td><a href=/player/gagng001>gagng001</a></td>
+      <td>Greg Gagne</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>12</td>
+      <td>1982</td>
+      <td>2001</td>
+      <td>19</td>
       <td>-43.60</td>
     </tr>
     <tr>
@@ -1865,7 +2528,10 @@
       <td>Toby Harrah</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>14</td>
+      <td>15</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
       <td>-43.32</td>
     </tr>
     <tr>
@@ -1874,6 +2540,9 @@
       <td>Arizona Diamondbacks</td>
       <td>DBACKS</td>
       <td>6</td>
+      <td>2011</td>
+      <td>2021</td>
+      <td>10</td>
       <td>-43.27</td>
     </tr>
     <tr>
@@ -1882,6 +2551,9 @@
       <td>Arizona Diamondbacks</td>
       <td>DBACKS</td>
       <td>6</td>
+      <td>2011</td>
+      <td>2021</td>
+      <td>10</td>
       <td>-43.27</td>
     </tr>
     <tr>
@@ -1890,7 +2562,21 @@
       <td>Arizona Diamondbacks</td>
       <td>DBACKS</td>
       <td>6</td>
+      <td>2011</td>
+      <td>2021</td>
+      <td>10</td>
       <td>-43.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/lowed001>lowed001</a></td>
+      <td>Derek Lowe</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>1</td>
+      <td>1997</td>
+      <td>1998</td>
+      <td>1</td>
+      <td>-43.17</td>
     </tr>
     <tr>
       <td><a href=/player/varij001>varij001</a></td>
@@ -1898,13 +2584,8 @@
       <td>Seattle Mariners</td>
       <td>MARNRS</td>
       <td>1</td>
-      <td>-43.17</td>
-    </tr>
-    <tr>
-      <td><a href=/player/lowed001>lowed001</a></td>
-      <td>Derek Lowe</td>
-      <td>Seattle Mariners</td>
-      <td>MARNRS</td>
+      <td>1997</td>
+      <td>1998</td>
       <td>1</td>
       <td>-43.17</td>
     </tr>
@@ -1913,7 +2594,10 @@
       <td>Rick Sutcliffe</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>13</td>
+      <td>14</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
       <td>-42.79</td>
     </tr>
     <tr>
@@ -1921,7 +2605,10 @@
       <td>George Frazier</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>13</td>
+      <td>14</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
       <td>-42.79</td>
     </tr>
     <tr>
@@ -1929,7 +2616,10 @@
       <td>Ron Hassey</td>
       <td>Cleveland Indians</td>
       <td>INDINS</td>
-      <td>13</td>
+      <td>14</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
       <td>-42.79</td>
     </tr>
     <tr>
@@ -1938,14 +2628,20 @@
       <td>Florida Marlins</td>
       <td>MARLNS</td>
       <td>11</td>
+      <td>2003</td>
+      <td>2019</td>
+      <td>16</td>
       <td>-42.73</td>
     </tr>
     <tr>
-      <td><a href=/player/harrm001>harrm001</a></td>
-      <td>Matt Harrison</td>
+      <td><a href=/player/andre001>andre001</a></td>
+      <td>Elvis Andrus</td>
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>4</td>
+      <td>2007</td>
+      <td>2009</td>
+      <td>2</td>
       <td>-42.24</td>
     </tr>
     <tr>
@@ -1954,14 +2650,9 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>4</td>
-      <td>-42.24</td>
-    </tr>
-    <tr>
-      <td><a href=/player/andre001>andre001</a></td>
-      <td>Elvis Andrus</td>
-      <td>Atlanta Braves</td>
-      <td>BRAVES</td>
-      <td>4</td>
+      <td>2007</td>
+      <td>2009</td>
+      <td>2</td>
       <td>-42.24</td>
     </tr>
     <tr>
@@ -1970,6 +2661,20 @@
       <td>Atlanta Braves</td>
       <td>BRAVES</td>
       <td>4</td>
+      <td>2007</td>
+      <td>2009</td>
+      <td>2</td>
+      <td>-42.24</td>
+    </tr>
+    <tr>
+      <td><a href=/player/harrm001>harrm001</a></td>
+      <td>Matt Harrison</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>4</td>
+      <td>2007</td>
+      <td>2009</td>
+      <td>2</td>
       <td>-42.24</td>
     </tr>
     <tr>
@@ -1978,6 +2683,9 @@
       <td>Reading</td>
       <td>Reading</td>
       <td>1</td>
+      <td>1908</td>
+      <td>1908</td>
+      <td>0</td>
       <td>-42.20</td>
     </tr>
     <tr>
@@ -1986,6 +2694,9 @@
       <td>Syracuse</td>
       <td>Syracuse</td>
       <td>1</td>
+      <td>1897</td>
+      <td>1897</td>
+      <td>0</td>
       <td>-42.08</td>
     </tr>
     <tr>
@@ -1993,6 +2704,9 @@
       <td>Bucky Walters</td>
       <td>Philadelphia Phillies</td>
       <td>PHILS</td>
+      <td>2</td>
+      <td>1938</td>
+      <td>1940</td>
       <td>2</td>
       <td>-41.73</td>
     </tr>
@@ -2002,13 +2716,30 @@
       <td>Cincinnati Reds</td>
       <td>REDS</td>
       <td>6</td>
+      <td>1952</td>
+      <td>1965</td>
+      <td>13</td>
       <td>-41.71</td>
+    </tr>
+    <tr>
+      <td><a href=/player/davig001>davig001</a></td>
+      <td>Glenn Davis</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>18</td>
+      <td>1991</td>
+      <td>2011</td>
+      <td>20</td>
+      <td>-41.49</td>
     </tr>
     <tr>
       <td><a href=/player/davig102>davig102</a></td>
       <td>George Davis</td>
       <td>Cleveland Spiders</td>
       <td>CL4</td>
+      <td>1</td>
+      <td>1893</td>
+      <td>1894</td>
       <td>1</td>
       <td>-41.44</td>
     </tr>
@@ -2018,6 +2749,9 @@
       <td>Texas Rangers</td>
       <td>RNGRS</td>
       <td>3</td>
+      <td>2002</td>
+      <td>2007</td>
+      <td>5</td>
       <td>-41.02</td>
     </tr>
     <tr>
@@ -2026,14 +2760,31 @@
       <td>Texas Rangers</td>
       <td>RNGRS</td>
       <td>3</td>
+      <td>2002</td>
+      <td>2007</td>
+      <td>5</td>
       <td>-41.02</td>
     </tr>
     <tr>
-      <td><a href=/player/perrg101>perrg101</a></td>
-      <td>Gaylord Perry</td>
-      <td>San Francisco Giants</td>
-      <td>GIANTS</td>
-      <td>1</td>
+      <td><a href=/player/dunnm001>dunnm001</a></td>
+      <td>Mike Dunne</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1987</td>
+      <td>1997</td>
+      <td>10</td>
+      <td>-40.92</td>
+    </tr>
+    <tr>
+      <td><a href=/player/lavam001>lavam001</a></td>
+      <td>Mike LaValliere</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1987</td>
+      <td>1997</td>
+      <td>10</td>
       <td>-40.92</td>
     </tr>
     <tr>
@@ -2042,6 +2793,9 @@
       <td>San Francisco Giants</td>
       <td>GIANTS</td>
       <td>1</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
       <td>-40.92</td>
     </tr>
     <tr>
@@ -2049,24 +2803,22 @@
       <td>Andy Van Slyke</td>
       <td>St. Louis Cardinals</td>
       <td>CARDS</td>
-      <td>1</td>
-      <td>-40.83</td>
+      <td>2</td>
+      <td>1987</td>
+      <td>1997</td>
+      <td>10</td>
+      <td>-40.92</td>
     </tr>
     <tr>
-      <td><a href=/player/dunnm001>dunnm001</a></td>
-      <td>Mike Dunne</td>
-      <td>St. Louis Cardinals</td>
-      <td>CARDS</td>
+      <td><a href=/player/perrg101>perrg101</a></td>
+      <td>Gaylord Perry</td>
+      <td>San Francisco Giants</td>
+      <td>GIANTS</td>
       <td>1</td>
-      <td>-40.83</td>
-    </tr>
-    <tr>
-      <td><a href=/player/lavam001>lavam001</a></td>
-      <td>Mike LaValliere</td>
-      <td>St. Louis Cardinals</td>
-      <td>CARDS</td>
-      <td>1</td>
-      <td>-40.83</td>
+      <td>1971</td>
+      <td>1973</td>
+      <td>2</td>
+      <td>-40.92</td>
     </tr>
     <tr>
       <td><a href=/player/jensj101>jensj101</a></td>
@@ -2074,15 +2826,10 @@
       <td>Washington Senators</td>
       <td>TWINS</td>
       <td>14</td>
+      <td>1953</td>
+      <td>1963</td>
+      <td>10</td>
       <td>-40.73</td>
-    </tr>
-    <tr>
-      <td><a href=/player/uptot101>uptot101</a></td>
-      <td>Tom Upton</td>
-      <td>Washington Senators</td>
-      <td>TWINS</td>
-      <td>17</td>
-      <td>-40.50</td>
     </tr>
     <tr>
       <td><a href=/player/norei101>norei101</a></td>
@@ -2090,6 +2837,20 @@
       <td>Washington Senators</td>
       <td>TWINS</td>
       <td>17</td>
+      <td>1952</td>
+      <td>1963</td>
+      <td>11</td>
+      <td>-40.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/uptot101>uptot101</a></td>
+      <td>Tom Upton</td>
+      <td>Washington Senators</td>
+      <td>TWINS</td>
+      <td>17</td>
+      <td>1952</td>
+      <td>1963</td>
+      <td>11</td>
       <td>-40.50</td>
     </tr>
     <tr>
@@ -2098,7 +2859,2749 @@
       <td>KansasCity</td>
       <td>KansasCity</td>
       <td>1</td>
+      <td>1913</td>
+      <td>1913</td>
+      <td>0</td>
       <td>-40.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sprij102>sprij102</a></td>
+      <td>Jack Spring</td>
+      <td>Chicago Cubs</td>
+      <td>CUBS</td>
+      <td>2</td>
+      <td>1964</td>
+      <td>1966</td>
+      <td>2</td>
+      <td>-40.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/tothp101>tothp101</a></td>
+      <td>Paul Toth</td>
+      <td>Chicago Cubs</td>
+      <td>CUBS</td>
+      <td>2</td>
+      <td>1964</td>
+      <td>1966</td>
+      <td>2</td>
+      <td>-40.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/brocl102>brocl102</a></td>
+      <td>Lou Brock</td>
+      <td>Chicago Cubs</td>
+      <td>CUBS</td>
+      <td>2</td>
+      <td>1964</td>
+      <td>1966</td>
+      <td>2</td>
+      <td>-40.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/foxxj101>foxxj101</a></td>
+      <td>Jimmie Foxx</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>1</td>
+      <td>1935</td>
+      <td>1936</td>
+      <td>1</td>
+      <td>-40.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/marcj101>marcj101</a></td>
+      <td>Johnny Marcum</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>1</td>
+      <td>1935</td>
+      <td>1936</td>
+      <td>1</td>
+      <td>-40.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/dents101>dents101</a></td>
+      <td>Sam Dente</td>
+      <td>Washington Senators</td>
+      <td>TWINS</td>
+      <td>18</td>
+      <td>1951</td>
+      <td>1963</td>
+      <td>12</td>
+      <td>-40.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/fosta101>fosta101</a></td>
+      <td>Alan Foster</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>8</td>
+      <td>1971</td>
+      <td>1984</td>
+      <td>13</td>
+      <td>-39.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/pinsv101>pinsv101</a></td>
+      <td>Vada Pinson</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>8</td>
+      <td>1971</td>
+      <td>1984</td>
+      <td>13</td>
+      <td>-39.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bakef104>bakef104</a></td>
+      <td>Frank Baker</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>8</td>
+      <td>1971</td>
+      <td>1984</td>
+      <td>13</td>
+      <td>-39.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/phild102>phild102</a></td>
+      <td>Dave Philley</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>33</td>
+      <td>1954</td>
+      <td>1976</td>
+      <td>22</td>
+      <td>-39.85</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sherg001>sherg001</a></td>
+      <td>George Sherrill</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>4</td>
+      <td>2008</td>
+      <td>2013</td>
+      <td>5</td>
+      <td>-39.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/tillc001>tillc001</a></td>
+      <td>Chris Tillman</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>4</td>
+      <td>2008</td>
+      <td>2013</td>
+      <td>5</td>
+      <td>-39.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mickk001>mickk001</a></td>
+      <td>Kameron Mickolio</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>4</td>
+      <td>2008</td>
+      <td>2013</td>
+      <td>5</td>
+      <td>-39.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jonea003>jonea003</a></td>
+      <td>Adam Jones</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>4</td>
+      <td>2008</td>
+      <td>2013</td>
+      <td>5</td>
+      <td>-39.82</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wheal101>wheal101</a></td>
+      <td>Lee Wheat</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>32</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
+      <td>-39.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/safft101>safft101</a></td>
+      <td>Tom Saffell</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>32</td>
+      <td>1956</td>
+      <td>1976</td>
+      <td>20</td>
+      <td>-39.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/minom101>minom101</a></td>
+      <td>Minnie Minoso</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>1</td>
+      <td>1951</td>
+      <td>1951</td>
+      <td>0</td>
+      <td>-39.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/martb105>martb105</a></td>
+      <td>Billy Martin</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/zerng101>zerng101</a></td>
+      <td>Gus Zernial</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/thomt106>thomt106</a></td>
+      <td>Tim Thompson</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/skizl101>skizl101</a></td>
+      <td>Lou Skizas</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/morgt101>morgt101</a></td>
+      <td>Tom Morgan</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mcdem102>mcdem102</a></td>
+      <td>Mickey McDermott</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>31</td>
+      <td>1957</td>
+      <td>1976</td>
+      <td>19</td>
+      <td>-39.47</td>
+    </tr>
+    <tr>
+      <td><a href=/player/yan-e001>yan-e001</a></td>
+      <td>Esteban Yan</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>6</td>
+      <td>1995</td>
+      <td>2005</td>
+      <td>10</td>
+      <td>-39.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/tarat001>tarat001</a></td>
+      <td>Tony Tarasco</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>6</td>
+      <td>1995</td>
+      <td>2005</td>
+      <td>10</td>
+      <td>-39.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kellb002>kellb002</a></td>
+      <td>Roberto Kelly</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>6</td>
+      <td>1995</td>
+      <td>2005</td>
+      <td>10</td>
+      <td>-39.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/garcd001>garcd001</a></td>
+      <td>Damaso Garcia</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>15</td>
+      <td>1979</td>
+      <td>2001</td>
+      <td>22</td>
+      <td>-38.77</td>
+    </tr>
+    <tr>
+      <td><a href=/player/chamc001>chamc001</a></td>
+      <td>Chris Chambliss</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>15</td>
+      <td>1979</td>
+      <td>2001</td>
+      <td>22</td>
+      <td>-38.77</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mirap001>mirap001</a></td>
+      <td>Paul Mirabella</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>15</td>
+      <td>1979</td>
+      <td>2001</td>
+      <td>22</td>
+      <td>-38.77</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jackl102>jackl102</a></td>
+      <td>Larry Jackson</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>15</td>
+      <td>1962</td>
+      <td>1972</td>
+      <td>10</td>
+      <td>-38.54</td>
+    </tr>
+    <tr>
+      <td><a href=/player/schaj104>schaj104</a></td>
+      <td>Jimmie Schaffer</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>15</td>
+      <td>1962</td>
+      <td>1972</td>
+      <td>10</td>
+      <td>-38.54</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mcdal101>mcdal101</a></td>
+      <td>Lindy McDaniel</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>15</td>
+      <td>1962</td>
+      <td>1972</td>
+      <td>10</td>
+      <td>-38.54</td>
+    </tr>
+    <tr>
+      <td><a href=/player/branh101>branh101</a></td>
+      <td>Harvey Branch</td>
+      <td>Chicago Cubs</td>
+      <td>CUBS</td>
+      <td>3</td>
+      <td>1962</td>
+      <td>1966</td>
+      <td>4</td>
+      <td>-38.52</td>
+    </tr>
+    <tr>
+      <td><a href=/player/turnt105>turnt105</a></td>
+      <td>Terry Turner</td>
+      <td>Columbus</td>
+      <td>Columbus</td>
+      <td>1</td>
+      <td>1903</td>
+      <td>1905</td>
+      <td>2</td>
+      <td>-38.48</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ostec103>ostec103</a></td>
+      <td>Claude Osteen</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>26</td>
+      <td>1964</td>
+      <td>1992</td>
+      <td>28</td>
+      <td>-38.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kennj105>kennj105</a></td>
+      <td>John Kennedy</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>26</td>
+      <td>1964</td>
+      <td>1992</td>
+      <td>28</td>
+      <td>-38.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cardj101>cardj101</a></td>
+      <td>Jose Cardenal</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>9</td>
+      <td>1969</td>
+      <td>1984</td>
+      <td>15</td>
+      <td>-38.31</td>
+    </tr>
+    <tr>
+      <td><a href=/player/waina001>waina001</a></td>
+      <td>Adam Wainwright</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>2003</td>
+      <td>2005</td>
+      <td>2</td>
+      <td>-38.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/marqj001>marqj001</a></td>
+      <td>Jason Marquis</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>2003</td>
+      <td>2005</td>
+      <td>2</td>
+      <td>-38.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kingr001>kingr001</a></td>
+      <td>Ray King</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>2003</td>
+      <td>2005</td>
+      <td>2</td>
+      <td>-38.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sandd001>sandd001</a></td>
+      <td>Deion Sanders</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>7</td>
+      <td>1994</td>
+      <td>2005</td>
+      <td>11</td>
+      <td>-38.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/fostj001>fostj001</a></td>
+      <td>John Foster</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>3</td>
+      <td>2002</td>
+      <td>2005</td>
+      <td>3</td>
+      <td>-38.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/helmw001>helmw001</a></td>
+      <td>Wes Helms</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>3</td>
+      <td>2002</td>
+      <td>2005</td>
+      <td>3</td>
+      <td>-38.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/birtt001>birtt001</a></td>
+      <td>Tim Birtsas</td>
+      <td>Oakland Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1987</td>
+      <td>1996</td>
+      <td>9</td>
+      <td>-37.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rijoj001>rijoj001</a></td>
+      <td>Jose Rijo</td>
+      <td>Oakland Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1987</td>
+      <td>1996</td>
+      <td>9</td>
+      <td>-37.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cochm101>cochm101</a></td>
+      <td>Mickey Cochrane</td>
+      <td>Portland</td>
+      <td>Portland</td>
+      <td>1</td>
+      <td>1924</td>
+      <td>1925</td>
+      <td>1</td>
+      <td>-37.87</td>
+    </tr>
+    <tr>
+      <td><a href=/player/embra001>embra001</a></td>
+      <td>Alan Embree</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>4</td>
+      <td>1998</td>
+      <td>2005</td>
+      <td>7</td>
+      <td>-37.73</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bautj002>bautj002</a></td>
+      <td>Jose Bautista</td>
+      <td>Pittsburgh Pirates</td>
+      <td>PIRATS</td>
+      <td>1</td>
+      <td>2008</td>
+      <td>2009</td>
+      <td>1</td>
+      <td>-37.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/fimpj001>fimpj001</a></td>
+      <td>Jack Fimple</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>18</td>
+      <td>1981</td>
+      <td>2001</td>
+      <td>20</td>
+      <td>-37.59</td>
+    </tr>
+    <tr>
+      <td><a href=/player/whitl002>whitl002</a></td>
+      <td>Larry White</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>18</td>
+      <td>1981</td>
+      <td>2001</td>
+      <td>20</td>
+      <td>-37.59</td>
+    </tr>
+    <tr>
+      <td><a href=/player/holtk101>holtk101</a></td>
+      <td>Ken Holtzman</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>13</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.59</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ortaj001>ortaj001</a></td>
+      <td>Jorge Orta</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>18</td>
+      <td>1981</td>
+      <td>2001</td>
+      <td>20</td>
+      <td>-37.59</td>
+    </tr>
+    <tr>
+      <td><a href=/player/simsd101>simsd101</a></td>
+      <td>Duke Sims</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>9</td>
+      <td>1970</td>
+      <td>1984</td>
+      <td>14</td>
+      <td>-37.48</td>
+    </tr>
+    <tr>
+      <td><a href=/player/gardl101>gardl101</a></td>
+      <td>Larry Gardner</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1919</td>
+      <td>1920</td>
+      <td>1</td>
+      <td>-37.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/myere101>myere101</a></td>
+      <td>Elmer Myers</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1919</td>
+      <td>1920</td>
+      <td>1</td>
+      <td>-37.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jamic101>jamic101</a></td>
+      <td>Charlie Jamieson</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1919</td>
+      <td>1920</td>
+      <td>1</td>
+      <td>-37.37</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mccal101>mccal101</a></td>
+      <td>Larry McCall</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>25</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.33</td>
+    </tr>
+    <tr>
+      <td><a href=/player/lyles101>lyles101</a></td>
+      <td>Sparky Lyle</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>25</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.33</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rajsd101>rajsd101</a></td>
+      <td>Dave Rajsich</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>25</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.33</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ramod001>ramod001</a></td>
+      <td>Domingo Ramos</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>25</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.33</td>
+    </tr>
+    <tr>
+      <td><a href=/player/heatm001>heatm001</a></td>
+      <td>Mike Heath</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>25</td>
+      <td>1978</td>
+      <td>2001</td>
+      <td>23</td>
+      <td>-37.33</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kleic101>kleic101</a></td>
+      <td>Chuck Klein</td>
+      <td>FortWayne</td>
+      <td>FortWayne</td>
+      <td>1</td>
+      <td>1928</td>
+      <td>1928</td>
+      <td>0</td>
+      <td>-37.14</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mccoa101>mccoa101</a></td>
+      <td>Amby McConnell</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>10</td>
+      <td>1910</td>
+      <td>1935</td>
+      <td>25</td>
+      <td>-36.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/lordh101>lordh101</a></td>
+      <td>Harry Lord</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>10</td>
+      <td>1910</td>
+      <td>1935</td>
+      <td>25</td>
+      <td>-36.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bergw101>bergw101</a></td>
+      <td>Wally Berger</td>
+      <td>LosAngeles</td>
+      <td>LosAngeles</td>
+      <td>1</td>
+      <td>1929</td>
+      <td>1929</td>
+      <td>0</td>
+      <td>-36.60</td>
+    </tr>
+    <tr>
+      <td><a href=/player/tavaj001>tavaj001</a></td>
+      <td>Julian Tavarez</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
+      <td>-36.58</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kentj001>kentj001</a></td>
+      <td>Jeff Kent</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
+      <td>-36.58</td>
+    </tr>
+    <tr>
+      <td><a href=/player/roa-j001>roa-j001</a></td>
+      <td>Joe Roa</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
+      <td>-36.58</td>
+    </tr>
+    <tr>
+      <td><a href=/player/vizcj001>vizcj001</a></td>
+      <td>Jose Vizcaino</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1996</td>
+      <td>2001</td>
+      <td>5</td>
+      <td>-36.58</td>
+    </tr>
+    <tr>
+      <td><a href=/player/carbb101>carbb101</a></td>
+      <td>Bernie Carbo</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>10</td>
+      <td>1973</td>
+      <td>1978</td>
+      <td>5</td>
+      <td>-36.49</td>
+    </tr>
+    <tr>
+      <td><a href=/player/wiser101>wiser101</a></td>
+      <td>Rick Wise</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>10</td>
+      <td>1973</td>
+      <td>1978</td>
+      <td>5</td>
+      <td>-36.49</td>
+    </tr>
+    <tr>
+      <td><a href=/player/schic002>schic002</a></td>
+      <td>Curt Schilling</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>1</td>
+      <td>1992</td>
+      <td>1993</td>
+      <td>1</td>
+      <td>-36.28</td>
+    </tr>
+    <tr>
+      <td><a href=/player/santj003>santj003</a></td>
+      <td>Johan Santana</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>1</td>
+      <td>1999</td>
+      <td>1999</td>
+      <td>0</td>
+      <td>-36.05</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mcmuk101>mcmuk101</a></td>
+      <td>Ken McMullen</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>8</td>
+      <td>1970</td>
+      <td>1976</td>
+      <td>6</td>
+      <td>-35.75</td>
+    </tr>
+    <tr>
+      <td><a href=/player/oaker101>oaker101</a></td>
+      <td>Rebel Oakes</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>3</td>
+      <td>1910</td>
+      <td>1914</td>
+      <td>4</td>
+      <td>-35.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/corrf101>corrf101</a></td>
+      <td>Frank Corridon</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>3</td>
+      <td>1910</td>
+      <td>1914</td>
+      <td>4</td>
+      <td>-35.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/huggm101>huggm101</a></td>
+      <td>Miller Huggins</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>3</td>
+      <td>1910</td>
+      <td>1914</td>
+      <td>4</td>
+      <td>-35.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ageet101>ageet101</a></td>
+      <td>Tommie Agee</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1965</td>
+      <td>1968</td>
+      <td>3</td>
+      <td>-35.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/johnt001>johnt001</a></td>
+      <td>Tommy John</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1965</td>
+      <td>1968</td>
+      <td>3</td>
+      <td>-35.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/romaj101>romaj101</a></td>
+      <td>John Romano</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>3</td>
+      <td>1965</td>
+      <td>1968</td>
+      <td>3</td>
+      <td>-35.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jeffg001>jeffg001</a></td>
+      <td>Gregg Jefferies</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>3</td>
+      <td>1998</td>
+      <td>2005</td>
+      <td>7</td>
+      <td>-35.29</td>
+    </tr>
+    <tr>
+      <td><a href=/player/passc101>passc101</a></td>
+      <td>Claude Passeau</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>4</td>
+      <td>1939</td>
+      <td>1946</td>
+      <td>7</td>
+      <td>-35.16</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cervb101>cervb101</a></td>
+      <td>Bob Cerv</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>20</td>
+      <td>1960</td>
+      <td>1976</td>
+      <td>16</td>
+      <td>-35.15</td>
+    </tr>
+    <tr>
+      <td><a href=/player/nettg001>nettg001</a></td>
+      <td>Graig Nettles</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>6</td>
+      <td>1972</td>
+      <td>1984</td>
+      <td>12</td>
+      <td>-35.09</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mosej101>mosej101</a></td>
+      <td>Jerry Moses</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>6</td>
+      <td>1972</td>
+      <td>1984</td>
+      <td>12</td>
+      <td>-35.09</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mortc102>mortc102</a></td>
+      <td>Carl Morton</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>4</td>
+      <td>1973</td>
+      <td>1978</td>
+      <td>5</td>
+      <td>-34.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/chilc101>chilc101</a></td>
+      <td>Cupid Childs</td>
+      <td>Boston Reds</td>
+      <td>BS2</td>
+      <td>1</td>
+      <td>1891</td>
+      <td>1894</td>
+      <td>3</td>
+      <td>-34.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/deshd001>deshd001</a></td>
+      <td>Delino DeShields</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>4</td>
+      <td>1993</td>
+      <td>2006</td>
+      <td>13</td>
+      <td>-34.83</td>
+    </tr>
+    <tr>
+      <td><a href=/player/nickd001>nickd001</a></td>
+      <td>Doug Nickle</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>2</td>
+      <td>2002</td>
+      <td>2005</td>
+      <td>3</td>
+      <td>-34.80</td>
+    </tr>
+    <tr>
+      <td><a href=/player/roles001>roles001</a></td>
+      <td>Scott Rolen</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>2</td>
+      <td>2002</td>
+      <td>2005</td>
+      <td>3</td>
+      <td>-34.80</td>
+    </tr>
+    <tr>
+      <td><a href=/player/soria001>soria001</a></td>
+      <td>Alfonso Soriano</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>3</td>
+      <td>2005</td>
+      <td>2008</td>
+      <td>3</td>
+      <td>-34.78</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rizza001>rizza001</a></td>
+      <td>Anthony Rizzo</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>5</td>
+      <td>2012</td>
+      <td>2021</td>
+      <td>9</td>
+      <td>-34.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hendr001>hendr001</a></td>
+      <td>Rickey Henderson</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>2</td>
+      <td>1989</td>
+      <td>1993</td>
+      <td>4</td>
+      <td>-34.70</td>
+    </tr>
+    <tr>
+      <td><a href=/player/zobrb001>zobrb001</a></td>
+      <td>Ben Zobrist</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>1</td>
+      <td>2006</td>
+      <td>2006</td>
+      <td>0</td>
+      <td>-34.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/talbm001>talbm001</a></td>
+      <td>Mitch Talbot</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>1</td>
+      <td>2006</td>
+      <td>2006</td>
+      <td>0</td>
+      <td>-34.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bresc001>bresc001</a></td>
+      <td>Craig Breslow</td>
+      <td>Arizona Diamondbacks</td>
+      <td>DBACKS</td>
+      <td>4</td>
+      <td>2012</td>
+      <td>2021</td>
+      <td>9</td>
+      <td>-34.57</td>
+    </tr>
+    <tr>
+      <td><a href=/player/holmt101>holmt101</a></td>
+      <td>Tommy Holmes</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>1</td>
+      <td>1941</td>
+      <td>1946</td>
+      <td>5</td>
+      <td>-34.39</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bartj001>bartj001</a></td>
+      <td>Jason Bartlett</td>
+      <td>Minnesota Twins</td>
+      <td>TWINS</td>
+      <td>3</td>
+      <td>2007</td>
+      <td>2015</td>
+      <td>8</td>
+      <td>-34.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/garzm001>garzm001</a></td>
+      <td>Matt Garza</td>
+      <td>Minnesota Twins</td>
+      <td>TWINS</td>
+      <td>3</td>
+      <td>2007</td>
+      <td>2015</td>
+      <td>8</td>
+      <td>-34.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/schaw101>schaw101</a></td>
+      <td>Wally Schang</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>11</td>
+      <td>1920</td>
+      <td>1937</td>
+      <td>17</td>
+      <td>-34.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/harph101>harph101</a></td>
+      <td>Harry Harper</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>11</td>
+      <td>1920</td>
+      <td>1937</td>
+      <td>17</td>
+      <td>-34.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mcnam101>mcnam101</a></td>
+      <td>Mike McNally</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>11</td>
+      <td>1920</td>
+      <td>1937</td>
+      <td>17</td>
+      <td>-34.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hoytw101>hoytw101</a></td>
+      <td>Waite Hoyt</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>11</td>
+      <td>1920</td>
+      <td>1937</td>
+      <td>17</td>
+      <td>-34.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/olivd001>olivd001</a></td>
+      <td>Darren Oliver</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>10</td>
+      <td>1998</td>
+      <td>2013</td>
+      <td>15</td>
+      <td>-34.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/tatif001>tatif001</a></td>
+      <td>Fernando Tatis</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>10</td>
+      <td>1998</td>
+      <td>2013</td>
+      <td>15</td>
+      <td>-34.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/littm001>littm001</a></td>
+      <td>Mark Little</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>10</td>
+      <td>1998</td>
+      <td>2013</td>
+      <td>15</td>
+      <td>-34.11</td>
+    </tr>
+    <tr>
+      <td><a href=/player/martj002>martj002</a></td>
+      <td>Jose Martinez</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>16</td>
+      <td>1993</td>
+      <td>2019</td>
+      <td>26</td>
+      <td>-34.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hofft001>hofft001</a></td>
+      <td>Trevor Hoffman</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>16</td>
+      <td>1993</td>
+      <td>2019</td>
+      <td>26</td>
+      <td>-34.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/berua001>berua001</a></td>
+      <td>Andres Berumen</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>16</td>
+      <td>1993</td>
+      <td>2019</td>
+      <td>26</td>
+      <td>-34.10</td>
+    </tr>
+    <tr>
+      <td><a href=/player/dalet101>dalet101</a></td>
+      <td>Tom Daley</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>4</td>
+      <td>1909</td>
+      <td>1914</td>
+      <td>5</td>
+      <td>-34.06</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ellir102>ellir102</a></td>
+      <td>Rube Ellis</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>4</td>
+      <td>1909</td>
+      <td>1914</td>
+      <td>5</td>
+      <td>-34.06</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hintc101>hintc101</a></td>
+      <td>Chuck Hinton</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>10</td>
+      <td>1967</td>
+      <td>1984</td>
+      <td>17</td>
+      <td>-34.02</td>
+    </tr>
+    <tr>
+      <td><a href=/player/shawb001>shawb001</a></td>
+      <td>Bryan Shaw</td>
+      <td>Arizona Diamondbacks</td>
+      <td>DBACKS</td>
+      <td>3</td>
+      <td>2012</td>
+      <td>2021</td>
+      <td>9</td>
+      <td>-33.96</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bauet001>bauet001</a></td>
+      <td>Trevor Bauer</td>
+      <td>Arizona Diamondbacks</td>
+      <td>DBACKS</td>
+      <td>3</td>
+      <td>2012</td>
+      <td>2021</td>
+      <td>9</td>
+      <td>-33.96</td>
+    </tr>
+    <tr>
+      <td><a href=/player/albem001>albem001</a></td>
+      <td>Matt Albers</td>
+      <td>Arizona Diamondbacks</td>
+      <td>DBACKS</td>
+      <td>3</td>
+      <td>2012</td>
+      <td>2021</td>
+      <td>9</td>
+      <td>-33.96</td>
+    </tr>
+    <tr>
+      <td><a href=/player/gomec002>gomec002</a></td>
+      <td>Carlos Gomez</td>
+      <td>Minnesota Twins</td>
+      <td>TWINS</td>
+      <td>2</td>
+      <td>2009</td>
+      <td>2011</td>
+      <td>2</td>
+      <td>-33.95</td>
+    </tr>
+    <tr>
+      <td><a href=/player/taylh104>taylh104</a></td>
+      <td>Harry Taylor</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1893</td>
+      <td>1894</td>
+      <td>1</td>
+      <td>-33.92</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jennh101>jennh101</a></td>
+      <td>Hughie Jennings</td>
+      <td>Louisville Colonels</td>
+      <td>LS3</td>
+      <td>1</td>
+      <td>1893</td>
+      <td>1894</td>
+      <td>1</td>
+      <td>-33.92</td>
+    </tr>
+    <tr>
+      <td><a href=/player/olses001>olses001</a></td>
+      <td>Scott Olsen</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>13</td>
+      <td>2008</td>
+      <td>2020</td>
+      <td>12</td>
+      <td>-33.85</td>
+    </tr>
+    <tr>
+      <td><a href=/player/willj004>willj004</a></td>
+      <td>Josh Willingham</td>
+      <td>Florida Marlins</td>
+      <td>MARLNS</td>
+      <td>13</td>
+      <td>2008</td>
+      <td>2020</td>
+      <td>12</td>
+      <td>-33.85</td>
+    </tr>
+    <tr>
+      <td><a href=/player/torrm001>torrm001</a></td>
+      <td>Mike Torrez</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>1</td>
+      <td>1974</td>
+      <td>1976</td>
+      <td>2</td>
+      <td>-33.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/singk001>singk001</a></td>
+      <td>Ken Singleton</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>1</td>
+      <td>1974</td>
+      <td>1976</td>
+      <td>2</td>
+      <td>-33.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hoppj102>hoppj102</a></td>
+      <td>Johnny Hopp</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1946</td>
+      <td>1946</td>
+      <td>0</td>
+      <td>-33.57</td>
+    </tr>
+    <tr>
+      <td><a href=/player/larsd102>larsd102</a></td>
+      <td>Don Larsen</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>19</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.55</td>
+    </tr>
+    <tr>
+      <td><a href=/player/herbr101>herbr101</a></td>
+      <td>Ray Herbert</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>19</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.55</td>
+    </tr>
+    <tr>
+      <td><a href=/player/carea101>carea101</a></td>
+      <td>Andy Carey</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>19</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.55</td>
+    </tr>
+    <tr>
+      <td><a href=/player/pilaa101>pilaa101</a></td>
+      <td>Al Pilarcik</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>19</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.55</td>
+    </tr>
+    <tr>
+      <td><a href=/player/snydr102>snydr102</a></td>
+      <td>Russ Snyder</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>24</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/herzw101>herzw101</a></td>
+      <td>Whitey Herzog</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>24</td>
+      <td>1961</td>
+      <td>1976</td>
+      <td>15</td>
+      <td>-33.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/schar103>schar103</a></td>
+      <td>Ray Schalk</td>
+      <td>Milwaukee</td>
+      <td>Milwaukee</td>
+      <td>1</td>
+      <td>1912</td>
+      <td>1919</td>
+      <td>7</td>
+      <td>-33.22</td>
+    </tr>
+    <tr>
+      <td><a href=/player/baxem101>baxem101</a></td>
+      <td>Mike Baxes</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>25</td>
+      <td>1959</td>
+      <td>1976</td>
+      <td>17</td>
+      <td>-33.19</td>
+    </tr>
+    <tr>
+      <td><a href=/player/martb102>martb102</a></td>
+      <td>Bob Martyn</td>
+      <td>Kansas City Athletics</td>
+      <td>ATLTCS</td>
+      <td>25</td>
+      <td>1959</td>
+      <td>1976</td>
+      <td>17</td>
+      <td>-33.19</td>
+    </tr>
+    <tr>
+      <td><a href=/player/easll001>easll001</a></td>
+      <td>Logan Easley</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>10</td>
+      <td>1986</td>
+      <td>2001</td>
+      <td>15</td>
+      <td>-33.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/fishb001>fishb001</a></td>
+      <td>Brian Fisher</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>10</td>
+      <td>1986</td>
+      <td>2001</td>
+      <td>15</td>
+      <td>-33.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/drabd001>drabd001</a></td>
+      <td>Doug Drabek</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>10</td>
+      <td>1986</td>
+      <td>2001</td>
+      <td>15</td>
+      <td>-33.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/buckj001>buckj001</a></td>
+      <td>John Buck</td>
+      <td>Miami Marlins</td>
+      <td>MARLNS</td>
+      <td>12</td>
+      <td>2012</td>
+      <td>2020</td>
+      <td>8</td>
+      <td>-33.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/reyej001>reyej001</a></td>
+      <td>Jose Reyes</td>
+      <td>Miami Marlins</td>
+      <td>MARLNS</td>
+      <td>12</td>
+      <td>2012</td>
+      <td>2020</td>
+      <td>8</td>
+      <td>-33.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/buehm001>buehm001</a></td>
+      <td>Mark Buehrle</td>
+      <td>Miami Marlins</td>
+      <td>MARLNS</td>
+      <td>12</td>
+      <td>2012</td>
+      <td>2020</td>
+      <td>8</td>
+      <td>-33.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bonie001>bonie001</a></td>
+      <td>Emilio Bonifacio</td>
+      <td>Miami Marlins</td>
+      <td>MARLNS</td>
+      <td>12</td>
+      <td>2012</td>
+      <td>2020</td>
+      <td>8</td>
+      <td>-33.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/johnj009>johnj009</a></td>
+      <td>Josh Johnson</td>
+      <td>Miami Marlins</td>
+      <td>MARLNS</td>
+      <td>12</td>
+      <td>2012</td>
+      <td>2020</td>
+      <td>8</td>
+      <td>-33.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/peckr101>peckr101</a></td>
+      <td>Roger Peckinpaugh</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>4</td>
+      <td>1922</td>
+      <td>1935</td>
+      <td>13</td>
+      <td>-32.98</td>
+    </tr>
+    <tr>
+      <td><a href=/player/iviem101>iviem101</a></td>
+      <td>Mike Ivie</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>14</td>
+      <td>1978</td>
+      <td>1993</td>
+      <td>15</td>
+      <td>-32.97</td>
+    </tr>
+    <tr>
+      <td><a href=/player/haguj101>haguj101</a></td>
+      <td>Joe Hague</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>11</td>
+      <td>1972</td>
+      <td>1978</td>
+      <td>6</td>
+      <td>-32.87</td>
+    </tr>
+    <tr>
+      <td><a href=/player/guerp001>guerp001</a></td>
+      <td>Pedro Guerrero</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>1</td>
+      <td>1974</td>
+      <td>1974</td>
+      <td>0</td>
+      <td>-32.83</td>
+    </tr>
+    <tr>
+      <td><a href=/player/klubc001>klubc001</a></td>
+      <td>Corey Kluber</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>1</td>
+      <td>2010</td>
+      <td>2011</td>
+      <td>1</td>
+      <td>-32.79</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jones104>jones104</a></td>
+      <td>Sad Sam Jones</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>10</td>
+      <td>1921</td>
+      <td>1937</td>
+      <td>16</td>
+      <td>-32.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/scote101>scote101</a></td>
+      <td>Everett Scott</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>10</td>
+      <td>1921</td>
+      <td>1937</td>
+      <td>16</td>
+      <td>-32.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bushj102>bushj102</a></td>
+      <td>Bullet Joe Bush</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>10</td>
+      <td>1921</td>
+      <td>1937</td>
+      <td>16</td>
+      <td>-32.66</td>
+    </tr>
+    <tr>
+      <td><a href=/player/pennh101>pennh101</a></td>
+      <td>Herb Pennock</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>3</td>
+      <td>1923</td>
+      <td>1933</td>
+      <td>10</td>
+      <td>-32.44</td>
+    </tr>
+    <tr>
+      <td><a href=/player/jacob001>jacob001</a></td>
+      <td>Brook Jacoby</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>1</td>
+      <td>1983</td>
+      <td>1986</td>
+      <td>3</td>
+      <td>-32.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/beher001>beher001</a></td>
+      <td>Rick Behenna</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>1</td>
+      <td>1983</td>
+      <td>1986</td>
+      <td>3</td>
+      <td>-32.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/butlb001>butlb001</a></td>
+      <td>Brett Butler</td>
+      <td>Atlanta Braves</td>
+      <td>BRAVES</td>
+      <td>1</td>
+      <td>1983</td>
+      <td>1986</td>
+      <td>3</td>
+      <td>-32.38</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cronj101>cronj101</a></td>
+      <td>Joe Cronin</td>
+      <td>Washington Senators</td>
+      <td>TWINS</td>
+      <td>2</td>
+      <td>1934</td>
+      <td>1937</td>
+      <td>3</td>
+      <td>-32.25</td>
+    </tr>
+    <tr>
+      <td><a href=/player/robed102>robed102</a></td>
+      <td>Dave Roberts</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>5</td>
+      <td>1978</td>
+      <td>1989</td>
+      <td>11</td>
+      <td>-32.08</td>
+    </tr>
+    <tr>
+      <td><a href=/player/gambo001>gambo001</a></td>
+      <td>Oscar Gamble</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>5</td>
+      <td>1978</td>
+      <td>1989</td>
+      <td>11</td>
+      <td>-32.08</td>
+    </tr>
+    <tr>
+      <td><a href=/player/stoua101>stoua101</a></td>
+      <td>Allyn Stout</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1933</td>
+      <td>1941</td>
+      <td>8</td>
+      <td>-32.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/derrp101>derrp101</a></td>
+      <td>Paul Derringer</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1933</td>
+      <td>1941</td>
+      <td>8</td>
+      <td>-32.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/adams101>adams101</a></td>
+      <td>Sparky Adams</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>2</td>
+      <td>1933</td>
+      <td>1941</td>
+      <td>8</td>
+      <td>-32.04</td>
+    </tr>
+    <tr>
+      <td><a href=/player/chanb101>chanb101</a></td>
+      <td>Bob Chance</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>11</td>
+      <td>1964</td>
+      <td>1984</td>
+      <td>20</td>
+      <td>-31.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/heldw101>heldw101</a></td>
+      <td>Woodie Held</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>11</td>
+      <td>1964</td>
+      <td>1984</td>
+      <td>20</td>
+      <td>-31.94</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sanca004>sanca004</a></td>
+      <td>Anibal Sanchez</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>14</td>
+      <td>2005</td>
+      <td>2019</td>
+      <td>14</td>
+      <td>-31.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/garch001>garch001</a></td>
+      <td>Harvey Garcia</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>14</td>
+      <td>2005</td>
+      <td>2019</td>
+      <td>14</td>
+      <td>-31.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ramih003>ramih003</a></td>
+      <td>Hanley Ramirez</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>14</td>
+      <td>2005</td>
+      <td>2019</td>
+      <td>14</td>
+      <td>-31.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/delgj001>delgj001</a></td>
+      <td>Jesus Delgado</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>14</td>
+      <td>2005</td>
+      <td>2019</td>
+      <td>14</td>
+      <td>-31.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/smitr101>smitr101</a></td>
+      <td>Reggie Smith</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>3</td>
+      <td>1976</td>
+      <td>1978</td>
+      <td>2</td>
+      <td>-31.88</td>
+    </tr>
+    <tr>
+      <td><a href=/player/peckr101>peckr101</a></td>
+      <td>Roger Peckinpaugh</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>1</td>
+      <td>1913</td>
+      <td>1913</td>
+      <td>0</td>
+      <td>-31.85</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mathc102>mathc102</a></td>
+      <td>Christy Mathewson</td>
+      <td>New York Giants</td>
+      <td>GIANTS</td>
+      <td>3</td>
+      <td>1916</td>
+      <td>1923</td>
+      <td>7</td>
+      <td>-31.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rouse101>rouse101</a></td>
+      <td>Edd Roush</td>
+      <td>New York Giants</td>
+      <td>GIANTS</td>
+      <td>3</td>
+      <td>1916</td>
+      <td>1923</td>
+      <td>7</td>
+      <td>-31.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mckeb101>mckeb101</a></td>
+      <td>Bill McKechnie</td>
+      <td>New York Giants</td>
+      <td>GIANTS</td>
+      <td>3</td>
+      <td>1916</td>
+      <td>1923</td>
+      <td>7</td>
+      <td>-31.72</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hudst001>hudst001</a></td>
+      <td>Tim Hudson</td>
+      <td>Oakland Athletics</td>
+      <td>ATLTCS</td>
+      <td>3</td>
+      <td>2004</td>
+      <td>2008</td>
+      <td>4</td>
+      <td>-31.69</td>
+    </tr>
+    <tr>
+      <td><a href=/player/johnj104>johnj104</a></td>
+      <td>Jerry Johnson</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>6</td>
+      <td>1977</td>
+      <td>1989</td>
+      <td>12</td>
+      <td>-31.69</td>
+    </tr>
+    <tr>
+      <td><a href=/player/petej101>petej101</a></td>
+      <td>Jim Peterson</td>
+      <td>Philadelphia Athletics</td>
+      <td>ATLTCS</td>
+      <td>2</td>
+      <td>1933</td>
+      <td>1936</td>
+      <td>3</td>
+      <td>-31.61</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bassc001>bassc001</a></td>
+      <td>Chris Bassitt</td>
+      <td>Chicago White Sox</td>
+      <td>WSOX</td>
+      <td>1</td>
+      <td>2014</td>
+      <td>2018</td>
+      <td>4</td>
+      <td>-31.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/phegj001>phegj001</a></td>
+      <td>Josh Phegley</td>
+      <td>Chicago White Sox</td>
+      <td>WSOX</td>
+      <td>1</td>
+      <td>2014</td>
+      <td>2018</td>
+      <td>4</td>
+      <td>-31.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/raver001>raver001</a></td>
+      <td>Rangel Ravelo</td>
+      <td>Chicago White Sox</td>
+      <td>WSOX</td>
+      <td>1</td>
+      <td>2014</td>
+      <td>2018</td>
+      <td>4</td>
+      <td>-31.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/semim001>semim001</a></td>
+      <td>Marcus Semien</td>
+      <td>Chicago White Sox</td>
+      <td>WSOX</td>
+      <td>1</td>
+      <td>2014</td>
+      <td>2018</td>
+      <td>4</td>
+      <td>-31.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/smalr001>smalr001</a></td>
+      <td>Roy Smalley</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>11</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
+      <td>-31.44</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ceror001>ceror001</a></td>
+      <td>Rick Cerone</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>11</td>
+      <td>1984</td>
+      <td>2001</td>
+      <td>17</td>
+      <td>-31.43</td>
+    </tr>
+    <tr>
+      <td><a href=/player/shanr101>shanr101</a></td>
+      <td>Red Shannon</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>12</td>
+      <td>1919</td>
+      <td>1937</td>
+      <td>18</td>
+      <td>-31.42</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rothb102>rothb102</a></td>
+      <td>Braggo Roth</td>
+      <td>Boston Red Sox</td>
+      <td>RSOX</td>
+      <td>12</td>
+      <td>1919</td>
+      <td>1937</td>
+      <td>18</td>
+      <td>-31.42</td>
+    </tr>
+    <tr>
+      <td><a href=/player/lee-t101>lee-t101</a></td>
+      <td>Thornton Lee</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>1</td>
+      <td>1936</td>
+      <td>1939</td>
+      <td>3</td>
+      <td>-31.31</td>
+    </tr>
+    <tr>
+      <td><a href=/player/richp102>richp102</a></td>
+      <td>Pete Richert</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>17</td>
+      <td>1967</td>
+      <td>1992</td>
+      <td>25</td>
+      <td>-31.17</td>
+    </tr>
+    <tr>
+      <td><a href=/player/schic002>schic002</a></td>
+      <td>Curt Schilling</td>
+      <td>Arizona Diamondbacks</td>
+      <td>DBACKS</td>
+      <td>8</td>
+      <td>2003</td>
+      <td>2012</td>
+      <td>9</td>
+      <td>-31.17</td>
+    </tr>
+    <tr>
+      <td><a href=/player/epstm101>epstm101</a></td>
+      <td>Mike Epstein</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>15</td>
+      <td>1971</td>
+      <td>1992</td>
+      <td>21</td>
+      <td>-31.16</td>
+    </tr>
+    <tr>
+      <td><a href=/player/knowd101>knowd101</a></td>
+      <td>Darold Knowles</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>15</td>
+      <td>1971</td>
+      <td>1992</td>
+      <td>21</td>
+      <td>-31.16</td>
+    </tr>
+    <tr>
+      <td><a href=/player/muras001>muras001</a></td>
+      <td>Steve Mura</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>7</td>
+      <td>1981</td>
+      <td>1993</td>
+      <td>12</td>
+      <td>-31.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/smito001>smito001</a></td>
+      <td>Ozzie Smith</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>7</td>
+      <td>1981</td>
+      <td>1993</td>
+      <td>12</td>
+      <td>-31.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/olmsa101>olmsa101</a></td>
+      <td>Al Olmsted</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>7</td>
+      <td>1982</td>
+      <td>1993</td>
+      <td>11</td>
+      <td>-31.07</td>
+    </tr>
+    <tr>
+      <td><a href=/player/klaub101>klaub101</a></td>
+      <td>Billy Klaus</td>
+      <td>Milwaukee Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>1954</td>
+      <td>1960</td>
+      <td>6</td>
+      <td>-31.03</td>
+    </tr>
+    <tr>
+      <td><a href=/player/stcle101>stcle101</a></td>
+      <td>Ebba St. Claire</td>
+      <td>Milwaukee Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>1954</td>
+      <td>1960</td>
+      <td>6</td>
+      <td>-31.03</td>
+    </tr>
+    <tr>
+      <td><a href=/player/liddd101>liddd101</a></td>
+      <td>Don Liddle</td>
+      <td>Milwaukee Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>1954</td>
+      <td>1960</td>
+      <td>6</td>
+      <td>-31.03</td>
+    </tr>
+    <tr>
+      <td><a href=/player/antoj103>antoj103</a></td>
+      <td>Johnny Antonelli</td>
+      <td>Milwaukee Braves</td>
+      <td>BRAVES</td>
+      <td>2</td>
+      <td>1954</td>
+      <td>1960</td>
+      <td>6</td>
+      <td>-31.03</td>
+    </tr>
+    <tr>
+      <td><a href=/player/farrd102>farrd102</a></td>
+      <td>Duke Farrell</td>
+      <td>Washington Senators</td>
+      <td>WSN</td>
+      <td>1</td>
+      <td>1894</td>
+      <td>1894</td>
+      <td>0</td>
+      <td>-30.93</td>
+    </tr>
+    <tr>
+      <td><a href=/player/meekj101>meekj101</a></td>
+      <td>Jouett Meekin</td>
+      <td>Washington Senators</td>
+      <td>WSN</td>
+      <td>1</td>
+      <td>1894</td>
+      <td>1894</td>
+      <td>0</td>
+      <td>-30.93</td>
+    </tr>
+    <tr>
+      <td><a href=/player/reynb102>reynb102</a></td>
+      <td>Bob Reynolds</td>
+      <td>Montreal Expos</td>
+      <td>NATEX</td>
+      <td>2</td>
+      <td>1971</td>
+      <td>1976</td>
+      <td>5</td>
+      <td>-30.53</td>
+    </tr>
+    <tr>
+      <td><a href=/player/edent001>edent001</a></td>
+      <td>Tom Edens</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>14</td>
+      <td>1989</td>
+      <td>1999</td>
+      <td>10</td>
+      <td>-30.53</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mcdor001>mcdor001</a></td>
+      <td>Roger McDowell</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>14</td>
+      <td>1989</td>
+      <td>1999</td>
+      <td>10</td>
+      <td>-30.53</td>
+    </tr>
+    <tr>
+      <td><a href=/player/dyksl001>dyksl001</a></td>
+      <td>Lenny Dykstra</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>14</td>
+      <td>1989</td>
+      <td>1999</td>
+      <td>10</td>
+      <td>-30.53</td>
+    </tr>
+    <tr>
+      <td><a href=/player/marar101>marar101</a></td>
+      <td>Rabbit Maranville</td>
+      <td>NewBedford</td>
+      <td>NewBedford</td>
+      <td>1</td>
+      <td>1912</td>
+      <td>1914</td>
+      <td>2</td>
+      <td>-30.45</td>
+    </tr>
+    <tr>
+      <td><a href=/player/vizqo001>vizqo001</a></td>
+      <td>Omar Vizquel</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>1</td>
+      <td>1993</td>
+      <td>1996</td>
+      <td>3</td>
+      <td>-30.43</td>
+    </tr>
+    <tr>
+      <td><a href=/player/browm102>browm102</a></td>
+      <td>Mordecai Brown</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>4</td>
+      <td>1903</td>
+      <td>1914</td>
+      <td>11</td>
+      <td>-30.43</td>
+    </tr>
+    <tr>
+      <td><a href=/player/oneij102>oneij102</a></td>
+      <td>Jack O'Neill</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>4</td>
+      <td>1903</td>
+      <td>1914</td>
+      <td>11</td>
+      <td>-30.43</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ashft001>ashft001</a></td>
+      <td>Tucker Ashford</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>15</td>
+      <td>1984</td>
+      <td>1999</td>
+      <td>15</td>
+      <td>-30.42</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rodra101>rodra101</a></td>
+      <td>Aurelio Rodriguez</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>6</td>
+      <td>1970</td>
+      <td>1976</td>
+      <td>6</td>
+      <td>-30.41</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hannj102>hannj102</a></td>
+      <td>Jim Hannan</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>6</td>
+      <td>1970</td>
+      <td>1976</td>
+      <td>6</td>
+      <td>-30.41</td>
+    </tr>
+    <tr>
+      <td><a href=/player/brine101>brine101</a></td>
+      <td>Ed Brinkman</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>6</td>
+      <td>1970</td>
+      <td>1976</td>
+      <td>6</td>
+      <td>-30.41</td>
+    </tr>
+    <tr>
+      <td><a href=/player/colej102>colej102</a></td>
+      <td>Joe Coleman</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>6</td>
+      <td>1970</td>
+      <td>1976</td>
+      <td>6</td>
+      <td>-30.41</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ausmb001>ausmb001</a></td>
+      <td>Brad Ausmus</td>
+      <td>Colorado Rockies</td>
+      <td>ROCKS</td>
+      <td>1</td>
+      <td>1993</td>
+      <td>1994</td>
+      <td>1</td>
+      <td>-30.01</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ashba002>ashba002</a></td>
+      <td>Andy Ashby</td>
+      <td>Colorado Rockies</td>
+      <td>ROCKS</td>
+      <td>1</td>
+      <td>1993</td>
+      <td>1994</td>
+      <td>1</td>
+      <td>-30.01</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bochd001>bochd001</a></td>
+      <td>Doug Bochtler</td>
+      <td>Colorado Rockies</td>
+      <td>ROCKS</td>
+      <td>1</td>
+      <td>1993</td>
+      <td>1994</td>
+      <td>1</td>
+      <td>-30.01</td>
+    </tr>
+    <tr>
+      <td><a href=/player/nelsj001>nelsj001</a></td>
+      <td>Jeff Nelson</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>3</td>
+      <td>1995</td>
+      <td>1999</td>
+      <td>4</td>
+      <td>-30.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mecij001>mecij001</a></td>
+      <td>Jim Mecir</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>3</td>
+      <td>1995</td>
+      <td>1999</td>
+      <td>4</td>
+      <td>-30.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/martt002>martt002</a></td>
+      <td>Tino Martinez</td>
+      <td>Seattle Mariners</td>
+      <td>MARNRS</td>
+      <td>3</td>
+      <td>1995</td>
+      <td>1999</td>
+      <td>4</td>
+      <td>-30.00</td>
+    </tr>
+    <tr>
+      <td><a href=/player/whitb105>whitb105</a></td>
+      <td>Bill White</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>11</td>
+      <td>1965</td>
+      <td>1972</td>
+      <td>7</td>
+      <td>-29.99</td>
+    </tr>
+    <tr>
+      <td><a href=/player/groad101>groad101</a></td>
+      <td>Dick Groat</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>11</td>
+      <td>1965</td>
+      <td>1972</td>
+      <td>7</td>
+      <td>-29.99</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ueckb101>ueckb101</a></td>
+      <td>Bob Uecker</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>11</td>
+      <td>1965</td>
+      <td>1972</td>
+      <td>7</td>
+      <td>-29.99</td>
+    </tr>
+    <tr>
+      <td><a href=/player/gonzl001>gonzl001</a></td>
+      <td>Luis Gonzalez</td>
+      <td>Detroit Tigers</td>
+      <td>TIGRS</td>
+      <td>1</td>
+      <td>1998</td>
+      <td>2000</td>
+      <td>2</td>
+      <td>-29.90</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hoffd101>hoffd101</a></td>
+      <td>Danny Hoffman</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1907</td>
+      <td>1911</td>
+      <td>4</td>
+      <td>-29.89</td>
+    </tr>
+    <tr>
+      <td><a href=/player/ferrh101>ferrh101</a></td>
+      <td>Hobe Ferris</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1907</td>
+      <td>1911</td>
+      <td>4</td>
+      <td>-29.89</td>
+    </tr>
+    <tr>
+      <td><a href=/player/willj106>willj106</a></td>
+      <td>Jimmy Williams</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1907</td>
+      <td>1911</td>
+      <td>4</td>
+      <td>-29.89</td>
+    </tr>
+    <tr>
+      <td><a href=/player/sisld102>sisld102</a></td>
+      <td>Dave Sisler</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>27</td>
+      <td>1961</td>
+      <td>1992</td>
+      <td>31</td>
+      <td>-29.78</td>
+    </tr>
+    <tr>
+      <td><a href=/player/mincd101>mincd101</a></td>
+      <td>Don Mincher</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>12</td>
+      <td>1972</td>
+      <td>1992</td>
+      <td>20</td>
+      <td>-29.74</td>
+    </tr>
+    <tr>
+      <td><a href=/player/camid102>camid102</a></td>
+      <td>Dolph Camilli</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>1</td>
+      <td>1938</td>
+      <td>1938</td>
+      <td>0</td>
+      <td>-29.74</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kubit101>kubit101</a></td>
+      <td>Ted Kubiak</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>12</td>
+      <td>1972</td>
+      <td>1992</td>
+      <td>20</td>
+      <td>-29.74</td>
+    </tr>
+    <tr>
+      <td><a href=/player/moeld101>moeld101</a></td>
+      <td>Danny Moeller</td>
+      <td>Rochester</td>
+      <td>Rochester</td>
+      <td>2</td>
+      <td>1911</td>
+      <td>1913</td>
+      <td>2</td>
+      <td>-29.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/foste103>foste103</a></td>
+      <td>Eddie Foster</td>
+      <td>Rochester</td>
+      <td>Rochester</td>
+      <td>2</td>
+      <td>1911</td>
+      <td>1913</td>
+      <td>2</td>
+      <td>-29.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/spenc101>spenc101</a></td>
+      <td>Chet Spencer</td>
+      <td>Rochester</td>
+      <td>Rochester</td>
+      <td>2</td>
+      <td>1911</td>
+      <td>1913</td>
+      <td>2</td>
+      <td>-29.68</td>
+    </tr>
+    <tr>
+      <td><a href=/player/garcf002>garcf002</a></td>
+      <td>Freddy Garcia</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>2</td>
+      <td>1998</td>
+      <td>1998</td>
+      <td>0</td>
+      <td>-29.51</td>
+    </tr>
+    <tr>
+      <td><a href=/player/halaj001>halaj001</a></td>
+      <td>John Halama</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>2</td>
+      <td>1998</td>
+      <td>1998</td>
+      <td>0</td>
+      <td>-29.51</td>
+    </tr>
+    <tr>
+      <td><a href=/player/guilc001>guilc001</a></td>
+      <td>Carlos Guillen</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>2</td>
+      <td>1998</td>
+      <td>1998</td>
+      <td>0</td>
+      <td>-29.51</td>
+    </tr>
+    <tr>
+      <td><a href=/player/getta101>getta101</a></td>
+      <td>Al Gettel</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1946</td>
+      <td>1954</td>
+      <td>8</td>
+      <td>-29.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bearg102>bearg102</a></td>
+      <td>Gene Bearden</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1946</td>
+      <td>1954</td>
+      <td>8</td>
+      <td>-29.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/peckh101>peckh101</a></td>
+      <td>Hal Peck</td>
+      <td>New York Yankees</td>
+      <td>YANKS</td>
+      <td>3</td>
+      <td>1946</td>
+      <td>1954</td>
+      <td>8</td>
+      <td>-29.50</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cartj001>cartj001</a></td>
+      <td>Joe Carter</td>
+      <td>Cleveland Indians</td>
+      <td>INDINS</td>
+      <td>7</td>
+      <td>1989</td>
+      <td>2001</td>
+      <td>12</td>
+      <td>-29.42</td>
+    </tr>
+    <tr>
+      <td><a href=/player/grzej101>grzej101</a></td>
+      <td>Joe Grzenda</td>
+      <td>Texas Rangers</td>
+      <td>RNGRS</td>
+      <td>13</td>
+      <td>1971</td>
+      <td>1992</td>
+      <td>21</td>
+      <td>-29.40</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cartj001>cartj001</a></td>
+      <td>Joe Carter</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>6</td>
+      <td>1990</td>
+      <td>1998</td>
+      <td>8</td>
+      <td>-29.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/alomr001>alomr001</a></td>
+      <td>Roberto Alomar</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>6</td>
+      <td>1990</td>
+      <td>1998</td>
+      <td>8</td>
+      <td>-29.36</td>
+    </tr>
+    <tr>
+      <td><a href=/player/bartd101>bartd101</a></td>
+      <td>Dick Bartell</td>
+      <td>Philadelphia Phillies</td>
+      <td>PHILS</td>
+      <td>1</td>
+      <td>1934</td>
+      <td>1936</td>
+      <td>2</td>
+      <td>-29.27</td>
+    </tr>
+    <tr>
+      <td><a href=/player/alyeb101>alyeb101</a></td>
+      <td>Brant Alyea</td>
+      <td>Washington Senators</td>
+      <td>RNGRS</td>
+      <td>14</td>
+      <td>1970</td>
+      <td>1992</td>
+      <td>22</td>
+      <td>-29.13</td>
+    </tr>
+    <tr>
+      <td><a href=/player/huskb001>huskb001</a></td>
+      <td>Butch Huskey</td>
+      <td>New York Mets</td>
+      <td>METS</td>
+      <td>2</td>
+      <td>1998</td>
+      <td>2000</td>
+      <td>2</td>
+      <td>-29.08</td>
+    </tr>
+    <tr>
+      <td><a href=/player/hermb102>hermb102</a></td>
+      <td>Babe Herman</td>
+      <td>Cincinnati Reds</td>
+      <td>REDS</td>
+      <td>4</td>
+      <td>1932</td>
+      <td>1937</td>
+      <td>5</td>
+      <td>-29.06</td>
+    </tr>
+    <tr>
+      <td><a href=/player/rossj002>rossj002</a></td>
+      <td>Joe Ross</td>
+      <td>San Diego Padres</td>
+      <td>PADRS</td>
+      <td>3</td>
+      <td>2014</td>
+      <td>2020</td>
+      <td>6</td>
+      <td>-28.87</td>
+    </tr>
+    <tr>
+      <td><a href=/player/camik001>camik001</a></td>
+      <td>Ken Caminiti</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>15</td>
+      <td>1994</td>
+      <td>2011</td>
+      <td>17</td>
+      <td>-28.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/finls001>finls001</a></td>
+      <td>Steve Finley</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>15</td>
+      <td>1994</td>
+      <td>2011</td>
+      <td>17</td>
+      <td>-28.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/petar001>petar001</a></td>
+      <td>Roberto Petagine</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>15</td>
+      <td>1994</td>
+      <td>2011</td>
+      <td>17</td>
+      <td>-28.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cedea001>cedea001</a></td>
+      <td>Andujar Cedeno</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>15</td>
+      <td>1994</td>
+      <td>2011</td>
+      <td>17</td>
+      <td>-28.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/willb001>willb001</a></td>
+      <td>Brian Williams</td>
+      <td>Houston Astros</td>
+      <td>ASTROS</td>
+      <td>15</td>
+      <td>1994</td>
+      <td>2011</td>
+      <td>17</td>
+      <td>-28.84</td>
+    </tr>
+    <tr>
+      <td><a href=/player/kolbg101>kolbg101</a></td>
+      <td>Gary Kolb</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>12</td>
+      <td>1964</td>
+      <td>1972</td>
+      <td>8</td>
+      <td>-28.67</td>
+    </tr>
+    <tr>
+      <td><a href=/player/cokej101>cokej101</a></td>
+      <td>Jimmie Coker</td>
+      <td>St. Louis Cardinals</td>
+      <td>CARDS</td>
+      <td>12</td>
+      <td>1964</td>
+      <td>1972</td>
+      <td>8</td>
+      <td>-28.67</td>
     </tr>
   </tbody>
 </table>
@@ -2109,7 +5612,7 @@
 
 <script>
 $(document).ready( function () {
-$('#WARneg').DataTable();
+$('#WARneg').DataTable({"order": [[ 8 , "asc" ]]});
 $('#WARneg').show();
 } );
 </script>

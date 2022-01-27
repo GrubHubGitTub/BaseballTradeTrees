@@ -93,17 +93,16 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                 # if player is retired or a newer player, add to the dictionary- dates can be changed for more accuracy
                 elif outcome.empty:
                     sorted_trans = player_search.all_trans.sort_values(by="primary_date")
-                    if sorted_trans.empty:
+                    to_choice = sorted_trans[sorted["to-franchise"] == franchise_choice]
+                    if to_choice.empty and " " in player_id:
                         transaction_info = {}
                         transaction_info["name"] = player_id
                         transaction_info["retro_id"] = player_id
                         transaction_info["outcome"] = "Did not play in MLB"
                         transaction_info["date"] = date
                         trade_tree.append(transaction_info)
-                        pass
 
                     else:
-
                         last_row = sorted_trans.tail(1)
                         last_date = last_row.primary_date.item()
                         if last_date <= 20130000:
@@ -145,7 +144,7 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice):
                 comp_picks_dict = {}
                 for id in all_comp_picks:
                     comp_picks_dict[id] = id
-                print(comp_picks_dict)
+
                 transaction = {}
                 transaction["name"] = player_id
                 transaction["transaction_id"] = "Compensation Picks"
@@ -207,7 +206,6 @@ def get_players_by_trans_id(transactions_list, trade_tree, franchise_choice):
             add_to_tree_list["transaction_id"] = transaction_id
             add_to_tree_list["date"] = trans_date
             add_to_tree_list["traded_for"] = signed
-            print(add_to_tree_list)
 
             traded_for_list.append(signed)
 
@@ -942,7 +940,7 @@ def player(users_player_id):
         formatted_tree_with_doubles = format_tree(trade_tree=no_dupes_trade_tree)
         # Stats for each trade
         tree_with_stats = calculate_stats(trade_tree=formatted_tree_with_doubles)
-        print(tree_with_stats)
+
         # Stats total for entire tree
         total_tree_value = get_whole_tree_value(trade_tree=tree_with_stats)
 
@@ -971,6 +969,8 @@ def player(users_player_id):
     if len(all_trade_trees) > 0:
         return render_template("player_page.html", trees=all_trade_trees, name=player_name)
     else:
+        row_with_name = PLAYERS[PLAYERS.ID == users_player_id]
+        player_name = f"{row_with_name.nickname.item()} {row_with_name.Last.item()}"
         return render_template("player_not_traded.html", name=player_name)
 
 

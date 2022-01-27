@@ -81,29 +81,44 @@ import pandas as pd
 # picks.to_csv("picks_with_names.csv", index=False)
 
 #add retroid to csv
-picks = pd.read_csv("../picks_with_names.csv")
-players = pd.read_csv("../Players2022.csv")
-all_rows=[]
+# picks = pd.read_csv("picks_with_names.csv")
+# players = pd.read_csv("../Players2022.csv")
+# all_rows=[]
+# for index, row in picks.iterrows():
+#     first_signed = row["first_signed"]
+#     last_signed = row["last_signed"]
+#     first_fa = row["first_fa"]
+#     last_fa = row["last_fa"]
+
+    # row_with_signed_name = players[(players.nickname == first_signed) & (players.Last == last_signed)]
+    #
+    # if len(row_with_signed_name.index) > 1:
+    #     print(row_with_signed_name)
+
+#     try:
+#         row["signed_retroid"] = row_with_signed_name.ID.item()
+#     except ValueError:
+#         row["signed_retroid"] = f"{first_signed} {last_signed}"
+#
+    # row_with_fa_name = players[(players.nickname == first_fa) & (players.Last == last_fa)]
+    # if len(row_with_fa_name) > 1:
+    #     print(row_with_fa_name)
+#     try:
+#         row["fa_retroid"] = row_with_fa_name.ID.item()
+#     except ValueError:
+#         row["fa_retroid"] = f"{first_fa} {last_fa}"
+#
+#     all_rows.append(row)
+#
+# final = pd.DataFrame.from_dict(map(dict,all_rows))
+# final.to_csv("comp_picks_retroid.csv",index=False)
+
+# check for spaces
+
+picks = pd.read_csv("../comp_picks_retroid.csv")
+
 for index, row in picks.iterrows():
-    first_signed = row["first_signed"]
-    last_signed = row["last_signed"]
-    first_fa = row["first_fa"]
-    last_fa = row["last_fa"]
 
-    row_with_signed_name = players[(players.nickname == first_signed) & (players.Last == last_signed)]
-    try:
-        row["signed_retroid"] = row_with_signed_name.ID.item()
-    except ValueError:
-        row["signed_retroid"] = f"{first_signed} {last_signed}"
-
-    row_with_fa_name = players[(players.nickname == first_fa) & (players.Last == last_fa)]
-    try:
-        row["fa_retroid"] = row_with_fa_name.ID.item()
-    except ValueError:
-        row["fa_retroid"] = f"{first_fa} {last_fa}"
-
-    all_rows.append(row)
-
-final = pd.DataFrame.from_dict(map(dict,all_rows))
-final.to_csv("comp_picks_retroid.csv",index=False)
-
+    signed = row["signed_retroid"]
+    if " " in signed:
+        print(signed)

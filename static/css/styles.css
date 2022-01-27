@@ -190,6 +190,7 @@ text-align: center;
 }
 
 .statsTable {
+display:none;
 border-right: none;
 }
 
