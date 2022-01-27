@@ -610,6 +610,7 @@ for player in all_trades[5000:]:
         earliest = 0
         latest = 0
         comp_picks = 0
+        ongoing = "No"
 
         for trade in player_output["trades"]:
             if "transaction_id" in trade:
@@ -636,19 +637,24 @@ for player in all_trades[5000:]:
                 elif date < earliest:
                     earliest = date
 
+            if "outcome" in trade:
+                if trade["outcome"] == "No further transactions- likely in organization":
+                    ongoing = "Yes"
+                    print(player_output["id"])
+                    print(ongoing)
 
+        tree_csv = {"Player ID": player_output["id"],
+                    "Link": f"<a href=/player/{player_output['id']}>{player_output['id']}</a>",
+                    "Name": player_output["name"],
+                    "From-Team ": player_output["trades"][0]["choice_team"],
+                    "From-Franchise":player_output["trades"][0]["choice_franchise"],
+                    "# Transactions": total_transactions,
+                    "# Players Traded Away": traded_away,
+                    "# Players Traded For": traded_for,
+                    "# Players Total": traded_away + traded_for,
+                    "First Year": earliest, "Last Year": latest, "Year Span": latest - earliest, "Ongoing": ongoing,
+                    "Comp Picks": comp_picks}
 
-
-
-
-
-        tree_csv = {"Player ID": player_output["id"], "Name": player_output["name"],
-                    "Traded From- Team ID": player_output["trades"][0]["choice_team_id"],
-                    "Traded From- Team Name": player_output["trades"][0]["choice_team"],
-                    "Traded From- Franchise":player_output["trades"][0]["choice_franchise"], "Total Transactions": total_transactions,
-                    "Amount Players Traded Away": traded_away, "Amount Players Traded For": traded_for,
-                    "Amount Players Total": traded_away + traded_for, "Earliest Year": earliest, "Latest Year": latest,
-                    "Year Span": latest - earliest, "Comp Picks": comp_picks}
         stats1 = player_output["tree_value"]["WAR"]
         stats2 = player_output["tree_value"]["G"]
         stats3 = player_output["tree_value"]["PA"]
@@ -671,8 +677,7 @@ all_trees = pd.concat(all_data, ignore_index=True)
 # all_trees.to_csv("test1.csv", index=False)
 # 5000:
 all_trees.to_csv("test2.csv", index=False)
-# 9000:
-# all_trees.to_csv("test3.csv", index=False)
+
 
 
 

@@ -40,6 +40,7 @@ margin: 0;
 border-bottom: 3px solid red;
 }
 
+
 .statsbar a:hover{
 border-bottom: 3px solid red;
 }
@@ -57,8 +58,8 @@ border: 1px solid black;
 
 
 .statsbar.navbar-nav > li {
-  padding-left:30px;
-  padding-right:30px;
+  padding-left:25px;
+  padding-right:25px;
 }
 
 

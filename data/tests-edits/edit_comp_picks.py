@@ -81,7 +81,7 @@ import pandas as pd
 # picks.to_csv("picks_with_names.csv", index=False)
 
 #add retroid to csv
-picks = pd.read_csv("picks_with_names.csv")
+picks = pd.read_csv("../picks_with_names.csv")
 players = pd.read_csv("../Players2022.csv")
 all_rows=[]
 for index, row in picks.iterrows():

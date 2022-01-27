@@ -1011,6 +1011,10 @@ def adv_search():
 def franchises():
     return render_template("franchises.html")
 
+@app.route('/stats/ongoing')
+def ongoing():
+    return render_template("ongoing.html")
+
 
 if __name__ == "__main__":
     app.run()
