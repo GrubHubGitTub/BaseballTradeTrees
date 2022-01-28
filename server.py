@@ -803,9 +803,9 @@ def format_for_google_chart(formatted_tree):
                     salary = "${:,.2f}".format(transaction["trade_stats"]["Salary value"])
 
                 player_stats = []
+                stats = ""
                 if "player_stats" in transaction:
                     for k, v in transaction["player_stats"].items():
-                        stats = ""
                         stats += f"{v['name']}: "
                         for stat, value in v["stats"].items():
                             if value != 0:
@@ -897,7 +897,7 @@ def format_for_google_chart(formatted_tree):
                                f"<div class='{WAR_value_class}'>Trade value: {transaction['trade_stats']['WAR value']} WAR </div>"
                     google_org_tree.append([style_dict, parent, stats])
 
-        elif "traded_for" in transaction and "PTBNL/Cash" in transaction["traded_for"]:
+        if "traded_for" in transaction and "PTBNL/Cash" in transaction["traded_for"]:
             # change cash nodes so they show up in different transactions
             style_dict = {}
             style_dict["v"] = f"PTBNL/Cash{cash}"
