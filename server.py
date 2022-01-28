@@ -219,8 +219,8 @@ def get_players_by_trans_id(transactions_list, trade_tree, franchise_choice):
             traded_for = transaction.get_traded_ids_dict()
 
             # in the rare occurrence a player was traded for himself in same transaction- Jeff Terpko- remove that player
-            if trans["name"] in traded_for:
-                traded_for.pop(trans["name"])
+            # if trans["name"] in traded_for:
+            #     traded_for.pop(trans["name"])
 
             # add transaction to trade tree and new ids to search on the next loop
             player_id = trans["name"]
@@ -540,6 +540,20 @@ def get_whole_tree_value(trade_tree):
 
 def check_for_double_names(formatted_tree):
     """If players are involved multiple times in one tree, the names need to be adjusted to display in the OrgChart"""
+    # check if first player was traded for himself
+    name = formatted_tree[0]["name"]
+    print(name)
+    for transac in formatted_tree:
+        if "traded_for" in transac:
+            for id, player in transac["traded_for"].items():
+                if player == name:
+                    transac["traded_for"][id] = f"{name} "
+
+                    for transac in formatted_tree[1:]:
+                        if transac["name"] == name and "outcome" not in transac:
+                            transac["name"] = f"{name} "
+
+
     #  check if a player is in a traded for list, if so then change the traded for name and the next name match found
     maxlen = len(formatted_tree) - 1
     n = 0
