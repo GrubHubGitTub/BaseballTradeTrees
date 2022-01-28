@@ -2,19 +2,19 @@ import pandas as pd
 
 """get ongoing trees"""
 trees = pd.read_csv("../all_tree_info.csv")
+
+all_ongoing = trees[trees["Ongoing"] == "Yes"]
+all_ongoing = all_ongoing[["Link","Name","From-Team","From-Franchise","# Transactions","# Players Total",
+                           "First Year","Last Year","Year Span","WAR_total",]]
+html = all_ongoing.to_html(index=False, classes="statsTable table table-striped", table_id="ongoing")
+with open("ongoing.txt", "a") as t:
+    t.write(html)
+
 #
-# all_ongoing = trees[trees["Ongoing"] == "Yes"]
-# all_ongoing = all_ongoing[["Link","Name","From-Team","From-Franchise","# Transactions","# Players Total",
-#                            "First Year","Last Year","Year Span","WAR_total",]]
-# html = all_ongoing.to_html(index=False, classes="statsTable table table-striped", table_id="ongoing")
-# with open("ongoing.txt", "a") as t:
-#     t.write(html)
-
-
-'''get the averages for each franchise'''
+# '''get the averages for each franchise'''
 # franchises = pd.read_csv("data/teams.csv")
 # list_franchises = franchises["Franchise"].to_list()
-
+#
 # all_csv = []
 # for franch in list_franchises:
 #     # team names in franch
@@ -51,8 +51,8 @@ trees = pd.read_csv("../all_tree_info.csv")
 #
 # #     average year span
 #         average_span = round(franch_trees["Year Span"].mean(), 4)
-#
-# # longest tree by year
+# #
+# # # longest tree by year
 #         longest_tree = franch_trees.sort_values("Year Span", ascending=False).head(1)
 #         longest_num = longest_tree["Year Span"].item()
 #         longest = longest_tree["Link"].item()
@@ -69,11 +69,11 @@ trees = pd.read_csv("../all_tree_info.csv")
 # html = averages.to_html(index=False, classes="statsTable table table-striped", table_id="franchises")
 # with open("averages.txt", "a") as t:
 #     t.write(html)
-
-"""get the top 100 in each category"""
+#
+# """get the top 100 in each category"""
 #
 #
-# get top and worst war
+# # get top and worst war
 # top100 = trees.sort_values("WAR_total", ascending=False).head(500)
 # top100 = top100[["Link","Name","From-Team","From-Franchise","# Transactions","First Year","Last Year","Year Span","WAR_total"]]
 # html = top100.to_html(index=False, classes="statsTable table table-striped", table_id="WARpos")
@@ -100,8 +100,8 @@ trees = pd.read_csv("../all_tree_info.csv")
 #     t.write(html)
 
 # # year span
-long = trees.sort_values("Year Span", ascending=False).head(500)
-long = long[["Link","Name","From-Team","From-Franchise","WAR_total","# Transactions","First Year","Last Year","Year Span"]]
-html = long.to_html(index=False, classes="statsTable table table-striped", table_id="yearSpan")
-with open("../../yearSpan.txt", "a") as t:
-    t.write(html)
+# long = trees.sort_values("Year Span", ascending=False).head(500)
+# long = long[["Link","Name","From-Team","From-Franchise","WAR_total","# Transactions","First Year","Last Year","Year Span"]]
+# html = long.to_html(index=False, classes="statsTable table table-striped", table_id="yearSpan")
+# with open("yearSpan.txt", "a") as t:
+#     t.write(html)

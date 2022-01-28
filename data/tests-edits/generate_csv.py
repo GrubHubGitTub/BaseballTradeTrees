@@ -88,7 +88,6 @@ def get_outcome_data(transaction_details, trade_tree, franchise_choice):
                 elif outcome.empty:
                     sorted_trans = player_search.all_trans.sort_values(by="primary_date")
                     to_choice = sorted_trans[sorted["to-franchise"] == franchise_choice]
-
                     if to_choice.empty and " " in player_id:
                         transaction_info = {}
                         transaction_info["name"] = player_id
@@ -214,8 +213,8 @@ def get_players_by_trans_id(transactions_list, trade_tree, franchise_choice):
             traded_for = transaction.get_traded_ids_dict()
 
             # in the rare occurrence a player was traded for himself in same transaction- Jeff Terpko- remove that player
-            if trans["name"] in traded_for:
-                traded_for.pop(trans["name"])
+            # if trans["name"] in traded_for:
+            #     traded_for.pop(trans["name"])
 
             # add transaction to trade tree and new ids to search on the next loop
             player_id = trans["name"]
@@ -341,6 +340,7 @@ def calculate_stats(trade_tree):
     trade_tree = trade_tree
     choice_team = trade_tree[0]["choice_team_id"]
     choice_franchise = trade_tree[0]["choice_franchise"]
+    trans_list = []
     for trans in trade_tree:
         stats_start_date = int(str(trans["date"])[0:4])
 
@@ -349,10 +349,19 @@ def calculate_stats(trade_tree):
         PA_out = 0
         IP_out = 0
         salary_out = 0
+
+        WAR_in = 0
+        G_in = 0
+        PA_in = 0
+        IP_in = 0
+        salary_in = 0
+
         all_player_stats = {}
         trade_stats = {}
-        if "outcome" not in trans:
-            if trans["transaction_id"] != "Compensation Picks":
+        if "transaction_id" in trans:
+            if trans["transaction_id"] != "Compensation Picks" and trans["transaction_id"] not in trans_list:
+                trans_list.append(trans["transaction_id"])
+
                 traded_to_franchise = trans["traded_to_franchise"]
                 retro_id = trans["retro_id"]
                 name = trans["name"]
@@ -400,17 +409,34 @@ def calculate_stats(trade_tree):
                 trans["player_stats"] = all_player_stats
                 trans["trade_stats"] = trade_stats
 
-            WAR_in = 0
-            G_in = 0
-            PA_in = 0
-            IP_in = 0
-            salary_in = 0
-            trade_stats = {}
-            if "traded_for" in trans:
                 for id, name in trans["traded_for"].items():
                     if id == "PTBNL/Cash":
                         pass
                         continue
+                    retro_id = id
+                    stats_end_date = 0
+                    for transac in trade_tree[1:]:
+                        if retro_id == transac["retro_id"]:
+                            stats_end_date = int(str(transac["date"])[0:4])
+                    player_stats = sw(retro_id, stats_start_date, to_franchise=choice_franchise,
+                                      from_franchise=None, stats_end_date=stats_end_date)
+                    player_stats.get_stats()
+                    player_stats.get_salary_to()
+                    WAR_in += player_stats.WAR_on_team
+                    G_in += player_stats.G_on_team
+                    PA_in += player_stats.PA_on_team
+                    IP_in += player_stats.IPouts_on_team
+                    salary_in += player_stats.trade_year_salary
+                    stats = {"id": retro_id, "name": name, "stats": {"WAR in": player_stats.WAR_on_team,
+                                                                     "G in": player_stats.G_on_team,
+                                                                     "PA in": player_stats.PA_on_team,
+                                                                     "IP in": player_stats.IPouts_on_team,
+                                                                     "Salary in": salary_in}}
+                    all_player_stats[id] = stats
+                    trans["player_stats"] = all_player_stats
+
+            elif trans["transaction_id"] == "Compensation Picks":
+                for id, name in trans["traded_for"].items():
                     retro_id = id
                     stats_end_date = 0
                     for transac in trade_tree[1:]:
@@ -453,7 +479,6 @@ def calculate_stats(trade_tree):
             trans["trade_stats"] = trade_stats
 
     return trade_tree
-
 
 def get_whole_tree_value(trade_tree):
     # calculate totals for entire tree

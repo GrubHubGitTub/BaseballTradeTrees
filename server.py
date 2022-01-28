@@ -346,6 +346,7 @@ def calculate_stats(trade_tree):
     trade_tree = trade_tree
     choice_team = trade_tree[0]["choice_team_id"]
     choice_franchise = trade_tree[0]["choice_franchise"]
+    trans_list = []
     for trans in trade_tree:
         stats_start_date = int(str(trans["date"])[0:4])
 
@@ -354,10 +355,19 @@ def calculate_stats(trade_tree):
         PA_out = 0
         IP_out = 0
         salary_out = 0
+
+        WAR_in = 0
+        G_in = 0
+        PA_in = 0
+        IP_in = 0
+        salary_in = 0
+
         all_player_stats = {}
         trade_stats = {}
-        if "outcome" not in trans:
-            if trans["transaction_id"] != "Compensation Picks":
+        if "transaction_id" in trans:
+            if trans["transaction_id"] != "Compensation Picks" and trans["transaction_id"] not in trans_list:
+                trans_list.append(trans["transaction_id"])
+
                 traded_to_franchise = trans["traded_to_franchise"]
                 retro_id = trans["retro_id"]
                 name = trans["name"]
@@ -405,17 +415,34 @@ def calculate_stats(trade_tree):
                 trans["player_stats"] = all_player_stats
                 trans["trade_stats"] = trade_stats
 
-            WAR_in = 0
-            G_in = 0
-            PA_in = 0
-            IP_in = 0
-            salary_in = 0
-            trade_stats = {}
-            if "traded_for" in trans:
                 for id, name in trans["traded_for"].items():
                     if id == "PTBNL/Cash":
                         pass
                         continue
+                    retro_id = id
+                    stats_end_date = 0
+                    for transac in trade_tree[1:]:
+                        if retro_id == transac["retro_id"]:
+                            stats_end_date = int(str(transac["date"])[0:4])
+                    player_stats = sw(retro_id, stats_start_date, to_franchise=choice_franchise,
+                                      from_franchise=None, stats_end_date=stats_end_date)
+                    player_stats.get_stats()
+                    player_stats.get_salary_to()
+                    WAR_in += player_stats.WAR_on_team
+                    G_in += player_stats.G_on_team
+                    PA_in += player_stats.PA_on_team
+                    IP_in += player_stats.IPouts_on_team
+                    salary_in += player_stats.trade_year_salary
+                    stats = {"id": retro_id, "name": name, "stats": {"WAR in": player_stats.WAR_on_team,
+                                                                     "G in": player_stats.G_on_team,
+                                                                     "PA in": player_stats.PA_on_team,
+                                                                     "IP in": player_stats.IPouts_on_team,
+                                                                     "Salary in": salary_in}}
+                    all_player_stats[id] = stats
+                    trans["player_stats"] = all_player_stats
+
+            elif trans["transaction_id"] == "Compensation Picks":
+                for id, name in trans["traded_for"].items():
                     retro_id = id
                     stats_end_date = 0
                     for transac in trade_tree[1:]:
@@ -458,7 +485,6 @@ def calculate_stats(trade_tree):
             trans["trade_stats"] = trade_stats
 
     return trade_tree
-
 
 def get_whole_tree_value(trade_tree):
     # calculate totals for entire tree
@@ -542,7 +568,7 @@ def check_for_double_names(formatted_tree):
     """If players are involved multiple times in one tree, the names need to be adjusted to display in the OrgChart"""
     # check if first player was traded for himself
     name = formatted_tree[0]["name"]
-    print(name)
+
     for transac in formatted_tree:
         if "traded_for" in transac:
             for id, player in transac["traded_for"].items():
@@ -777,15 +803,16 @@ def format_for_google_chart(formatted_tree):
                     salary = "${:,.2f}".format(transaction["trade_stats"]["Salary value"])
 
                 player_stats = []
-                for k, v in transaction["player_stats"].items():
-                    stats = ""
-                    stats += f"{v['name']}: "
-                    for stat, value in v["stats"].items():
-                        if value != 0:
-                            stats += f"{value} "
-                            stats += f"{stat}, "
-                    player_stats.append(stats)
-                stats = ''.join(player_stats)
+                if "player_stats" in transaction:
+                    for k, v in transaction["player_stats"].items():
+                        stats = ""
+                        stats += f"{v['name']}: "
+                        for stat, value in v["stats"].items():
+                            if value != 0:
+                                stats += f"{value} "
+                                stats += f"{stat}, "
+                        player_stats.append(stats)
+                    stats = ''.join(player_stats)
 
                 if " " in transaction['retro_id']:
                     style_dict = {}
@@ -821,16 +848,17 @@ def format_for_google_chart(formatted_tree):
                     salary_value_class = "good-payroll"
                     salary = "${:,.2f}".format(transaction["trade_stats"]["Salary value"])
 
-                player_stats = []
-                for k, v in transaction["player_stats"].items():
-                    stats = ""
-                    stats += f"{v['name']}: "
-                    for stat, value in v["stats"].items():
-                        if value != 0:
-                            stats += f"{value} "
-                            stats += f"{stat}, "
-                    player_stats.append(stats)
-                stats = ''.join(player_stats)
+                if "player_stats" in transaction:
+                    player_stats = []
+                    for k, v in transaction["player_stats"].items():
+                        stats = ""
+                        stats += f"{v['name']}: "
+                        for stat, value in v["stats"].items():
+                            if value != 0:
+                                stats += f"{value} "
+                                stats += f"{stat}, "
+                        player_stats.append(stats)
+                    stats = ''.join(player_stats)
 
                 if transaction["transaction_id"] == "Compensation Picks":
                     if " " in transaction['retro_id']:
@@ -952,6 +980,7 @@ def player(users_player_id):
 
         # format the trade tree to full text
         formatted_tree_with_doubles = format_tree(trade_tree=no_dupes_trade_tree)
+
         # Stats for each trade
         tree_with_stats = calculate_stats(trade_tree=formatted_tree_with_doubles)
 
