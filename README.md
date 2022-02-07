@@ -2,8 +2,11 @@
 
 ## [www.mlbtradetrees.com](http://www.mlbtradetrees.com "www.mlbtradetrees.com") allows you to view the trade tree of any player in MLB history. 
 
-###  3.0.0 Release: January 9, 2022
+###  3.1.0 Release: January 27, 2022
+
 #### Changelog
+- Overhaul of stats page.
+- Addition of compensation draft picks to make trees even larger. 
 - New Retrosheet transaction database (all 2021 transactions) was cleaned and added to the website. Check transaction database info below for all changes made.
 - Stat support! All trade now has a stat value, and they are added up to create a total tree value. You can hover over a trade to see detailed stats. See below for more information about stats. 
 - Lots of UI changes, including clickable nodes for easier traversal. 
@@ -59,9 +62,8 @@ Run server.py
 
 
 ## What am I working on? 
-#### Updated Jan. 9 2022
-- Looking into adding Compensation picks to make trees even bigger. 
-- Google Org Chart sucks so I want to use a new OrgChat UI. 
+#### Updated Jan. 27 2022
+- Google Org Chart is bad for customization so I want to use a new OrgChart UI. 
 
 
 
