@@ -3,12 +3,16 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask
 
 .idea/
+Scripts/
+
 
 ### Flask ###
 instance/*
 !instance/.gitignore
 .webassets-cache
 .env
+aws-secrets.txt
+pyvenv.cfg
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files

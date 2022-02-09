@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  aws-ecs-demo:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+        - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    container_name: mlb-trade-trees
+    ports:
+      - 5000:5000
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    # bridge - connect to docker container from localhost
+    network_mode: bridge
