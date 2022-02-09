@@ -3,8 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask
 
 .idea/
-Scripts/
-
+Scripts
 
 ### Flask ###
 instance/*
