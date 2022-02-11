@@ -3,33 +3,33 @@
   "executionRoleArn": null,
   "containerDefinitions": [
     {
-      "dnsSearchDomains": [],
+      "dnsSearchDomains": null,
       "environmentFiles": null,
       "logConfiguration": null,
-      "entryPoint": [],
+      "entryPoint": null,
       "portMappings": [
         {
-          "hostPort": 5000,
+          "hostPort": 0,
           "protocol": "tcp",
           "containerPort": 5000
         }
       ],
-      "command": [],
+      "command": null,
       "linuxParameters": null,
       "cpu": 0,
       "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
-      "dnsServers": [],
+      "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
       "secrets": null,
-      "dockerSecurityOptions": [],
+      "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": null,
+      "memoryReservation": 400,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "859731424692.dkr.ecr.us-east-1.amazonaws.com/mlb-trade-trees",
+      "image": "859731424692.dkr.ecr.us-east-1.amazonaws.com/mlb-trade-trees:aff2c6d64b0da0b6e6802893015594aa5be63e18",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -37,26 +37,27 @@
       "interactive": null,
       "healthCheck": null,
       "essential": true,
-      "links": [],
+      "links": null,
       "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
       "user": null,
       "readonlyRootFilesystem": null,
-      "dockerLabels": {},
-      "systemControls": [],
+      "dockerLabels": null,
+      "systemControls": null,
       "privileged": null,
       "name": "mlb-trade-trees"
     }
   ],
   "placementConstraints": [],
-  "memory": "450",
+  "memory": null,
   "taskRoleArn": null,
   "compatibilities": [
+    "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:859731424692:task-definition/mlb-trade-trees-task-def:3",
-  "family": "mlb-trade-trees-task-def",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:859731424692:task-definition/trade-trees-task:1",
+  "family": "trade-trees-task",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -68,32 +69,17 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.task-eni"
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
     }
   ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "awsvpc",
-  "runtimePlatform": {
-    "operatingSystemFamily": "LINUX",
-    "cpuArchitecture": "X86_64"
-  },
-  "cpu": "256",
-  "revision": 3,
+  "networkMode": null,
+  "runtimePlatform": null,
+  "cpu": null,
+  "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
