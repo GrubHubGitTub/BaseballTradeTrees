@@ -9,7 +9,7 @@
       "entryPoint": [],
       "portMappings": [
         {
-          "hostPort": 0,
+          "hostPort": 5000,
           "protocol": "tcp",
           "containerPort": 5000
         }
