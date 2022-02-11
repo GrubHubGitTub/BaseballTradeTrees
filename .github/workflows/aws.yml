@@ -57,7 +57,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
-        ECR_REPOSITORY: trade-trees
+        ECR_REPOSITORY: mlb-trade-trees
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -74,13 +74,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: aws-task-definition.json
-        container-name: trade-trees
+        container-name: mlb-trade-trees
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: trade-trees-service
-        cluster: trade-trees-cluster
+        service: mlb-trade-trees-service
+        cluster: mlb-trade-trees-cluster1
         wait-for-service-stability: true
