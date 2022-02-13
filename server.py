@@ -1,8 +1,5 @@
 import pandas as pd
 
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_columns', 500)
-pd.set_option('display.width', 1000)
 from transaction_wizard import TransactionWizard as tw
 from stats_wizard import StatsWizard as sw
 from flask import Flask, render_template, url_for, redirect
@@ -420,13 +417,17 @@ def calculate_stats(trade_tree):
                         pass
                         continue
                     retro_id = id
-                    stats_end_date = 0
+                    stats_end_date = None
                     for transac in trade_tree[1:]:
                         if retro_id == transac["retro_id"]:
-                            stats_end_date = int(str(transac["date"])[0:4])
+                            if "outcome" in transac and transac["outcome"] == "No further transactions- likely in organization":
+                                pass
+                            else:
+                                stats_end_date = int(str(transac["date"])[0:4])
                     player_stats = sw(retro_id, stats_start_date, to_franchise=choice_franchise,
                                       from_franchise=None, stats_end_date=stats_end_date)
                     player_stats.get_stats()
+
                     player_stats.get_salary_to()
                     WAR_in += player_stats.WAR_on_team
                     G_in += player_stats.G_on_team
@@ -444,7 +445,7 @@ def calculate_stats(trade_tree):
             elif trans["transaction_id"] == "Compensation Picks":
                 for id, name in trans["traded_for"].items():
                     retro_id = id
-                    stats_end_date = 0
+                    stats_end_date = None
                     for transac in trade_tree[1:]:
                         if retro_id == transac["retro_id"]:
                             stats_end_date = int(str(transac["date"])[0:4])
