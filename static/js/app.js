@@ -11,11 +11,9 @@ d3.select("tbody").html("")
 d3.event.preventDefault();
 var inputElement = d3.select("#user-input");
 var inputValue = inputElement.property("value").toLowerCase().trim();
-console.log(inputValue)
 
 var filteredData =
 players.filter(players => players.Name.toLowerCase().trim().includes(inputValue));
-console.log(filteredData.length)
 
 for (var i = 0; i < filteredData.length; i++) {
       console.log(filteredData[i]['Name'])
