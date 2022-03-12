@@ -1,14 +1,19 @@
+/* GENERAL STYLING */
 body {
-font-family: 'Ubuntu', sans-serif;
-background-color: #DEDFE3;
-margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #DEDFE3;
+    margin: 0;
 }
 
+.active {
+    border-bottom: 3px solid red;
+}
+
+/* NAVBAR STYLING */
 .main.navbar {
     background-color: #041E43;
     border-bottom: 1px solid #DEDFE3;
 }
-
 
 .navbar-nav .nav-link {
     color: #E03C00;
@@ -19,28 +24,135 @@ margin: 0;
 }
 
 .navbar-brand.abs {
-        position: absolute;
-        width: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: #E03C00;
+    position: absolute;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #E03C00;
 }
 
 .navbar-brand.abs:hover {
-        position: absolute;
-        width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: OrangeRed;
+    color: OrangeRed;
 }
 
-.active{
-border-bottom: 3px solid red;
+.navbar-toggler {
+    background-color: #A33241 !important;
+     border-color: black !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* HOMEPAGE STYLING */
+.header {
+    margin: 0;
+    text-align: center;
+    background-color: #041E43;
+    color: white;
+}
+
+h1{
+    padding: 5% 0 0 0;
+    text-align: center;
+    color: #041E43;
+}
+
+.main{
+    color: #DEDFE3;
+}
+
+.main2{
+    color: #DEDFE3;
+    padding: 2% 0 0 0;
+}
+
+.main3 {
+    color: #DEDFE3;
+    padding: 0
+ }
+
+ .click{
+    padding: 3% 0;
+}
+
+button {
+    width: 15%;
+    background-color: #041E43 !important;
 }
 
 
+button:hover {
+    background-color: #A33241 !important;
+}
+
+.form-control {
+    width: 50%;
+    margin: 5% auto 1% auto;
+    text-align: center;
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.homeTable thead th {
+    width: 50%;
+    vertical-align: bottom;
+    border-bottom: 2px solid black;
+}
+
+.homeTable {
+    margin: 0 25%;
+    width: 50%;
+    text-align: center;
+}
+
+/* FOOTER STYLING */
+.footer {
+    margin: 10% 0 0 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 80%;
+    }
+
+.footer p {
+    margin: 0;
+}
+
+/* ABOUT PAGE */
+
+.col-md-7{
+border-right: 5px solid red;
+}
+
+.about {
+margin: 3% 0 0 0;
+}
+
+.about-text {
+margin: 3% 0 0 0;
+}
+
+.contact {
+margin: 9% 0 2% 0;
+}
+
+.contact-text{
+margin: 3% 0
+}
+
+.error {
+  padding: 5% 0 0 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* STATS PAGE */
 .statsbar a:hover{
 border-bottom: 3px solid red;
 }
@@ -62,39 +174,20 @@ border: 1px solid black;
   padding-right:25px;
 }
 
-
-.header {
-  margin: 0;
-  text-align: center;
-  background-color: #041E43;
-  color: white;
-
+.statsTable {
+display:none;
+border-right: none;
 }
 
-.click{
-padding: 3% 0;
+.dataTables_wrapper {
+padding: 0 10%;
 }
 
-.main{
-color: #DEDFE3;
+.dropdown-menu {
+background-color: #DEDFE3 !important;
 }
 
-.main2{
-color: #DEDFE3;
-padding: 2% 0 0 0;
-}
-
-.main3 {
-color: #DEDFE3;
-padding: 0
-}
-
-h1{
-  padding: 5% 0 0 0;
-  text-align: center;
-  color: #041E43;
-}
-
+/* PLAYER PAGE */
 .traded-header{
   padding: 5% 0 0 0;
   text-align: center;
@@ -149,185 +242,9 @@ text-align: center;
 color: #041E43;
 }
 
-.col-md-7{
-border-right: 5px solid red;
-}
 
-.about {
-margin: 3% 0 0 0;
-}
-
-.about-text {
-margin: 3% 0 0 0;
-}
-
-.contact {
-margin: 9% 0 2% 0;
-}
-
-.contact-text{
-margin: 3% 0
-}
-
-.error {
-  padding: 5% 0 0 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.homeTable thead th {
-    width: 50%;
-    vertical-align: bottom;
-    border-bottom: 2px solid black;
-}
-
-.homeTable {
-margin: 0 25%;
-width: 50%;
-text-align: center;
-}
-
-.statsTable {
-display:none;
-border-right: none;
-}
-
-.dataTables_wrapper {
-padding: 0 10%;
-}
-
-button {
-width: 15%;
-background-color: #041E43 !important;
-}
-
-
-button:hover {
-background-color: #A33241 !important;
-}
-
-.navbar-toggler {
-background-color: #A33241 !important;
- border-color: black !important;
-}
-
-.navbar-toggler-icon {
-            background-image: url(
-"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-        }
-
-
-.dropdown-menu {
-background-color: #DEDFE3 !important;
-
-}
-
-.form-control {
-width: 50%;
-margin: 5% auto 1% auto;
-text-align: center;
-border: 2px solid red;
-border-radius: 4px;
-}
-
-.player-name-head {
-font-size:large
-}
-
-.player-name {
-color: #DEDFE3;
-}
-
-.traded-with {
-color: CadetBlue;
-font-style:italic;
-font-size:small;
-}
-
-.traded-with-links {
-color: CadetBlue;
-font-style:italic;
-font-size:small;
-}
-
-.traded-with-cash {
-color: CadetBlue;
-font-style:italic;
-font-size:small;
-}
-
-.comp-pick {
-color:Gold;
-font-style:italic;
-font-size:small;
-}
-
-
-.traded-to {
-color:deepskyblue;
-font-style:italic;
-font-size:small;
-}
-
-.positive-war {
-color:ForestGreen;
-font-style:italic;
-}
-
-.negative-war {
-color:Sienna;
-font-style:italic;
-}
-
-.good-payroll {
-color:ForestGreen;
-font-style:italic;
-font-size:small;
-}
-
-.bad-payroll {
-color:Sienna;
-font-style:italic;
-font-size:small;
-}
-
-.outcome {
-color: #717784;
-font-style:italic;
-}
-
-.cash {
-color:Crimson;
-font-style:italic;
-}
-
-.myNodeClass {
-background-color: #041E43;
-color: #DEDFE3;
-font-weight: bold;
-width: 160px;
-padding: 5px;
-border: 1px solid black;
-font-size: 15px !important;
-}
-
-.mySelectedNodeClass {
-background-color: MidnightBlue;
-}
-
-.footer {
-  margin: 10% 0 0 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 80%;
-}
-
-.wrap-collabsible {
-
+/* PLAYER PAGE HEADER COLLAPSIBLE */
+.wrap-collapsible {
   padding: 2% 0;
   margin-bottom: 1.2rem 0;
 }
@@ -338,7 +255,7 @@ input[type='checkbox'] {
 
 .lbl-toggle {
 
-margin: 0 31%;
+  margin: 0 31%;
 
   border-top: 2px solid #041E43;
   border-bottom: 0px solid #041E43;
@@ -405,4 +322,94 @@ margin: 0 31%;
 table.google-visualization-orgchart-table {
     border-collapse: separate;
 }
+
+
+/* GOOGLE ORGCHART STYLING */
+
+.myNodeClass {
+background-color: #041E43;
+color: #DEDFE3;
+font-weight: bold;
+width: 160px;
+padding: 5px;
+border: 1px solid black;
+font-size: 15px !important;
+}
+
+.mySelectedNodeClass {
+background-color: MidnightBlue;
+}
+
+/* GOOGLE ORGCHART IN-NODE STYLING */
+
+.player-name-head {
+font-size:large
+}
+
+.player-name {
+color: #DEDFE3;
+}
+
+.traded-with {
+color: CadetBlue;
+font-style:italic;
+font-size:small;
+}
+
+.traded-with-links {
+color: CadetBlue;
+font-style:italic;
+font-size:small;
+}
+
+.traded-with-cash {
+color: CadetBlue;
+font-style:italic;
+font-size:small;
+}
+
+.comp-pick {
+color:Gold;
+font-style:italic;
+font-size:small;
+}
+
+.traded-to {
+color:deepskyblue;
+font-style:italic;
+font-size:small;
+}
+
+.positive-war {
+color:ForestGreen;
+font-style:italic;
+}
+
+.negative-war {
+color:Sienna;
+font-style:italic;
+}
+
+.good-payroll {
+color:ForestGreen;
+font-style:italic;
+font-size:small;
+}
+
+.bad-payroll {
+color:Sienna;
+font-style:italic;
+font-size:small;
+}
+
+.outcome {
+color: #717784;
+font-style:italic;
+}
+
+.cash {
+color:Crimson;
+font-style:italic;
+}
+
 
