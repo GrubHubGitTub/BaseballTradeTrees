@@ -6,7 +6,7 @@
   }
 
 .navbar {
-    height: 75px;
+    height: 50px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -28,7 +28,8 @@
     position:absolute;
     top:60px;
     width: 265px;
-    height: 100px;
+    height: 135px;
+    z-index:1;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
@@ -36,6 +37,10 @@
   }
 
 .searchResults::-webkit-scrollbar{
+    display: none;
+}
+
+.searchResults:after {
     display: none;
 }
 

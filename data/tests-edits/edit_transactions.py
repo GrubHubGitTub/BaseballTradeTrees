@@ -13,7 +13,7 @@ trans = pd.read_csv()
 # team_franchise_dict = teams.set_index("TeamID").to_dict()["Franchise"]
 # trans["from-franchise"] = trans["from-team"].map(team_franchise_dict)
 # trans["to-franchise"] = trans["to-team"].map(team_franchise_dict)
-# trans = trans[["primary_date", "transaction_id", "player", "typeof", "from-franchise", "from-team", "to-franchise", "to-team", "info"]]
+# trans  = trans[["primary_date", "transaction_id", "player", "typeof", "from-franchise", "from-team", "to-franchise", "to-team", "info"]]
 # trans.to_csv("trans1-1_franchise.csv", index=False)
 
 """remove spaces in franchise/team columns"""

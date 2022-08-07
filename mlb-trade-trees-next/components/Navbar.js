@@ -3,16 +3,17 @@ import Link from 'next/link'
 import Image from "next/image";
 
 export default function Navbar({players}) {
+
     const [isNavbarExpanded, setIsNavbarExpanded] = useState(false)
     
     const[filteredData, setFilteredData] = useState([]);
     const handleFilter = (event) => {
         const searchPlayer = event.target.value.toLowerCase()
         const newFilter = players.filter((player) => {
-            return player.Name.toLowerCase().includes(searchPlayer);
+            return player.NAME.toLowerCase().includes(searchPlayer);
         });
 
-        if (searchPlayer === "") {
+        if (searchPlayer.length < 3) {
             setFilteredData([]);
         } else {
             setFilteredData(newFilter);
@@ -21,24 +22,29 @@ export default function Navbar({players}) {
 
     return (
         <nav className="navbar">
-            <Link href="/"><Image src="/logo.png" alt="logo" width="75" height="75"  className="navbar--brand"/></Link>
-                <div classname="search">
+            <Link href="/"><a><Image src="/logo.png" alt="logo" width="50" height="50"  className="navbar--brand"/></a></Link>
+                
+                <div className="search">
                     <input 
                         type="text"
                         className="searchInput" 
                         placeholder="Enter Player"
-                        onChange={handleFilter} />
+                        onChange={handleFilter} 
+                        />
                     <div className="search--icon"></div>
 
-                    {filteredData.length != 0 && (
+                    {filteredData.length != 0 &&  (
                         <div className="searchResults">
-                            {filteredData.map((player, key) => {
+                            {filteredData.map((player) => {
                                 return (<Link 
+                                            key= {player.PLAYERID}
                                             href={{
-                                                pathname:'/players/[pid]',
-                                                query: {pid: player.ID}
-                                            }}>    
-                                            <a className="dataItem"> {player.Name} {player.play_debut} </a>
+                                                pathname: '/players/[pid]',
+                                                query: { pid: player.PLAYERID },
+                                            }}>   
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 
+                                            {player.NAME} {player.HOF} {player.PLAY_DEBUT.slice(-4)} - {player.PLAY_LASTGAME.slice(-4)} 
+                                            </a>
                                         </Link>
                                     )
                             })}

@@ -1,6 +1,6 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
-import PlayerData from '../json/players.json'
+import PlayerData from '../data/PlayerSearch.json'
 
 export default function Layout({ children }) {
   return (
