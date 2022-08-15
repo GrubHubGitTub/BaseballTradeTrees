@@ -1,11 +1,11 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
-import PlayerData from '../data/PlayerSearch.json'
+import {player_data} from '../data/player_data.js'
 
 export default function Layout({ children }) {
   return (
     <div className='container'>
-      <Navbar players={PlayerData} />
+      <Navbar players={player_data} />
       { children }
       <Footer />
     </div> 

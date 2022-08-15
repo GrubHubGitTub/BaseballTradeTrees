@@ -1,6 +1,7 @@
 import React from "react";
-import Link from "next/link";
-import PlayerBar from '../../../components/PlayerBar'
+import PlayerBar from '../../../components/PlayerBar';
+import TradeCard from "../../../components/TradeCard";
+import styles from '../../../styles/PlayerPage.module.css'
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:3000/api/players');
@@ -28,10 +29,22 @@ export const getStaticProps = async (context) => {
 
 export default function PlayerPage({ data }) {
     const trade_num = data.trades.length
+    const pid = data.retro_id
+
+    const tradeCards = data.trades.map(trade => {
+      return (
+      <TradeCard data = {trade}
+                  pid = {pid}
+      />
+      )
+    })
+
     return (
         <div>
-            <PlayerBar data={data} />
-            <h1>{data.name} was traded {trade_num} {trade_num < 2 ? "time" : "times"}</h1>
+          <PlayerBar data={data} />
+          <h2>Most recent retorosheet data/ node of longest ongoing tree</h2>
+          <h3>{data.name} was traded {trade_num} {trade_num == 1 ? "ti3me" : "times"}</h3>
+          <div className={styles.allCards}>{tradeCards}</div>
         </div>
   );
 };

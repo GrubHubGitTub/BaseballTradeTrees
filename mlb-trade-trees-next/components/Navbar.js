@@ -10,7 +10,7 @@ export default function Navbar({players}) {
     const handleFilter = (event) => {
         const searchPlayer = event.target.value.toLowerCase()
         const newFilter = players.filter((player) => {
-            return player.NAME.toLowerCase().includes(searchPlayer);
+            return player.name.toLowerCase().includes(searchPlayer);
         });
 
         if (searchPlayer.length < 3) {
@@ -29,7 +29,7 @@ export default function Navbar({players}) {
                         type="text"
                         className="searchInput" 
                         placeholder="Enter Player"
-                        onChange={handleFilter} 
+                        onChange={handleFilter}
                         />
                     <div className="search--icon"></div>
 
@@ -37,13 +37,13 @@ export default function Navbar({players}) {
                         <div className="searchResults">
                             {filteredData.map((player) => {
                                 return (<Link 
-                                            key= {player.PLAYERID}
+                                            key= {player.retro_id}
                                             href={{
                                                 pathname: '/players/[pid]',
-                                                query: { pid: player.PLAYERID },
+                                                query: { pid: player.retro_id },
                                             }}>   
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 
-                                            {player.NAME} {player.HOF} {player.PLAY_DEBUT.slice(-4)} - {player.PLAY_LASTGAME.slice(-4)} 
+                                            {player.name} {player.HOF} {player.debut_date.slice(-4)} - {player.last_date.slice(-4)} 
                                             </a>
                                         </Link>
                                     )

@@ -991,6 +991,8 @@ def player(users_player_id):
         # edit players that appear multiple times in a tree so they display properly in the orgchart
         formatted_tree = check_for_double_names(formatted_tree=tree_with_stats)
 
+        print(formatted_tree)
+
         # formatting for google orgchart
         org_tree = format_for_google_chart(formatted_tree=formatted_tree)
 

@@ -1,19 +1,29 @@
 import pandas as pd
 
-"""filter player bio file"""
-players = pd.read_csv("../Retrosheet-BRef-Chadwick Untouched/retro/BIOFILE.csv")
-players["NAME"] = players["NICKNAME"] + " " + players["LAST"]
-players = players[["PLAYERID", "NAME", "PLAY_DEBUT", "PLAY_LASTGAME", "HOF"]]
-players.to_csv("PlayerSearch.csv", index=False)
+# Filter chadwick biofile and add HOF info from retrosheet biofile
+chadbiofile = pd.read_csv("../2022/ChadwickBiofile.csv", low_memory=False)
+retrobiofile = pd.read_csv("../2022/RetroSheetBIOFILE.csv")
 
-"""Create Json for Next"""
-import json, csv
+chadbiofile = chadbiofile.dropna(subset=['key_retro'])
+chadbiofile.loc[chadbiofile['mlb_played_last'] == 2022.0, 'mlb_played_last'] = ""
+chadbiofile["name"] = chadbiofile["name_first"] + " " + chadbiofile["name_last"]
+chadbiofile["PLAYERID"] = chadbiofile["key_retro"]
+chadbiofile = chadbiofile[["PLAYERID", "key_mlbam", "key_bbref", "name", "mlb_played_first", "mlb_played_last"]]
+combined_info = pd.merge(chadbiofile, retrobiofile[["PLAYERID", "HOF"]], on="PLAYERID", how="left")
+combined_info.loc[combined_info['HOF'] == "NOT", 'HOF'] = ""
 
-with open('PlayerSearch.csv') as f:
-    dict = [{k: v for k, v in row.items()}
-            for row in csv.DictReader(f, skipinitialspace=True)]
-    with open('../../mlb-trade-trees-next/json/PlayerSearch.json', 'w') as convert_file:
-        convert_file.write(json.dumps(dict))
+combined_info.to_csv("playerdata.csv", index=False)
+######### Then remove all .0 in csv
+
+
+# """Create Json for Next"""
+# import json, csv
+#
+# with open('PlayerSearch.csv') as f:
+#     dict = [{k: v for k, v in row.items()}
+#             for row in csv.DictReader(f, skipinitialspace=True)]
+#     with open('../../mlb-trade-trees-next/json/PlayerSearch.json', 'w') as convert_file:
+#         convert_file.write(json.dumps(dict))
 
 
 

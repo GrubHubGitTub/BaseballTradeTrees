@@ -7,7 +7,7 @@ export default function PlayerBar({data}) {
     const trades = data.trades
 
     return ( 
-        <nav className={styles.PlayerBar}>
+        <div className={styles.PlayerBar}>
             <Link href={{
                 pathname: '/players/[pid]',
                 query: {pid: data.retro_id }}}>
@@ -15,10 +15,10 @@ export default function PlayerBar({data}) {
                 </Link> 
             {trades.map((trade) => {
                 return (<Link 
-                            key= {trade.tree_id}
+                            key={trade.tree_id}
                             href={{
                                 pathname: '/players/[pid]/[treeid]',
-                                query: { pid: data.retro_id, treeid: trade.tree_id },
+                                query: { pid: data.retro_id, treeid: trade.tree_id }
                             }}>   
                             <a className="treeLink" > 
                             {trade.tree_id} 
@@ -26,7 +26,7 @@ export default function PlayerBar({data}) {
                         </Link>
                     )
             })}
-        </nav>
+        </div>
 
     )
 }

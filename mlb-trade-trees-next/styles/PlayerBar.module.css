@@ -1,5 +1,5 @@
 .PlayerBar {
-    height: 25px;
+    height: auto;
     width: auto;
     display: inline-block;
     align-items: center;
