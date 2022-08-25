@@ -99,6 +99,7 @@ export const OrgChartComponent = (props, ref) => {
     `;
             })
             .render();
+            chart.expandAll()
         }
     }, [props.data, d3Container.current]);
     

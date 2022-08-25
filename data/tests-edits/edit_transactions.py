@@ -21,13 +21,13 @@ import pandas as pd
 # teams = pd.read_csv("../../data/2022/ChadwickTeams.csv")
 # transactions = pd.read_csv("../tests-edits/transactionsCleaned.csv")
 # transactions = transactions.astype(str)
+# picks = pd.read_csv("../comp_picks_retroid.csv")
 #
-# pitching = pd.read_csv("../2022/Pitching.csv")
-# batting = pd.read_csv("../2022/Batting.csv")
-# pitching_bref = pd.read_csv("../2022/war_daily_pitch_filtered.csv")
-# batting_bref = pd.read_csv("../2022/war_daily_bat_filtered.csv")
-# all_star = pd.read_csv("../2022/AllstarFull.csv")
-# playoffs = pd.read_csv("../2022/SeriesPost.csv")
+# pitching = pd.read_csv("../2022/Pitching.csv").fillna(0)
+# batting = pd.read_csv("../2022/Batting.csv").fillna(0)
+# pitching_bref = pd.read_csv("../2022/war_daily_pitch_filtered.csv").fillna(0)
+# batting_bref = pd.read_csv("../2022/war_daily_bat_filtered.csv").fillna(0)
+# all_star = pd.read_csv("../2022/AllstarFull.csv").fillna(0)
 #
 # team_franchise_dict = teams.set_index("teamID").to_dict()["franchID"]
 # bref_franchise_dict = teams.set_index("teamIDBR").to_dict()["franchID"]
@@ -35,85 +35,129 @@ import pandas as pd
 # pitching["franchID"] = pitching["teamID"].map(team_franchise_dict)
 # batting["franchID"] = batting["teamID"].map(team_franchise_dict)
 # all_star["franchID"] = all_star["teamID"].map(team_franchise_dict)
-# playoffs["franchIDwinner"] = playoffs["teamIDwinner"].map(team_franchise_dict)
-# playoffs["franchIDloser"] = playoffs["teamIDloser"].map(team_franchise_dict)
 # pitching_bref["franchID"] = pitching_bref["team_ID"].map(bref_franchise_dict)
 # batting_bref["franchID"] = batting_bref["team_ID"].map(bref_franchise_dict)
 #
-# def get_stats(retro_id, franch, year):
+#
+# def get_stats(retro_id, to_franch, from_franch, year, typeof):
 #     year = int(year)
-#     try:
-#         bref_id = players[players.PLAYERID == retro_id]
-#         bref_id = bref_id["key_bbref"].item()
-#     except ValueError:
-#         print(retro_id)
-#     else:
-#         # get batting stats
-#         player_stats = batting[batting.playerID == bref_id]
-#         team_stats = player_stats[player_stats.franchID == franch]
-#         year_on_team_stats = team_stats[team_stats.yearID >= year]
-#         batting_stats = (year_on_team_stats.to_dict('records'))
 #
-#         # get pitching stats
-#         player_stats = pitching[pitching.playerID == bref_id]
-#         team_stats = player_stats[player_stats.franchID == franch]
-#         year_on_team_stats = team_stats[team_stats.yearID >= year]
-#         pitching_stats = (year_on_team_stats.to_dict('records'))
+#     if typeof == "T ":
+#         try:
+#             bref_id = players[players.PLAYERID == retro_id]
+#             bref_id = bref_id["key_bbref"].item()
+#         except ValueError:
+#             print(retro_id)
+#         else:
+#             # get batting stats
+#             player_stats = batting[batting.playerID == bref_id]
+#             team_stats = player_stats[player_stats.franchID == to_franch]
+#             year_on_team_stats = team_stats[team_stats.yearID >= year]
+#             batting_stats = (year_on_team_stats.to_dict('records'))
 #
-#         # get pwar and salary
-#         player_stats = pitching_bref[pitching_bref.player_ID == bref_id]
-#         team_stats = player_stats[player_stats.franchID == franch]
-#         year_on_team_stats = team_stats[team_stats.year_ID >= year]
-#         pwar_stats = (year_on_team_stats.to_dict('records'))
+#             # get pitching stats
+#             player_stats = pitching[pitching.playerID == bref_id]
+#             team_stats = player_stats[player_stats.franchID == to_franch]
+#             year_on_team_stats = team_stats[team_stats.yearID >= year]
+#             pitching_stats = (year_on_team_stats.to_dict('records'))
 #
-#         # get bwar and salary
-#         player_stats = batting_bref[batting_bref.player_ID == bref_id]
-#         team_stats = player_stats[player_stats.franchID == franch]
-#         year_on_team_stats = team_stats[team_stats.year_ID >= year]
-#         bwar_stats = (year_on_team_stats.to_dict('records'))
+#             # get pwar and salary
+#             player_stats = pitching_bref[pitching_bref.player_ID == bref_id]
+#             team_stats = player_stats[player_stats.franchID == to_franch]
+#             year_on_team_stats = team_stats[team_stats.year_ID >= year]
+#             pwar_stats = (year_on_team_stats.to_dict('records'))
 #
-#         #  get allstar appearances
-#         player_stats = all_star[all_star.playerID == bref_id]
-#         team_stats = player_stats[player_stats.franchID == franch]
-#         year_on_team_stats = team_stats[team_stats.yearID >= year]
-#         allstar = (year_on_team_stats.to_dict('records'))
+#             # get bwar and salary
+#             player_stats = batting_bref[batting_bref.player_ID == bref_id]
+#             team_stats = player_stats[player_stats.franchID == to_franch]
+#             year_on_team_stats = team_stats[team_stats.year_ID >= year]
+#             bwar_stats = (year_on_team_stats.to_dict('records'))
 #
-#         return [{"batting_stats": batting_stats}, {"pitching_stats": pitching_stats}, {"pwar_salary": pwar_stats},
-#                 {"bwar_salary": bwar_stats}, {"allstar": allstar}]
+#             #  get allstar appearances
+#             player_stats = all_star[all_star.playerID == bref_id]
+#             team_stats = player_stats[player_stats.franchID == to_franch]
+#             year_on_team_stats = team_stats[team_stats.yearID >= year]
+#             allstar = (year_on_team_stats.to_dict('records'))
+#
+#             if len(batting_stats) == 0 and len(pitching_stats) == 0:
+#                 return None
+#             return {"batting_stats": batting_stats, "pitching_stats": pitching_stats, "pwar_salary": pwar_stats,
+#                     "bwar_salary": bwar_stats, "allstar": allstar}
+#
+#     elif typeof == "Fg":
+#         player_comp_picks = picks[picks["fa_retroid"] == retro_id]
+#         player_comp_picks_year = player_comp_picks[player_comp_picks["year"] == year + 1]
+#         all_comp_picks = player_comp_picks_year["signed_retroid"].tolist()
+#
+#         if len(all_comp_picks) > 0:
+#             batting_stats = []
+#             pitching_stats = []
+#             pwar_stats = []
+#             bwar_stats = []
+#             allstar = []
+#             for player in all_comp_picks:
+#                 try:
+#                     bref_id = players[players.PLAYERID == player]
+#                     bref_id = bref_id["key_bbref"].item()
+#                 except ValueError:
+#                     print(player)
+#                 else:
+#                     # get batting stats
+#                     player_stats = batting[batting.playerID == bref_id]
+#                     team_stats = player_stats[player_stats.franchID == from_franch]
+#                     year_on_team_stats = team_stats[team_stats.yearID >= year]
+#                     batting_stats += (year_on_team_stats.to_dict('records'))
+#
+#                     # get pitching stats
+#                     player_stats = pitching[pitching.playerID == bref_id]
+#                     team_stats = player_stats[player_stats.franchID == from_franch]
+#                     year_on_team_stats = team_stats[team_stats.yearID >= year]
+#                     pitching_stats += (year_on_team_stats.to_dict('records'))
+#
+#                     # get pwar and salary
+#                     player_stats = pitching_bref[pitching_bref.player_ID == bref_id]
+#                     team_stats = player_stats[player_stats.franchID == from_franch]
+#                     year_on_team_stats = team_stats[team_stats.year_ID >= year]
+#                     pwar_stats += (year_on_team_stats.to_dict('records'))
+#
+#                     # get bwar and salary
+#                     player_stats = batting_bref[batting_bref.player_ID == bref_id]
+#                     team_stats = player_stats[player_stats.franchID == from_franch]
+#                     year_on_team_stats = team_stats[team_stats.year_ID >= year]
+#                     bwar_stats += (year_on_team_stats.to_dict('records'))
+#
+#                     #  get allstar appearances
+#                     player_stats = all_star[all_star.playerID == bref_id]
+#                     team_stats = player_stats[player_stats.franchID == from_franch]
+#                     year_on_team_stats = team_stats[team_stats.yearID >= year]
+#                     allstar += (year_on_team_stats.to_dict('records'))
+#
+#             if len(batting_stats) == 0 and len(pitching_stats) == 0:
+#                 return None
+#             else:
+#                 return {"batting_stats": batting_stats, "pitching_stats": pitching_stats, "pwar_salary": pwar_stats,
+#                         "bwar_salary": bwar_stats, "allstar": allstar}
 #
 #
-# transactions = transactions.loc[transactions['type'] == "T "]
-# transactions['stats'] = transactions.apply(lambda x: get_stats(x["player"], x["to_franchise"],
-#                                                                                 (x["primary_date"])[0:4]), axis=1)
-#
-# transactions.to_csv("transactions_stats.csv",index=False)
+# transactions['stats'] = transactions.apply(lambda x: get_stats(x["player"], x["to_franchise"], x["from_franchise"],
+#                                                     (x["primary_date"])[0:4], x["type"]), axis=1)
+# #
+# transactions.to_csv("transactions_stats_17082022.csv", index=False)
 
-"""merge trade stats database with all transactions"""
-# transactions = pd.read_csv("../tests-edits/transactionsCleaned.csv")
-# with_stats = pd.read_csv("../tests-edits/transactions_stats.csv")
-#
-# combined_transactions = pd.merge(transactions, with_stats[["primary_date","transaction_ID","player","stats"]],
-#                          on=["primary_date","transaction_ID","player"], how="left")
-#
-# combined_transactions.to_csv("transactions_stats_2022.csv", index=False)
+"""Remove nan, create json and csv"""
+# transactions = pd.read_csv("transactions_stats_17082022.csv")
+# transactions = transactions.fillna('')
+# transactions.to_json("stats_transactions_17082022.json")
+# transactions.to_csv("stats_transactions_17082022.csv", index=False)
 
-"""get comp pick stats and merge"""
-picks = pd.read_csv("../comp_picks_retroid.csv")
-picks_dict = picks.set_index("year").to_dict()["fa_retroid"]
-print(picks_dict)
+"""add empty parent tree column"""
+# transactions = pd.read_json("stats_transactions_17082022.json")
+# transactions.insert(loc=10, column='parent_tree', value=['' for i in range(transactions.shape[0])])
+# transactions.to_json("stats_transactions_25082022.json")
+# transactions.to_csv("stats_transactions_25082022.csv", index=False)
 
 
-# player_comp_picks = picks[picks["fa_retroid"] == player_id]
-# player_comp_picks_year = player_comp_picks[player_comp_picks["year"] == year]
 
-"""remove spaces in franchise/team columns"""
-# trans["from-team"] = trans["from-team"].str.replace(' ', '')
-# trans["to-team"] = trans["to-team"].str.replace(' ', '')
-
-"""Replace Nan values in franchise with the data in team columns"""
-# trans["from-franchise"].fillna(trans["from-team"], inplace=True)
-# trans["to-franchise"].fillna(trans["to-team"], inplace=True)
-# trans.to_csv("transac2022cleaned.csv", index=False)
 
 
 
