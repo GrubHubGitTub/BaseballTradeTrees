@@ -3,3 +3,10 @@
     height: auto;
     position:absolute;
 }
+
+.treeNode{
+
+   
+    border:1px solid lightgray;
+
+}

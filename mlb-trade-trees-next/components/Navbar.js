@@ -43,7 +43,7 @@ export default function Navbar({players}) {
                                                 query: { pid: player.retro_id },
                                             }}>   
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 
-                                            {player.name} {player.HOF} {player.debut_date.slice(-4)} - {player.last_date.slice(-4)} 
+                                            {player.name} {player.HOF} {player.debut_year} - {player.last_year} 
                                             </a>
                                         </Link>
                                     )

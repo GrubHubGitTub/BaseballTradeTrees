@@ -10,10 +10,10 @@ export default function TradeCard(props) {
         <div className={styles.card}>
             <Link href={`/players/${pid}/${tree_id}`}>
             <div className={styles.cardStats}>
-                <p>Traded from: {props.data.from_team}</p>
-                <p>Traded to: </p>
+                <p>Traded from: {props.data.from_team.team_name}</p>
+                <p>Traded to: {props.data.to_team.team_name} </p>
                 <p>Transaction #: {props.data.transac_id}</p>
-                <p>Date:</p>
+                <p>Date:{props.data.date}</p>
                 
             </div>
             </Link>

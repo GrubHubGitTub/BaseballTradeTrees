@@ -4,7 +4,7 @@ from GetStats import GetStats as gs
 from collections import Counter
 import json
 
-PLAYERS = pd.read_csv("playerdata.csv")
+PLAYERS = pd.read_csv("playerdata.csv").fillna("")
 PICKS = pd.read_csv("../comp_picks_retroid.csv")
 TEAMS = pd.read_csv("../2022/ChadwickTeams.csv")
 POSTSEASON = pd.read_csv("../2022/SeriesPost.csv")
@@ -31,6 +31,12 @@ def format_names(retro_id_list=None, retro_id= None):
         except ValueError:
             name = retro_id
         return name
+
+def format_teams(team, date):
+    year = int(str(date)[0:4])
+    team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
+    name = team_row["name"].item()
+    return name
 
 
 def format_outcomes(outcome_code):
@@ -130,6 +136,8 @@ def get_outcome_data(transaction_list, trade_tree, franchise_choice, parent_retr
                     sorted_transactions = player_search.all_transac.sort_values(by="primary_date")
                     to_choice = sorted_transactions[sorted_transactions["to_franchise"] == franchise_choice]
                     if to_choice.empty and " " in retro_id:
+                        print(parent_node)
+                        print(len(trade_tree))
                         transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": retro_id,
                                             "outcome": "Did not play in MLB"}
                         trade_tree.append(transaction_info)
@@ -173,14 +181,15 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, pa
                 gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro, parent_transaction=parent_transaction)
                 stats = gs(transaction_id=transaction_id, franch_choice=franchise_choice)
                 trade_in_stats = stats.get_trade_in_stats()
+
+                transaction_info1 = {"node_id": len(trade_tree) + 1, "date": outcome_date, "traded_for": all_comp_picks}
+                transactions_list.append(transaction_info1)
                 # add comp pick transaction to tree
                 transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                     "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
                                     "info": "Compensation picks", "trade_in_stats": trade_in_stats, "date": outcome_date}
                 trade_tree.append(transaction_info)
 
-                transaction_info = {"node_id": len(trade_tree) + 1, "date": outcome_date, "traded_for": all_comp_picks}
-                transactions_list.append(transaction_info)
 
             else:
                 # End branch and add node to tree
@@ -199,7 +208,7 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, pa
             transaction = gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro,
                              parent_transaction=parent_transaction)
             transaction.get_trades()
-            traded_with = transaction.get_traded_with_ids_dict()
+            traded_with = transaction.get_traded_with_ids_list()
             if player_id in traded_with:
                 traded_with.pop(player_id)
             stats = gs(transaction_id=transaction_id, franch_choice=franchise_choice)
@@ -208,9 +217,10 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, pa
             trade_totals = stats.get_trade_totals()
             node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                          "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
-                         "traded_with": traded_with, "trade_out_stats": trade_out_stats, "trade_in_stats": trade_in_stats,
-                         "trade_totals":trade_totals, "to_team": outcome["outcome"]["to_team"].item(),
-                         "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                         "traded_with": traded_with, "trade_out_stats": trade_out_stats,
+                         "trade_in_stats": trade_in_stats, "trade_totals":trade_totals,
+                         "to_team":{"team_id":to_team, "team_name":format_teams(team=outcome["outcome"]["to_team"].item(),
+                         date=outcome_date)}, "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
 
             transaction_info = {"node_id": len(trade_tree) + 1, "transaction_id": transaction_id,
                                 "date": outcome_date, "traded_for": transaction.get_traded_for_ids_dict()}
@@ -235,25 +245,29 @@ def get_tree_totals(trade_tree):
     for node in trade_tree:
         if "trade_totals" in node:
             totals.append(node["trade_totals"])
-
     for total in totals:
         bat.update(total["batting_stats"])
         pitch.update(total["pitching_stats"])
         war_sal_as.update(total["other_stats"])
-        era_p_in.append(total["pitching_other"]["ERA"]["in"])
-        era_p_out.append(total["pitching_other"]["ERA"]["out"])
-        baopp_p_in.append(total["pitching_other"]["BAOpp"]["in"])
-        baopp_p_out.append(total["pitching_other"]["BAOpp"]["out"])
+        if type(total["pitching_other"]["ERA"]["in"]) == float :
+            era_p_in.append(total["pitching_other"]["ERA"]["in"])
+            baopp_p_in.append(total["pitching_other"]["BAOpp"]["in"])
+        if type(total["pitching_other"]["ERA"]["out"]) == float:
+            era_p_out.append(total["pitching_other"]["ERA"]["out"])
+            baopp_p_out.append(total["pitching_other"]["BAOpp"]["out"])
 
     war_sal_as["WAR"] = round(war_sal_as["WAR"], 2)
+    war_sal_as["salary"] = int(war_sal_as["salary"])
     era_p_in = [x for x in era_p_in if x != []]
     era_p_out = [x for x in era_p_out if x != []]
     baopp_p_in = [x for x in baopp_p_in if x != []]
     baopp_p_out = [x for x in baopp_p_out if x != []]
-    pitch["ERA_p_in"] = format(round(sum(era_p_in) / len(era_p_in), 2) , '.2f')
-    pitch["ERA_p_out"] = format(round(sum(era_p_out) / len(era_p_out), 2), '.2f')
-    pitch["BAOpp_p_in"] = format(round(sum(baopp_p_in) / len(baopp_p_in), 3), '.3f')
-    pitch["BAOpp_p_out"] = format(round(sum(baopp_p_out) / len(baopp_p_out), 3), '.3f')
+    if len(era_p_in) > 0:
+        pitch["ERA_p_in"] = format(round(sum(era_p_in) / len(era_p_in), 2) , '.2f')
+        pitch["BAOpp_p_in"] = format(round(sum(baopp_p_in) / len(baopp_p_in), 3), '.3f')
+    if len(era_p_out) > 0:
+        pitch["ERA_p_out"] = format(round(sum(era_p_out) / len(era_p_out), 2), '.2f')
+        pitch["BAOpp_p_out"] = format(round(sum(baopp_p_out) / len(baopp_p_out), 3), '.3f')
 
     tree_totals = {"batting_stats": dict(bat), "pitching_stats": dict(pitch), "war_sal": dict(war_sal_as)}
     return tree_totals
@@ -267,7 +281,6 @@ def get_ws_wins(trade_tree):
     dates.sort()
     first = str(dates[0])[0:4]
     last = str(dates[-1])[0:4]
-    print(first, last)
     wins = POSTSEASON[(POSTSEASON["yearID"] <= int(last)) & (POSTSEASON["yearID"] >= int(first)) &
                       (POSTSEASON["round"] == "WS") & (POSTSEASON["franchIDwinner"] == from_franch)]
     world_series = []
@@ -279,7 +292,7 @@ def get_ws_wins(trade_tree):
 
 
 """sort fg(with stats) and T transactions by date, then get list of all retroids """
-retro_ids = ["hendm001"]
+retro_ids = ["hickj105"]
 
 
 for retro_id in retro_ids:
@@ -288,11 +301,11 @@ for retro_id in retro_ids:
     # Get player info
     player_info = PLAYERS[PLAYERS["PLAYERID"] == retro_id]
 
-    mlb_id = player_info["key_mlbam"].item()
+    mlb_id = int(player_info["key_mlbam"].item())
     name = player_info["name"].item()
     hof = player_info["HOF"].item()
-    debut = player_info["mlb_played_first"].item()
-    end = player_info["mlb_played_last"].item()
+    debut = int(player_info["mlb_played_first"].item())
+    end = int(player_info["mlb_played_last"].item())
     ongoing = ""
 
     # searches for player's trades in DB
@@ -315,7 +328,7 @@ for retro_id in retro_ids:
         # search DB for player's trade
         tree_data = gt(transac_id=transac_id, franch_id=from_franch, parent_retro=retro_id, parent_transaction=transac_id)
         tree_data.get_trades()
-        traded_with_players = tree_data.get_traded_with_ids_dict()
+        traded_with_players = tree_data.get_traded_with_ids_list()
         if retro_id in traded_with_players:
             traded_with_players.pop(retro_id)
 
@@ -326,7 +339,8 @@ for retro_id in retro_ids:
         trade_totals = stats.get_trade_totals()
         # save initial trade to tree-- add additional stats in first transac search
         trade_tree = []
-        tree_node = {"id": 1, "parentId": "", "name": name, "transaction_id": transac_id, "date": date, "to_team": to_team,
+        tree_node = {"id": 1, "parentId": "", "retro_id": retro_id, "name": name, "transaction_id": transac_id, "date": date,
+                     "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=date)},
                      "to_franch": to_franchise, "traded_with": format_names(retro_id_list=traded_with_players),
                      "trade_in_stats": trade_in_stats, "trade_out_stats": trade_out_stats, "trade_totals": trade_totals}
         trade_tree.append(tree_node)
@@ -366,8 +380,10 @@ for retro_id in retro_ids:
                     ongoing = f"{retro_id}-{transac_id}"
 
         trade_output = {
-            "from_team": from_team,
+            "from_team": {"team_id": from_team, "team_name": format_teams(team=from_team, date=date)},
             "from_franch": from_franch,
+            "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=date)},
+            "date": date,
             "transaction_id": transac_id,
             "tree_id": f"{retro_id}-{transac_id}",
             "largest_tree_id": f"{parent_tree_retro}-{parent_tree_transaction_id}",

@@ -15,7 +15,7 @@ class GetTransactions:
         self.trades = None
         self.traded_from_franchise_list = []
         self.traded_for_ids_dict = {}
-        self.traded_with_ids_dict = {}
+        self.traded_with_ids_list = []
         if self.parent_transaction is not None:
             self.write_parent_tree()
         else:
@@ -50,12 +50,10 @@ class GetTransactions:
             self.traded_for_ids_dict[retro_id] = retro_id
         return self.traded_for_ids_dict
 
-    def get_traded_with_ids_dict(self):
+    def get_traded_with_ids_list(self):
         traded_to_user_choice = self.trades[self.trades["from_franchise"] == self.franch_id]
-        traded_with_ids_list = traded_to_user_choice["player"].tolist()
-        for retro_id in traded_with_ids_list:
-            self.traded_with_ids_dict[retro_id] = retro_id
-        return self.traded_with_ids_dict
+        self.traded_with_ids_list = traded_to_user_choice["player"].tolist()
+        return self.traded_with_ids_list
 
     def get_ptbnl_info(self):
         ptbnl = self.all_transac[self.all_transac["player"] == "PTBNL/Cash"]
