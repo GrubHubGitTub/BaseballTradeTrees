@@ -52,11 +52,11 @@ export const OrgChartComponent = (props, ref) => {
             .data(props.data)
             .onNodeClick((d) => {
               const nodeData = props.data.find(node => node.id === d);
-              const dataIn = nodeData.trade_in_stats
-              const dataOut = nodeData.trade_out_stats
+              const trade_in_stats = nodeData.trade_in_stats
+              const trade_out_stats = nodeData.trade_out_stats
               chart.clearHighlighting()
               chart.setHighlighted(d).render()
-              props.onNodeClick(d, dataIn, dataOut)
+              props.onNodeClick(d, trade_in_stats, trade_out_stats)
             })
             .nodeWidth((d) => 250)
             .initialZoom(0.7)
@@ -64,11 +64,12 @@ export const OrgChartComponent = (props, ref) => {
             .childrenMargin((d) => 40)
             .compactMarginBetween((d) => 15)
             .compactMarginPair((d) => 80)
+             chart.connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
               if ("transaction_id" in d.data) {
                 // create url for player if he has a page
                 let name;
-                if (d.data.retro_id.includes(" ")) {
+                if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
                   name = d.data.name
                 } else {
                   name = "<a href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
@@ -87,6 +88,12 @@ export const OrgChartComponent = (props, ref) => {
                 }
               }
                 // end traded_with check
+
+                // choose stats to display on node
+                // let WAR;
+                // for (var k in d.data.trade_totals.) {
+                  
+                // }
                 
                 return `
                 <div className='treeNode' style="
@@ -105,7 +112,8 @@ export const OrgChartComponent = (props, ref) => {
                     > 
                       ${name}
                       ${traded_with_players}
-                      ${d.data.to_team.team_name}   
+                      ${d.data.to_team.team_name}
+                      ${d.data.trade_totals.other_stats.WAR}   
                     </div>
                   </div>
 
@@ -121,6 +129,43 @@ export const OrgChartComponent = (props, ref) => {
                 </div>
                 `
               } else if ("outcome" in d.data) {
+                return `
+                <!--outer div-->
+                <div style=
+                             "height:${d.height - 32}px;
+                                padding-top:0px;
+                                background-color:white;
+                                border:1px solid lightgray;">
+                <!---->
+                    <img src=" ${
+                                    d.data.imageUrl
+                                  }"
+                         style="margin-top:-0px;margin-left:${d.width / 2 - 30}px;border-radius:100px;width:60px;height:60px;"/>
+                
+                    <div style="margin-right:10px;margin-top:15px;float:right">${
+                        d.data.id
+                        }
+                    </div>
+                
+                    <div style="margin-top:-30px;background-color:#3AB6E3;height:10px;width:${
+                                   d.width - 2
+                                 }px;border-radius:1px"></div>
+                
+                <!--name and centering-->
+                    <div style="padding:10px; padding-top:35px;text-align:center">
+                        <div style="color:#111672;font-size:16px;font-weight:bold"> ${
+                            d.data.name
+                            }
+                        </div>
+                    </div>
+                <!---->
+                    <div style="display:flex;justify-content:space-between;padding-left:15px;padding-right:15px;">
+                        <div> Manages: ${d.data._directSubordinates} 👤</div>
+                        <div> Oversees: ${d.data._totalSubordinates} 👤</div>
+                    </div>
+                </div>
+                `
+              } else{
                 return `
                 <!--outer div-->
                 <div style=
@@ -174,12 +219,120 @@ export const OrgChartComponent = (props, ref) => {
 
 export default function TreePage({ data, tree_data }) {
     const treeData = tree_data.tree_display
-    const [statsIn, setStatsIn] = React.useState([])
-    const [statsOut, setStatsOut] = React.useState([])
+    const connections = tree_data.connections
+    const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stat breakdown")
+    const [statsInPitch, setStatsInPitch] = React.useState("")
+    const [statsOutBat, setStatsOutBat] = React.useState("")
+    const [statsOutPitch, setStatsOutPitch] = React.useState("")
 
-    function onNodeClick(nodeId, dataIn, dataOut) {
-      setStatsIn(dataIn)
-      setStatsOut(dataOut)
+    function onNodeClick(nodeId, trade_in_stats, trade_out_stats) {
+
+      if (trade_out_stats != undefined) {
+        let trade_out_bat_table = [];
+        let trade_out_pitch_table = [];
+        {trade_out_stats.map(player => {
+          if (player.batting_stats.length > 0) {
+            trade_out_bat_table.push(
+              <table>
+                <tr key={"header"}>
+                  {Object.keys(player["batting_stats"][0]).map((key) => (
+                    <th>{key}</th>
+                  ))}
+                </tr>
+                {player.batting_stats.map((item ) => (
+                  <tr key={item.yearID}>
+                    {Object.values(item).map((val) => (
+                      <td>{val}</td>
+                    ))}
+                  </tr>
+                ))}
+              </table>
+            );            
+          } else {
+            trade_out_bat_table = []
+          }
+          if (player.pitching_stats.length > 0) {
+            trade_out_pitch_table.push(
+              <table>
+                <tr key={"header"}>
+                  {Object.keys(player["pitching_stats"][0]).map((key) => (
+                    <th>{key}</th>
+                  ))}
+                </tr>
+                {player.pitching_stats.map((item ) => (
+                  <tr key={item.playerID}>
+                    {Object.values(item).map((val) => (
+                      <td>{val}</td>
+                    ))}
+                  </tr>
+                ))}
+              </table>
+            );            
+          } else {
+            trade_out_pitch_table = []
+          }
+        })}
+        setStatsOutBat(trade_out_bat_table)
+        setStatsOutPitch(trade_out_pitch_table) 
+      } else {
+        setStatsOutBat("No stats - not a transaction")
+        setStatsOutPitch("") 
+      }
+      console.log(trade_in_stats)
+      if (trade_in_stats != undefined) {
+        let trade_in_bat_table = [];
+        let trade_in_pitch_table = [];
+        {trade_in_stats.map(player => {
+
+          if (player.batting_stats.length > 0) {
+            trade_in_bat_table.push(
+              <table>
+                <tr key={"header"}>
+                  {Object.keys(player["batting_stats"][0]).map((key) => (
+                    <th>{key}</th>
+                  ))}
+                </tr>
+
+                {player.batting_stats.map((item ) => (
+                  <tr key={item.yearID}>
+                    {Object.values(item).map((val) => (
+                      <td>{val}</td>
+                    ))}
+                  </tr>
+                ))}
+              </table>
+            );            
+          } else {
+            trade_in_bat_table = []
+          }
+          if (player.pitching_stats.length > 0) {
+            trade_in_pitch_table.push(
+              <table>
+                <tr key={"header"}>
+                  {Object.keys(player["pitching_stats"][0]).map((key) => (
+                    <th>{key}</th>
+                  ))}
+                </tr>
+                {player.pitching_stats.map((item ) => (
+                  <tr key={item.playerID}>
+                    {Object.values(item).map((val) => (
+                      <td>{val}</td>
+                    ))}
+                  </tr>
+                ))}
+              </table>
+            );            
+          } else {
+            trade_in_pitch_table = []
+          }
+        })}
+        console.log(trade_in_bat_table)
+        setStatsInBat(trade_in_bat_table)
+        setStatsInPitch(trade_in_pitch_table) 
+      } else {
+        setStatsInBat("No stats - not a transaction")
+        setStatsInPitch("") 
+      }
     }
 
     return (
@@ -187,21 +340,20 @@ export default function TreePage({ data, tree_data }) {
         <PlayerBar data={data}/>
         
         <div className={styles.statBox}>
-          {statsIn.map(player => {
-            return (
-              <div>
-              <p key={player.id}>name: {player.name}</p>
-              <p>Stats in: {player.WARout}</p>
-              </div>
-            )
-          })}
+          <p>trade out stats</p>
+          {statsOutBat}
+          {statsOutPitch}
+          <p>trade in stats</p>
+          {statsInBat}
+          {statsInPitch}
         </div>
         
         <OrgChartComponent
             data={treeData}
             onNodeClick={onNodeClick}
+            connections={connections}
         />
         </div>
     );
-    };
+  };
     

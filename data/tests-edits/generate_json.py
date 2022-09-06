@@ -32,6 +32,7 @@ def format_names(retro_id_list=None, retro_id= None):
             name = retro_id
         return name
 
+
 def format_teams(team, date):
     year = int(str(date)[0:4])
     team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
@@ -76,7 +77,7 @@ def format_outcomes(outcome_code):
         return outcome_code
 
 
-def get_outcome_data(transaction_list, trade_tree, franchise_choice, parent_retro, parent_transaction):
+def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice, parent_retro, parent_transaction):
     """Takes a list of dictionaries of transactions, and uses the player ID, date and team choice to get a list of outcomes
      for each player"""
     # sort player's transactions by team choice and date and add 1 row outcome to list
@@ -96,7 +97,7 @@ def get_outcome_data(transaction_list, trade_tree, franchise_choice, parent_retr
                 search = gt(transac_id=transaction_id)
                 info = search.get_ptbnl_info()
                 tree_node = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": retro_id,
-                                    "date": date, "transaction_id": transaction_id, "info": info}
+                                    "date": date, "info": info}
                 trade_tree.append(tree_node)
 
             else:
@@ -136,8 +137,6 @@ def get_outcome_data(transaction_list, trade_tree, franchise_choice, parent_retr
                     sorted_transactions = player_search.all_transac.sort_values(by="primary_date")
                     to_choice = sorted_transactions[sorted_transactions["to_franchise"] == franchise_choice]
                     if to_choice.empty and " " in retro_id:
-                        print(parent_node)
-                        print(len(trade_tree))
                         transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": retro_id,
                                             "outcome": "Did not play in MLB"}
                         trade_tree.append(transaction_info)
@@ -157,10 +156,10 @@ def get_outcome_data(transaction_list, trade_tree, franchise_choice, parent_retr
                                                 "outcome": "No further transactions- likely in organization", "date": date}
                             trade_tree.append(transaction_info)
 
-    get_player_outcomes(outcomes, trade_tree, franchise_choice,parent_retro,parent_transaction)
+    get_player_outcomes(connections, outcomes, trade_tree, franchise_choice,parent_retro,parent_transaction)
 
 
-def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, parent_transaction):
+def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, parent_retro, parent_transaction):
     """Takes the list of outcomes to either find more transactions or add node to tradetree"""
     # loop through outcomes- tree line ends or more trades to search and the tree grows
     transactions_list = []
@@ -195,7 +194,7 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, pa
                 # End branch and add node to tree
                 transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": format_names(retro_id=player_id),
                                     "retro_id": player_id, "outcome": format_outcomes(code),
-                                    "date": outcome_date, "transaction_id": transaction_id}
+                                    "date": outcome_date}
                 trade_tree.append(transaction_info)
 
         elif code != "T ":
@@ -205,31 +204,65 @@ def get_player_outcomes(outcomes, trade_tree, franchise_choice, parent_retro, pa
 
         # get new transaction ids to search
         elif code == "T ":
+
             transaction = gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro,
                              parent_transaction=parent_transaction)
             transaction.get_trades()
-            traded_with = transaction.get_traded_with_ids_list()
+            traded_with = format_names(retro_id_list=transaction.get_traded_with_ids_list())
             if player_id in traded_with:
                 traded_with.pop(player_id)
+
             stats = gs(transaction_id=transaction_id, franch_choice=franchise_choice)
             trade_out_stats = stats.get_trade_out_stats()
             trade_in_stats = stats.get_trade_in_stats()
             trade_totals = stats.get_trade_totals()
-            node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
-                         "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
-                         "traded_with": traded_with, "trade_out_stats": trade_out_stats,
-                         "trade_in_stats": trade_in_stats, "trade_totals":trade_totals,
-                         "to_team":{"team_id":to_team, "team_name":format_teams(team=outcome["outcome"]["to_team"].item(),
-                         date=outcome_date)}, "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
 
-            transaction_info = {"node_id": len(trade_tree) + 1, "transaction_id": transaction_id,
-                                "date": outcome_date, "traded_for": transaction.get_traded_for_ids_dict()}
+            # check that the transaction isn't already in next search loop or in tree
+            match = False
+            for node in trade_tree:
+                if "transaction_id" in node and node["transaction_id"] == transaction_id:
+                    match = True
+                    connections.append({"from": len(trade_tree)+1, "to":node["id"], "label": "Tree continues"})
 
-            trade_tree.append(node_info)
-            transactions_list.append(transaction_info)
+                    node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
+                                 "name": format_names(retro_id=player_id), "traded_with": traded_with,
+                                 "to_team": {"team_id": to_team,
+                                             "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
+                                                                       date=outcome_date)},
+                                 "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                    trade_tree.append(node_info)
+
+            if not match:
+                for orgnl in transactions_list:
+                    if orgnl["transaction_id"] == transaction_id:
+                        match = True
+                        connections.append({"from": len(trade_tree) + 1, "to": orgnl["node_id"], "label": "Tree continues"})
+
+                        node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
+                                     "name": format_names(retro_id=player_id), "traded_with": traded_with,
+                                     "to_team": {"team_id": to_team,
+                                                 "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
+                                                                           date=outcome_date)},
+                                     "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                        trade_tree.append(node_info)
+
+            if not match:
+                node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
+                             "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
+                             "traded_with": traded_with, "trade_out_stats": trade_out_stats,
+                             "trade_in_stats": trade_in_stats, "trade_totals": trade_totals,
+                             "to_team": {"team_id": to_team,
+                                         "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
+                                                                   date=outcome_date)},
+                             "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+
+                transaction_info = {"node_id": len(trade_tree) + 1, "transaction_id": transaction_id,
+                                    "date": outcome_date, "traded_for": transaction.get_traded_for_ids_dict()}
+                trade_tree.append(node_info)
+                transactions_list.append(transaction_info)
 
     if len(transactions_list) > 0:
-        get_outcome_data(transactions_list, trade_tree, from_franch, parent_retro,parent_transaction)
+        get_outcome_data(connections, transactions_list, trade_tree, from_franch, parent_retro,parent_transaction)
 
 
 def get_tree_totals(trade_tree):
@@ -285,14 +318,13 @@ def get_ws_wins(trade_tree):
                       (POSTSEASON["round"] == "WS") & (POSTSEASON["franchIDwinner"] == from_franch)]
     world_series = []
     if not wins.empty:
-        ws_year = wins["yearID"]
-        world_series.append(ws_year)
-        print(f"{from_franch} winners in {ws_year}")
+        world_series += wins["yearID"].tolist()
+        print(f"{from_franch} winners in {world_series}")
     return world_series
 
 
 """sort fg(with stats) and T transactions by date, then get list of all retroids """
-retro_ids = ["hickj105"]
+retro_ids = ["simph101"]
 
 
 for retro_id in retro_ids:
@@ -305,7 +337,7 @@ for retro_id in retro_ids:
     name = player_info["name"].item()
     hof = player_info["HOF"].item()
     debut = int(player_info["mlb_played_first"].item())
-    end = int(player_info["mlb_played_last"].item())
+    end = player_info["mlb_played_last"].item()
     ongoing = ""
 
     # searches for player's trades in DB
@@ -328,7 +360,7 @@ for retro_id in retro_ids:
         # search DB for player's trade
         tree_data = gt(transac_id=transac_id, franch_id=from_franch, parent_retro=retro_id, parent_transaction=transac_id)
         tree_data.get_trades()
-        traded_with_players = tree_data.get_traded_with_ids_list()
+        traded_with_players = format_names(retro_id_list=tree_data.get_traded_with_ids_list())
         if retro_id in traded_with_players:
             traded_with_players.pop(retro_id)
 
@@ -341,7 +373,7 @@ for retro_id in retro_ids:
         trade_tree = []
         tree_node = {"id": 1, "parentId": "", "retro_id": retro_id, "name": name, "transaction_id": transac_id, "date": date,
                      "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=date)},
-                     "to_franch": to_franchise, "traded_with": format_names(retro_id_list=traded_with_players),
+                     "to_franch": to_franchise, "traded_with": traded_with_players,
                      "trade_in_stats": trade_in_stats, "trade_out_stats": trade_out_stats, "trade_totals": trade_totals}
         trade_tree.append(tree_node)
 
@@ -352,10 +384,10 @@ for retro_id in retro_ids:
                                "transaction_id": transac_id, "date": date, "traded_with": traded_with_players,
                                "traded_for": tree_data.get_traded_for_ids_dict()}
         transactions_list.append(transaction_details)
-
+        connections = []
 
         # start the search loop
-        get_outcome_data(transaction_list=transactions_list, trade_tree=trade_tree, franchise_choice=from_franch,
+        get_outcome_data(connections=connections, transaction_list=transactions_list, trade_tree=trade_tree, franchise_choice=from_franch,
                          parent_retro=retro_id, parent_transaction=transac_id)
 
         #  calculate totals for tree
@@ -388,9 +420,11 @@ for retro_id in retro_ids:
             "tree_id": f"{retro_id}-{transac_id}",
             "largest_tree_id": f"{parent_tree_retro}-{parent_tree_transaction_id}",
             "total_stats": tree_totals,
+            "world_series_wins": ws_wins,
             "tree_details": {
                 "tree_id": f"{retro_id}-{transac_id}",
-                "tree_display": trade_tree
+                "tree_display": trade_tree,
+                "connections": connections
             }
         }
         all_trades_output.append(trade_output)

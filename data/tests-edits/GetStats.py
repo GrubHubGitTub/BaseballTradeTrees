@@ -1,5 +1,5 @@
 import pandas as pd
-transactions = pd.read_json("stats_transactions_25082022.json")
+transactions = pd.read_json("stats_transactions_06092022.json")
 
 
 class GetStats:
@@ -17,25 +17,31 @@ class GetStats:
         self.transaction = transactions[transactions["transaction_ID"] == self.transaction_id]
 
     def get_trade_out_stats(self):
-        trade_out = self.transaction[self.transaction["from_franchise"] == self.franc_choice]
+        trade_out = self.transaction[(self.transaction["from_franchise"] == self.franc_choice) & (self.transaction["stats"] != "")]
         if trade_out.empty:
-            return []
+            self.trade_out_stats = []
+            return self.trade_out_stats
         else:
             self.trade_out_stats = trade_out["stats"].tolist()
             return self.trade_out_stats
 
     def get_trade_in_stats(self):
-        trade_in = self.transaction[self.transaction["to_franchise"] == self.franc_choice]
-        self.trade_in_stats = trade_in["stats"].tolist()
-        return self.trade_in_stats
+        trade_in = self.transaction[(self.transaction["to_franchise"] == self.franc_choice) & (self.transaction["stats"] != "")]
+        if trade_in.empty:
+            self.trade_in_stats = []
+            return self.trade_in_stats
+        else:
+            self.trade_in_stats = trade_in["stats"].tolist()
+            print(self.trade_in_stats)
+            return self.trade_in_stats
 
     def get_trade_totals(self):
         self.transaction_total = {"batting_stats":{ "G":0, "AB":0, "R":0, "H":0, "2B":0, "3B":0, "HR":0, "RBI":0, "SB":0,
-                                               "BB":0, "SO":0, "IBB":0, "HBP":0},
-                             "pitching_stats":{ "W":0, "L":0, "G":0, "GS":0, "CG":0, "SHO":0, "SV":0, "IPouts":0, "H":0,
+                                               "BB":0, "SO":0, "IBB":0, "HBP":0,},
+                                  "pitching_stats":{ "W":0, "L":0, "G":0, "GS":0, "CG":0, "SHO":0, "SV":0, "IPouts":0, "H":0,
                                                 "ER":0, "HR":0, "BB":0, "SO":0, "HBP":0},
-                             "pitching_other":{"BAOpp":{"in":[],"out":[]}, "ERA":{"in":[],"out":[]}},
-                             "other_stats":{"WAR":0, "salary":0, "allstars":0} }
+                                  "pitching_other":{"BAOpp":{"in":[],"out":[]}, "ERA":{"in":[],"out":[]}},
+                                  "other_stats":{"WAR":0, "salary":0, "allstars":0} }
         for stats in self.trade_out_stats:
             if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
                 for statline in stats["batting_stats"]:
@@ -52,6 +58,11 @@ class GetStats:
                     self.transaction_total["batting_stats"]["SO"] -= int(statline["SO"])
                     self.transaction_total["batting_stats"]["IBB"] -= int(statline["IBB"])
                     self.transaction_total["batting_stats"]["HBP"] -= int(statline["HBP"])
+                    self.transaction_total["other_stats"]["WAR"] -=  statline["WAR"]
+                    self.transaction_total["other_stats"]["salary"] -= statline["salary"]
+                    if statline["All Star"] == "Yes":
+                        self.transaction_total["other_stats"]["allstars"] -= 1
+
             if "pitching_stats" in stats and len(stats["pitching_stats"]) > 0:
                 for statline in stats["pitching_stats"]:
                     self.transaction_total["pitching_stats"]["W"] -= int(statline["W"])
@@ -68,20 +79,13 @@ class GetStats:
                     self.transaction_total["pitching_stats"]["BB"] -= int(statline["BB"])
                     self.transaction_total["pitching_stats"]["SO"] -= int(statline["SO"])
                     self.transaction_total["pitching_stats"]["HBP"] -= int(statline["HBP"])
-
+                    self.transaction_total["other_stats"]["WAR"] -= statline["WAR"]
+                    self.transaction_total["other_stats"]["salary"] -= statline["salary"]
                     self.transaction_total["pitching_other"]["BAOpp"]["out"].append(statline["BAOpp"])
                     self.transaction_total["pitching_other"]["ERA"]["out"].append(statline["ERA"])
-
-            if "pwar_salary" in stats and len("pwar_salary") > 0:
-                for statline in stats["pwar_salary"]:
-                    self.transaction_total["other_stats"]["WAR"] -= round(statline["WAR"], 2)
-                    self.transaction_total["other_stats"]["salary"] -= statline["salary"]
-            if "bwar_salary" in stats and len("bwar_salary") > 0:
-                for statline in stats["bwar_salary"]:
-                    self.transaction_total["other_stats"]["WAR"] -= round(statline["WAR"], 2)
-                    self.transaction_total["other_stats"]["salary"] -= statline["salary"]
-            if "allstar" in stats:
-                self.transaction_total["other_stats"]["allstars"] -= len(stats["allstar"])
+                    if statline["All Star"] == "Yes":
+                        if "batting_stats" not in stats:
+                            self.transaction_total["other_stats"]["allstars"] -= 1
 
         for stats in self.trade_in_stats:
             if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
@@ -99,6 +103,11 @@ class GetStats:
                     self.transaction_total["batting_stats"]["SO"] += int(statline["SO"])
                     self.transaction_total["batting_stats"]["IBB"] += int(statline["IBB"])
                     self.transaction_total["batting_stats"]["HBP"] += int(statline["HBP"])
+                    self.transaction_total["other_stats"]["WAR"] += statline["WAR"]
+                    self.transaction_total["other_stats"]["salary"] += statline["salary"]
+                    if statline["All Star"] == "Yes":
+                            self.transaction_total["other_stats"]["allstars"] += 1
+
             if "pitching_stats" in stats and len(stats["pitching_stats"]) > 0:
                 for statline in stats["pitching_stats"]:
                     self.transaction_total["pitching_stats"]["W"] += int(statline["W"])
@@ -114,20 +123,14 @@ class GetStats:
                     self.transaction_total["pitching_stats"]["HR"] += int(statline["HR"])
                     self.transaction_total["pitching_stats"]["BB"] += int(statline["BB"])
                     self.transaction_total["pitching_stats"]["SO"] += int(statline["SO"])
-
+                    self.transaction_total["pitching_stats"]["HBP"] += int(statline["HBP"])
                     self.transaction_total["pitching_other"]["BAOpp"]["in"].append(statline["BAOpp"])
                     self.transaction_total["pitching_other"]["ERA"]["in"].append(statline["ERA"])
-                    self.transaction_total["pitching_stats"]["HBP"] += int(statline["HBP"])
-            if "pwar_salary" in stats and len("pwar_salary") > 0:
-                for statline in stats["pwar_salary"]:
                     self.transaction_total["other_stats"]["WAR"] += statline["WAR"]
                     self.transaction_total["other_stats"]["salary"] += statline["salary"]
-            if "bwar_salary" in stats and len("bwar_salary") > 0:
-                for statline in stats["bwar_salary"]:
-                    self.transaction_total["other_stats"]["WAR"] += statline["WAR"]
-                    self.transaction_total["other_stats"]["salary"] += statline["salary"]
-            if "allstar" in stats:
-                self.transaction_total["other_stats"]["allstars"] += len(stats["allstar"])
+                    if statline["All Star"] == "Yes":
+                        if "batting_stats" not in stats:
+                            self.transaction_total["other_stats"]["allstars"] += 1
 
         if len(self.transaction_total["pitching_other"]["BAOpp"]["in"]) > 0:
             self.transaction_total["pitching_other"]["BAOpp"]["in"] = \
