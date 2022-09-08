@@ -23,6 +23,15 @@ class GetStats:
             return self.trade_out_stats
         else:
             self.trade_out_stats = trade_out["stats"].tolist()
+            for line in self.trade_out_stats:
+                if "pitching_stats" in line:
+                    for year in line["pitching_stats"]:
+                        year["ERA"] = round(year["ERA"], 2)
+                        year["BAOpp"] = round(year["BAOpp"], 3)
+                        year["WAR"] = round(year["WAR"], 2)
+                if "batting_stats" in line:
+                    for year in line["batting_stats"]:
+                        year["WAR"] = round(year["WAR"], 2)
             return self.trade_out_stats
 
     def get_trade_in_stats(self):
@@ -32,7 +41,16 @@ class GetStats:
             return self.trade_in_stats
         else:
             self.trade_in_stats = trade_in["stats"].tolist()
-            print(self.trade_in_stats)
+            for line in self.trade_in_stats:
+                if "pitching_stats" in line:
+                    for year in line["pitching_stats"]:
+                        year["ERA"] = round(year["ERA"], 2)
+                        year["BAOpp"] = round(year["BAOpp"], 3)
+                        year["WAR"] = round(year["WAR"], 2)
+                if "batting_stats" in line:
+                    for year in line["batting_stats"]:
+                        year["WAR"] = round(year["WAR"], 2)
+                print(line)
             return self.trade_in_stats
 
     def get_trade_totals(self):
