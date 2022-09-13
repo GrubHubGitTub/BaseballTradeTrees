@@ -50,7 +50,6 @@ class GetStats:
                 if "batting_stats" in line:
                     for year in line["batting_stats"]:
                         year["WAR"] = round(year["WAR"], 2)
-                print(line)
             return self.trade_in_stats
 
     def get_trade_totals(self):

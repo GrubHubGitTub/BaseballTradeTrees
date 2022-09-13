@@ -5,8 +5,9 @@ transactions = pd.read_csv("stats_transactions_06092022.csv")
 
 class GetTransactions:
 
-    def __init__(self, transac_id=None, retro_id=None, franch_id=None, parent_retro=None, parent_transaction=None):
+    def __init__(self, intial_transac_id=None, transac_id=None, retro_id=None, franch_id=None, parent_retro=None, parent_transaction=None):
         self.player = retro_id
+        self.initial_transac_id= intial_transac_id
         self.transac_id = transac_id
         self.franch_id = franch_id
         self.parent_retro = parent_retro
@@ -22,19 +23,29 @@ class GetTransactions:
             self.get_transactions()
 
     def write_parent_tree(self):
-        parents = pd.read_csv("test.csv")
-        parent_row = parents[(parents["transaction_ID"] == self.transac_id) & (parents["from_franch"] == self.franch_id)]
-        if parent_row.empty:
+        parents = pd.read_csv("ParentTrees.csv")
+        try:
+            parent_row = parents[(parents["transaction_ID"] == self.transac_id) & (parents["from_franch"] == self.franch_id)]
+        except ValueError:
             row = [self.transac_id, self.franch_id, self.parent_retro, self.parent_transaction]
-            with open("test.csv", "a", newline='') as f:
+            with open("ParentTrees.csv", "a", newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(row)
         else:
-            pass
+            if parent_row.empty:
+                row = [self.transac_id, self.franch_id, self.parent_retro, self.parent_transaction]
+                with open("ParentTrees.csv", "a", newline='') as f:
+                    writer = csv.writer(f)
+                    writer.writerow(row)
+            else:
+                pass
         self.get_transactions()
 
     def get_transactions(self):
-        if self.player is not None:
+        if self.initial_transac_id is not None:
+            self.all_transac = transactions[(transactions.player == self.player) &
+                                            (transactions.transaction_ID == self.initial_transac_id)]
+        elif self.player is not None:
             self.all_transac = transactions[transactions.player == self.player]
         elif self.transac_id is not None:
             self.all_transac = transactions[transactions.transaction_ID == self.transac_id]
