@@ -219,6 +219,7 @@ export const OrgChartComponent = (props, ref) => {
 
 export default function TreePage({ data, tree_data }) {
     const treeData = tree_data.tree_display
+    console.log(treeData)
     const connections = tree_data.connections
     const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stat breakdown")
     const [statsInPitch, setStatsInPitch] = React.useState("")
@@ -278,7 +279,6 @@ export default function TreePage({ data, tree_data }) {
         setStatsOutBat("No stats - not a transaction")
         setStatsOutPitch("") 
       }
-      console.log(trade_in_stats)
       if (trade_in_stats != undefined) {
         let trade_in_bat_table = [];
         let trade_in_pitch_table = [];
@@ -326,7 +326,6 @@ export default function TreePage({ data, tree_data }) {
             trade_in_pitch_table = []
           }
         })}
-        console.log(trade_in_bat_table)
         setStatsInBat(trade_in_bat_table)
         setStatsInPitch(trade_in_pitch_table) 
       } else {
