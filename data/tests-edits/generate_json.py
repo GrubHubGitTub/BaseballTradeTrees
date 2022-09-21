@@ -147,13 +147,13 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                         if last_date <= 20150000:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
-                                                "outcome": "No further transactions- likely retired", "date": date}
+                                                "outcome": "No further transactions, likely retired", "date": date}
                             trade_tree.append(transaction_info)
 
                         else:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
-                                                "outcome": "No further transactions- likely in organization", "date": date}
+                                                "outcome": "No further transactions, likely in organization", "date": date}
                             trade_tree.append(transaction_info)
 
     get_player_outcomes(connections, outcomes, trade_tree, franchise_choice,parent_retro,parent_transaction)
@@ -224,12 +224,18 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                     match = True
                     connections.append({"from": len(trade_tree)+1, "to":node["id"], "label": "Tree continues"})
 
+                    if type(outcome["outcome"]["to_franchise"].item()) == float:
+                        print("yes")
+                        to_franchise = ""
+                    else:
+                        to_franchise = outcome["outcome"]["to_franchise"].item()
+
                     node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                  "name": format_names(retro_id=player_id), "traded_with": traded_with,
                                  "to_team": {"team_id": to_team,
                                              "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
                                                                        date=outcome_date)},
-                                 "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                                 "to_franchise":to_franchise, "date": outcome_date}
                     trade_tree.append(node_info)
 
             if not match:
@@ -238,15 +244,26 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                         match = True
                         connections.append({"from": len(trade_tree) + 1, "to": orgnl["node_id"], "label": "Tree continues"})
 
+                        if type(outcome["outcome"]["to_franchise"].item()) == float:
+                            print("yes")
+                            to_franchise = ""
+                        else:
+                            to_franchise = outcome["outcome"]["to_franchise"].item()
+
                         node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                      "name": format_names(retro_id=player_id), "traded_with": traded_with,
                                      "to_team": {"team_id": to_team,
                                                  "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
                                                                            date=outcome_date)},
-                                     "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                                     "to_franchise": to_franchise, "date": outcome_date}
                         trade_tree.append(node_info)
 
             if not match:
+                if type(outcome["outcome"]["to_franchise"].item()) == float:
+                    print("yes")
+                    to_franchise = ""
+                else:
+                    to_franchise = outcome["outcome"]["to_franchise"].item()
                 node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                              "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
                              "traded_with": traded_with, "trade_out_stats": trade_out_stats,
@@ -254,7 +271,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                              "to_team": {"team_id": to_team,
                                          "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
                                                                    date=outcome_date)},
-                             "to_franchise": outcome["outcome"]["to_franchise"].item(), "date": outcome_date}
+                             "to_franchise": to_franchise, "date": outcome_date}
 
                 transaction_info = {"node_id": len(trade_tree) + 1, "transaction_id": transaction_id,
                                     "date": outcome_date, "traded_for": transaction.get_traded_for_ids_dict()}
@@ -343,7 +360,7 @@ for player_transaction in retro_ids[index:]:
         parent = player_transaction["player"]
         to_team = player_transaction["to_team"]
         to_franchise = player_transaction["to_franchise"]
-        tree_name = player_transaction["player"] + "-" + str(transac_id)
+        tree_name = player_transaction["player"] + "_" + str(transac_id)
 
         # Get player info
         player_info = PLAYERS[PLAYERS["PLAYERID"] == player_transaction["player"]]
@@ -419,8 +436,8 @@ for player_transaction in retro_ids[index:]:
         ongoing = ""
         for node in trade_tree:
             if "outcome" in node:
-                if node["outcome"] == "No further transactions- likely in organization":
-                    ongoing = f"{player_transaction['player']}-{transac_id}"
+                if node["outcome"] == "No further transactions, likely in organization":
+                    ongoing = f"{player_transaction['player']}_{transac_id}"
 
         trade_output = {
             "from_team": {"team_id": from_team, "team_name": format_teams(team=from_team, date=date)},
@@ -429,12 +446,12 @@ for player_transaction in retro_ids[index:]:
             "date": date,
             "ongoing": ongoing,
             "transaction_id": transac_id,
-            "tree_id": f"{player_transaction['player']}-{transac_id}",
-            "largest_tree_id": f"{parent_tree_retro}-{parent_tree_transaction_id}",
+            "tree_id": f"{player_transaction['player']}_{transac_id}",
+            "largest_tree_id": f"{parent_tree_retro}_{parent_tree_transaction_id}",
             "total_stats": tree_totals,
             "world_series_wins": ws_wins,
             "tree_details": {
-                "tree_id": f"{player_transaction['player']}-{transac_id}",
+                "tree_id": f"{player_transaction['player']}_{transac_id}",
                 "tree_display": trade_tree,
                 "connections": connections
             }
@@ -459,10 +476,13 @@ for player_transaction in retro_ids[index:]:
                 "trades": [trade_output]
             }
             all_data.append(output)
-            print(trade_tree)
 
 with open("output.json", "r+") as file:
-    json.dump(all_data, file, indent=4)
+    json.dump(all_data, file)
+
+# df = pd.read_json("output.json")
+# df.to_csv("outputcsv.csv", index= False)
+
 
         # with open("output.json", "r+") as file:
         #     file_data = json.load(file)

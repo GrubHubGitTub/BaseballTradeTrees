@@ -1,13 +1,12 @@
 import React from "react";
+import player_data from "../../../data/output.json"
 import PlayerBar from '../../../components/PlayerBar';
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3000/api/players');
-  const all_data = await res.json();
 
-  const paths = all_data.map(player => {
+  const paths = player_data.map(player => {
     return {
       params: { pid: player.retro_id }
     }
@@ -21,14 +20,13 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const pid = context.params.pid;
-  const res = await fetch('http://localhost:3000/api/players/' + pid);
-  const data = await res.json();
+  const filtered = player_data.filter((p) => p.retro_id === pid || p.mlbid === pid)
+  const data = filtered[0]
   return { props: {data} }
 }
 
 
 export default function PlayerPage({ data }) {
-  console.log(data)
     const trade_num = data.trades.length
     const pid = data.retro_id
 
@@ -36,6 +34,7 @@ export default function PlayerPage({ data }) {
       return (
       <TradeCard data = {trade}
                   pid = {pid}
+                  key = {pid}
       />
       )
     })

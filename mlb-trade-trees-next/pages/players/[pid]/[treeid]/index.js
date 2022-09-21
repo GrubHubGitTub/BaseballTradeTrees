@@ -1,4 +1,5 @@
 import { OrgChart } from "d3-org-chart";
+import player_data from "../../../../data/output.json"
 import React, {useEffect, useRef} from "react";
 import * as d3 from 'd3'
 import PlayerBar from "../../../../components/PlayerBar";
@@ -6,9 +7,7 @@ import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
 
 export const getStaticPaths = async (context) => {
-    const res = await fetch('http://localhost:3000/api/players');
-    const all_data = await res.json();
-    const paths = all_data
+    const paths = player_data
       .map((player) =>
         player.trades.map((trade) => ({
           params: {
@@ -24,8 +23,8 @@ export const getStaticPaths = async (context) => {
   
 export const getStaticProps = async (context) => {
     const pid = context.params.pid;
-    const res = await fetch('http://localhost:3000/api/players/' + pid);
-    const data = await res.json();
+    const filtered = player_data.filter((p) => p.retro_id === pid || p.mlbid === pid)
+    const data = filtered[0]
     let tree_data;
 
     data.trades.forEach((element) => {
@@ -40,17 +39,19 @@ export const getStaticProps = async (context) => {
             
 export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
-    let chart = null;
+    // let chart = null;
 
     useEffect(() => {
+        // let chart = null
         if (props.data && d3Container.current) {
-        if (!chart) {
-            chart = new OrgChart();
-        }
+        // if (!chart) {
+            let chart = new OrgChart();
+        // }
         chart
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {
+              console.log(d)
               const nodeData = props.data.find(node => node.id === d);
               const trade_in_stats = nodeData.trade_in_stats
               const trade_out_stats = nodeData.trade_out_stats
@@ -219,7 +220,6 @@ export const OrgChartComponent = (props, ref) => {
 
 export default function TreePage({ data, tree_data }) {
     const treeData = tree_data.tree_display
-    console.log(treeData)
     const connections = tree_data.connections
     const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stat breakdown")
     const [statsInPitch, setStatsInPitch] = React.useState("")
@@ -237,13 +237,13 @@ export default function TreePage({ data, tree_data }) {
               <table>
                 <tr key={"header"}>
                   {Object.keys(player["batting_stats"][0]).map((key) => (
-                    <th>{key}</th>
+                    <th key={key}>{key}</th>
                   ))}
                 </tr>
                 {player.batting_stats.map((item ) => (
                   <tr key={item.yearID}>
                     {Object.values(item).map((val) => (
-                      <td>{val}</td>
+                      <td key={val}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -257,13 +257,13 @@ export default function TreePage({ data, tree_data }) {
               <table>
                 <tr key={"header"}>
                   {Object.keys(player["pitching_stats"][0]).map((key) => (
-                    <th>{key}</th>
+                    <th key={key}>{key}</th>
                   ))}
                 </tr>
                 {player.pitching_stats.map((item ) => (
                   <tr key={item.playerID}>
                     {Object.values(item).map((val) => (
-                      <td>{val}</td>
+                      <td key={val}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -289,14 +289,14 @@ export default function TreePage({ data, tree_data }) {
               <table>
                 <tr key={"header"}>
                   {Object.keys(player["batting_stats"][0]).map((key) => (
-                    <th>{key}</th>
+                    <th key={key}>{key}</th>
                   ))}
                 </tr>
 
                 {player.batting_stats.map((item ) => (
                   <tr key={item.yearID}>
                     {Object.values(item).map((val) => (
-                      <td>{val}</td>
+                      <td key={val}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -310,13 +310,13 @@ export default function TreePage({ data, tree_data }) {
               <table>
                 <tr key={"header"}>
                   {Object.keys(player["pitching_stats"][0]).map((key) => (
-                    <th>{key}</th>
+                    <th key={key}>{key}</th>
                   ))}
                 </tr>
                 {player.pitching_stats.map((item ) => (
                   <tr key={item.playerID}>
                     {Object.values(item).map((val) => (
-                      <td>{val}</td>
+                      <td key={val}>{val}</td>
                     ))}
                   </tr>
                 ))}

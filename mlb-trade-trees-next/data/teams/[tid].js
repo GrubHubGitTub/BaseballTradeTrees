@@ -1,0 +1,50 @@
+// import Link from "next/link";
+// import React from "react";
+
+// export async function getServerSideProps(context) {
+//     const tid = context.query.tid
+//     const res= await fetch(`https://statsapi.mlb.com/api/v1/teams/${tid}/roster`);
+//     const data = await res.json();
+//     const roster = data.roster
+
+//     var combined_ids = []
+//     await Promise.all(roster.map(async function(player) {
+//         const mlbid = Number(player.person.id)
+//         const res= await fetch(`http://localhost:3000/api/players/${mlbid}`);
+//         if (res.status === 200) {
+//             const playerdata = await res.json();
+//             const pid = playerdata.retro_id;
+//             const name = player.person.fullName
+//             const position = player.position.name
+//             const number = player.jerseyNumber
+//             const combined = {retroid: pid, mlbid: mlbid, name: name, position:position, number:number}
+//             combined_ids.push(combined)
+//             }
+//         }))
+//     return ({props: {combined_ids}})
+// }
+
+//   export default function TeamPage(props) {
+//     const roster = props.combined_ids
+
+//     return (
+//         <div>
+//             {roster.map(player => {
+//                 return (
+//                     <div>
+//                         <p>{player.name}</p>
+//                         <Link 
+//                             key= {player.PLAYERID}
+//                             href={{
+//                             pathname: '/players/[pid]',
+//                             query: { pid: player.retroid } }}> 
+//                                 <a>player page</a> 
+//                         </Link>
+//                         <p>{player.position}</p>
+//                         <p>{player.number}</p>
+//                     </div>
+//                 )
+//             })}
+//         </div>
+//     )
+//   }

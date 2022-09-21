@@ -1,5 +1,14 @@
-import player_data from '../../../data/output.json'
+// // import player_data from '../../../data/output.json'
+// const { connectToDatabase } = require('../../../lib/mongodb');
+// const ObjectId = require('mongodb').ObjectId;
 
-export default (req, res) => {
-    res.status(200).json(player_data["player_data"])
-  }
+// export default async (req, res) => {
+//     let { db } = await connectToDatabase();
+//     const players = await db
+//     .collection("TreeInfo")
+//     .find({})
+//     // .sort({ metacritic: -1 })
+//     .limit(100)
+//     .toArray();
+//     res.status(200).json(players)
+//   }
