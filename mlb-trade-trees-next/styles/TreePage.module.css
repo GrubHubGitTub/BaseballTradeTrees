@@ -1,13 +1,54 @@
-.statBox {
-    font-size: x-small;
-    width: auto;
-    height: auto;
-    position:absolute;
+.treePage{
+    display: flex;
+    flex-direction: column;
+}
+
+.treeContainer{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 95%;
+    border: 1px solid black
+
+}
+
+.statsContainer {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .statsContainer {
+      flex-direction: column;
+    }
+  }
+
+
+.statBoxOut {
+    margin-right: 5px;
+    overflow-x:auto;
+}
+
+.statBoxIn {
+    overflow-x:auto;
+}
+
+.statTable{
+    font-size: 0.5rem;
+}
+
+.statTable th{
+    text-align: left;
+}
+
+.statTable tr:hover {
+    background-color: lightblue;
 }
 
 .treeNode{
-
-   
     border:1px solid lightgray;
-
 }

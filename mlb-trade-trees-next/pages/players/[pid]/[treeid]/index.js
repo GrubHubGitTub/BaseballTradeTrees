@@ -29,29 +29,26 @@ export const getStaticProps = async (context) => {
 
     data.trades.forEach((element) => {
         if (element.tree_id == context.params.treeid) {
-            tree_data = element.tree_details
+            tree_data = element
         }
     })
-
     return { props: {data, tree_data} }
 }
 
             
 export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
-    // let chart = null;
+    let chart = null;
 
     useEffect(() => {
-        // let chart = null
         if (props.data && d3Container.current) {
-        // if (!chart) {
-            let chart = new OrgChart();
-        // }
+        if (!chart) {
+            chart = new OrgChart();
+        }
         chart
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {
-              console.log(d)
               const nodeData = props.data.find(node => node.id === d);
               const trade_in_stats = nodeData.trade_in_stats
               const trade_out_stats = nodeData.trade_out_stats
@@ -212,18 +209,19 @@ export const OrgChartComponent = (props, ref) => {
     }, [props.data, d3Container.current]);
     
     return (
-        <div>
-        <div ref={d3Container} />
-        </div>
+        
+        <div ref={d3Container} className={styles.treeContainer}/>
+        
     );
     };
 
 export default function TreePage({ data, tree_data }) {
-    const treeData = tree_data.tree_display
-    const connections = tree_data.connections
-    const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stat breakdown")
+    console.log(tree_data)
+    const treeDisplay = tree_data.tree_details.tree_display
+    const connections = tree_data.tree_details.connections
+    const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stats")
     const [statsInPitch, setStatsInPitch] = React.useState("")
-    const [statsOutBat, setStatsOutBat] = React.useState("")
+    const [statsOutBat, setStatsOutBat] = React.useState("Click a transaction to view stats")
     const [statsOutPitch, setStatsOutPitch] = React.useState("")
 
     function onNodeClick(nodeId, trade_in_stats, trade_out_stats) {
@@ -234,7 +232,7 @@ export default function TreePage({ data, tree_data }) {
         {trade_out_stats.map(player => {
           if (player.batting_stats.length > 0) {
             trade_out_bat_table.push(
-              <table>
+              <table className={styles.statTable}>
                 <tr key={"header"}>
                   {Object.keys(player["batting_stats"][0]).map((key) => (
                     <th key={key}>{key}</th>
@@ -242,8 +240,8 @@ export default function TreePage({ data, tree_data }) {
                 </tr>
                 {player.batting_stats.map((item ) => (
                   <tr key={item.yearID}>
-                    {Object.values(item).map((val) => (
-                      <td key={val}>{val}</td>
+                    {Object.values(item).map((val,i) => (
+                      <td key={i}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -254,7 +252,7 @@ export default function TreePage({ data, tree_data }) {
           }
           if (player.pitching_stats.length > 0) {
             trade_out_pitch_table.push(
-              <table>
+              <table className={styles.statTable}>
                 <tr key={"header"}>
                   {Object.keys(player["pitching_stats"][0]).map((key) => (
                     <th key={key}>{key}</th>
@@ -262,8 +260,8 @@ export default function TreePage({ data, tree_data }) {
                 </tr>
                 {player.pitching_stats.map((item ) => (
                   <tr key={item.playerID}>
-                    {Object.values(item).map((val) => (
-                      <td key={val}>{val}</td>
+                    {Object.values(item).map((val, i) => (
+                      <td key={i}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -286,7 +284,7 @@ export default function TreePage({ data, tree_data }) {
 
           if (player.batting_stats.length > 0) {
             trade_in_bat_table.push(
-              <table>
+              <table className={styles.statTable}>
                 <tr key={"header"}>
                   {Object.keys(player["batting_stats"][0]).map((key) => (
                     <th key={key}>{key}</th>
@@ -295,8 +293,8 @@ export default function TreePage({ data, tree_data }) {
 
                 {player.batting_stats.map((item ) => (
                   <tr key={item.yearID}>
-                    {Object.values(item).map((val) => (
-                      <td key={val}>{val}</td>
+                    {Object.values(item).map((val, i) => (
+                      <td key={i}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -307,7 +305,7 @@ export default function TreePage({ data, tree_data }) {
           }
           if (player.pitching_stats.length > 0) {
             trade_in_pitch_table.push(
-              <table>
+              <table className={styles.statTable}>
                 <tr key={"header"}>
                   {Object.keys(player["pitching_stats"][0]).map((key) => (
                     <th key={key}>{key}</th>
@@ -315,8 +313,8 @@ export default function TreePage({ data, tree_data }) {
                 </tr>
                 {player.pitching_stats.map((item ) => (
                   <tr key={item.playerID}>
-                    {Object.values(item).map((val) => (
-                      <td key={val}>{val}</td>
+                    {Object.values(item).map((val,i) => (
+                      <td key={i}>{val}</td>
                     ))}
                   </tr>
                 ))}
@@ -335,24 +333,28 @@ export default function TreePage({ data, tree_data }) {
     }
 
     return (
-        <div>
-        <PlayerBar data={data}/>
-        
-        <div className={styles.statBox}>
-          <p>trade out stats</p>
-          {statsOutBat}
-          {statsOutPitch}
-          <p>trade in stats</p>
-          {statsInBat}
-          {statsInPitch}
-        </div>
-        
-        <OrgChartComponent
-            data={treeData}
-            onNodeClick={onNodeClick}
-            connections={connections}
-        />
-        </div>
+        <div className={styles.treePage}>
+
+          <PlayerBar data={data} tree_data={tree_data}/>
+          
+          <OrgChartComponent
+              data={treeDisplay}
+              onNodeClick={onNodeClick}
+              connections={connections}
+          />
+        <div className={styles.statsContainer}> 
+          <div className={styles.statBoxOut}>
+              <p>Players Traded Away</p>
+              {statsOutBat}
+              {statsOutPitch}
+          </div>
+          <div className={styles.statBoxIn}>
+              <p>Players Traded For</p>
+              {statsInBat}
+              {statsInPitch}
+          </div>
+        </div> 
+      </div>
     );
   };
     

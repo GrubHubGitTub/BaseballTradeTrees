@@ -1,8 +1,6 @@
 .PlayerBar {
-    height: auto;
-    width: auto;
-    display: inline-block;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
     position: relative;
     background-color: #fff;
     color: black;

@@ -5,6 +5,31 @@
     font-family: 'Poppins', sans-serif;
   }
 
+table {
+    margin-bottom: 5px;
+}
+table, td {
+    border: 0.2px solid;
+    border-color: grey;
+  }
+
+  td{
+    padding: 0px 2px
+  }
+
+th {
+    border: 0.2px solid;
+    background-color:  lightgrey;
+    border-color: black;
+    padding: 0.5px 2px;
+
+  }
+
+table {
+    border-collapse: collapse;
+  }
+
+
 .navbar {
     height: 50px;
     width: 100%;
@@ -128,11 +153,12 @@
 }
 
 .footer {
-    position: fixed;
+    /* position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
+    width: 100%; */
     text-align: center;
+    margin-top: auto;
   }
 
 .footer--retro{

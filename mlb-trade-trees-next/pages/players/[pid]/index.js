@@ -29,7 +29,7 @@ export const getStaticProps = async (context) => {
 export default function PlayerPage({ data }) {
     const trade_num = data.trades.length
     const pid = data.retro_id
-
+    console.log(data)
     const tradeCards = data.trades.map(trade => {
       return (
       <TradeCard data = {trade}
@@ -41,10 +41,12 @@ export default function PlayerPage({ data }) {
 
     return (
         <div>
-          <PlayerBar data={data} />
-          <h2>Most recent retorosheet data/ node of longest ongoing tree</h2>
-          <h3>{data.name} was traded {trade_num} {trade_num == 1 ? "time" : "times"}</h3>
-          <div className={styles.allCards}>{tradeCards}</div>
+          {/* <PlayerBar data={data} /> */}
+          {/* <h2>Most recent retorosheet data/ node of longest ongoing tree</h2> */}
+          <h3 className={styles.playerHead}>{data.name}'s trade trees:</h3>
+          <div className={styles.cardContainer}>
+            {tradeCards}
+          </div>
         </div>
   );
 };
