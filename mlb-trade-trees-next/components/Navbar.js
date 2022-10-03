@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Link from 'next/link'
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 export default function Navbar({players}) {
 
@@ -19,6 +20,13 @@ export default function Navbar({players}) {
             setFilteredData(newFilter);
         }
     };
+
+    function randomButton() {
+        var randompage = players[Math.floor(Math.random()*players.length)]
+        var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
+        var pid = randomid.slice(0,8)
+        return `/players/${pid}/${randomid}`
+    }
 
     return (
         <nav className="navbar">
@@ -51,17 +59,19 @@ export default function Navbar({players}) {
                         </div>
                     )}
                 </div>    
-
-            <button
-                className="navbar--random"
-            >Random
-            </button>
+            
+            <Link href={randomButton()}>
+                <button
+                    className="navbar--random"
+                    >
+                    Random Tree
+                </button>
+            </Link>
 
             <button 
                 className="navbar--hamburger"
                 onClick={() => {
                     setIsNavbarExpanded(!isNavbarExpanded);
-
                 }}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +90,6 @@ export default function Navbar({players}) {
                     <li>Teams</li>
                     <li>Advanced Search</li>
                     <li>Stats</li>
-                    <li>Blog</li>
                     <li>About</li>
                 </ul>
             </div>

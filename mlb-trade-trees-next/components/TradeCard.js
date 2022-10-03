@@ -21,7 +21,6 @@ export default function TradeCard(props) {
         else return styles.cardPos;
       };
 
-    console.log(props.data.total_stats)
 
     return (
         // <div className={styles.card}>

@@ -186,7 +186,8 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                 # add comp pick transaction to tree
                 transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                     "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
-                                    "info": "Compensation picks", "trade_in_stats": trade_in_stats, "date": outcome_date}
+                                    "info": "Compensation picks", "traded_with": {}, "trade_in_stats": trade_in_stats,
+                                    "date": outcome_date}
                 trade_tree.append(transaction_info)
 
 

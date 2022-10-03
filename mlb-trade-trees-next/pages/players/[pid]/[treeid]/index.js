@@ -216,7 +216,6 @@ export const OrgChartComponent = (props, ref) => {
     };
 
 export default function TreePage({ data, tree_data }) {
-    console.log(tree_data)
     const treeDisplay = tree_data.tree_details.tree_display
     const connections = tree_data.tree_details.connections
     const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stats")
