@@ -39,6 +39,7 @@ export const getStaticProps = async (context) => {
 export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
     let chart = null;
+    console.log(props.data)
 
     useEffect(() => {
         if (props.data && d3Container.current) {
@@ -46,6 +47,7 @@ export const OrgChartComponent = (props, ref) => {
             chart = new OrgChart();
         }
         chart
+            .svgHeight(window.innerHeight - 218)
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {
@@ -56,148 +58,175 @@ export const OrgChartComponent = (props, ref) => {
               chart.setHighlighted(d).render()
               props.onNodeClick(d, trade_in_stats, trade_out_stats)
             })
-            .nodeWidth((d) => 250)
-            .initialZoom(0.7)
-            .nodeHeight((d) => 175)
+            .nodeWidth((d) => 300)
+            .initialZoom(0.3)
+            .nodeHeight((d) => 225)
             .childrenMargin((d) => 40)
             .compactMarginBetween((d) => 15)
             .compactMarginPair((d) => 80)
              chart.connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
               if ("transaction_id" in d.data) {
+                // format date
+                const year = d.data.date.toString().slice(0,4)
+                const month = d.data.date.toString().slice(4,6)
+                const day = d.data.date.toString().slice(6,8)
+
                 // create url for player if he has a page
                 let name;
                 if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
                   name = d.data.name
                 } else {
-                  name = "<a href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
+                  name = "<a style='color: black' href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
                 }
                 // end name url
 
                 // create url for players with pages, otherwise just write name
-                const traded_with_players = ""
+                const traded_with_players = "With: "
                 if (Object.keys(d.data.traded_with).length > 0) {
                   for (var k in d.data.traded_with) {
-                    if (k.includes(" ")){
+                    if (k.includes(" ") || k.includes("PTBNL/Cash")){
                        traded_with_players = traded_with_players + d.data.traded_with[k] + " ";
                   } else {
-                        traded_with_players = traded_with_players + "<a href='../" + k + "'>" + d.data.traded_with[k] + "</a> ";
+                        traded_with_players = traded_with_players + "<a style='color: black' href='../" + k + "'>" + d.data.traded_with[k] + "</a> ";
+                    }
                   }
+                } 
+                if (traded_with_players == "With: "){
+                  traded_with_players = ""
                 }
-              }
                 // end traded_with check
 
-                // choose stats to display on node
-                // let WAR;
-                // for (var k in d.data.trade_totals.) {
-                  
-                // }
-                
+                // set node color based on WAR
+                let outline;
+                if (d.data.trade_totals.other_stats.WAR >= 0){
+                  outline = "DarkGreen"
+                } else {
+                  outline = "Maroon"
+                }
+                // end outline 
+
                 return `
-                <div className='treeNode' style="
-                  height:${d.height - 32}px;
-                  border:1px solid lightgray;"
+                <div style="
+                  border:3px solid ${outline};
+                  border-radius: 50px;
+                  height:${d.height}px;
+                  text-align: center"
                 >
 
-                  <div style="
-                  padding-top:10px;
-                  text-align:center"
-                  >
-                    <div style="
-                    color:#111672;
-                    font-size:20px;
-                    font-weight:bold"
-                    > 
-                      ${name}
-                      ${traded_with_players}
-                      ${d.data.to_team.team_name}
-                      ${d.data.trade_totals.other_stats.WAR}   
-                    </div>
-                  </div>
+                  <h1 style="font-size: 2.6em"> ${name} </h1>
+                  <div style= background-color:${outline};height:5px;"></div>
 
-                  <img src="/team_logos/${d.data.to_franch}_logo.png" alt="team logo"
-                    style="
-                      margin-top:-0px;
-                      margin-left:${d.width / 2 - 30}px;
-                      border-radius:100px;
-                      width:60px;
-                      height:60px;
-                  "/>
-                  
+                  <div style="display: flex; flex-direction:column; justify-content: space-between;" >
+                      <div style="display: flex; justify-content: center;">
+
+                        <h2 style="padding-top:15px"> → ${d.data.to_team.team_name} </h2>
+                        
+                        <img src="/team_logos/TOR_logo.png" alt="team logo"
+                        style="
+                        width:50px;
+                        height:50px;
+                        "/>
+
+                      </div>
+
+                      <h3> ${traded_with_players} </h2>
+                      <h2> ${year}-${month}-${day} </h2>
+                      <h2> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
+
+                    </div>
+                    
                 </div>
                 `
               } else if ("outcome" in d.data) {
+                // create url for player if he has a page
+                let name;
+                if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
+                  name = d.data.name
+                } else {
+                  name = "<a style='color: black' href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
+                }
+                // end name url
+                let outline;
+                if (d.data.outcome == "No further transactions, likely in organization"){
+                  outline = "DodgerBlue"
+                } else {
+                  outline = "black"
+                }
+
+                // format date
+                const year = d.data.date.toString().slice(0,4)
+                const month = d.data.date.toString().slice(4,6)
+                const day = d.data.date.toString().slice(6,8)
+
                 return `
-                <!--outer div-->
-                <div style=
-                             "height:${d.height - 32}px;
-                                padding-top:0px;
-                                background-color:white;
-                                border:1px solid lightgray;">
-                <!---->
-                    <img src=" ${
-                                    d.data.imageUrl
-                                  }"
-                         style="margin-top:-0px;margin-left:${d.width / 2 - 30}px;border-radius:100px;width:60px;height:60px;"/>
-                
-                    <div style="margin-right:10px;margin-top:15px;float:right">${
-                        d.data.id
-                        }
-                    </div>
-                
-                    <div style="margin-top:-30px;background-color:#3AB6E3;height:10px;width:${
-                                   d.width - 2
-                                 }px;border-radius:1px"></div>
-                
-                <!--name and centering-->
-                    <div style="padding:10px; padding-top:35px;text-align:center">
-                        <div style="color:#111672;font-size:16px;font-weight:bold"> ${
-                            d.data.name
-                            }
-                        </div>
-                    </div>
-                <!---->
-                    <div style="display:flex;justify-content:space-between;padding-left:15px;padding-right:15px;">
-                        <div> Manages: ${d.data._directSubordinates} 👤</div>
-                        <div> Oversees: ${d.data._totalSubordinates} 👤</div>
-                    </div>
+                <div style="
+                  border:1px solid ${outline};
+                  border-radius: 50px;
+                  text-align:center;
+                  height:${d.height}px;"
+                >
+
+                    <h1 style="
+                    color: #111672;
+                    font-weight: bold;
+                    margin: 2% 0"> 
+                    ${name} 
+                    </h1>
+
+                    <div style= background-color:${outline};height:5px;"></div>
+
+                    <h1 style="margin-top:10%"> ${d.data.outcome} </h1>
+                    <h2> ${year}-${month}-${day} </h2>
+                  
                 </div>
                 `
-              } else{
+                
+              } else if ("info" in d.data){
+                
+                const info = d.data.info
+
                 return `
-                <!--outer div-->
-                <div style=
-                             "height:${d.height - 32}px;
-                                padding-top:0px;
-                                background-color:white;
-                                border:1px solid lightgray;">
-                <!---->
-                    <img src=" ${
-                                    d.data.imageUrl
-                                  }"
-                         style="margin-top:-0px;margin-left:${d.width / 2 - 30}px;border-radius:100px;width:60px;height:60px;"/>
-                
-                    <div style="margin-right:10px;margin-top:15px;float:right">${
-                        d.data.id
-                        }
-                    </div>
-                
-                    <div style="margin-top:-30px;background-color:#3AB6E3;height:10px;width:${
-                                   d.width - 2
-                                 }px;border-radius:1px"></div>
-                
-                <!--name and centering-->
-                    <div style="padding:10px; padding-top:35px;text-align:center">
-                        <div style="color:#111672;font-size:16px;font-weight:bold"> ${
-                            d.data.name
-                            }
-                        </div>
-                    </div>
-                <!---->
-                    <div style="display:flex;justify-content:space-between;padding-left:15px;padding-right:15px;">
-                        <div> Manages: ${d.data._directSubordinates} 👤</div>
-                        <div> Oversees: ${d.data._totalSubordinates} 👤</div>
-                    </div>
+                <div style="
+                  border:1px solid black;
+                  border-radius: 50px;
+                  text-align:center;
+                  height:${d.height}px;"
+                >
+
+                    <h1 style="
+                    color: #111672;
+                    font-weight: bold;
+                    margin: 2% 0"> 
+                    ${d.data.name} 
+                    </h1>
+
+                    <div style= background-color:black;height:5px;"></div>
+
+                    <h2 style="margin-top:10%"> ${info} </h2>
+                    
+                </div>
+                `
+              } else {
+                return `
+                <div style="
+                  border:1px solid black;
+                  border-radius: 50px;
+                  text-align:center;
+                  height:${d.height}px;"
+                >
+
+                    <h1 style="
+                    color: #111672;
+                    font-weight: bold;
+                    margin: 2% 0"> 
+                    ${d.data.name} 
+                    </h1>
+
+                    <div style= background-color:black;height:5px;"></div>
+
+                    <h2 style="margin-top:10%"> Part of different transaction in tree </h2>
+                    
                 </div>
                 `
               }

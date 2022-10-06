@@ -64,13 +64,14 @@ export default function PlayerBar({data, tree_data}) {
 
     let parent_tree;
     if ( tree_data.largest_tree_id == "_" ) {
+        parent_tree = <p className={styles.invisible}>No Parent Tree</p>
     } else { 
         var rid = tree_data.largest_tree_id.slice(0,8)
         parent_tree = 
             <Link href={{
                 pathname: '/players/[pid]/[tid]',
                 query: {pid: rid, tid: tree_data.largest_tree_id }}}>
-                <a> View Parent Tree </a>
+                <a className={styles.playerName}> View Parent Tree </a>
             </Link> 
     }
     console.log(tree_data.from_team)
@@ -78,29 +79,35 @@ export default function PlayerBar({data, tree_data}) {
 
     return ( 
         <div className={styles.PlayerBar}>
-            <div className={styles.playerHeader}>
+
+            <div className={styles.playerTeamTree}>
                 <Link href={{
                     pathname: '/players/[pid]',
                     query: {pid: data.retro_id }}}>
-                    <a> {data.name} </a>
+                    <a className={styles.playerName}> ← {data.name} </a>
                 </Link>
-                <p>Traded From: {from_team}</p>
+                <div className={styles.teamHeader}>
+                    <h3>{from_team}</h3>
+                    <img className={styles.teamLogo} src="/team_logos/TOR_logo.png"></img>
+                </div> 
                 {parent_tree}
-            </div> 
+            </div>
+
             <div className={styles.allStats}>
                 <div className={styles.statsContainer}>
-                Total Batting Stats:
-                {b_stats}
+                    <h6 className={styles.tableHeader}>Batting: </h6>
+                    {b_stats}
                 </div>
                 <div className={styles.statsContainer}>
-                Total Pitching Stats:
-                {p_stats}
+                    <h6 className={styles.tableHeader}>Pitching: </h6>
+                    {p_stats}
                 </div>
                 <div className={styles.statsContainer}>
-                Total Other Stats:
-                {o_stats}
+                    <h6 className={styles.tableHeader}>Other: </h6>
+                    {o_stats}
                 </div>
             </div>
+
         </div>
             /* {trades.map((trade) => {
                 return (<Link 

@@ -7,7 +7,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    width: 95%;
+    width: 90%;
+    height:400px;
     border: 1px solid black
 
 }
@@ -48,6 +49,4 @@
     background-color: lightblue;
 }
 
-.treeNode{
-    border:1px solid lightgray;
-}
+

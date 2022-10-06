@@ -21,12 +21,11 @@ export default function Navbar({players}) {
         }
     };
 
-    function randomButton() {
-        var randompage = players[Math.floor(Math.random()*players.length)]
-        var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
-        var pid = randomid.slice(0,8)
-        return `/players/${pid}/${randomid}`
-    }
+    var randompage = players[Math.floor(Math.random()*players.length)]
+    var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
+    var pid = randomid.slice(0,8)
+    const randomButton = `/players/${pid}/${randomid}`
+
 
     return (
         <nav className="navbar">
@@ -60,7 +59,7 @@ export default function Navbar({players}) {
                     )}
                 </div>    
             
-            <Link href={randomButton()}>
+            <Link href={randomButton}>
                 <button
                     className="navbar--random"
                     >
