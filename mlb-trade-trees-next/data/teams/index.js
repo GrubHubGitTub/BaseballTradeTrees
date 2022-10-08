@@ -1,11 +1,12 @@
 // import React from "react";
 // import TeamCard from "../../components/TeamCard";
 // import styles from "../../styles/AllTeams.module.css"
+// import { team_data } from "../../data/team_data"
 
 //   export const getStaticProps = async () => {
-//     const res = await fetch('http://localhost:3000/api/teams/');
-//     const data = await res.json();
-//     return { props: {data} }
+//     // const res = await fetch('http://localhost:3000/api/teams/');
+//     // const data = await res.json();
+//     return { props: {team_data} }
 //   }
 
 // export default function allTeams({data}) {

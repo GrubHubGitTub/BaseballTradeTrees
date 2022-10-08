@@ -64,14 +64,14 @@ export default function PlayerBar({data, tree_data}) {
 
     let parent_tree;
     if ( tree_data.largest_tree_id == "_" ) {
-        parent_tree = <p className={styles.invisible}>No Parent Tree</p>
+        parent_tree= <p className={styles.noParent}></p>
     } else { 
         var rid = tree_data.largest_tree_id.slice(0,8)
         parent_tree = 
             <Link href={{
                 pathname: '/players/[pid]/[tid]',
                 query: {pid: rid, tid: tree_data.largest_tree_id }}}>
-                <a className={styles.playerName}> View Parent Tree </a>
+                <a className={styles.parentTree}> View Parent Tree </a>
             </Link> 
     }
     console.log(tree_data.from_team)
@@ -87,7 +87,7 @@ export default function PlayerBar({data, tree_data}) {
                     <a className={styles.playerName}> ← {data.name} </a>
                 </Link>
                 <div className={styles.teamHeader}>
-                    <h3>{from_team}</h3>
+                    <h3 className={styles.teamName}>{from_team}</h3>
                     <img className={styles.teamLogo} src="/team_logos/TOR_logo.png"></img>
                 </div> 
                 {parent_tree}

@@ -5,6 +5,10 @@
     font-family: 'Poppins', sans-serif;
   }
 
+html {
+  background-color: darkgray;
+}
+
 table {
     margin-bottom: 5px;
 }
@@ -36,8 +40,8 @@ table {
     display: flex;
     align-items: center;
     position: relative;
-    background-color: #fff;
-    color: black;
+    background-color: rgb(8, 0, 96);
+    color: rgb(254, 254, 254);
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
@@ -150,6 +154,42 @@ table {
     .navbar--menu.expanded ul {
         display: block;
       }
+}
+
+.treeNode:hover{
+  box-shadow: 0 5px 5px 10px rgba(9, 9, 9, 0.23);
+}
+
+a {
+  color: black
+}
+
+.treeNode h1{
+  color:black;
+  background-color: #f1f1f1
+}
+
+
+.treeNode h1:hover {
+  background-color: #ddd;
+}
+
+.treeNode h2{
+  font-size: 2em;
+}
+
+.outcomeNode h1{
+  color:black;
+  background-color: #f1f1f1
+}
+
+
+.outcomeNode h1:hover {
+  background-color: #ddd;
+}
+
+.outcomeNode h2{
+  font-size: 2em;
 }
 
 .footer {

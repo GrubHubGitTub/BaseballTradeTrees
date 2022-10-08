@@ -40,6 +40,7 @@ export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
     let chart = null;
     console.log(props.data)
+    console.log(props.connections)
 
     useEffect(() => {
         if (props.data && d3Container.current) {
@@ -47,24 +48,33 @@ export const OrgChartComponent = (props, ref) => {
             chart = new OrgChart();
         }
         chart
-            .svgHeight(window.innerHeight - 218)
+            .svgHeight(window.innerHeight - 210)
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {
               const nodeData = props.data.find(node => node.id === d);
               const trade_in_stats = nodeData.trade_in_stats
               const trade_out_stats = nodeData.trade_out_stats
-              chart.clearHighlighting()
-              chart.setHighlighted(d).render()
+              if ("transaction_id" in nodeData){
+                chart.setCentered(d).initialZoom(0.5).render()}
               props.onNodeClick(d, trade_in_stats, trade_out_stats)
             })
-            .nodeWidth((d) => 300)
+            .nodeWidth((d) => {
+                if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 400
+                else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 3) return 450
+                else return 400 
+            })
+            .nodeHeight((d) => {
+              if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 200
+              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 2) return 390
+              else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
+              else return 325 
+          })
             .initialZoom(0.3)
-            .nodeHeight((d) => 225)
             .childrenMargin((d) => 40)
             .compactMarginBetween((d) => 15)
             .compactMarginPair((d) => 80)
-             chart.connections(props.connections)
+            .connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
               if ("transaction_id" in d.data) {
                 // format date
@@ -75,9 +85,27 @@ export const OrgChartComponent = (props, ref) => {
                 // create url for player if he has a page
                 let name;
                 if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
-                  name = d.data.name
+                  name = `<h2 style="
+                  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h2>`
                 } else {
-                  name = "<a style='color: black' href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
+                  name = `
+                  <a style="
+                  text-decoration: none; 
+                  " 
+                  href="../${d.data.retro_id}"> <h1 style="
+                  box-shadow: 0 5px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h1> </a> `
                 }
                 // end name url
 
@@ -107,34 +135,32 @@ export const OrgChartComponent = (props, ref) => {
                 // end outline 
 
                 return `
-                <div style="
-                  border:3px solid ${outline};
+                <div class="treeNode" style="
+                  border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  text-align: center"
+                  "
                 >
-
-                  <h1 style="font-size: 2.6em"> ${name} </h1>
+                  ${name}
                   <div style= background-color:${outline};height:5px;"></div>
-
-                  <div style="display: flex; flex-direction:column; justify-content: space-between;" >
+                 
                       <div style="display: flex; justify-content: center;">
-
-                        <h2 style="padding-top:15px"> → ${d.data.to_team.team_name} </h2>
+                        <h2 style="padding-top:15px;font-size:2.3em"> → ${d.data.to_team.team_name} </h2>
                         
                         <img src="/team_logos/TOR_logo.png" alt="team logo"
                         style="
-                        width:50px;
-                        height:50px;
+                        width:70px;
+                        height:70px;
                         "/>
-
                       </div>
+                      
+                  <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
 
-                      <h3> ${traded_with_players} </h2>
-                      <h2> ${year}-${month}-${day} </h2>
-                      <h2> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
+                      <h2> ${traded_with_players} </h2>
+                      <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
+                      <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
 
-                    </div>
+                  </div>
                     
                 </div>
                 `
@@ -142,11 +168,30 @@ export const OrgChartComponent = (props, ref) => {
                 // create url for player if he has a page
                 let name;
                 if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
-                  name = d.data.name
+                  name = `<h2 style="
+                  border:1px solid black;
+                  border-radius:20px;
+                  color:black;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h2>`
                 } else {
-                  name = "<a style='color: black' href='../" + d.data.retro_id + "'>" + d.data.name + "</a>"; 
+                  name = `
+                  <a style="
+                  text-decoration: none; 
+                  " 
+                  href="../${d.data.retro_id}"> <h1 className="nodePlayer" style="
+                  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h1> </a> `
                 }
                 // end name url
+
                 let outline;
                 if (d.data.outcome == "No further transactions, likely in organization"){
                   outline = "DodgerBlue"
@@ -160,25 +205,19 @@ export const OrgChartComponent = (props, ref) => {
                 const day = d.data.date.toString().slice(6,8)
 
                 return `
-                <div style="
+                <div class="outcomeNode" style="
                   border:1px solid ${outline};
                   border-radius: 50px;
-                  text-align:center;
-                  height:${d.height}px;"
+                  height:${d.height}px;
+                  "
                 >
+                  ${name}
+                  <div style= background-color:${outline};height:5px;"></div>
+                  <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
 
-                    <h1 style="
-                    color: #111672;
-                    font-weight: bold;
-                    margin: 2% 0"> 
-                    ${name} 
-                    </h1>
-
-                    <div style= background-color:${outline};height:5px;"></div>
-
-                    <h1 style="margin-top:10%"> ${d.data.outcome} </h1>
+                    <h2 style="margin-top:10%"> ${d.data.outcome} </h2>
                     <h2> ${year}-${month}-${day} </h2>
-                  
+                  </div>
                 </div>
                 `
                 
@@ -187,19 +226,21 @@ export const OrgChartComponent = (props, ref) => {
                 const info = d.data.info
 
                 return `
-                <div style="
+                <div class="outcomeNode" style="
                   border:1px solid black;
                   border-radius: 50px;
                   text-align:center;
                   height:${d.height}px;"
                 >
 
-                    <h1 style="
-                    color: #111672;
-                    font-weight: bold;
-                    margin: 2% 0"> 
-                    ${d.data.name} 
-                    </h1>
+                <h2 style="
+                border:1px solid black;
+                border-radius:20px;
+                color:black;
+                font-size: 2.6em;
+                margin:25px; 
+                text-align:center;
+                ">  ${d.data.name} </h2>
 
                     <div style= background-color:black;height:5px;"></div>
 
@@ -216,12 +257,14 @@ export const OrgChartComponent = (props, ref) => {
                   height:${d.height}px;"
                 >
 
-                    <h1 style="
-                    color: #111672;
-                    font-weight: bold;
-                    margin: 2% 0"> 
-                    ${d.data.name} 
-                    </h1>
+                <h2 style="
+                border:1px solid black;
+                border-radius:20px;
+                color:black;
+                font-size: 2.6em;
+                margin:25px; 
+                text-align:center;
+                ">  ${d.data.name} </h2>
 
                     <div style= background-color:black;height:5px;"></div>
 
@@ -231,25 +274,25 @@ export const OrgChartComponent = (props, ref) => {
                 `
               }
             ;  
+            
             })
-            .render();
+            .render()
+            .fit();
             chart.expandAll()
         }
     }, [props.data, d3Container.current]);
     
     return (
-        
         <div ref={d3Container} className={styles.treeContainer}/>
-        
     );
     };
 
 export default function TreePage({ data, tree_data }) {
     const treeDisplay = tree_data.tree_details.tree_display
     const connections = tree_data.tree_details.connections
-    const [statsInBat, setStatsInBat] = React.useState("Click a transaction to view stats")
+    const [statsInBat, setStatsInBat] = React.useState("")
     const [statsInPitch, setStatsInPitch] = React.useState("")
-    const [statsOutBat, setStatsOutBat] = React.useState("Click a transaction to view stats")
+    const [statsOutBat, setStatsOutBat] = React.useState("")
     const [statsOutPitch, setStatsOutPitch] = React.useState("")
 
     function onNodeClick(nodeId, trade_in_stats, trade_out_stats) {
@@ -302,7 +345,7 @@ export default function TreePage({ data, tree_data }) {
         setStatsOutBat(trade_out_bat_table)
         setStatsOutPitch(trade_out_pitch_table) 
       } else {
-        setStatsOutBat("No stats - not a transaction")
+        setStatsOutBat("")
         setStatsOutPitch("") 
       }
       if (trade_in_stats != undefined) {
@@ -355,7 +398,7 @@ export default function TreePage({ data, tree_data }) {
         setStatsInBat(trade_in_bat_table)
         setStatsInPitch(trade_in_pitch_table) 
       } else {
-        setStatsInBat("No stats - not a transaction")
+        setStatsInBat("")
         setStatsInPitch("") 
       }
     }
@@ -370,14 +413,15 @@ export default function TreePage({ data, tree_data }) {
               onNodeClick={onNodeClick}
               connections={connections}
           />
+          
         <div className={styles.statsContainer}> 
           <div className={styles.statBoxOut}>
-              <p>Players Traded Away</p>
+              <h4 className={styles.tableHeader}>Players Traded Away</h4>
               {statsOutBat}
               {statsOutPitch}
           </div>
           <div className={styles.statBoxIn}>
-              <p>Players Traded For</p>
+              <h4 className={styles.tableHeader}>Players Traded For</h4>
               {statsInBat}
               {statsInPitch}
           </div>

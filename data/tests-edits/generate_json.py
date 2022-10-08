@@ -48,6 +48,7 @@ def format_outcomes(outcome_code):
                     "C ": "signed to another team on a conditional deal",
                     "Cr": "signed to another team on a conditional deal",
                     "D ": "rule 5 draft pick",
+                    "Dm": "lost in minor league draft",
                     "Dr": "returned to original team after draft selection",
                     "F ": "free agent signing",
                     "Fg": "became a free agent",

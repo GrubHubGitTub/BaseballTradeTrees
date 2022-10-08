@@ -41,7 +41,7 @@ export default function PlayerPage({ data }) {
     return (
         <div>
           {/* <h2>Most recent retorosheet data/ node of longest ongoing tree</h2> */}
-          <h3 className={styles.playerHead}>{data.name}'s trade trees:</h3>
+          <h3 className={styles.playerHead}>{data.name}</h3>
           <div className={styles.cardContainer}>
             {tradeCards}
           </div>

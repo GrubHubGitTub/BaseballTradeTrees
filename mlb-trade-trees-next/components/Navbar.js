@@ -21,12 +21,6 @@ export default function Navbar({players}) {
         }
     };
 
-    var randompage = players[Math.floor(Math.random()*players.length)]
-    var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
-    var pid = randomid.slice(0,8)
-    const randomButton = `/players/${pid}/${randomid}`
-
-
     return (
         <nav className="navbar">
             <Link href="/"><a><Image src="/logo.png" alt="logo" width="50" height="50"  className="navbar--brand"/></a></Link>
@@ -59,7 +53,7 @@ export default function Navbar({players}) {
                     )}
                 </div>    
             
-            <Link href={randomButton}>
+            <Link href="/random">
                 <button
                     className="navbar--random"
                     >
