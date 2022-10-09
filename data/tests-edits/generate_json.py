@@ -348,7 +348,8 @@ with open("PlayersToGenerate.json", "r") as file:
 
 index = 0
 all_data = []
-for player_transaction in retro_ids[index:]:
+ongoing_tree_players = []
+for player_transaction in retro_ids:
     print(index)
     print(player_transaction["player"])
     index += 1
@@ -434,24 +435,70 @@ for player_transaction in retro_ids[index:]:
             parent_tree_retro = ""
             parent_tree_transaction_id = ""
 
-        # check if ongoing
-        ongoing = ""
+        # check if ongoing, check for other stats
+        ongoing = "No"
+        total_transactions = 0
+        traded_for = 0
+        traded_away = 0
+        earliest = 0
+        latest = 0
+
         for node in trade_tree:
             if "outcome" in node:
                 if node["outcome"] == "No further transactions, likely in organization":
-                    ongoing = f"{player_transaction['player']}_{transac_id}"
+                    ongoing = "Yes"
+
+                    # get list of players that are in an ongoing tree to add to their player page
+                    if " " in node["retro_id"]:
+                        pass
+                    else:
+                        ongoing_player = node["retro_id"]
+                        ongoing_tree_id = ""
+                        if parent_tree_retro == "":
+                            ongoing_tree_id = f"{player_transaction['player']}_{transac_id}"
+                        else:
+                            ongoing_tree_id = f"{parent_tree_retro}_{parent_tree_transaction_id}"
+                        ongoing_tree_players.append({"retro_id": ongoing_player, "tree": ongoing_tree_id})
+
+            if "transaction_id" in node:
+                total_transactions += 1
+                traded_for += 1
+
+                if "traded_with" in node:
+                    traded_away += len(node["traded_with"]) + 1
+                else:
+                    traded_away += 1
+
+            if "transaction_id" or "outcome" in node:
+                date = int(node["date"][0:4])
+                if earliest == 0:
+                    earliest = date
+                elif latest == 0:
+                    earliest = date
+
+                if date > latest:
+                    latest = date
+                elif date < earliest:
+                    earliest = date
 
         trade_output = {
             "from_team": {"team_id": from_team, "team_name": format_teams(team=from_team, date=date)},
             "from_franch": from_franch,
             "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=date)},
             "date": date,
-            "ongoing": ongoing,
             "transaction_id": transac_id,
             "tree_id": f"{player_transaction['player']}_{transac_id}",
             "largest_tree_id": f"{parent_tree_retro}_{parent_tree_transaction_id}",
             "total_stats": tree_totals,
             "world_series_wins": ws_wins,
+            "total_transactions": total_transactions,
+            "traded_away": traded_away,
+            "traded_for": traded_for,
+            "total_players": traded_away + traded_for,
+            "start": earliest,
+            "last": latest,
+            "year_span": latest - earliest,
+            "ongoing": ongoing,
             "tree_details": {
                 "tree_id": f"{player_transaction['player']}_{transac_id}",
                 "tree_display": trade_tree,
@@ -474,10 +521,17 @@ for player_transaction in retro_ids[index:]:
                 "HOF": hof,
                 "debut_year": debut,
                 "last_year": end,
-                "ongoing_tree": ongoing,
+                "in_ongoing_trees":[],
                 "trades": [trade_output]
             }
             all_data.append(output)
+
+            print(output)
+
+for data in all_data:
+    for player in ongoing_tree_players:
+        if player["retro_id"] == data["retro_id"]:
+            data["in_ongoing_trees"].append(player["tree"])
 
 with open("output.json", "r+") as file:
     json.dump(all_data, file)
