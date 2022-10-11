@@ -1,13 +1,17 @@
 import React from "react";
-import player_data from "../../../data/output.json"
-import PlayerBar from '../../../components/PlayerBar';
+// import player_data from "../../../data/output.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 import { tree } from "d3";
+import { readFileSync } from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
+  const file = path.join(process.cwd(), 'data', "/output.json");
+  const player_data = readFileSync(file, 'utf8');
+  const players = JSON.parse(player_data)
 
-  const paths = player_data.map(player => {
+  const paths = players["player_data"].map(player => {
     return {
       params: { pid: player.retro_id }
     }
@@ -20,14 +24,19 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
+  const file = path.join(process.cwd(), 'data', "/output.json");
+  const player_data = readFileSync(file, 'utf8');
+  const players = JSON.parse(player_data)
+  console.log(players)
+
   const pid = context.params.pid;
-  const filtered = player_data.filter((p) => p.retro_id === pid || p.mlbid === pid)
+  const filtered = players["player_data"].filter((p) => p.retro_id === pid || p.mlbid === pid)
   const player = filtered[0]
 
   let ongoing_trees_data = []
   if (player.in_ongoing_trees.length > 0){
     player.in_ongoing_trees.map(tree_id => {
-      const ongoing_tree_data = player_data.find(p => p.trades.find(trade => trade.tree_id == tree_id));
+      const ongoing_tree_data = players.find(p => p.trades.find(trade => trade.tree_id == tree_id));
       ongoing_trees_data.push(ongoing_tree_data)
     })
   }

@@ -1,13 +1,19 @@
 import { OrgChart } from "d3-org-chart";
-import player_data from "../../../../data/output.json"
+// import player_data from "../../../../data/output.json"
 import React, {useEffect, useRef} from "react";
 import * as d3 from 'd3'
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
+import { readFileSync } from 'fs';
+import path from 'path';
 
 export const getStaticPaths = async (context) => {
-    const paths = player_data
+  const file = path.join(process.cwd(), 'data', "/output.json");
+  const player_data = readFileSync(file, 'utf8');
+  const players = JSON.parse(player_data)
+
+    const paths = players["player_data"]
       .map((player) =>
         player.trades.map((trade) => ({
           params: {
@@ -22,8 +28,12 @@ export const getStaticPaths = async (context) => {
 };
   
 export const getStaticProps = async (context) => {
+  const file = path.join(process.cwd(), 'data', "/output.json");
+  const player_data = readFileSync(file, 'utf8');
+  const players = JSON.parse(player_data)
+
     const pid = context.params.pid;
-    const filtered = player_data.filter((p) => p.retro_id === pid || p.mlbid === pid)
+    const filtered = players["player_data"].filter((p) => p.retro_id === pid || p.mlbid === pid)
     const data = filtered[0]
     let tree_data;
 
