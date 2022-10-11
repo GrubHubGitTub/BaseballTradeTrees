@@ -40,7 +40,6 @@ export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
     let chart = null;
     console.log(props.data)
-    console.log(props.connections)
 
     useEffect(() => {
         if (props.data && d3Container.current) {
@@ -60,12 +59,12 @@ export const OrgChartComponent = (props, ref) => {
               props.onNodeClick(d, trade_in_stats, trade_out_stats)
             })
             .nodeWidth((d) => {
-                if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 400
-                else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 3) return 450
-                else return 400 
+                if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 420
+                else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 450
+                else return 420 
             })
             .nodeHeight((d) => {
-              if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 200
+              if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 235
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 2) return 390
               else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
               else return 325 
@@ -76,7 +75,7 @@ export const OrgChartComponent = (props, ref) => {
             .compactMarginPair((d) => 80)
             .connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
-              if ("transaction_id" in d.data) {
+              if ("transaction_id" in d.data && "info" in d.data) {
                 // format date
                 const year = d.data.date.toString().slice(0,4)
                 const month = d.data.date.toString().slice(4,6)
@@ -127,7 +126,91 @@ export const OrgChartComponent = (props, ref) => {
 
                 // set node color based on WAR
                 let outline;
-                if (d.data.trade_totals.other_stats.WAR >= 0){
+                if ("info" in d.data && d.data.info === "Compensation picks"){
+                  outline = "Orange"
+                }
+                else if (d.data.trade_totals.other_stats.WAR >= 0){
+                  outline = "DarkGreen"
+                } else {
+                  outline = "Maroon"
+                }
+                // end outline 
+
+                return `
+                <div class="treeNode" style="
+                  border:8px solid ${outline};
+                  border-radius: 50px;
+                  height:${d.height}px;
+                  "
+                >
+                  ${name}
+                  <div style= background-color:${outline};height:5px;"></div>
+                 
+                      
+                  <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
+
+                      <h2> Compensation picks for leaving team on: </h2>
+                      <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
+
+                  </div>
+                    
+                </div>
+                `
+              } else if ("transaction_id" in d.data){
+                // format date
+                const year = d.data.date.toString().slice(0,4)
+                const month = d.data.date.toString().slice(4,6)
+                const day = d.data.date.toString().slice(6,8)
+
+                // create url for player if he has a page
+                let name;
+                if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
+                  name = `<h2 style="
+                  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h2>`
+                } else {
+                  name = `
+                  <a style="
+                  text-decoration: none; 
+                  " 
+                  href="../${d.data.retro_id}"> <h1 style="
+                  box-shadow: 0 5px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h1> </a> `
+                }
+                // end name url
+
+                // create url for players with pages, otherwise just write name
+                const traded_with_players = "With: "
+                if (Object.keys(d.data.traded_with).length > 0) {
+                  for (var k in d.data.traded_with) {
+                    if (k.includes(" ") || k.includes("PTBNL/Cash")){
+                       traded_with_players = traded_with_players + d.data.traded_with[k] + " ";
+                  } else {
+                        traded_with_players = traded_with_players + "<a style='color: black' href='../" + k + "'>" + d.data.traded_with[k] + "</a> ";
+                    }
+                  }
+                } 
+                if (traded_with_players == "With: "){
+                  traded_with_players = ""
+                }
+                // end traded_with check
+
+                // set node color based on WAR
+                let outline;
+                if ("info" in d.data && d.data.info === "Compensation picks"){
+                  outline = "Yellow"
+                }
+                else if (d.data.trade_totals.other_stats.WAR >= 0){
                   outline = "DarkGreen"
                 } else {
                   outline = "Maroon"
@@ -162,6 +245,56 @@ export const OrgChartComponent = (props, ref) => {
 
                   </div>
                     
+                </div>
+                `
+              } else if ("outcome" in d.data && (!("date" in d.data))) {
+                // create url for player if he has a page
+                let name;
+                if (d.data.retro_id.includes(" ") || d.data.retro_id.includes("PTBNL/Cash")) {
+                  name = `<h2 style="
+                  border:1px solid black;
+                  border-radius:20px;
+                  color:black;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h2>`
+                } else {
+                  name = `
+                  <a style="
+                  text-decoration: none; 
+                  " 
+                  href="../${d.data.retro_id}"> <h1 className="nodePlayer" style="
+                  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+                  border:1px solid black;
+                  border-radius:20px;
+                  font-size: 2.6em;
+                  margin:25px; 
+                  text-align:center;
+                  ">  ${d.data.name} </h1> </a> `
+                }
+                // end name url
+
+                let outline;
+                if (d.data.outcome == "No further transactions, likely in organization"){
+                  outline = "DodgerBlue"
+                } else {
+                  outline = "black"
+                }
+
+                return `
+                <div class="outcomeNode" style="
+                  border:1px solid ${outline};
+                  border-radius: 50px;
+                  height:${d.height}px;
+                  "
+                >
+                  ${name}
+                  <div style= background-color:${outline};height:5px;"></div>
+                  <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
+
+                    <h2 style="margin-top:10%"> ${d.data.outcome} </h2>
+                  </div>
                 </div>
                 `
               } else if ("outcome" in d.data) {
@@ -200,6 +333,7 @@ export const OrgChartComponent = (props, ref) => {
                 }
 
                 // format date
+                
                 const year = d.data.date.toString().slice(0,4)
                 const month = d.data.date.toString().slice(4,6)
                 const day = d.data.date.toString().slice(6,8)
@@ -219,8 +353,7 @@ export const OrgChartComponent = (props, ref) => {
                     <h2> ${year}-${month}-${day} </h2>
                   </div>
                 </div>
-                `
-                
+                `  
               } else if ("info" in d.data){
                 
                 const info = d.data.info

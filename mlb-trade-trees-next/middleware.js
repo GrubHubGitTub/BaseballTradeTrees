@@ -8,7 +8,7 @@ export function middleware(req={NextRequest}) {
     var pid = randomid.slice(0,8)
   const url = req.nextUrl.clone()   
   if (url.pathname === '/random') {
-    url.pathname = `/players/${pid}/${randomid}`
+    url.pathname = `/players/${pid}`
     return NextResponse.redirect(url)   
   } 
 }

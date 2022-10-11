@@ -1,4 +1,34 @@
+.playerPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.playerBar{
+    width: auto;
+    text-align: center;
+    padding: 10px 50px;
+    margin: 1% 1% 0 1%;
+    background-color: #fff;
+    color: black;
+    border-radius: 30px;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+}
+
+.years{
+    font-weight: bold;
+}
+
+.headerBar {
+    width: auto;
+    padding: 5px 30px;
+    margin: 1% 1% 0 1%;
+    background-color: rgb(195, 193, 193);
+    color: black;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+
+}
 .cardContainer {
     display: flex;
     flex-direction: row;
@@ -8,10 +38,3 @@
 
 }
 
-.playerHead {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 3% auto 1% auto;
-}

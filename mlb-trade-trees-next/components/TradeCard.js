@@ -3,9 +3,11 @@ import React from "react";
 import styles from '../styles/TradeCard.module.css';
 
 export default function TradeCard(props) {
+    console.log(props.data)
 
     const tree_id = props.data.tree_id 
     const pid = props.pid
+
     const year = props.data.date.toString().slice(0,4)
     const month = props.data.date.toString().slice(4,6)
     const day = props.data.date.toString().slice(6,8)
@@ -21,6 +23,11 @@ export default function TradeCard(props) {
         else return styles.cardPos;
       };
 
+    let largestButton
+    if (largest_tree != "_"){
+        largestButton = <Link href={`/players/${parent_id}/${largest_tree}`}><a className={styles.largestButton}> View Parent Tree</a></Link>
+    } 
+
 
     return (
         // <div className={styles.card}>
@@ -31,19 +38,20 @@ export default function TradeCard(props) {
         //         {/* {props.data.largest_tree_id == "_" ? "" : `<a href=/players/${parent_id}/${largest_tree}> View Largest Version of this Tree</a>`} */}
         // </div>
 
-        <div className={getCardStyle()}>
-            <div className={styles.box}>
+            <div className={getCardStyle()}>
                 <img src="/team_logos/TOR_logo.png"></img>
                 <div className={styles.content}>
                     
                     <h2>{props.data.from_team.team_name}</h2>
                     <h3>→ {props.data.to_team.team_name}</h3>
-                    <h4>{year}-{month}-{day}</h4>
-                    <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs | {props.data.total_stats.pitching_stats.W} Wins | {ws_wins == 0 ? "" : `${ws_wins} WS Wins`} </p>
+                    <h4>{props.data.start}-{props.data.last}</h4>                    
+                    <h4>Total transactions: {props.data.total_transactions}</h4>
+                    <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs | </p>
+                    <p>{props.data.total_stats.pitching_stats.W} Wins | {ws_wins == 0 ? "" : `${ws_wins} WS Wins`} </p>
                     
-                    <Link href={`/players/${pid}/${tree_id}`}><a>View Tree</a></Link>
+                    <Link href={`/players/${pid}/${tree_id}`}><a className={styles.treeButton}>View Tree</a></Link>
+                    {largestButton}
                 </div>
             </div>
-      </div>
     )
 }
