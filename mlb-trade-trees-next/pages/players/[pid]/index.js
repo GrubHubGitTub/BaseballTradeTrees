@@ -1,5 +1,5 @@
 import React from "react";
-import player_data from "../../../public/data/output.json"
+import player_data from "../../../data/output.json"
 import PlayerBar from '../../../components/PlayerBar';
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
