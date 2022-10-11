@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 
 export async function getStaticPaths() {
-  const file = path.join(process.cwd(), 'data', "/output.json");
+  const file = path.join(process.cwd(), 'public', "/data/output.json");
   const player_data = readFileSync(file, 'utf8');
   const players = JSON.parse(player_data)
 
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
-  const file = path.join(process.cwd(), 'data', "/output.json");
+  const file = path.join(process.cwd(), 'public', "/data/output.json");
   const player_data = readFileSync(file, 'utf8');
   const players = JSON.parse(player_data)
   console.log(players)
