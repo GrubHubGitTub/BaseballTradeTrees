@@ -1,19 +1,24 @@
 import * as d3 from 'd3'
 import { OrgChart } from "../../../../org-chart-master";
-// import player_data from "../../../../data/output.json"
+import player_data from "../../../../data/output2.json"
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
-import { readFileSync } from 'fs';
-import path from 'path';
+// import clientPromise from "../../../util/mongodb"
 
 export const getStaticPaths = async (context) => {
-  const file = path.join(process.cwd(), 'public', "/data/output.json");
-  const player_data = readFileSync(file, 'utf8');
-  const players = JSON.parse(player_data)
+  // const file = path.join(process.cwd(), 'public', "/data/output.json");
+  // const player_data = readFileSync(file, 'utf8');
+  const players = player_data
+  // const client = await clientPromise;
+  // const db = await client.db("TradeTrees").collection("AllInfo");
+  // const players = await db
+  //   .collection("AllInfo")
+  //   .find({})
+  //   .toArray();
 
-    const paths = players["player_data"]
+    const paths = players
       .map((player) =>
         player.trades.map((trade) => ({
           params: {
@@ -28,12 +33,17 @@ export const getStaticPaths = async (context) => {
 };
   
 export const getStaticProps = async (context) => {
-  const file = path.join(process.cwd(), 'public', "/data/output.json");
-  const player_data = readFileSync(file, 'utf8');
-  const players = JSON.parse(player_data)
+
+    // const client = await clientPromise;
+    // const db = await client.db("TradeTrees").collection("AllInfo");
+    // const players = await db
+    //   .collection("AllInfo")
+    //   .find({'retro_id': pid})
+    //   .toArray();
+    const players = player_data
 
     const pid = context.params.pid;
-    const filtered = players["player_data"].filter((p) => p.retro_id === pid || p.mlbid === pid)
+    const filtered = players.filter((p) => p.retro_id === pid || p.mlbid === pid)
     const data = filtered[0]
     let tree_data;
 
@@ -49,7 +59,6 @@ export const getStaticProps = async (context) => {
 export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
     let chart = null;
-    console.log(props.data)
 
     useEffect(() => {
         if (props.data && d3Container.current) {

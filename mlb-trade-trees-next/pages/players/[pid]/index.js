@@ -1,35 +1,49 @@
 import React from "react";
-// import player_data from "../../../data/output.json"
+import player_data from "../../../data/output2.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
-import { readFileSync } from 'fs';
-import path from 'path';
+// import { readFileSync } from 'fs';
+// import path from 'path';
+// import clientPromise from "../../../util/mongodb"
+
 
 export async function getStaticPaths() {
-  const file = path.join(process.cwd(), 'public', "/data/output.json");
-  const player_data = readFileSync(file, 'utf8');
-  const players = JSON.parse(player_data)
+  // const file = path.join(process.cwd(), 'public', "/data/output.json");
+  // const player_data = readFileSync(file, 'utf8');
+  const players = player_data
 
-  const paths = players["player_data"].map(player => {
+  // const client = await clientPromise;
+  // const db = await client.db("TradeTrees").collection("AllInfo");
+
+
+  // const players = await db
+  //   .find({})
+  //   .toArray();
+
+  const paths = players.map(player => {
     return {
       params: { pid: player.retro_id }
     }
   })
   
+  
   return { 
-    paths, 
-    fallback: false 
+    paths, fallback: false
   }
 }
 
 export const getStaticProps = async (context) => {
-  const file = path.join(process.cwd(), 'public', "/data/output.json");
-  const player_data = readFileSync(file, 'utf8');
-  const players = JSON.parse(player_data)
-  console.log(players)
-
+  // const file = path.join(process.cwd(), 'public', "/data/output.json");
+  // const player_data = readFileSync(file, 'utf8');
+  const players = player_data
+  // const client = await clientPromise;
+  // const db = await client.db("TradeTrees").collection("AllInfo");  
+  // const result = await db
+  //   .find({'retro_id': pid})
+  //   .toArray();
+  
   const pid = context.params.pid;
-  const filtered = players["player_data"].filter((p) => p.retro_id === pid || p.mlbid === pid)
+  const filtered = players.filter((p) => p.retro_id === pid || p.mlbid === pid)
   const player = filtered[0]
 
   let ongoing_trees_data = []
@@ -43,12 +57,9 @@ export const getStaticProps = async (context) => {
   return { props: {player, ongoing_trees_data} }
 }
 
-
 export default function PlayerPage({ player, ongoing_trees_data }) {
-    
     const pid = player.retro_id
-    console.log(player)
-    
+
     let ongoingCards = []
     if(player.in_ongoing_trees.length > 0){
       ongoing_trees_data.map(p => {

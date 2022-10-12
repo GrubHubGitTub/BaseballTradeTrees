@@ -352,7 +352,7 @@ with open("PlayersToGenerate.json", "r") as file:
 index = 0
 all_data = []
 ongoing_tree_players = []
-for player_transaction in retro_ids:
+for player_transaction in retro_ids[9000:]:
     print(index)
     print(player_transaction["player"])
     index += 1
@@ -533,8 +533,6 @@ for player_transaction in retro_ids:
             }
             all_data.append(output)
 
-
-
 for data in all_data:
     for player in ongoing_tree_players:
         if player["retro_id"] == data["retro_id"]:
@@ -543,7 +541,7 @@ for data in all_data:
             else:
                 data["in_ongoing_trees"].append(player["tree"])
 
-with open("output.json", "w") as file:
+with open("output2.json", "w") as file:
     json.dump(all_data, file)
 
 # df = pd.read_json("output.json")
