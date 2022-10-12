@@ -1,3 +1,4 @@
+import * as d3 from 'd3'
 import { selection, select } from "d3-selection";
 import { max, min, sum, cumsum } from "d3-array";
 import { tree, stratify } from "d3-hierarchy";

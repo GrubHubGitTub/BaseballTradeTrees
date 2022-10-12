@@ -1,3 +1,4 @@
+import * as d3 from 'd3'
 import { OrgChart } from "../../../../org-chart-master";
 // import player_data from "../../../../data/output.json"
 import React, {useEffect, useRef} from "react";
