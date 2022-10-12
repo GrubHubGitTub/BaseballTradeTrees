@@ -2,7 +2,6 @@ import React from "react";
 // import player_data from "../../../data/output.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
-import { tree } from "d3";
 import { readFileSync } from 'fs';
 import path from 'path';
 

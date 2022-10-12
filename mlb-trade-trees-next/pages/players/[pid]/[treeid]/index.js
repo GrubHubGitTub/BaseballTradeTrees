@@ -1,7 +1,6 @@
-import { OrgChart } from "d3-org-chart";
+import { OrgChart } from "../../../../org-chart-master";
 // import player_data from "../../../../data/output.json"
 import React, {useEffect, useRef} from "react";
-import * as d3 from 'd3'
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
