@@ -66,7 +66,7 @@ export const OrgChartComponent = (props, ref) => {
             chart = new OrgChart();
         }
         chart
-            .svgHeight(window.innerHeight - 210)
+            .svgHeight(window.innerHeight - 375)
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {

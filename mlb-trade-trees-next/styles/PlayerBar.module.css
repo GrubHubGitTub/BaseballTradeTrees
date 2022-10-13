@@ -1,5 +1,6 @@
 .PlayerBar {
-    margin: 1% 1% 0 1%;
+    margin: 1% auto;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,11 +16,11 @@
     justify-content: center;
     width: 95%;
     align-items: center;
-    margin-bottom: 1%;
 }
 
 .playerName{
-    font-size: 0.8em;
+    font-size: 0.9em;
+    font-weight: bold;
     text-decoration: none;
     display: flex;
     margin-right:auto;
@@ -30,8 +31,13 @@
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
+.playerName:hover{
+    background-color: #ddd;
+    color: black;
+}
+
 .parentTree{
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-decoration: none;
     display: flex;
     padding: 6px 8px;
@@ -41,14 +47,14 @@
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
-
-.noParent {
-    margin-left: 10%;
-}
-
-.playerName:hover{
+.parentTree:hover{
     background-color: #ddd;
     color: black;
+}
+
+
+.noParent {
+    margin-left: 8%;
 }
 
 .teamHeader{
@@ -62,43 +68,57 @@
 }
 
 .teamLogo {
-    width: 50px; 
-    height: 50px;
+    width: 70px; 
+    height: 70px;
+}
+
+.otherStats{
+    margin-bottom: 0.5%;
 }
 
 .tableHeader {
     margin-right: 1%;
-
 }
 
 .allStats {
+    margin-top: 0.5%;
+    width:100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     
 }
 
 .statsContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     margin-right: 1%;
+    overflow-x: auto;
 }
 
 .statsTable {
-    font-size: 0.55rem;
-}
-
-@media (max-width:1100px) {
-    .allStats {
-        flex-wrap: wrap;
-    }
+    font-size: 0.8em;
 }
 
 @media (max-width: 400px) {
 
+    .PlayerBar{
+        width:100%
+    }
     .playerTeamTree{
         display: flex;
         justify-content: space-between;
+    }
+
+    .teamHeader h1 {
+        font-size: 0.8em;
+    }
+
+    .teamLogo {
+        width: 50px; 
+        height: 50px;
     }
     
     .playerName{
@@ -106,7 +126,7 @@
         align-items: center;
         justify-content: center;
         font-size: 0.6em;
-        padding: 5px;
+        padding: 2px;
         margin-right: auto;
     }
 
@@ -115,7 +135,7 @@
         align-items: center;
         justify-content: center;
         font-size: 0.6em;
-        padding: 5px;
+        padding: 2px;
         margin-right: 1%;
     }
 
@@ -125,14 +145,15 @@
         justify-content: end;
         
     }
-    .statsContainer {
-        flex-direction: column;
-        overflow-x: auto;
+
+    .otherStats{
+        font-size: 0.6em;
+    }
+    .noParent {
+        margin-left: 15%;
     }
 
-    .allStats{
-        justify-content: center;
-        width:90%;
+    .statsContainer{
+        font-size: 0.6em;
     }
-
 }

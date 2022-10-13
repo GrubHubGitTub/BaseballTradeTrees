@@ -5,6 +5,7 @@ import styles from '../styles/PlayerBar.module.css'
 
 export default function PlayerBar({data, tree_data}) {
 
+
     var batting_stats = tree_data.total_stats.batting_stats
     const b_stats =    
         <table className={styles.statsTable}> 
@@ -44,23 +45,13 @@ export default function PlayerBar({data, tree_data}) {
         </table> 
 
     var other_stats = tree_data.total_stats.war_sal
-    const o_stats = 
-        <table className={styles.statsTable}> 
-        <thead>
-            <tr>
-            {Object.keys(other_stats).map(key => (
-                <th key={key}> {key} </th>                    
-            ))}
-            </tr>
-        </thead>
-        <tbody>  
-            <tr>
-            {Object.keys(other_stats).map(key => (
-            <td key={key}>{other_stats[key]}</td>
-            ))}
-            </tr>
-        </tbody> 
-    </table> 
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0,
+      });
+    const salary = formatter.format(other_stats.salary)
+    console.log(salary.toString().slice(0,1))
 
     let parent_tree;
     if ( tree_data.largest_tree_id == "_" ) {
@@ -74,7 +65,7 @@ export default function PlayerBar({data, tree_data}) {
                 <a className={styles.parentTree}> View Parent Tree </a>
             </Link> 
     }
-    console.log(tree_data.from_team)
+
     const from_team = tree_data.from_team.team_name
 
     return ( 
@@ -87,24 +78,25 @@ export default function PlayerBar({data, tree_data}) {
                     <a className={styles.playerName}> ← {data.name} </a>
                 </Link>
                 <div className={styles.teamHeader}>
-                    <h3 className={styles.teamName}>{from_team}</h3>
+                    <h1 className={styles.teamName}>{from_team}</h1>
                     <img className={styles.teamLogo} src="/team_logos/TOR_logo.png"></img>
                 </div> 
                 {parent_tree}
             </div>
+            <h3>{tree_data.start}-{tree_data.last} | {tree_data.total_transactions} {tree_data.total_transactions > 1 ? "transactions" : "transaction"} </h3>
+            <div className={styles.otherStats}>
+                <h4>{other_stats.WAR > 0 ? "+" : ""}{other_stats.WAR} WAR | 
+                {salary.toString().slice(0,1) == "-" ? "" : "+"} {salary} </h4>
+            </div>
 
             <div className={styles.allStats}>
                 <div className={styles.statsContainer}>
-                    <h6 className={styles.tableHeader}>Batting: </h6>
+                    <h5 className={styles.tableHeader}>Batting </h5>
                     {b_stats}
                 </div>
                 <div className={styles.statsContainer}>
-                    <h6 className={styles.tableHeader}>Pitching: </h6>
+                    <h5 className={styles.tableHeader}>Pitching </h5>
                     {p_stats}
-                </div>
-                <div className={styles.statsContainer}>
-                    <h6 className={styles.tableHeader}>Other: </h6>
-                    {o_stats}
                 </div>
             </div>
 
