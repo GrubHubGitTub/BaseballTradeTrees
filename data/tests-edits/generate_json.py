@@ -341,7 +341,6 @@ def get_ws_wins(trade_tree):
     world_series = []
     if not wins.empty:
         world_series += wins["yearID"].tolist()
-        print(f"{from_franch} winners in {world_series}")
     return world_series
 
 
@@ -352,7 +351,10 @@ with open("PlayersToGenerate.json", "r") as file:
 index = 0
 all_data = []
 ongoing_tree_players = []
-for player_transaction in retro_ids[9000:]:
+player_search = []
+all_parent_trees = []
+
+for player_transaction in retro_ids[index:]:
     print(index)
     print(player_transaction["player"])
     index += 1
@@ -489,16 +491,16 @@ for player_transaction in retro_ids[9000:]:
                     pass
 
         trade_output = {
-            "from_team": {"team_id": from_team, "team_name": format_teams(team=from_team, date=transac_date)},
-            "from_franch": from_franch,
-            "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date)},
+            "from_t": {"team_id": from_team, "team_name": format_teams(team=from_team, date=transac_date)},
+            "from_f": from_franch,
+            "to_t": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date)},
             "date": transac_date,
-            "transaction_id": transac_id,
+            "transacc_id": transac_id,
             "tree_id": f"{player_transaction['player']}_{transac_id}",
             "largest_tree_id": f"{parent_tree_retro}_{parent_tree_transaction_id}",
             "total_stats": tree_totals,
-            "world_series_wins": ws_wins,
-            "total_transactions": total_transactions,
+            "ws_wins": ws_wins,
+            "total_transac": total_transactions,
             "traded_away": traded_away,
             "traded_for": traded_for,
             "total_players": traded_away + traded_for,
@@ -506,7 +508,7 @@ for player_transaction in retro_ids[9000:]:
             "last": latest,
             "year_span": latest - earliest,
             "ongoing": ongoing,
-            "tree_details": {
+            "tree_d": {
                 "tree_id": f"{player_transaction['player']}_{transac_id}",
                 "tree_display": trade_tree,
                 "connections": connections
@@ -541,8 +543,22 @@ for data in all_data:
             else:
                 data["in_ongoing_trees"].append(player["tree"])
 
-with open("output2.json", "w") as file:
+for player in all_data:
+    player_search.append({"retro_id":player["retro_id"],"mlb_id":player["mlb_id"],"name":player["name"],
+                          "HOF":player["HOF"],"debut_year":player["debut_year"],"last_year":player["last_year"]})
+
+    for trade in player["trades"]:
+        if trade["largest_tree_id"] == "_":
+            all_parent_trees.append(trade)
+
+with open("all_data.json", "w") as file:
     json.dump(all_data, file)
+
+with open("all_parent_trees.json", "w") as file:
+    json.dump(all_parent_trees, file)
+
+with open("player_search.json", "w") as file:
+    json.dump(player_search, file, indent=4)
 
 # df = pd.read_json("output.json")
 # df.to_csv("outputcsv.csv", index= False)

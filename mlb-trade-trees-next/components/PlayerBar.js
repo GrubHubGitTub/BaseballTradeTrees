@@ -51,7 +51,6 @@ export default function PlayerBar({data, tree_data}) {
         maximumFractionDigits: 0,
       });
     const salary = formatter.format(other_stats.salary)
-    console.log(salary.toString().slice(0,1))
 
     let parent_tree;
     if ( tree_data.largest_tree_id == "_" ) {
@@ -66,7 +65,15 @@ export default function PlayerBar({data, tree_data}) {
             </Link> 
     }
 
-    const from_team = tree_data.from_team.team_name
+    let world_series_wins
+    if (tree_data.ws_wins.length > 0){
+        world_series_wins = tree_data.ws_wins.map(year => (
+            <img src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
+    }
+
+    const from_team = tree_data.from_t.team_name
+
+    console.log(tree_data)
 
     return ( 
         <div className={styles.PlayerBar}>
@@ -80,13 +87,16 @@ export default function PlayerBar({data, tree_data}) {
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
                     <img className={styles.teamLogo} src="/team_logos/TOR_logo.png"></img>
+                    <h2>{tree_data.start}-{tree_data.last}</h2>
+                    {world_series_wins}
                 </div> 
                 {parent_tree}
             </div>
-            <h3>{tree_data.start}-{tree_data.last} | {tree_data.total_transactions} {tree_data.total_transactions > 1 ? "transactions" : "transaction"} </h3>
+            
             <div className={styles.otherStats}>
+                <h4>{tree_data.total_transactions} {tree_data.total_transactions > 1 ? "transactions" : "transaction"} </h4>
                 <h4>{other_stats.WAR > 0 ? "+" : ""}{other_stats.WAR} WAR | 
-                {salary.toString().slice(0,1) == "-" ? "" : "+"} {salary} </h4>
+                {salary.toString().slice(0,1) == "-" ? "" : " +"}{salary} </h4>
             </div>
 
             <div className={styles.allStats}>

@@ -1,5 +1,6 @@
 import React from "react";
-import player_data from "../../../data/output2.json"
+import player_data1 from "../../../data/all_data1.json"
+import player_data2 from "../../../data/all_data2.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 // import { readFileSync } from 'fs';
@@ -10,7 +11,7 @@ import styles from '../../../styles/PlayerPage.module.css'
 export async function getStaticPaths() {
   // const file = path.join(process.cwd(), 'public', "/data/output.json");
   // const player_data = readFileSync(file, 'utf8');
-  const players = player_data
+  const players = player_data1.concat(player_data2)
 
   // const client = await clientPromise;
   // const db = await client.db("TradeTrees").collection("AllInfo");
@@ -33,17 +34,11 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
-  // const file = path.join(process.cwd(), 'public', "/data/output.json");
-  // const player_data = readFileSync(file, 'utf8');
-  const players = player_data
-  // const client = await clientPromise;
-  // const db = await client.db("TradeTrees").collection("AllInfo");  
-  // const result = await db
-  //   .find({'retro_id': pid})
-  //   .toArray();
+  
+  const players = player_data1.concat(player_data2)
   
   const pid = context.params.pid;
-  const filtered = players.filter((p) => p.retro_id === pid || p.mlbid === pid)
+  const filtered = players.filter((p) => p.retro_id === pid)
   const player = filtered[0]
 
   let ongoing_trees_data = []

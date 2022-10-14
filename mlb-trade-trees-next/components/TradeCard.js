@@ -3,24 +3,19 @@ import React from "react";
 import styles from '../styles/TradeCard.module.css';
 
 export default function TradeCard(props) {
-    console.log(props.data)
 
     const tree_id = props.data.tree_id 
     const pid = props.pid
 
-    const year = props.data.date.toString().slice(0,4)
-    const month = props.data.date.toString().slice(4,6)
-    const day = props.data.date.toString().slice(6,8)
-
     const largest_tree = props.data.largest_tree_id
     const parent_id = largest_tree.slice(0,8)
 
-    const ws_wins = props.data.world_series_wins.length
+    const ws_wins = props.data.ws_wins.length
 
-    const getCardStyle = () => {
-        if (ws_wins.length > 0) return styles.cardWS
-        else if (props.data.total_stats.war_sal.WAR < 0 ) return styles.cardNeg;
-        else return styles.cardPos;
+    const outlineColor = () => {
+        if (ws_wins > 0) return "rgb(255, 183, 0) 0px 1px 4px, rgb(174, 125, 0) 0px 0px 0px 3px"
+        else if (props.data.total_stats.war_sal.WAR < 0 ) return "rgb(138, 1, 1) 0px 1px 4px, rgb(137, 0, 0) 0px 0px 0px 3px"
+        else return "rgb(2, 122, 0) 0px 1px 4px, rgb(0, 120, 8) 0px 0px 0px 3px"
       };
 
     let largestButton
@@ -28,30 +23,47 @@ export default function TradeCard(props) {
         largestButton = <Link href={`/players/${parent_id}/${largest_tree}`}><a className={styles.largestButton}> View Parent Tree</a></Link>
     } 
 
+    let world_series_wins
+    if (ws_wins > 0){
+        world_series_wins = props.data.ws_wins.map(year => (
+            <img src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
+    }
+
+    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
+    "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+
+    let background 
+    let link
+    const from_franch = props.data.from_f
+    if (from_franch in franchises) {
+        background = franchises[from_franch]
+        link = `/team_logos/${from_franch}.png`
+    }
+    else{
+        background = "black"
+        link = `/team_logos/MLB.png`
+    }
 
     return (
-        // <div className={styles.card}>
-        //         <p>{props.data.from_team.team_name} → {props.data.to_team.team_name}</p>
-        //         <p>{year}-{month}-{day}</p> 
-        //         <p>{props.data.total_stats.war_sal.WAR} WAR</p>
-        //         <Link href={`/players/${pid}/${tree_id}`}><a>View Tree</a></Link>
-        //         {/* {props.data.largest_tree_id == "_" ? "" : `<a href=/players/${parent_id}/${largest_tree}> View Largest Version of this Tree</a>`} */}
-        // </div>
 
-            <div className={getCardStyle()}>
-                <img src="/team_logos/TOR_logo.png"></img>
-                <div className={styles.content}>
-                    
-                    <h2>{props.data.from_team.team_name}</h2>
-                    <h3>→ {props.data.to_team.team_name}</h3>
-                    <h4>{props.data.start}-{props.data.last}</h4>                    
-                    <h4>Total transactions: {props.data.total_transactions}</h4>
-                    <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs | </p>
-                    <p>{props.data.total_stats.pitching_stats.W} Wins | {ws_wins == 0 ? "" : `${ws_wins} WS Wins`} </p>
-                    
+            <div className={styles.card} style={{"background": background, "box-shadow": outlineColor() }}>
+                <div className={styles.logodiv}>
+                <img className={styles.logo} src={link} ></img>
+                </div>
+                    <h1>{props.data.from_t.team_name}</h1>
+                    <div className={styles.content}>
+                        <h2>→ {props.data.to_t.team_name}</h2>
+                        <div style={{display:"inline-block"}}>
+                        <h3>{props.data.start}-{props.data.last}</h3>{world_series_wins}
+                        </div>                    
+                        <h3>Total transactions: {props.data.total_transactions}</h3>
+                        <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs </p>
+                    </div>
                     <Link href={`/players/${pid}/${tree_id}`}><a className={styles.treeButton}>View Tree</a></Link>
                     {largestButton}
-                </div>
+                    
             </div>
     )
 }

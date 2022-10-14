@@ -18,6 +18,12 @@
     align-items: center;
 }
 
+.wsWins {
+    width:15px;
+    height:25px;
+    margin-bottom: 1%;
+}
+
 .playerName{
     font-size: 0.9em;
     font-weight: bold;
@@ -52,7 +58,6 @@
     color: black;
 }
 
-
 .noParent {
     margin-left: 8%;
 }
@@ -73,21 +78,19 @@
 }
 
 .otherStats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 0.5%;
 }
 
-.tableHeader {
-    margin-right: 1%;
-}
-
 .allStats {
-    margin-top: 0.5%;
-    width:100%;
+    width:90%;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    
+    flex-wrap:wrap;
+    overflow-x: auto;
 }
 
 .statsContainer {
@@ -95,14 +98,13 @@
     flex-direction: column;
     align-items: center;
     margin-right: 1%;
-    overflow-x: auto;
 }
 
 .statsTable {
     font-size: 0.8em;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
 
     .PlayerBar{
         width:100%
@@ -113,6 +115,9 @@
     }
 
     .teamHeader h1 {
+        font-size: 0.8em;
+    }
+    .teamHeader h2 {
         font-size: 0.8em;
     }
 
@@ -153,7 +158,14 @@
         margin-left: 15%;
     }
 
-    .statsContainer{
+    .allStats {
         font-size: 0.6em;
     }
-}
+    .statsContainer {
+        align-items:flex-start;
+    }
+    .allStats {
+        justify-content:space-between;
+    }
+
+    }

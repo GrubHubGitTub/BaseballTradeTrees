@@ -8,60 +8,49 @@
     margin-right: auto;
     margin-bottom:1%;
     width: 90%;
-    height:550px;
+    height:65vh;
     border: 1px solid black;
     background-color: white;
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
-.statTable{
-    background-color: white;
-}
 
 .statsContainer {
     border-bottom: 1px solid black;
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     text-align: center;
-
     padding-bottom: 2%;
 }
 
-.statBoxIn{
-   width:50%;
-}
-
-.statBoxOut{
-    width:50%
-}
-
 .tableHeader{
+    width: 65%;
     border: 1px solid black;
     border-radius: 20px;
     padding: 5px;
+    margin: auto;
     margin-bottom: 1%;
     background-color: white;
 }
 
-@media (max-width: 600px) {
-    .statsContainer {
-      flex-direction: column;
-    }
-  }
-
 .statBoxOut {
+    width:50%;
     margin-right: 5px;
     overflow-x:auto;
 }
 
 .statBoxIn {
+    width:50%;
     overflow-x:auto;
 }
 
 .statTable{
-    font-size: 0.5rem;
+    font-size: 0.8rem;
+    width:100%;
+    background-color: white;
+    
 }
 
 .statTable th{
@@ -71,5 +60,15 @@
 .statTable tr:hover {
     background-color: lightblue;
 }
+
+
+@media (max-width: 850px) {
+    .statsContainer {
+      flex-direction: column;
+    }
+    .statBoxOut, .statBoxIn {
+        width:100%;
+    }
+  }
 
 

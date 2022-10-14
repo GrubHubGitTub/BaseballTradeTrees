@@ -1,12 +1,12 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
-// import player_data from '../data/output.json'
+import player_search from "../data/player_search.json"
 
 export default function Layout({ children }) {
-  // const player_data = fs.readFile('../data/output.json', 'utf8');
+  const players = player_search
   return (
     <div className='container'>
-      <Navbar players=""/>
+      <Navbar players={players}/>
       { children }
       <Footer />
     </div> 

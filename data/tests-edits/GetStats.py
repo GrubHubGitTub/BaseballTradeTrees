@@ -96,10 +96,16 @@ class GetStats:
                     self.transaction_total["pitching_stats"]["BB"] -= int(statline["BB"])
                     self.transaction_total["pitching_stats"]["SO"] -= int(statline["SO"])
                     self.transaction_total["pitching_stats"]["HBP"] -= int(statline["HBP"])
-                    self.transaction_total["other_stats"]["WAR"] -= statline["WAR"]
-                    self.transaction_total["other_stats"]["salary"] -= statline["salary"]
                     self.transaction_total["pitching_other"]["BAOpp"]["out"].append(statline["BAOpp"])
                     self.transaction_total["pitching_other"]["ERA"]["out"].append(statline["ERA"])
+                    self.transaction_total["other_stats"]["WAR"] -= statline["WAR"]
+                    if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
+                        for bstats in stats["batting_stats"]:
+                            if bstats["Year"] == statline["Year"] and bstats["salary"] == statline["salary"]:
+                                print("passed salary")
+                                break
+                    else:
+                        self.transaction_total["other_stats"]["salary"] -= statline["salary"]
                     if statline["All Star"] == "Yes":
                         if "batting_stats" not in stats:
                             self.transaction_total["other_stats"]["allstars"] -= 1
@@ -144,7 +150,14 @@ class GetStats:
                     self.transaction_total["pitching_other"]["BAOpp"]["in"].append(statline["BAOpp"])
                     self.transaction_total["pitching_other"]["ERA"]["in"].append(statline["ERA"])
                     self.transaction_total["other_stats"]["WAR"] += statline["WAR"]
-                    self.transaction_total["other_stats"]["salary"] += statline["salary"]
+                    if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
+                        for bstats in stats["batting_stats"]:
+                            if bstats["Year"] == statline["Year"] and bstats["salary"] == statline["salary"]:
+                                print("passed salary")
+                                break
+                    else:
+                        self.transaction_total["other_stats"]["salary"] += statline["salary"]
+
                     if statline["All Star"] == "Yes":
                         if "batting_stats" not in stats:
                             self.transaction_total["other_stats"]["allstars"] += 1
