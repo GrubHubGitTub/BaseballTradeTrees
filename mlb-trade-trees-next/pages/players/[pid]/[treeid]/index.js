@@ -4,9 +4,10 @@ import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
+import { getData } from "../../../../data/data";
 
 export const getStaticPaths = async (context) => {
-  const {players} = await import ("../../../../data/data")
+  const players = getData();
 
     const paths = players
       .map((player) =>
@@ -23,8 +24,8 @@ export const getStaticPaths = async (context) => {
 };
   
 export const getStaticProps = async (context) => {
-    const {players} = await import ("../../../../data/data")
-    
+    const players = getData();
+
     const pid = context.params.pid;
     const filtered = players.filter((p) => p.retro_id === pid)
     const data = filtered[0]

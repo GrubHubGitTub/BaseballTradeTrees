@@ -58,7 +58,7 @@ export default function TradeCard(props) {
                         <div style={{display:"inline-block"}}>
                         <h3>{props.data.start}-{props.data.last}</h3>{world_series_wins}
                         </div>                    
-                        <h3>Total transactions: {props.data.total_transactions}</h3>
+                        <h3>Total transactions: {props.data.total_transac}</h3>
                         <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs </p>
                     </div>
                     <Link href={`/players/${pid}/${tree_id}`}><a className={styles.treeButton}>View Tree</a></Link>

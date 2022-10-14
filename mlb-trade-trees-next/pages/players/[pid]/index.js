@@ -1,6 +1,7 @@
 import React from "react";
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
+import { getData } from "../../../data/data";
 
 export async function getStaticPaths() {
   // const player_data1 = await import ("../../../data/all_data1.json");
@@ -9,7 +10,7 @@ export async function getStaticPaths() {
   // // const player_data = readFileSync(file, 'utf8');
   // const players = player_data1.concat(player_data2)
 
-  const {players} = await import ("../../../data/data")
+  const players = getData();
 
   const paths = players.map(player => {
     return {
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
-  const {players} = await import ("../../../data/data")
+  const players = getData();
   
   const pid = context.params.pid;
   const filtered = players.filter((p) => p.retro_id === pid)
