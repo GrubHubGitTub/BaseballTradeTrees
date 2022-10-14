@@ -11,7 +11,7 @@ import Image from 'next/image'
 export const getStaticPaths = async (context) => {
   // const file = path.join(process.cwd(), 'public', "/data/output.json");
   // const player_data = readFileSync(file, 'utf8');
-  const players = player_data1 + player_data2
+  const players = player_data1.concat(player_data2)
   // const client = await clientPromise;
   // const db = await client.db("TradeTrees").collection("AllInfo");
   // const players = await db
@@ -42,7 +42,7 @@ export const getStaticProps = async (context) => {
     //   .find({'retro_id': pid})
     //   .toArray();
     const pid = context.params.pid;
-    const players = player_data1 + player_data2
+    const players = player_data1.concat(player_data2)
 
     const filtered = players.filter((p) => p.retro_id === pid)
     const data = filtered[0]
