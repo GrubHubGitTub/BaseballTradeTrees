@@ -68,7 +68,7 @@ export default function PlayerBar({data, tree_data}) {
     let world_series_wins
     if (tree_data.ws_wins.length > 0){
         world_series_wins = tree_data.ws_wins.map(year => (
-            <img src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
+            <img key={year} src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
     }
 
     const from_team = tree_data.from_t.team_name

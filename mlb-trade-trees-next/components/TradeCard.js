@@ -26,7 +26,7 @@ export default function TradeCard(props) {
     let world_series_wins
     if (ws_wins > 0){
         world_series_wins = props.data.ws_wins.map(year => (
-            <img src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
+            <img key={year} src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
     }
 
     const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
