@@ -1,6 +1,6 @@
 import React from "react";
-import player_data1 from "../../../data/all_data1.json"
-import player_data2 from "../../../data/all_data2.json"
+import player_data1 from "../../../public/data/all_data1.json"
+import player_data2 from "../../../public/data/all_data2.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 // import { readFileSync } from 'fs';
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
-  
+
   const players = player_data1.concat(player_data2)
   
   const pid = context.params.pid;

@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { OrgChart } from "../../../../org-chart-master";
-import player_data1 from "../../../../data/all_data1.json"
-import player_data2 from "../../../../data/all_data2.json"
+import player_data1 from "../../../../public/data/all_data1.json"
+import player_data2 from "../../../../public/data/all_data2.json"
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
