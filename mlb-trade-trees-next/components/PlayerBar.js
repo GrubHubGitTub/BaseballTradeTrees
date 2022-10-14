@@ -73,7 +73,22 @@ export default function PlayerBar({data, tree_data}) {
 
     const from_team = tree_data.from_t.team_name
 
-    console.log(tree_data)
+    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
+    "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+
+    let background 
+    let link
+    const from_franch = tree_data.from_f
+    if (from_franch in franchises) {
+        background = franchises[from_franch]
+        link = `/team_logos/${from_franch}.png`
+    }
+    else{
+        background = "black"
+        link = `/team_logos/MLB.png`
+    }
 
     return ( 
         <div className={styles.PlayerBar}>
@@ -86,7 +101,7 @@ export default function PlayerBar({data, tree_data}) {
                 </Link>
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
-                    <img className={styles.teamLogo} src="/team_logos/TOR_logo.png"></img>
+                    <img className={styles.teamLogo} src={link}></img>
                     <h2>{tree_data.start}-{tree_data.last}</h2>
                     {world_series_wins}
                 </div> 
@@ -94,7 +109,7 @@ export default function PlayerBar({data, tree_data}) {
             </div>
             
             <div className={styles.otherStats}>
-                <h4>{tree_data.total_transactions} {tree_data.total_transactions > 1 ? "transactions" : "transaction"} </h4>
+                <h4>{tree_data.total_transac} {tree_data.total_transac > 1 ? "transactions" : "transaction"} </h4>
                 <h4>{other_stats.WAR > 0 ? "+" : ""}{other_stats.WAR} WAR | 
                 {salary.toString().slice(0,1) == "-" ? "" : " +"}{salary} </h4>
             </div>

@@ -59,13 +59,13 @@
 }
 
 .noParent {
-    margin-left: 8%;
+    margin-left: 7%;
 }
 
 .teamHeader{
     display: flex;
     align-items: center;
-    margin-right:auto;
+    justify-content: center;
 }
 
 .teamName {
@@ -73,8 +73,10 @@
 }
 
 .teamLogo {
-    width: 70px; 
-    height: 70px;
+    max-width: 8%;
+    height: auto;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .otherStats{

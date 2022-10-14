@@ -95,7 +95,11 @@ export const OrgChartComponent = (props, ref) => {
             .compactMarginPair((d) => 40)
             .connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
-              
+              const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+              "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+              "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
+              "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+
               // Comp pick node
               if ("transaction_id" in d.data && "info" in d.data) {
                 // format date
@@ -212,7 +216,7 @@ export const OrgChartComponent = (props, ref) => {
                 // check for Allstars'
                 let allstars = ""
                 if (d.data.trade_totals.other_stats.allstars > 0) {
-                  allstars = `<img src="/team_logos/TOR_logo.png" alt="Allstar"
+                  allstars = `<img src="/team_logos/as.png" alt="Allstar"
                   style="
                   bottom:25px;
                   left:20px;
@@ -220,6 +224,15 @@ export const OrgChartComponent = (props, ref) => {
                   width:50px;
                   height:50px;
                   "/>`
+                }
+                let link
+                console.log(d.data)
+                const to_franch = d.data.to_t
+                if (to_franch in franchises) {
+                    link = `/team_logos/${to_franch}.png`
+                }
+                else{
+                    link = `/team_logos/MLB.png`
                 }
 
                 return `
@@ -235,7 +248,7 @@ export const OrgChartComponent = (props, ref) => {
                       <div style="display: flex; justify-content: center;">
                         <h2 style="padding-top:15px;font-size:2.3em"> → ${d.data.to_team.team_name} </h2>
                         
-                        <img src="/team_logos/TOR_logo.png" alt="team logo"
+                        <img src=${link} alt="team logo"
                         style="
                         width:70px;
                         height:70px;
