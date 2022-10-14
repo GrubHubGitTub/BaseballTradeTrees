@@ -3,28 +3,28 @@ import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 import { getData } from "../../../data/data";
 
-// export async function getStaticPaths() {
-//   // const player_data1 = await import ("../../../data/all_data1.json");
-//   // const player_data2 = await import ("../../../data/all_data2.json");
-//   // // const file = path.join(process.cwd(), 'public', "/data/output.json");
-//   // // const player_data = readFileSync(file, 'utf8');
-//   // const players = player_data1.concat(player_data2)
+export async function getStaticPaths() {
+  // const player_data1 = await import ("../../../data/all_data1.json");
+  // const player_data2 = await import ("../../../data/all_data2.json");
+  // // const file = path.join(process.cwd(), 'public', "/data/output.json");
+  // // const player_data = readFileSync(file, 'utf8');
+  // const players = player_data1.concat(player_data2)
 
-//   const players = getData();
+  const players = getData();
 
-//   const paths = players.map(player => {
-//     return {
-//       params: { pid: player.retro_id }
-//     }
-//   })
+  const paths = players.map(player => {
+    return {
+      params: { pid: player.retro_id }
+    }
+  })
   
   
-//   return { 
-//     paths, fallback: false
-//   }
-// }
+  return { 
+    paths, fallback: false
+  }
+}
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const players = getData();
   
   const pid = context.params.pid;

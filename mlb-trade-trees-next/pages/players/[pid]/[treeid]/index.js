@@ -6,24 +6,24 @@ import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
 import { getData } from "../../../../data/data";
 
-// export const getStaticPaths = async (context) => {
-//   const players = getData();
+export const getStaticPaths = async (context) => {
+  const players = getData();
 
-//     const paths = players
-//       .map((player) =>
-//         player.trades.map((trade) => ({
-//           params: {
-//             pid: player.retro_id,
-//             treeid: trade.tree_id,
-//           },
-//         }))
-//       )
-//       .flat();
+    const paths = players
+      .map((player) =>
+        player.trades.map((trade) => ({
+          params: {
+            pid: player.retro_id,
+            treeid: trade.tree_id,
+          },
+        }))
+      )
+      .flat();
 
-//     return { paths, fallback: false };
-// };
+    return { paths, fallback: false };
+};
   
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
     const players = getData();
 
     const pid = context.params.pid;
