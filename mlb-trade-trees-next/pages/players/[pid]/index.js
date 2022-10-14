@@ -1,25 +1,15 @@
 import React from "react";
-import player_data1 from "../../../public/data/all_data1.json"
-import player_data2 from "../../../public/data/all_data2.json"
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
-// import { readFileSync } from 'fs';
-// import path from 'path';
-// import clientPromise from "../../../util/mongodb"
-
 
 export async function getStaticPaths() {
-  // const file = path.join(process.cwd(), 'public', "/data/output.json");
-  // const player_data = readFileSync(file, 'utf8');
-  const players = player_data1.concat(player_data2)
+  // const player_data1 = await import ("../../../data/all_data1.json");
+  // const player_data2 = await import ("../../../data/all_data2.json");
+  // // const file = path.join(process.cwd(), 'public', "/data/output.json");
+  // // const player_data = readFileSync(file, 'utf8');
+  // const players = player_data1.concat(player_data2)
 
-  // const client = await clientPromise;
-  // const db = await client.db("TradeTrees").collection("AllInfo");
-
-
-  // const players = await db
-  //   .find({})
-  //   .toArray();
+  const {players} = await import ("../../../data/data")
 
   const paths = players.map(player => {
     return {
@@ -34,8 +24,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context) => {
-
-  const players = player_data1.concat(player_data2)
+  const {players} = await import ("../../../data/data")
   
   const pid = context.params.pid;
   const filtered = players.filter((p) => p.retro_id === pid)

@@ -1,23 +1,12 @@
 import * as d3 from 'd3'
 import { OrgChart } from "../../../../org-chart-master";
-import player_data1 from "../../../../public/data/all_data1.json"
-import player_data2 from "../../../../public/data/all_data2.json"
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
-// import clientPromise from "../../../util/mongodb"
 
 export const getStaticPaths = async (context) => {
-  // const file = path.join(process.cwd(), 'public', "/data/output.json");
-  // const player_data = readFileSync(file, 'utf8');
-  const players = player_data1.concat(player_data2)
-  // const client = await clientPromise;
-  // const db = await client.db("TradeTrees").collection("AllInfo");
-  // const players = await db
-  //   .collection("AllInfo")
-  //   .find({})
-  //   .toArray();
+  const {players} = await import ("../../../../data/data")
 
     const paths = players
       .map((player) =>
@@ -34,16 +23,9 @@ export const getStaticPaths = async (context) => {
 };
   
 export const getStaticProps = async (context) => {
-
-    // const client = await clientPromise;
-    // const db = await client.db("TradeTrees").collection("AllInfo");
-    // const players = await db
-    //   .collection("AllInfo")
-    //   .find({'retro_id': pid})
-    //   .toArray();
+    const {players} = await import ("../../../../data/data")
+    
     const pid = context.params.pid;
-    const players = player_data1.concat(player_data2)
-
     const filtered = players.filter((p) => p.retro_id === pid)
     const data = filtered[0]
     let tree_data;

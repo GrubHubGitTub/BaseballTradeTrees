@@ -48,7 +48,7 @@ export default function TradeCard(props) {
 
     return (
 
-            <div className={styles.card} style={{"background": background, "box-shadow": outlineColor() }}>
+            <div className={styles.card} style={{"background": background, "boxShadow": outlineColor() }}>
                 <div className={styles.logodiv}>
                 <img className={styles.logo} src={link} ></img>
                 </div>
