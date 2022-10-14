@@ -67,13 +67,13 @@
 
  .content {
   width:90%;
-  margin-top: 70%;
+  height: 50%;
+  margin-top: 60%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content:flex-end;
+  justify-content: space-evenly;
   color: rgb(255, 255, 255);
   background-color: rgba(128, 128, 128, 0.578);
   border-radius: 15px;
