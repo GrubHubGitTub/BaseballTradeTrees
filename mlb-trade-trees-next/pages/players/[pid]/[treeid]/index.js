@@ -233,8 +233,9 @@ export const OrgChartComponent = (props, ref) => {
                         
                         <img src=${link} alt="team logo"
                         style="
-                        width:70px;
-                        height:70px;
+                        padding:1%;
+                        max-width:70px;
+                        height:auto;
                         "/>
                       </div>
                       

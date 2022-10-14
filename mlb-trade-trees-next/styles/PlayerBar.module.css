@@ -73,10 +73,9 @@
 }
 
 .teamLogo {
+    padding:1%;
     max-width: 8%;
     height: auto;
-    margin-left: 2%;
-    margin-right: 2%;
 }
 
 .otherStats{

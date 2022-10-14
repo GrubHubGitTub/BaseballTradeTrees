@@ -240,8 +240,8 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                     node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                  "name": format_names(retro_id=player_id), "traded_with": traded_with,
                                  "to_team": {"team_id": outcome["outcome"]["to_team"].item(),
-                                             "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
-                                                                       date=outcome_date)},
+                                             "team_name": {"name":format_teams(team=outcome["outcome"]["to_team"].item(),
+                                                                       date=outcome_date), "franch": },
                                  "to_franchise":to_franchise, "date": outcome_date}
                     trade_tree.append(node_info)
 
