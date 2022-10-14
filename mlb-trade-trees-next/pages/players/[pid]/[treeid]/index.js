@@ -433,8 +433,8 @@ export const OrgChartComponent = (props, ref) => {
     };
 
 export default function TreePage({ data, tree_data }) {
-    const treeDisplay = tree_data.tree_details.tree_display
-    const connections = tree_data.tree_details.connections
+    const treeDisplay = tree_data.tree_d.tree_display
+    const connections = tree_data.tree_d.connections
     const [statsInBat, setStatsInBat] = React.useState("")
     const [statsInPitch, setStatsInPitch] = React.useState("")
     const [statsOutBat, setStatsOutBat] = React.useState("")
