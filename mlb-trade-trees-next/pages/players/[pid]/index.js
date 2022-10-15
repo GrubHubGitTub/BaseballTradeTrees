@@ -5,7 +5,7 @@ import styles from '../../../styles/PlayerPage.module.css'
 
 export async function getStaticPaths() {
   const player_data1 = require("../../../data/all_data1.json")
-  const player_data2 = require("../../../data/all_data1.json")
+  const player_data2 = require("../../../data/all_data2.json")
   const players = player_data1.concat(player_data2);
   // const players = getData();
   // const player_data1 = require("../data/all_data1.json")
@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context){
   const player_data1 = require("../../../data/all_data1.json")
-  const player_data2 = require("../../../data/all_data1.json")
+  const player_data2 = require("../../../data/all_data2.json")
   const players = player_data1.concat(player_data2);
   
   const pid = context.params.pid;
@@ -100,3 +100,6 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
   );
 };
 
+export const config = {
+  unstable_excludeFiles: ["../../../../data/all_data1.json", "../../../../data/all_data2.json"],
+}
