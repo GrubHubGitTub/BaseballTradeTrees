@@ -3,7 +3,6 @@ import { OrgChart } from "../../../../org-chart-master";
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
-import Image from 'next/image'
 // import { getData } from "../../../../data/data";
 
 export async function getStaticPaths() {
@@ -23,7 +22,7 @@ export async function getStaticPaths() {
       .flat();
 
     return { paths, fallback: false };
-};
+}
   
 export async function getStaticProps(context) {
   const player_data1 = require("../../../../data/all_data1.json")
@@ -575,4 +574,7 @@ export default function TreePage({ data, tree_data }) {
       </div>
     );
   };
-    
+  
+export const config = {
+    unstable_excludeFiles: ["../../../../data/all_data1.json", "../../../../data/all_data2.json"],
+  }
