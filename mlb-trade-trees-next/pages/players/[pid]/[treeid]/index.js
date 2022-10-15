@@ -4,12 +4,14 @@ import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
 import Image from 'next/image'
-import { getData } from "../../../../data/data";
+// import { getData } from "../../../../data/data";
 
-export const getStaticPaths = async (context) => {
-  const players = getData();
+export async function getStaticPaths() {
+  const player_data1 = require("../../../../data/all_data1.json")
+  const player_data2 = require("../../../../data/all_data2.json")
+  const players = player_data1.concat(player_data2);
 
-    const paths = players
+  const paths = players
       .map((player) =>
         player.trades.map((trade) => ({
           params: {
@@ -23,8 +25,10 @@ export const getStaticPaths = async (context) => {
     return { paths, fallback: false };
 };
   
-export const getStaticProps = async (context) => {
-    const players = getData();
+export async function getStaticProps(context) {
+  const player_data1 = require("../../../../data/all_data1.json")
+  const player_data2 = require("../../../../data/all_data2.json")
+  const players = player_data1.concat(player_data2);
 
     const pid = context.params.pid;
     const filtered = players.filter((p) => p.retro_id === pid)

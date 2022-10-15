@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from '../styles/TradeCard.module.css';
+import Image from "next/image";
 
 export default function TradeCard(props) {
 
@@ -26,8 +27,9 @@ export default function TradeCard(props) {
     let world_series_wins
     if (ws_wins > 0){
         world_series_wins = props.data.ws_wins.map(year => (
-            <img key={year} src="/team_logos/ws.gif" title={year} className={styles.wsWins}></img>))
-    }
+            <Image key={year} alt="WSTrophy" src="/team_logos/ws.gif" title={year} className={styles.wsWins}/>
+            ))
+        }
 
     const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
     "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
@@ -50,7 +52,7 @@ export default function TradeCard(props) {
 
             <div className={styles.card} style={{"background": background, "boxShadow": outlineColor() }}>
                 <div className={styles.logodiv}>
-                <img className={styles.logo} src={link} ></img>
+                <Image className={styles.logo} src={link} alt="TeamLogo" />
                 </div>
                     <h1>{props.data.from_t.team_name}</h1>
                     <div className={styles.content}>

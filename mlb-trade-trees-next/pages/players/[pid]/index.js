@@ -1,16 +1,16 @@
 import React from "react";
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
-import { getData } from "../../../data/data";
+// import { getData } from "../../../data/data";
 
 export async function getStaticPaths() {
-  // const player_data1 = await import ("../../../data/all_data1.json");
-  // const player_data2 = await import ("../../../data/all_data2.json");
-  // // const file = path.join(process.cwd(), 'public', "/data/output.json");
-  // // const player_data = readFileSync(file, 'utf8');
-  // const players = player_data1.concat(player_data2)
-
-  const players = getData();
+  const player_data1 = require("../../../data/all_data1.json")
+  const player_data2 = require("../../../data/all_data1.json")
+  const players = player_data1.concat(player_data2);
+  // const players = getData();
+  // const player_data1 = require("../data/all_data1.json")
+  // const player_data2 = require("../data/all_data2.json")
+  // const players = player_data1.concat(player_data2);
 
   const paths = players.map(player => {
     return {
@@ -24,8 +24,10 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps = async (context) => {
-  const players = getData();
+export async function getStaticProps(context){
+  const player_data1 = require("../../../data/all_data1.json")
+  const player_data2 = require("../../../data/all_data1.json")
+  const players = player_data1.concat(player_data2);
   
   const pid = context.params.pid;
   const filtered = players.filter((p) => p.retro_id === pid)
