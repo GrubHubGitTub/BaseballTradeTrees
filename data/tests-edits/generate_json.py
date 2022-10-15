@@ -33,14 +33,26 @@ def format_names(retro_id_list=None, retro_id= None):
         return name
 
 
-def format_teams(team, date):
-    year = int(str(date)[0:4])
-    team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
-    try:
-        name = team_row["name"].item()
-    except ValueError:
-        name = team
-    return name
+def format_teams(team, date, to_team=False):
+    if to_team == False:
+        year = int(str(date)[0:4])
+        team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
+        try:
+            name = team_row["name"].item()
+        except ValueError:
+            name = team
+        return name
+    else:
+        year = int(str(date)[0:4])
+        team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
+        try:
+            name = team_row["name"].item()
+            franch = team_row["franchID"].item()
+        except ValueError:
+            name = team
+            franch = team
+        return {"name":name, "to_franch": franch}
+
 
 
 def format_outcomes(outcome_code):
@@ -240,8 +252,8 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                     node_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                  "name": format_names(retro_id=player_id), "traded_with": traded_with,
                                  "to_team": {"team_id": outcome["outcome"]["to_team"].item(),
-                                             "team_name": {"name":format_teams(team=outcome["outcome"]["to_team"].item(),
-                                                                       date=outcome_date), "franch": },
+                                             "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
+                                                                       date=outcome_date, to_team=True)},
                                  "to_franchise":to_franchise, "date": outcome_date}
                     trade_tree.append(node_info)
 
@@ -260,7 +272,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                                      "name": format_names(retro_id=player_id), "traded_with": traded_with,
                                      "to_team": {"team_id": outcome["outcome"]["to_team"].item(),
                                                  "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
-                                                                           date=outcome_date)},
+                                                                           date=outcome_date, to_team=True)},
                                      "to_franchise": to_franchise, "date": outcome_date}
                         trade_tree.append(node_info)
 
@@ -275,7 +287,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                              "trade_in_stats": trade_in_stats, "trade_totals": trade_totals,
                              "to_team": {"team_id": outcome["outcome"]["to_team"].item(),
                                          "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
-                                                                   date=outcome_date)},
+                                                                   date=outcome_date, to_team=True)},
                              "to_franchise": to_franchise, "date": outcome_date}
 
                 transaction_info = {"node_id": len(trade_tree) + 1, "transaction_id": transaction_id,
@@ -405,7 +417,7 @@ for player_transaction in retro_ids[index:]:
         trade_tree = []
         tree_node = {"id": 1, "parentId": "", "retro_id": player_transaction["player"], "name": name,
                      "transaction_id": transac_id, "date": transac_date,
-                     "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date)},
+                     "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date, to_team=True)},
                      "to_franch": to_franchise, "traded_with": traded_with_players,
                      "trade_in_stats": trade_in_stats, "trade_out_stats": trade_out_stats, "trade_totals": trade_totals}
         trade_tree.append(tree_node)
@@ -493,7 +505,7 @@ for player_transaction in retro_ids[index:]:
         trade_output = {
             "from_t": {"team_id": from_team, "team_name": format_teams(team=from_team, date=transac_date)},
             "from_f": from_franch,
-            "to_t": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date)},
+            "to_t": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date, to_team=True)},
             "date": transac_date,
             "transac_id": transac_id,
             "tree_id": f"{player_transaction['player']}_{transac_id}",
