@@ -101,5 +101,5 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
 };
 
 export const config = {
-  unstable_excludeFiles: ["../../../../data/all_data1.json", "../../../../data/all_data2.json"],
+  unstable_excludeFiles: ["../../../data/all_data1.json", "../../../data/all_data2.json"],
 }
