@@ -61,9 +61,10 @@ export const OrgChartComponent = (props, ref) => {
               const trade_in_stats = nodeData.trade_in_stats
               const trade_out_stats = nodeData.trade_out_stats
               console.log(trade_in_stats)
+              
+              props.onNodeClick(d, trade_in_stats, trade_out_stats)
               if ("transaction_id" in nodeData){
                 chart.setCentered(d).initialZoom(0.5).render()}
-              props.onNodeClick(d, trade_in_stats, trade_out_stats)
             })
             .nodeWidth((d) => {
                 if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 420

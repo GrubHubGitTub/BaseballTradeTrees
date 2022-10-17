@@ -5,7 +5,24 @@ import Image from "next/image"
 
 
 export default function PlayerBar({data, tree_data}) {
+    const from_team = tree_data.from_t.team_name
 
+    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
+    "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+
+    let background 
+    let link
+    const from_franch = tree_data.from_f
+    if (from_franch in franchises) {
+        background = franchises[from_franch]
+        link = `/team_logos/${from_franch}.png`
+    }
+    else{
+        background = "black"
+        link = `/team_logos/MLB.png`
+    }
 
     var batting_stats = tree_data.total_stats.batting_stats
     const b_stats =    
@@ -13,7 +30,7 @@ export default function PlayerBar({data, tree_data}) {
             <thead>
                 <tr>
                 {Object.keys(batting_stats).map(key => (
-                    <th key={key}> {key} </th>                    
+                    <th key={key} style={{"background-color":background, "color":"white"}}> {key} </th>                    
                 ))}
                 </tr>
             </thead>
@@ -32,7 +49,7 @@ export default function PlayerBar({data, tree_data}) {
         <thead>
             <tr>
             {Object.keys(pitching_stats).map(key => (
-                <th key={key}> {key} </th>                    
+                <th key={key} style={{"background-color":background, "color":"white"}}> {key} </th>                    
             ))}
             </tr>
         </thead>
@@ -72,28 +89,11 @@ export default function PlayerBar({data, tree_data}) {
             <Image  key={year}
                     alt="WSTrophy"
                     src="/team_logos/ws.gif"
-                    title={year} 
+                    title={year}
+                    height="60px" 
+                    width="30px"
                     className={styles.wsWins}/>
                     ))
-    }
-
-    const from_team = tree_data.from_t.team_name
-
-    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
-    "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
-
-    let background 
-    let link
-    const from_franch = tree_data.from_f
-    if (from_franch in franchises) {
-        background = franchises[from_franch]
-        link = `/team_logos/${from_franch}.png`
-    }
-    else{
-        background = "black"
-        link = `/team_logos/MLB.png`
     }
 
     return ( 
@@ -107,9 +107,12 @@ export default function PlayerBar({data, tree_data}) {
                 </Link>
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
-                    <img className={styles.teamLogo} src={link}></img>
+                    <div className={styles.teamLogo}>
+                        <Image src={link} alt="TeamLogo" width="100px" height="100px"/>
+                    </div>
                     <h2>{tree_data.start}-{tree_data.last}</h2>
                     {world_series_wins}
+                    
                 </div> 
                 {parent_tree}
             </div>

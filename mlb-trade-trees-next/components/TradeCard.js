@@ -13,11 +13,11 @@ export default function TradeCard(props) {
 
     const ws_wins = props.data.ws_wins.length
 
-    const outlineColor = () => {
-        if (ws_wins > 0) return "rgb(255, 183, 0) 0px 1px 4px, rgb(174, 125, 0) 0px 0px 0px 3px"
-        else if (props.data.total_stats.war_sal.WAR < 0 ) return "rgb(138, 1, 1) 0px 1px 4px, rgb(137, 0, 0) 0px 0px 0px 3px"
-        else return "rgb(2, 122, 0) 0px 1px 4px, rgb(0, 120, 8) 0px 0px 0px 3px"
-      };
+    // const outlineColor = () => {
+    //     if (ws_wins > 0) return "rgb(255, 183, 0) 0px 1px 4px, rgb(174, 125, 0) 0px 0px 0px 3px"
+    //     else if (props.data.total_stats.war_sal.WAR < 0 ) return "rgb(138, 1, 1) 0px 1px 4px, rgb(137, 0, 0) 0px 0px 0px 3px"
+    //     else return "rgb(2, 122, 0) 0px 1px 4px, rgb(0, 120, 8) 0px 0px 0px 3px"
+    //   };
 
     let largestButton
     if (largest_tree != "_"){
@@ -27,13 +27,13 @@ export default function TradeCard(props) {
     let world_series_wins
     if (ws_wins > 0){
         world_series_wins = props.data.ws_wins.map(year => (
-            <Image key={year} alt="WSTrophy" src="/team_logos/ws.gif" title={year} className={styles.wsWins}/>
+            <Image key={year} alt="WSTrophy" src="/team_logos/ws.gif" title={year} className={styles.wsWins} height="70px" width="40px"/>
             ))
         }
 
-    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
     "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
+    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
     "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
 
     let background 
@@ -48,17 +48,19 @@ export default function TradeCard(props) {
         link = `/team_logos/MLB.png`
     }
 
+    // , "boxShadow": outlineColor()
+
     return (
 
-            <div className={styles.card} style={{"background": background, "boxShadow": outlineColor() }}>
+            <div className={styles.card} style={{"background": background, "boxShadow": "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px" }}>
                 <div className={styles.logodiv}>
-                <Image className={styles.logo} src={link} alt="TeamLogo" />
+                    <Image src={link} alt="TeamLogo" layout="fill" objectFit="contain"/>
                 </div>
                     <h1>{props.data.from_t.team_name}</h1>
                     <div className={styles.content}>
-                        <h2>→ {props.data.to_t.team_name}</h2>
+                        <h4>→ {props.data.to_t.team_name}</h4>
                         <div style={{display:"inline-block"}}>
-                        <h3>{props.data.start}-{props.data.last}</h3>{world_series_wins}
+                        <h2>{props.data.start}-{props.data.last}</h2>{world_series_wins}
                         </div>                    
                         <h3>Total transactions: {props.data.total_transac}</h3>
                         <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs </p>

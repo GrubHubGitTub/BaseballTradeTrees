@@ -1,6 +1,6 @@
 .PlayerBar {
     margin: 1% auto;
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,7 @@
 
 .playerTeamTree{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 95%;
     align-items: center;
 }
@@ -28,13 +28,13 @@
     font-size: 0.9em;
     font-weight: bold;
     text-decoration: none;
-    display: flex;
-    margin-right:auto;
+    width: auto;
     padding: 5px;
     background-color: #f1f1f1;
     color: black;
     border-radius: 10px;
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    margin-right:auto
 }
 
 .playerName:hover{
@@ -59,24 +59,20 @@
 }
 
 .noParent {
-    margin-left: 7%;
+    margin-left: 10%;
 }
 
 .teamHeader{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: auto;
 }
 
 .teamName {
     margin:0;
 }
 
-.teamLogo {
-    padding:1%;
-    max-width: 8%;
-    height: auto;
-}
 
 .otherStats{
     display: flex;
