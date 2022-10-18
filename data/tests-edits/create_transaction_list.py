@@ -3,7 +3,8 @@ import json
 
 trans = pd.read_csv("stats_transactions_06092022.csv")
 """get dict of all players traded for data generation """
-allt = trans[(trans["type"] == "T ")]
+t_list = ["T ", "Fg"]
+allt = trans[(trans["type"].isin(t_list))]
 allt = allt[allt.player != "PTBNL/Cash"]
 allt = allt[["primary_date",
         "transaction_ID",

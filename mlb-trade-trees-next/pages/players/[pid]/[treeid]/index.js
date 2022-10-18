@@ -82,10 +82,10 @@ export const OrgChartComponent = (props, ref) => {
             .compactMarginPair((d) => 40)
             .connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
-              const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"Orange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-              "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-              "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"darkgrey","OAK":"darkgreen", "PHI": "red", 
-              "PIT":"yellow","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"navyblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+              const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
+    "PIT":"Gold","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
 
               // Comp pick node
               if ("transaction_id" in d.data && "info" in d.data) {
@@ -214,7 +214,7 @@ export const OrgChartComponent = (props, ref) => {
                 }
                 let link
                 console.log(d.data)
-                const to_franch = d.data.to_t
+                const to_franch = d.data.to_team.team_name.to_franch
                 if (to_franch in franchises) {
                     link = `/team_logos/${to_franch}.png`
                 }
@@ -233,12 +233,12 @@ export const OrgChartComponent = (props, ref) => {
                   <div style= background-color:${outline};height:5px;"></div>
                  
                       <div style="display: flex; justify-content: center;">
-                        <h2 style="padding-top:15px;font-size:2.3em"> → ${d.data.to_team.team_name} </h2>
+                        <h2 style="padding-top:15px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
                         
                         <img src=${link} alt="team logo"
                         style="
                         padding:1%;
-                        max-width:70px;
+                        max-width:100px;
                         height:auto;
                         "/>
                       </div>
@@ -434,8 +434,8 @@ export const OrgChartComponent = (props, ref) => {
     };
 
 export default function TreePage({ data, tree_data }) {
-    const treeDisplay = tree_data.tree_d.tree_display
-    const connections = tree_data.tree_d.connections
+    const treeDisplay = tree_data.tree_details.tree_display
+    const connections = tree_data.tree_details.connections
     const [statsInBat, setStatsInBat] = React.useState("")
     const [statsInPitch, setStatsInPitch] = React.useState("")
     const [statsOutBat, setStatsOutBat] = React.useState("")

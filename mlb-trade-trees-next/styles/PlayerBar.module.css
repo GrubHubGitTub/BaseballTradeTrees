@@ -69,6 +69,11 @@
     margin-right: auto;
 }
 
+.teamLogo{
+    width:"100px";
+    height:"100px"
+}
+
 .teamName {
     margin:0;
 }

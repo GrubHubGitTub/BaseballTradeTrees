@@ -102,7 +102,6 @@ class GetStats:
                     if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
                         for bstats in stats["batting_stats"]:
                             if bstats["Year"] == statline["Year"] and bstats["salary"] == statline["salary"]:
-                                print("passed salary")
                                 break
                     else:
                         self.transaction_total["other_stats"]["salary"] -= statline["salary"]
@@ -153,7 +152,6 @@ class GetStats:
                     if "batting_stats" in stats and len(stats["batting_stats"]) > 0:
                         for bstats in stats["batting_stats"]:
                             if bstats["Year"] == statline["Year"] and bstats["salary"] == statline["salary"]:
-                                print("passed salary")
                                 break
                     else:
                         self.transaction_total["other_stats"]["salary"] += statline["salary"]
