@@ -6,7 +6,7 @@
   }
 
 html {
-  background-color: darkgray;
+  background-color: darkgrey;
 }
 
 table {
@@ -50,19 +50,19 @@ table {
     outline: black;
     padding: 10px;
     height: 30px;
-    width: 160px;
+    width: 200px;
   }
 
 .searchResults {
     position:absolute;
-    top:60px;
+    top:50px;
     width: 265px;
-    height: 135px;
+    height: 200px;
     z-index:1;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    overflow: hidden;
-    overflow-y: auto;
+    overflow: auto;
+    overflow-y: hidden;
   }
 
 .searchResults::-webkit-scrollbar{
@@ -80,6 +80,17 @@ table {
     align-items: center;
     color:black;
     text-decoration: none;
+}
+
+.dataItem h4{
+  margin-right: 4%;
+}
+
+.dataItem p {
+  color: goldenrod;
+  font-weight: bold;
+  font-size: 1em;
+  margin-right: 4%;
 }
 
 .dataItem:hover{
@@ -125,6 +136,21 @@ table {
 
 .navbar--hamburger:hover {
     background-color: #2642af;
+  }
+
+
+  .slick-slide {
+    padding-left: 50px;
+    padding-top:25px
+    
+  }
+
+  .slick-list{
+    height: 600px;
+  }
+
+  .slick-prev:before, .slick-next:before {
+    color: black !important;
   }
 
 @media screen and (max-width: 768px) {
@@ -202,5 +228,5 @@ a {
   }
 
 .footer--retro{
-    font-size:xx-small
+    font-size:x-small
 }

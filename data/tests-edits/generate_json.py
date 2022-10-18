@@ -363,7 +363,7 @@ all_data = []
 ongoing_tree_players = []
 player_search = []
 all_parent_trees = []
-all_parent_trees_no_detail=[]
+all_parent_trees_no_detail_no_dupes=[]
 
 for player_transaction in retro_ids[index:]:
     print(index)
@@ -595,9 +595,22 @@ for player in all_data:
 
     for trade in player["trades"]:
         if trade["largest_tree_id"] == "_":
-            no_details_tree = {key:value for (key, value) in trade.items() if key != "tree_details"}
+
+            tree_transac = trade["tree_id"][9:14]
+            transac_match = False
+            if len(all_parent_trees_no_detail_no_dupes) == 0:
+                no_details_tree = {key: value for (key, value) in trade.items() if key != "tree_details"}
+                all_parent_trees_no_detail_no_dupes.append(no_details_tree)
+            else:
+                for tree in all_parent_trees_no_detail_no_dupes:
+                    if tree_transac == tree["tree_id"][9:14]:
+                        transac_match = True
+                if transac_match == False:
+                    no_details_tree = {key:value for (key, value) in trade.items() if key != "tree_details"}
+                    all_parent_trees_no_detail_no_dupes.append(no_details_tree)
+
             all_parent_trees.append(trade)
-            all_parent_trees_no_detail.append(no_details_tree)
+
 
 split = 3500
 with open("all_data1.json", "w") as file1:
@@ -606,7 +619,7 @@ with open("all_data2.json", "w") as file2:
     json.dump(all_data[split:], file2)
 
 with open("all_parent_trees_no_details.json", "w") as file:
-    json.dump(all_parent_trees_no_detail, file)
+    json.dump(all_parent_trees_no_detail_no_dupes, file)
 
 with open("all_parent_trees.json", "w") as file:
     json.dump(all_parent_trees, file)

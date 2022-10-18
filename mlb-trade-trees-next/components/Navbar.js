@@ -23,7 +23,7 @@ export default function Navbar({players}) {
 
     return (
         <nav className="navbar">
-            <Link href="/"><a><Image src="/logo.png" alt="logo" width="50" height="50"  className="navbar--brand"/></a></Link>
+            <Link href="/"><a><Image src="/logo.png" alt="logo" width="120" height="120"  className="navbar--brand"/></a></Link>
                 
                 <div className="search">
                     <input 
@@ -44,7 +44,7 @@ export default function Navbar({players}) {
                                                 query: { pid: player.retro_id },
                                             }}>   
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 
-                                            {player.name} {player.HOF} {player.debut_year} - {player.last_year} 
+                                            <h4>{player.name}</h4> <p>{player.HOF}</p> {player.debut_year} - {player.last_year} 
                                             </a>
                                         </Link>
                                     )
@@ -80,6 +80,7 @@ export default function Navbar({players}) {
             <div className={isNavbarExpanded ? "navbar--menu expanded" : "navbar--menu"}>
                 <ul> 
                 {/* change these to links */}
+                    <li>Players</li>
                     <li>Teams</li>
                     <li>Advanced Search</li>
                     <li>Stats</li>

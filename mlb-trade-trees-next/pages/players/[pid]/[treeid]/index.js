@@ -67,9 +67,9 @@ export const OrgChartComponent = (props, ref) => {
                 chart.setCentered(d).initialZoom(0.5).render()}
             })
             .nodeWidth((d) => {
-                if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 420
+                if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 450
                 else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 450
-                else return 420 
+                else return 450 
             })
             .nodeHeight((d) => {
               if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265
@@ -232,15 +232,16 @@ export const OrgChartComponent = (props, ref) => {
                   ${name}
                   <div style= background-color:${outline};height:5px;"></div>
                  
-                      <div style="display: flex; justify-content: center;">
-                        <h2 style="padding-top:15px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
-                        
-                        <img src=${link} alt="team logo"
-                        style="
-                        padding:1%;
-                        max-width:100px;
-                        height:auto;
-                        "/>
+                      <div style="display: flex; justify-content: center; align-items:center">
+                        <h2 style="padding-top:15px;padding-right:10px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
+                        <div style="width:75px;height:75px">
+                          <img src=${link} alt="team logo"
+                          style="
+                          padding:10px;
+                          max-width:100%;
+                          max-height:100%;
+                          "/>
+                        </div>
                       </div>
                       
                   <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >

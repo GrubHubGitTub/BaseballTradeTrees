@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: whitesmoke;
     color: black;
     border-radius: 30px;
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
@@ -71,11 +71,12 @@
 
 .teamLogo{
     width:"100px";
-    height:"100px"
+    height:"100px";
+    margin-right: 7px;
 }
 
 .teamName {
-    margin:0;
+    margin-right:10px;
 }
 
 
