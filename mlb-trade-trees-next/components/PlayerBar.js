@@ -7,10 +7,10 @@ import Image from "next/image"
 export default function PlayerBar({data, tree_data}) {
     const from_team = tree_data.from_team.team_name
 
-    const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
-    "PIT":"Gold","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
+    const franchises = {"ANA": "red", "ARI":"Maroon", "ATL":"indianred", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
+    "CIN":"Maroon", "CLE":"Red", "COL":"RebeccaPurple","DET":"LightSlateGray", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
+    "LAD": "dodgerblue","MIL":"darkblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
+    "PIT":"Gold","SDP":"tan","SEA":"Teal","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
 
     let background 
     let link
@@ -97,7 +97,7 @@ export default function PlayerBar({data, tree_data}) {
     }
 
     return ( 
-        <div className={styles.PlayerBar}>
+        <div className={styles.PlayerBar} style={{"border": `3px solid ${background}`}}>
 
             <div className={styles.playerTeamTree}>
                 <Link href={{

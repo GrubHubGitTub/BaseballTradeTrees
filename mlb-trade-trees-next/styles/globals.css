@@ -6,7 +6,7 @@
   }
 
 html {
-  background-color: darkgrey;
+  background-color: #FFF8EC;
 }
 
 table {
@@ -94,14 +94,22 @@ table {
 }
 
 .dataItem:hover{
-    background-color: lightgray;
+    background-color: #005CA9;
 }
 
 .navbar--random{
+    background-color: white;
     padding: 4px 10px;
     margin-top: 5=3px;
-    margin-left: 15px;
-    border-radius: 8px
+    border-radius: 8px;
+    border-color: #FD3C3C;
+}
+
+.navbar--random:hover{
+  cursor:pointer;
+  transition: 0.5s;
+  background-color: lightgray;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .navbar--menu {
@@ -245,7 +253,9 @@ a {
     bottom: 0;
     width: 100%;
     text-align: center;
+    padding-top: 20px;
     margin-top: auto;
+    background-color: #DFE0DF;
   }
 
 .footer--retro{

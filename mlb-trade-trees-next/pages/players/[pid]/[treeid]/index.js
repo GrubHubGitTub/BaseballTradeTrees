@@ -53,7 +53,7 @@ export const OrgChartComponent = (props, ref) => {
             chart = new OrgChart();
         }
         chart
-            .svgHeight(window.innerHeight - 330)
+            .svgHeight(window.innerHeight - 375)
             .container(d3Container.current)
             .data(props.data)
             .onNodeClick((d) => {
@@ -68,8 +68,8 @@ export const OrgChartComponent = (props, ref) => {
             })
             .nodeWidth((d) => {
                 if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 450
-                else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 450
-                else return 450 
+                else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 500
+                else return 500
             })
             .nodeHeight((d) => {
               if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265

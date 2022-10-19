@@ -83,11 +83,11 @@ export default function Navbar({players}) {
             <div className={isNavbarExpanded ? "navbar--menu expanded" : "navbar--menu"}>
                 <ul> 
                 <Link href={randomLink()}>
-                <button
-                    className="navbar--random"
-                    >
-                    Random Player
-                </button>
+                    <button
+                        className="navbar--random"
+                        >
+                        Random Player
+                    </button>
                 </Link>
                 {/* change these to links */}
                     <li>Players</li>
