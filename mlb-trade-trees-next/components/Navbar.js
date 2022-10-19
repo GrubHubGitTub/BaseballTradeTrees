@@ -1,9 +1,18 @@
 import React, { useState } from "react"
 import Link from 'next/link'
 import Image from "next/image";
-import { useRouter } from 'next/router'
 
 export default function Navbar({players}) {
+
+    function randomLink() {
+        var randomplayer = players[Math.floor(Math.random()*players.length)]
+        // var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
+        var pid = randomplayer.retro_id 
+        var url = `/players/${pid}/`
+        return url
+    }
+
+
 
     const [isNavbarExpanded, setIsNavbarExpanded] = useState(false)
     
@@ -73,7 +82,7 @@ export default function Navbar({players}) {
             </button>
             <div className={isNavbarExpanded ? "navbar--menu expanded" : "navbar--menu"}>
                 <ul> 
-                <Link href="/random">
+                <Link href={randomLink()}>
                 <button
                     className="navbar--random"
                     >
