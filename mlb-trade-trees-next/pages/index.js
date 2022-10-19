@@ -32,12 +32,34 @@ export default function Home({topWAR}) {
     arrows:true,
     autoplay: true,
     autoplaySpeed: 4000,
-    className: styles.carousel,
-
-    infinite: true,
+    className: "carousel",
     speed: 900,
     slidesToShow: 3,
-    slidesToScroll: 3
+    slidesToScroll: 3,
+    centerMode:false,
+    infinite:false,
+
+    responsive: [{
+      breakpoint: 1300,
+      settings:{
+        centerMode:false,
+        autoplay: true,
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }},
+        {breakpoint: 600,
+          settings: {
+            arrows:false,
+            vertical: true,
+            verticalSwiping: true,
+            
+            autoplay: true,
+            autoplaySpeed: 2500,
+            centerMode:false,
+            infinite:false,
+            slidesToShow: 1,
+            slidesToScroll: 1}}
+      ]
   };
 
   return (

@@ -138,20 +138,44 @@ table {
     background-color: #2642af;
   }
 
-
-  .slick-slide {
-    padding-left: 50px;
-    padding-top:25px
-    
-  }
-
-  .slick-list{
+  .carousel{
     height: 600px;
-  }
+    max-width: 70%;
+}
 
-  .slick-prev:before, .slick-next:before {
-    color: black !important;
-  }
+.slick-prev:before, .slick-next:before {
+  color: black !important;
+}
+
+.slick-slide {
+  padding-left: 50px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  
+}
+
+@media screen and (max-width: 600px) {
+    .carousel {
+      max-width: 300px;
+    }
+
+    .slick-vertical {
+      height: 550px;
+    }
+
+    .slick-slide {
+      padding-left: 0 !important;
+      padding-bottom: 0 !important;
+      padding-top: 0 !important;
+      margin-left: auto !important;
+      
+    }
+    .slick-slide > div {
+      transform: scale(0.9);
+    }
+
+}
+
 
 @media screen and (max-width: 768px) {
     .navbar--hamburger {
@@ -228,5 +252,5 @@ a {
   }
 
 .footer--retro{
-    font-size:x-small
+    font-size:xx-small
 }

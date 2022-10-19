@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
 }
 
@@ -10,11 +11,6 @@
     font-size: 2.5em;
     margin-top: 3%;
     margin-bottom: 3%;
-}
-
-.carousel{
-    max-width: 70%;
-    height: 550px
 }
 
 .statBar{

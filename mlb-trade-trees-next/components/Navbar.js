@@ -57,7 +57,7 @@ export default function Navbar({players}) {
                 <button
                     className="navbar--random"
                     >
-                    Random Tree
+                    Random Player
                 </button>
             </Link>
 

@@ -57,7 +57,6 @@ export default function TradeCard(props) {
                 </div>
                     <h1>{props.data.from_team.team_name}</h1>
                     <div className={styles.content}>
-                        <h4>{to_team}</h4>
                         <div style={{display:"inline-block"}}>
                         <h2>{props.data.y_start}-{props.data.y_last}</h2>{world_series_wins}
                         </div>                    
