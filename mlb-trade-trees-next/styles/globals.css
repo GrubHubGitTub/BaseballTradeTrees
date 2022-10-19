@@ -40,7 +40,7 @@ table {
     display: flex;
     align-items: center;
     position: relative;
-    background-color: rgb(8, 0, 96);
+    background-color:#005CA9;
     color: rgb(254, 254, 254);
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
@@ -157,9 +157,6 @@ table {
 @media screen and (max-width: 600px) {
     .carousel {
       max-width: 300px;
-    }
-
-    .slick-vertical {
       height: 550px;
     }
 

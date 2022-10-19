@@ -49,9 +49,10 @@ export default function Home({topWAR}) {
       }},
         {breakpoint: 600,
           settings: {
-            arrows:false,
-            vertical: true,
-            verticalSwiping: true,
+            arrows:true,
+            vertical: false,
+            verticalSwiping: false,
+            swipeToSlide: true,
             
             autoplay: true,
             autoplaySpeed: 2500,

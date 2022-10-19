@@ -4,7 +4,6 @@ import styles from '../styles/TradeCard.module.css';
 import Image from "next/image";
 
 export default function TradeCard(props) {
-    console.log(props.data.to_team.team_name.name)
     const tree_id = props.data.tree_id 
     const pid = tree_id.slice(0,8)
 
