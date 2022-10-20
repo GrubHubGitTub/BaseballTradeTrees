@@ -3,9 +3,7 @@ import React from "react";
 // import player_data from "../../data/output.json"
 
 export async function getServerSideProps(context) {
-    const player_data1 = require("../../data/all_data1.json")
-    const player_data2 = require("../../data/all_data2.json")
-    const player_data = player_data1.concat(player_data2);
+    const player_data = require("../../data/player_search.json");
 
     const tid = context.query.tid
     const res= await fetch(`https://statsapi.mlb.com/api/v1/teams/${tid}/roster`);

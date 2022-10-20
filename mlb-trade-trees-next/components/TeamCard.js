@@ -4,9 +4,9 @@ import styles from '../styles/TradeCard.module.css';
 import Image from "next/image";
 
 export default function TeamCard({data}) {
-
+    console.log(data)
     const tid = data.team_id
-    const mlbid = data.mlbid
+    const mlbid = data.mlb_id
 
     const franchises = {"ANA": "red", "ARI":"Maroon", "ATL":"indianred", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
     "CIN":"Maroon", "CLE":"Red", "COL":"RebeccaPurple","DET":"LightSlateGray", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 

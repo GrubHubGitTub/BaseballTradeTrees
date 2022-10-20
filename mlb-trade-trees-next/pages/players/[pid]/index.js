@@ -7,10 +7,6 @@ export async function getStaticPaths() {
   const player_data1 = require("../../../data/all_data1.json")
   const player_data2 = require("../../../data/all_data2.json")
   const players = player_data1.concat(player_data2);
-  // const players = getData();
-  // const player_data1 = require("../data/all_data1.json")
-  // const player_data2 = require("../data/all_data2.json")
-  // const players = player_data1.concat(player_data2);
 
   const paths = players.map(player => {
     return {
