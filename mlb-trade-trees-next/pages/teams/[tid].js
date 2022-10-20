@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-// import player_data from "../../data/output.json"
+import players from "../../data/player_search.json"
 
 export async function getServerSideProps(context) {
-    const player_data = require("../../data/player_search.json");
+    const player_data = players
 
     const tid = context.query.tid
     const res= await fetch(`https://statsapi.mlb.com/api/v1/teams/${tid}/roster`);
@@ -53,4 +53,8 @@ export async function getServerSideProps(context) {
             })}
         </div>
     )
+  }
+
+  export const config = {
+    unstable_excludeFiles: ["../../data/all_data1.json", "../../data/all_data2.json"],
   }

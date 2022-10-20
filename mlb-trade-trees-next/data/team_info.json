@@ -25,7 +25,7 @@
     },
     {
         "name": "Chicago Cubs",
-        "team_id": "CHN",
+        "team_id": "CHC",
         "mlb_id": 112,
         "first_year": "1874"
     },
@@ -61,25 +61,25 @@
     },
     {
         "name": "Kansas City Royals",
-        "team_id": "KCA",
+        "team_id": "KCR",
         "mlb_id": 118,
         "first_year": "1968"
     },
     {
         "name": "Los Angeles Dodgers",
-        "team_id": "LAN",
+        "team_id": "LAD",
         "mlb_id": 119,
         "first_year": "1884"
     },
     {
         "name": "Washington Nationals",
-        "team_id": "WAS",
+        "team_id": "WSN",
         "mlb_id": 120,
         "first_year": "1968"
     },
     {
         "name": "New York Mets",
-        "team_id": "NYN",
+        "team_id": "NYM",
         "mlb_id": 121,
         "first_year": "1962"
     },
@@ -97,7 +97,7 @@
     },
     {
         "name": "San Diego Padres",
-        "team_id": "SDN",
+        "team_id": "SDP",
         "mlb_id": 135,
         "first_year": "1968"
     },
@@ -109,19 +109,19 @@
     },
     {
         "name": "San Francisco Giants",
-        "team_id": "SFN",
+        "team_id": "SFG",
         "mlb_id": 137,
         "first_year": "1883"
     },
     {
         "name": "St. Louis Cardinals",
-        "team_id": "SLN",
+        "team_id": "STL",
         "mlb_id": 138,
         "first_year": "1892"
     },
     {
         "name": "Tampa Bay Rays",
-        "team_id": "TBA",
+        "team_id": "TBD",
         "mlb_id": 139,
         "first_year": "1996"
     },
@@ -157,19 +157,19 @@
     },
     {
         "name": "Chicago White Sox",
-        "team_id": "CHA",
+        "team_id": "CHW",
         "mlb_id": 145,
         "first_year": "1901"
     },
     {
         "name": "Miami Marlins",
-        "team_id": "MIA",
+        "team_id": "FLA",
         "mlb_id": 146,
         "first_year": "1991"
     },
     {
         "name": "New York Yankees",
-        "team_id": "NYA",
+        "team_id": "NYY",
         "mlb_id": 147,
         "first_year": "1903"
     },
