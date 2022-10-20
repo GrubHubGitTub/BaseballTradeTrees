@@ -88,8 +88,8 @@ export default function Navbar({players}) {
                 
                 <ul> 
                 {/* change these to links */}
+                    <Link href="/teams"><li><a>Teams</a></li></Link>
                     <li>Players</li>
-                    <li>Teams</li>
                     <li>Advanced Search</li>
                     <li>Stats</li>
                     <li>About</li>

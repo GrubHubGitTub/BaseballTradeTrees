@@ -12,4 +12,6 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 0 !important;
+    margin-bottom: -50px !important;
 }

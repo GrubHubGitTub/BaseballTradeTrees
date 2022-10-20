@@ -14,7 +14,7 @@ import team_data from "../../data/team_info"
     export default function teamsPage({teams}) {
         const allTeams = teams.map(team => {
             return (
-                <TeamCard data = {team} />
+                <TeamCard key= {team.team_id} data = {team} />
             )
             })
 

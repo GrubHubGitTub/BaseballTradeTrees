@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
         <div>
             {roster.map(player => {
                 return (
-                    <div>
+                    <div key={player.pid}>
                         <p>{player.name}</p>
                         <Link 
                             key= {player.PLAYERID}
