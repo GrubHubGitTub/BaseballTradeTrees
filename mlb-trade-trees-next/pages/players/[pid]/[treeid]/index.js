@@ -53,19 +53,21 @@ export const OrgChartComponent = (props, ref) => {
             chart = new OrgChart();
         }
         chart
-            .svgHeight(window.innerHeight - 375)
+            .svgHeight(document.querySelector("#treeContainer").getBoundingClientRect().height - 1)
             .container(d3Container.current)
             .data(props.data)
+
             .onNodeClick((d) => {
               const nodeData = props.data.find(node => node.id === d);
-              const trade_in_stats = nodeData.trade_in_stats
-              const trade_out_stats = nodeData.trade_out_stats
-              console.log(trade_in_stats)
-              
-              props.onNodeClick(d, trade_in_stats, trade_out_stats)
               if ("transaction_id" in nodeData){
                 chart.setCentered(d).initialZoom(0.5).render()}
+              
+              const trade_in_stats = nodeData.trade_in_stats
+              const trade_out_stats = nodeData.trade_out_stats
+              
+              props.onNodeClick(trade_in_stats, trade_out_stats)
             })
+
             .nodeWidth((d) => {
                 if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 450
                 else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 500
@@ -430,7 +432,7 @@ export const OrgChartComponent = (props, ref) => {
     }, [props.data, d3Container.current]);
     
     return (
-        <div ref={d3Container} className={styles.treeContainer}/>
+        <div ref={d3Container}/>
     );
     };
 
@@ -441,9 +443,9 @@ export default function TreePage({ data, tree_data }) {
     const [statsInPitch, setStatsInPitch] = React.useState("")
     const [statsOutBat, setStatsOutBat] = React.useState("")
     const [statsOutPitch, setStatsOutPitch] = React.useState("")
+      
 
-    function onNodeClick(nodeId, trade_in_stats, trade_out_stats) {
-
+    function onNodeClick(trade_in_stats, trade_out_stats) {
       if (trade_out_stats != undefined) {
         let trade_out_bat_table = [];
         let trade_out_pitch_table = [];
@@ -554,12 +556,13 @@ export default function TreePage({ data, tree_data }) {
         <div className={styles.treePage}>
 
           <PlayerBar data={data} tree_data={tree_data}/>
-          
-          <OrgChartComponent
-              data={treeDisplay}
-              onNodeClick={onNodeClick}
-              connections={connections}
-          />
+          <div id="treeContainer" className={styles.treeContainer}>
+            <OrgChartComponent
+                data={treeDisplay}
+                onNodeClick={onNodeClick}
+                connections={connections}
+            />
+          </div>
           
         <div className={styles.statsContainer}> 
           <div className={styles.statBoxOut}>

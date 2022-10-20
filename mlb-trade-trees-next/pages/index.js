@@ -30,6 +30,7 @@ export default function Home({topWAR}) {
 
   var settings = {
     arrows:true,
+    dots: true,
     autoplay: true,
     autoplaySpeed: 4000,
     className: "carousel",
@@ -37,7 +38,7 @@ export default function Home({topWAR}) {
     slidesToShow: 3,
     slidesToScroll: 3,
     centerMode:false,
-    infinite:false,
+    infinite:true,
 
     responsive: [{
       breakpoint: 1300,
@@ -50,11 +51,13 @@ export default function Home({topWAR}) {
         {breakpoint: 600,
           settings: {
             arrows:true,
+            dots: false,
             vertical: false,
             verticalSwiping: false,
             swipeToSlide: true,
             
             autoplay: true,
+            speed: 0,
             autoplaySpeed: 2500,
             centerMode:false,
             infinite:false,

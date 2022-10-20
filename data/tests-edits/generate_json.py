@@ -548,8 +548,10 @@ for player_transaction in retro_ids[index:]:
             "total_transac": total_transactions,
             "p_traded_away": traded_away,
             "p_traded_for": traded_for,
+            "total_players": traded_away + traded_for,
             "y_start": earliest,
             "y_last": latest,
+            "year_span": latest - earliest,
             "ongoing": ongoing,
             "tree_details": {
                 "tree_id": f"{player_transaction['player']}_{transac_id}",

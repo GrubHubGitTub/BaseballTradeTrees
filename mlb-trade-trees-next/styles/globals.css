@@ -33,7 +33,6 @@ table {
     border-collapse: collapse;
   }
 
-
 .navbar {
     height: 50px;
     width: 100%;
@@ -47,11 +46,15 @@ table {
 
 .searchInput {
     font-size: 18px;
-    outline: black;
+    border: 1px solid #FD3C3C;
     padding: 10px;
     height: 30px;
     width: 200px;
   }
+
+.searchInput:active{
+  border: 1px solid #FD3C3C;
+}
 
 .searchResults {
     position:absolute;
@@ -62,7 +65,7 @@ table {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: auto;
-    overflow-y: hidden;
+    overflow-y: scroll;
   }
 
 .searchResults::-webkit-scrollbar{
@@ -98,11 +101,12 @@ table {
 }
 
 .navbar--random{
+    margin-left: 0.7%;
     background-color: white;
     padding: 4px 10px;
     margin-top: 5=3px;
     border-radius: 8px;
-    border-color: #FD3C3C;
+    border: 1px solid #FD3C3C;
 }
 
 .navbar--random:hover{
@@ -186,6 +190,21 @@ table {
     .navbar--hamburger {
         display: block;
     }
+
+    .search {
+      width:120px;
+      
+    }
+
+    .searchInput{
+      width:140px;
+    }
+
+    .navbar--random{
+      margin-left: 2px;
+      transform: scale(0.6); ;
+    }
+
     .navbar--menu ul {
         display: none;
         position: absolute;
@@ -210,6 +229,7 @@ table {
         display: block;
       }
 }
+
 
 .treeNode:hover{
   box-shadow: 0 5px 5px 10px rgba(9, 9, 9, 0.23);

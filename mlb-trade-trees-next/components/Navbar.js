@@ -12,8 +12,6 @@ export default function Navbar({players}) {
         return url
     }
 
-
-
     const [isNavbarExpanded, setIsNavbarExpanded] = useState(false)
     
     const[filteredData, setFilteredData] = useState([]);
@@ -62,7 +60,13 @@ export default function Navbar({players}) {
                     )}
                 </div>    
             
-            
+                <Link href={randomLink()}>
+                    <button
+                        className="navbar--random"
+                        >
+                        Random Player
+                    </button>
+                </Link>
 
             <button 
                 className="navbar--hamburger"
@@ -81,14 +85,8 @@ export default function Navbar({players}) {
                 </svg>
             </button>
             <div className={isNavbarExpanded ? "navbar--menu expanded" : "navbar--menu"}>
+                
                 <ul> 
-                <Link href={randomLink()}>
-                    <button
-                        className="navbar--random"
-                        >
-                        Random Player
-                    </button>
-                </Link>
                 {/* change these to links */}
                     <li>Players</li>
                     <li>Teams</li>
