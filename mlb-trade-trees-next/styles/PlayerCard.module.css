@@ -1,0 +1,48 @@
+.card { 
+    width: 225px;
+    height: 80px;
+    border-radius: 20px;
+    position: relative;
+    padding: 1rem;
+    margin-right: 1%;
+    margin-bottom: 2%;
+
+    transition: 0.5s ease-out;
+
+  }
+
+
+  .playerName{
+    position:absolute;
+    bottom:1px;
+    left: 10px;
+  }
+
+  .playerLink {
+    position:absolute;
+    bottom:1px;
+    left: 10px;
+    
+  }
+
+  .playerLink:hover {
+    cursor:pointer;
+    transition: 0.5s ease-out;
+    font-size: 1.2em;
+  }
+
+  .playerNumber{
+    position:absolute;
+    top:0;
+    right: 10px;
+    border:2px solid black;
+    border-radius: 8px;
+    margin: 5px 0 0 0;
+    padding: 2px 5px
+  }
+
+  .playerPos{
+    position:absolute;
+    top:5px;
+    left: 10px;
+  }

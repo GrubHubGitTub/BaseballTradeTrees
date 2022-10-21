@@ -1,0 +1,30 @@
+.rosterPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+.roster{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 2%;
+    width: 90%;
+}
+
+.posContainer{
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .roster {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+
+

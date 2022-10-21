@@ -2,16 +2,12 @@ import Link from "next/link";
 import React from "react";
 import styles from '../styles/TradeCard.module.css';
 import Image from "next/image";
+import {franchises} from "../data/franchise_colors"
 
 export default function TeamCard({data}) {
     console.log(data)
     const tid = data.team_id
     const mlbid = data.mlb_id
-
-    const franchises = {"ANA": "red", "ARI":"Maroon", "ATL":"indianred", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-    "CIN":"Maroon", "CLE":"Red", "COL":"RebeccaPurple","DET":"LightSlateGray", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"darkblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
-    "PIT":"Gold","SDP":"tan","SEA":"Teal","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
 
     let background 
     let link
@@ -35,7 +31,7 @@ export default function TeamCard({data}) {
                         <h3>Franchise since: {data.first_year}</h3>
                         {/* <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs </p> */}
                     </div>
-                    <Link href={`/teams/${mlbid}`}><a className={styles.treeButton}>View Current Roster and Info</a></Link>
+                    <Link href={`/teams/${tid}`}><a className={styles.treeButton}>View Current Roster and Info</a></Link>
                     
             </div>
     )

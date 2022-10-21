@@ -1,11 +1,17 @@
 import Link from "next/link";
 import React from "react";
 import players from "../../data/player_search.json"
+import teams from "../../data/team_info.json"
+import styles from "../../styles/RosterPage.module.css"
+import PlayerCard from "../../components/PlayerCard";
 
 export async function getServerSideProps(context) {
     const player_data = players
+    const team_data = teams
+    const franch = context.params.tid
+    const team = team_data.filter((t) => t.team_id == franch)[0]
 
-    const tid = context.query.tid
+    const tid = team.mlb_id
     const res= await fetch(`https://statsapi.mlb.com/api/v1/teams/${tid}/roster`);
     const data = await res.json();
     const roster = data.roster
@@ -24,33 +30,84 @@ export async function getServerSideProps(context) {
             const combined = {retroid: pid, mlbid: mlbid, name: name, position:position, number:number}
             combined_ids.push(combined)
             }
+        else{
+            const name = player.person.fullName
+            const position = player.position.name
+            const number = player.jerseyNumber
+            const combined = {name: name, position:position, number:number}
+            combined_ids.push(combined)
+        }
         }))
-        
-
-    return ({props: {combined_ids}})
+    return ({props: {combined_ids, team}})
 }
 
   export default function TeamPage(props) {
     const roster = props.combined_ids
+    const team_info = props.team
+
+    const Pcards = roster.map(player => {
+        if (player.position == "Pitcher"){
+        
+        return (
+            <PlayerCard 
+                key={player.name}
+                player={player} 
+                team = {props.team.team_id}
+                />
+        )}
+    })
+    
+    const OFcards = roster.map(player => {
+        if (player.position == "Outfielder"){
+        
+        return (
+            <PlayerCard 
+                key={player.name}
+                player={player} 
+                team = {props.team.team_id}
+                />
+        )}
+    })
+    const IFcards = roster.map(player => {
+        if (player.position == "Outfielder") {}
+        else if (player.position == "Pitcher") {} 
+        else {
+            return (
+            <PlayerCard 
+                key={player.name}
+                player={player} 
+                team = {props.team.team_id}
+                />
+        )}
+    })
 
     return (
-        <div>
-            {roster.map(player => {
-                return (
-                    <div key={player.pid}>
-                        <p>{player.name}</p>
-                        <Link 
-                            key= {player.PLAYERID}
-                            href={{
-                            pathname: '/players/[pid]',
-                            query: { pid: player.retroid } }}> 
-                                <a>player page</a> 
-                        </Link>
-                        <p>{player.position}</p>
-                        <p>{player.number}</p>
-                    </div>
-                )
-            })}
+        <div className={styles.rosterPage}>
+            <h1>{props.team.name}</h1>
+            <div className={styles.roster}>
+
+                
+
+                <div className={styles.posContainer}>
+                        
+                        {Pcards}
+                </div>
+
+                <div className={styles.posContainer}>
+                    
+
+                        {OFcards}
+
+                </div>
+
+                <div className={styles.posContainer}>
+                    
+
+                    {IFcards}
+
+                </div>
+
+            </div>
         </div>
     )
   }

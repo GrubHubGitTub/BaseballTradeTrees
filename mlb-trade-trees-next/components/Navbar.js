@@ -61,11 +61,7 @@ export default function Navbar({players}) {
                 </div>    
             
                 <Link href={randomLink()}>
-                    <button
-                        className="navbar--random"
-                        >
-                        Random Player
-                    </button>
+                    <button className="navbar--random" style={{"margin-left":"1%"}}>Random Player</button>
                 </Link>
 
             <button 
@@ -88,11 +84,11 @@ export default function Navbar({players}) {
                 
                 <ul> 
                 {/* change these to links */}
-                    <Link href="/teams"><li><a>Teams</a></li></Link>
-                    <li>Players</li>
-                    <li>Advanced Search</li>
-                    <li>Stats</li>
-                    <li>About</li>
+                    <Link href="/teams"><li><button className="navButton">Teams</button></li></Link>
+                    <Link href="/players"><li><button className="navButton">Players</button></li></Link>
+                    <Link href="/search"><li><button className="navButton">Search</button></li></Link>
+                    <Link href="/stats"><li><button className="navButton">Stats</button></li></Link>
+                    <Link href="/about"><li><button className="navButton">About</button></li></Link>
                 </ul>
             </div>
         </nav>
