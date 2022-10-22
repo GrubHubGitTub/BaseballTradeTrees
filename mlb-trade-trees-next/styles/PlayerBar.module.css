@@ -110,9 +110,38 @@
 @media (max-width: 420px) {
 
     .PlayerBar{
-        width:100%
+        width:100%;
+        transform: scale(0.9)
     }
-    .playerTeamTree{
+    .playerName{
+        transform: scale(0.7)
+    }
+
+    .parentTree{
+        transform: scale(0.7)
+
+    }
+    
+    .teamHeader h1 {
+        font-size: 1.3em;
+    }
+    .teamHeader h2 {
+        font-size: 1em;
+    }
+    .otherStats{
+        font-size: 0.7em;
+    }
+    .allStats {
+        font-size: 0.6em;
+    }
+    .statsContainer {
+        align-items:flex-start;
+    }
+    .allStats {
+        justify-content:space-between;
+    }
+
+    /* .playerTeamTree{
         display: flex;
         justify-content: space-between;
     }
@@ -129,14 +158,6 @@
         height: 50px;
     }
     
-    .playerName{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.6em;
-        padding: 2px;
-        margin-right: auto;
-    }
 
     .parentTree{
         display: flex;
@@ -159,16 +180,8 @@
     }
     .noParent {
         margin-left: 15%;
-    }
+    } */
 
-    .allStats {
-        font-size: 0.6em;
-    }
-    .statsContainer {
-        align-items:flex-start;
-    }
-    .allStats {
-        justify-content:space-between;
-    }
+
 
     }

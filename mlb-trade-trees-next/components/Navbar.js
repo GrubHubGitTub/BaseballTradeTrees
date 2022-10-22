@@ -86,8 +86,7 @@ export default function Navbar({players}) {
                 {/* change these to links */}
                     <Link href="/teams"><li><button className="navButton">Teams</button></li></Link>
                     <Link href="/players"><li><button className="navButton">Players</button></li></Link>
-                    <Link href="/search"><li><button className="navButton">Search</button></li></Link>
-                    <Link href="/stats"><li><button className="navButton">Stats</button></li></Link>
+                    <Link href="/search"><li><button className="navButton">Search | Stats</button></li></Link>
                     <Link href="/about"><li><button className="navButton">About</button></li></Link>
                 </ul>
             </div>

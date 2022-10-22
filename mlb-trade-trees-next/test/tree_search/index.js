@@ -1,17 +1,25 @@
-    // import data from "../../../data/all_parent_trees.json"
+    // import tree_data from "../../../data/all_parent_trees.json"
     
-    // export default async (req, res) => {
-    //     const tree_data = data
-
-    //     const WAR = req.query.war;
+    // export default function handler (req, res) {
+    //     console.log(req.body)
+    //     const team = req.body.team.toLowerCase()
         
+
     //     const filtered = tree_data.filter(tree => {
-    //         return tree.total_stats.war_sal.WAR >= WAR;
+    //         return tree.from_team.team_name.toLowerCase().includes(team);
     //     })
-    //     console.log(filtered)
-    //         if (filtered.length > 0) {
-    //             res.status(200).json(filtered)
-    //         } else {
-    //             res.status(404).json({ message: `Tree with id: ${ WAR } not found.` })
-    //         }
+    //     if (filtered.length > 0) {
+    //         res.status(200).json({ data: filtered })
+    //     }else{
+    //         res.status(404).json({ message: `No trees with this team name found` })
     //     }
+
+    //     // const WAR = req.query.war;
+        
+        
+    //     // if (filtered.length > 0) {
+    //     //     res.status(200).json(filtered)
+    //     // } else {
+    //     //     res.status(404).json({ message: `Tree with id: ${ WAR } not found.` })
+    //     // }
+    // }
