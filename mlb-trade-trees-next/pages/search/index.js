@@ -16,7 +16,7 @@ export default function SearchPage({tree_data}) {
     const [columnData, setColumnData] = useState([
         {headerName:"Tree",field:"tree_id", 
         cellRendererFramework: function(p){
-            return <Link href={`/players/${p.value.slice(0,8)}/${p.value}`}>{p.value}</Link>
+            return <Link href={`/player/${p.value.slice(0,8)}/${p.value}`}>{p.value}</Link>
           },pinned:"left", width:130},
         {field: "from_franch", headerName:"Franchise ID", width:140},
         {field: "from_team.team_id", headerName:"Team ID", width:110},
@@ -87,7 +87,7 @@ export default function SearchPage({tree_data}) {
         sortable:true,
         // make every column use 'text' filter by default
         filter: 'agTextColumnFilter',
-    }));
+    }),[]);
 
     return (
         <div className={styles.searchPage}>
@@ -100,7 +100,7 @@ export default function SearchPage({tree_data}) {
                columnDefs={columnData}>
            </AgGridReact>
        </div>
-       <h5 className={styles.Note}>Note- this is a list of all "parent" trade trees, meaning they are the largest version of each tree with no parent transaction.</h5>
+       <h5 className={styles.Note}>Note- this is a list of all parent trade trees, meaning they are the largest version of each tree with no parent transaction.</h5>
 
         </div>
         )

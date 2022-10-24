@@ -14,7 +14,7 @@ export default function TradeCard(props) {
 
     let largestButton
     if (largest_tree != "_"){
-        largestButton = <Link href={`/players/${parent_id}/${largest_tree}`}><a className={styles.largestButton}> View Parent Tree</a></Link>
+        largestButton = <Link href={`/player/${parent_id}/${largest_tree}`}><a className={styles.largestButton}> View Parent Tree</a></Link>
     } 
 
     let world_series_wins
@@ -62,7 +62,7 @@ export default function TradeCard(props) {
                         <h3>Total transactions: {props.data.total_transac}</h3>
                         <p>{props.data.total_stats.war_sal.WAR} WAR | {props.data.total_stats.batting_stats.R} Runs </p>
                     </div>
-                    <Link href={`/players/${pid}/${tree_id}`}><a className={styles.treeButton}>View Tree</a></Link>
+                    <Link href={`/player/${pid}/${tree_id}`}><a className={styles.treeButton}>View Tree</a></Link>
                     {largestButton}
                     
             </div>

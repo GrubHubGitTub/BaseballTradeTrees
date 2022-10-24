@@ -8,7 +8,7 @@ export default function Navbar({players}) {
         var randomplayer = players[Math.floor(Math.random()*players.length)]
         // var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
         var pid = randomplayer.retro_id 
-        var url = `/players/${pid}/`
+        var url = `/player/${pid}/`
         return url
     }
 
@@ -47,7 +47,7 @@ export default function Navbar({players}) {
                                 return (<Link 
                                             key= {player.retro_id}
                                             href={{
-                                                pathname: '/players/[pid]',
+                                                pathname: '/player/[pid]',
                                                 query: { pid: player.retro_id },
                                             }}>   
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 

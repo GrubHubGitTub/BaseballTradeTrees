@@ -77,7 +77,7 @@ export default function PlayerBar({data, tree_data}) {
         var rid = tree_data.largest_tree_id.slice(0,8)
         parent_tree = 
             <Link href={{
-                pathname: '/players/[pid]/[tid]',
+                pathname: '/player/[pid]/[tid]',
                 query: {pid: rid, tid: tree_data.largest_tree_id }}}>
                 <a className={styles.parentTree}> View Parent Tree </a>
             </Link> 
@@ -101,7 +101,7 @@ export default function PlayerBar({data, tree_data}) {
 
             <div className={styles.playerTeamTree}>
                 <Link href={{
-                    pathname: '/players/[pid]',
+                    pathname: '/player/[pid]',
                     query: {pid: data.retro_id }}}>
                     <a className={styles.playerName}> ← {data.name} </a>
                 </Link>
@@ -139,7 +139,7 @@ export default function PlayerBar({data, tree_data}) {
                 return (<Link 
                             key={trade.tree_id}
                             href={{
-                                pathname: '/players/[pid]/[treeid]',
+                                pathname: '/player/[pid]/[treeid]',
                                 query: { pid: data.retro_id, treeidcd: trade.tree_id }
                             }}>   
                             <a className="treeLink" > 

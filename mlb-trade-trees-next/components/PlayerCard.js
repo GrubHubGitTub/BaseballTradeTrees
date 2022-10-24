@@ -15,7 +15,7 @@ export default function PlayerCard({player, team}) {
             <Link 
                 key= {player.pid}
                 href={{
-                pathname: '/players/[pid]',
+                pathname: '/player/[pid]',
                 query: { pid: player.retroid } }}> 
                     <h3 className={styles.playerLink}>{player.name}</h3> 
             </Link>
