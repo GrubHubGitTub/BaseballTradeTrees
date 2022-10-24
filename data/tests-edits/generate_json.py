@@ -599,13 +599,14 @@ for player in all_data:
         if trade["largest_tree_id"] == "_":
 
             tree_transac = trade["tree_id"][9:14]
+            total_transac = trade["total_transac"]
             transac_match = False
             if len(all_parent_trees_no_detail_no_dupes) == 0:
                 no_details_tree = {key: value for (key, value) in trade.items() if key != "tree_details"}
                 all_parent_trees_no_detail_no_dupes.append(no_details_tree)
             else:
                 for tree in all_parent_trees_no_detail_no_dupes:
-                    if tree_transac == tree["tree_id"][9:14]:
+                    if tree_transac == tree["tree_id"][9:14] and total_transac == tree["total_transac"]:
                         transac_match = True
                 if transac_match == False:
                     no_details_tree = {key:value for (key, value) in trade.items() if key != "tree_details"}
