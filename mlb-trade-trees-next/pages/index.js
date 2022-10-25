@@ -11,15 +11,16 @@ export async function getStaticProps(){
   const tree_data = require("../data/all_parent_trees_no_details.json")
 
   const topWAR = tree_data.sort((a, b) => parseFloat(b.total_stats.war_sal.WAR) - parseFloat(a.total_stats.war_sal.WAR)).slice(0,50)
-  const topTransac =  tree_data.sort((a, b) => parseFloat(b.total_transac) - parseFloat(a.total_transac)).slice(0,50)
-  // const longest 
-  // const longestOngoing
+  const topTransac = tree_data.sort((a, b) => parseFloat(b.total_transac) - parseFloat(a.total_transac)).slice(0,50)
+  const longest = tree_data.sort((a, b) => parseFloat(b.year_span) - parseFloat(a.year_span)).slice(0,50)
+  const ongoing = tree_data.filter((p) => p.ongoing === "Yes")
+  const longestOngoing = ongoing.sort((a, b) => parseFloat(b.year_span) - parseFloat(a.year_span)).slice(0,50)
 
-  return { props: {topWAR, topTransac} }
+  return { props: {topWAR, topTransac, longest, longestOngoing} }
 }
 
 
-export default function Home({topWAR, topTransac}) {
+export default function Home({topWAR, topTransac, longest, longestOngoing}) {
   var settings = {
     arrows:true,
     dots: true,
@@ -60,7 +61,7 @@ export default function Home({topWAR, topTransac}) {
       ]
   };
   const WARCards = 
-  <Slider {...settings} key={0} >
+  <Slider {...settings}>
   {topWAR.map(trade => {
     return (
     <TradeCard data = {trade}
@@ -72,8 +73,32 @@ export default function Home({topWAR, topTransac}) {
   </Slider>
 
   const TransacCards =   
-  <Slider {...settings} key={0} >
+  <Slider {...settings}>
     {topTransac.map(trade => {
+      return (
+      <TradeCard data = {trade}
+                  pid = {trade.tree_id}
+                  key = {trade.tree_id}
+      />
+      )
+    })}
+  </Slider>
+
+  const longestCards =   
+  <Slider {...settings}>
+    {longest.map(trade => {
+      return (
+      <TradeCard data = {trade}
+                  pid = {trade.tree_id}
+                  key = {trade.tree_id}
+      />
+      )
+    })}
+  </Slider>
+
+  const ongoingCards =   
+  <Slider {...settings}>
+    {longestOngoing.map(trade => {
       return (
       <TradeCard data = {trade}
                   pid = {trade.tree_id}
@@ -104,10 +129,10 @@ export default function Home({topWAR, topTransac}) {
         <button onClick={() => {setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
               <span>Total Transactions</span>
         </button>            
-        <button onClick={() => setSliderData(TransacCards)} className={styles.cta}>
+        <button onClick={() => {setSliderData(longestCards);setActiveClass("longestCards")}} className={activeClass=="longestCards" ? styles.ctaActive : styles.cta}>
               <span>Year Span</span>
         </button>
-        <button onClick={() => setSliderData(TransacCards)} className={styles.cta}>
+        <button onClick={() => {setSliderData(ongoingCards);setActiveClass("ongoingCards")}} className={activeClass=="ongoingCards" ? styles.ctaActive : styles.cta}>
               <span>Ongoing & Year Span</span>
         </button> 
         </div>
