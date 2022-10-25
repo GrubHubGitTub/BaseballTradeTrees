@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
 
 }
@@ -13,13 +14,82 @@
     margin-bottom: 3%;
 }
 
+.statHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .statBar{
-    margin-top: 4%;
+
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 
 }
-.statBar h5{
-    margin-right: 12%;
+
+.homePage h3{
+    margin-top: 5%;
+    margin-bottom: 2%
 }
+
+.cta {
+    position: relative;
+    margin: auto;
+    margin-left: 50px;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+   }
+
+   .ctaActive {
+    position: relative;
+    margin: auto;
+    margin-left: 50px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 50px;
+    background: #005da9a5;
+    transition: all 0.3s;
+   }
+
+   .ctaActive span {
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease;
+   }
+   
+   .cta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #005da9a5;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+   }
+   
+   .cta span {
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #000000;
+   }
+   
+   .cta:hover:before {
+    width: 100%;
+    background: #005da9a5;
+   }
+   
+   .cta:active {
+    transform: scale(0.95);
+   }

@@ -222,7 +222,7 @@ table {
 }
 
   .carousel{
-    height: 600px;
+    height: 550px;
     max-width: 70%;
 }
 
@@ -234,8 +234,9 @@ table {
   padding-left: 50px;
   padding-bottom: 25px;
   padding-top: 25px;
-  
 }
+
+
 
 @media screen and (max-width: 600px) {
     .carousel {
@@ -331,6 +332,11 @@ a {
 
 .outcomeNode h2{
   font-size: 2em;
+}
+
+
+.slick-dots{
+  padding-bottom:30px !important;
 }
 
 .footer {

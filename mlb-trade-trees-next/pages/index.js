@@ -12,37 +12,18 @@ export async function getStaticProps(){
 
   const topWAR = tree_data.sort((a, b) => parseFloat(b.total_stats.war_sal.WAR) - parseFloat(a.total_stats.war_sal.WAR)).slice(0,50)
   const topTransac =  tree_data.sort((a, b) => parseFloat(b.total_transac) - parseFloat(a.total_transac)).slice(0,50)
-  console.log(topTransac)
+  // const longest 
+  // const longestOngoing
 
   return { props: {topWAR, topTransac} }
 }
 
 
 export default function Home({topWAR, topTransac}) {
-
-  const WARCards = topWAR.map(trade => {
-    return (
-    <TradeCard data = {trade}
-                pid = {trade.tree_id}
-                key = {trade.tree_id}
-    />
-    )
-  })
-
-  const TransacCards = topTransac.map(trade => {
-    return (
-    <TradeCard data = {trade}
-                pid = {trade.tree_id}
-                key = {trade.tree_id}
-    />
-    )
-  })
-
-  const [sliderData, setSliderData] = useState({WARCards})
-
   var settings = {
     arrows:true,
     dots: true,
+    dotsClass: "slick-dots",
     autoplay: true,
     autoplaySpeed: 4000,
     className: "carousel",
@@ -51,6 +32,7 @@ export default function Home({topWAR, topTransac}) {
     slidesToScroll: 3,
     centerMode:false,
     infinite:true,
+    initialSlide:0,
 
     responsive: [{
       breakpoint: 1300,
@@ -77,6 +59,34 @@ export default function Home({topWAR, topTransac}) {
             slidesToScroll: 1}}
       ]
   };
+  const WARCards = 
+  <Slider {...settings} key={0} >
+  {topWAR.map(trade => {
+    return (
+    <TradeCard data = {trade}
+                pid = {trade.tree_id}
+                key = {trade.tree_id}
+    />
+    )
+  })}
+  </Slider>
+
+  const TransacCards =   
+  <Slider {...settings} key={0} >
+    {topTransac.map(trade => {
+      return (
+      <TradeCard data = {trade}
+                  pid = {trade.tree_id}
+                  key = {trade.tree_id}
+      />
+      )
+    })}
+  </Slider>
+
+  const [sliderData, setSliderData] = useState(WARCards)
+  const [activeClass, setActiveClass] = useState("WARCards")
+
+  
 
   return (
       <div className={styles.homePage}>
@@ -85,18 +95,24 @@ export default function Home({topWAR, topTransac}) {
         </Head>
       <h1 className={styles.mainHead}>Analyze any trade in MLB history.</h1>
       
-      <div>
+      <div className={styles.statHeader}>
         <h3>View top trees by:</h3>
         <div className={styles.statBar}>
-            <h5>WAR </h5>
-            <button onClick={setSliderData({topTransac})}><h5 >Transactions </h5></button>
-            <h5>Year </h5>
-            <h5>Ongoing </h5>
+          <button onClick={() => {setSliderData(WARCards);setActiveClass("WARCards")}} className={activeClass=="WARCards" ? styles.ctaActive : styles.cta}>
+              <span>WAR Gained</span>
+        </button>
+        <button onClick={() => {setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
+              <span>Total Transactions</span>
+        </button>            
+        <button onClick={() => setSliderData(TransacCards)} class={styles.cta}>
+              <span>Year Span</span>
+        </button>
+        <button onClick={() => setSliderData(TransacCards)} class={styles.cta}>
+              <span>Ongoing & Year Span</span>
+        </button> 
         </div>
       </div>
-      <Slider {...settings}>
-        {sliderData}
-      </Slider>
+      {sliderData}
       </div>
   )
 }

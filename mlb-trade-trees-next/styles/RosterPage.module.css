@@ -4,6 +4,13 @@
     align-items: center;
     margin-top: 2%;
 }
+.teamHeader{
+  display: flex;
+  flex-direction: row;
+}
+.teamHeader h1{
+  padding:25px
+}
 .roster{
     display: flex;
     flex-direction: row;

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import players from "../../data/player_search.json"
 import teams from "../../data/team_info.json"
@@ -83,10 +83,14 @@ export async function getServerSideProps(context) {
 
     return (
         <div className={styles.rosterPage}>
-            <h1>{props.team.name}</h1>
+            <div className={styles.teamHeader}>
+                <h1 >{props.team.name}</h1>
+                <div>
+                <Image src={`/team_logos/${props.team.team_id}.png`} alt="TeamLogo" objectFit="contain" width="100%" height="100%"/>
+                </div>
+            </div>
+            <h4 style={{"margin-top":"2%", "margin-bottom":"1%"}}>Click name of highlighted player to go to his page</h4>
             <div className={styles.roster}>
-
-                
 
                 <div className={styles.posContainer}>
                         
