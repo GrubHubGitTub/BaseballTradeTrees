@@ -3,180 +3,347 @@
         "name": "Los Angeles Angels",
         "team_id": "ANA",
         "mlb_id": 108,
-        "first_year": "1961"
+        "division": "American League West",
+        "first_year": "1961",
+        "other_names": [
+            "Los Angeles Angels",
+            "California Angels",
+            "Anaheim Angels",
+            "Los Angeles Angels of Anaheim"
+        ]
     },
     {
         "name": "Arizona Diamondbacks",
         "team_id": "ARI",
         "mlb_id": 109,
-        "first_year": "1996"
+        "division": "National League West",
+        "first_year": "1996",
+        "other_names": [
+            "Arizona Diamondbacks"
+        ]
     },
     {
         "name": "Baltimore Orioles",
         "team_id": "BAL",
         "mlb_id": 110,
-        "first_year": "1901"
+        "division": "American League East",
+        "first_year": "1901",
+        "other_names": [
+            "Milwaukee Brewers",
+            "St. Louis Browns",
+            "Baltimore Orioles"
+        ]
     },
     {
         "name": "Boston Red Sox",
         "team_id": "BOS",
         "mlb_id": 111,
-        "first_year": "1901"
+        "division": "American League East",
+        "first_year": "1901",
+        "other_names": [
+            "Boston Americans",
+            "Boston Red Sox"
+        ]
     },
     {
         "name": "Chicago Cubs",
         "team_id": "CHC",
         "mlb_id": 112,
-        "first_year": "1874"
+        "division": "National League Central",
+        "first_year": "1874",
+        "other_names": [
+            "Chicago White Stockings",
+            "Chicago Colts",
+            "Chicago Orphans",
+            "Chicago Cubs"
+        ]
     },
     {
         "name": "Cincinnati Reds",
         "team_id": "CIN",
         "mlb_id": 113,
-        "first_year": "1882"
+        "division": "National League Central",
+        "first_year": "1882",
+        "other_names": [
+            "Cincinnati Red Stockings",
+            "Cincinnati Reds",
+            "Cincinnati Redlegs"
+        ]
     },
     {
         "name": "Cleveland Guardians",
         "team_id": "CLE",
         "mlb_id": 114,
-        "first_year": "1901"
+        "division": "American League Central",
+        "first_year": "1901",
+        "other_names": [
+            "Cleveland Blues",
+            "Cleveland Bronchos",
+            "Cleveland Naps",
+            "Cleveland Indians"
+        ]
     },
     {
         "name": "Colorado Rockies",
         "team_id": "COL",
         "mlb_id": 115,
-        "first_year": "1992"
+        "division": "National League West",
+        "first_year": "1992",
+        "other_names": [
+            "Colorado Rockies"
+        ]
     },
     {
         "name": "Detroit Tigers",
         "team_id": "DET",
         "mlb_id": 116,
-        "first_year": "1901"
+        "division": "American League Central",
+        "first_year": "1901",
+        "other_names": [
+            "Detroit Tigers"
+        ]
     },
     {
         "name": "Houston Astros",
         "team_id": "HOU",
         "mlb_id": 117,
-        "first_year": "1962"
+        "division": "American League West",
+        "first_year": "1962",
+        "other_names": [
+            "Houston Colt .45's",
+            "Houston Astros"
+        ]
     },
     {
         "name": "Kansas City Royals",
         "team_id": "KCR",
         "mlb_id": 118,
-        "first_year": "1968"
+        "division": "American League Central",
+        "first_year": "1968",
+        "other_names": [
+            "Kansas City Royals"
+        ]
     },
     {
         "name": "Los Angeles Dodgers",
         "team_id": "LAD",
         "mlb_id": 119,
-        "first_year": "1884"
+        "division": "National League West",
+        "first_year": "1884",
+        "other_names": [
+            "Brooklyn Atlantics",
+            "Brooklyn Grays",
+            "Brooklyn Bridegrooms",
+            "Brooklyn Grooms",
+            "Brooklyn Superbas",
+            "Brooklyn Dodgers",
+            "Brooklyn Robins",
+            "Los Angeles Dodgers"
+        ]
     },
     {
         "name": "Washington Nationals",
         "team_id": "WSN",
         "mlb_id": 120,
-        "first_year": "1968"
+        "division": "National League East",
+        "first_year": "1968",
+        "other_names": [
+            "Montreal Expos",
+            "Washington Nationals"
+        ]
     },
     {
         "name": "New York Mets",
         "team_id": "NYM",
         "mlb_id": 121,
-        "first_year": "1962"
+        "division": "National League East",
+        "first_year": "1962",
+        "other_names": [
+            "New York Mets"
+        ]
     },
     {
         "name": "Oakland Athletics",
         "team_id": "OAK",
         "mlb_id": 133,
-        "first_year": "1901"
+        "division": "American League West",
+        "first_year": "1901",
+        "other_names": [
+            "Philadelphia Athletics",
+            "Kansas City Athletics",
+            "Oakland Athletics"
+        ]
     },
     {
         "name": "Pittsburgh Pirates",
         "team_id": "PIT",
         "mlb_id": 134,
-        "first_year": "1882"
+        "division": "National League Central",
+        "first_year": "1882",
+        "other_names": [
+            "Pittsburg Alleghenys",
+            "Pittsburgh Pirates"
+        ]
     },
     {
         "name": "San Diego Padres",
         "team_id": "SDP",
         "mlb_id": 135,
-        "first_year": "1968"
+        "division": "National League West",
+        "first_year": "1968",
+        "other_names": [
+            "San Diego Padres"
+        ]
     },
     {
         "name": "Seattle Mariners",
         "team_id": "SEA",
         "mlb_id": 136,
-        "first_year": "1977"
+        "division": "American League West",
+        "first_year": "1977",
+        "other_names": [
+            "Seattle Mariners"
+        ]
     },
     {
         "name": "San Francisco Giants",
         "team_id": "SFG",
         "mlb_id": 137,
-        "first_year": "1883"
+        "division": "National League West",
+        "first_year": "1883",
+        "other_names": [
+            "New York Gothams",
+            "New York Giants",
+            "San Francisco Giants"
+        ]
     },
     {
         "name": "St. Louis Cardinals",
         "team_id": "STL",
         "mlb_id": 138,
-        "first_year": "1892"
+        "division": "National League Central",
+        "first_year": "1892",
+        "other_names": [
+            "St. Louis Brown Stockings",
+            "St. Louis Browns",
+            "St. Louis Perfectos",
+            "St. Louis Cardinals"
+        ]
     },
     {
         "name": "Tampa Bay Rays",
         "team_id": "TBD",
         "mlb_id": 139,
-        "first_year": "1996"
+        "division": "American League East",
+        "first_year": "1996",
+        "other_names": [
+            "Tampa Bay Devil Rays",
+            "Tampa Bay Rays"
+        ]
     },
     {
         "name": "Texas Rangers",
         "team_id": "TEX",
         "mlb_id": 140,
-        "first_year": "1961"
+        "division": "American League West",
+        "first_year": "1961",
+        "other_names": [
+            "Washington Senators",
+            "Texas Rangers"
+        ]
     },
     {
         "name": "Toronto Blue Jays",
         "team_id": "TOR",
         "mlb_id": 141,
-        "first_year": "1977"
+        "division": "American League East",
+        "first_year": "1977",
+        "other_names": [
+            "Toronto Blue Jays"
+        ]
     },
     {
         "name": "Minnesota Twins",
         "team_id": "MIN",
         "mlb_id": 142,
-        "first_year": "1901"
+        "division": "American League Central",
+        "first_year": "1901",
+        "other_names": [
+            "Washington Senators",
+            "Minnesota Twins"
+        ]
     },
     {
         "name": "Philadelphia Phillies",
         "team_id": "PHI",
         "mlb_id": 143,
-        "first_year": "1883"
+        "division": "National League East",
+        "first_year": "1883",
+        "other_names": [
+            "Philadelphia Quakers",
+            "Philadelphia Phillies",
+            "Philadelphia Blue Jays"
+        ]
     },
     {
         "name": "Atlanta Braves",
         "team_id": "ATL",
         "mlb_id": 144,
-        "first_year": "1871"
+        "division": "National League East",
+        "first_year": "1871",
+        "other_names": [
+            "Boston Red Caps",
+            "Boston Beaneaters",
+            "Boston Doves",
+            "Boston Rustlers",
+            "Boston Braves",
+            "Boston Bees",
+            "Milwaukee Braves",
+            "Atlanta Braves"
+        ]
     },
     {
         "name": "Chicago White Sox",
         "team_id": "CHW",
         "mlb_id": 145,
-        "first_year": "1901"
+        "division": "American League Central",
+        "first_year": "1901",
+        "other_names": [
+            "Chicago White Sox"
+        ]
     },
     {
         "name": "Miami Marlins",
         "team_id": "FLA",
         "mlb_id": 146,
-        "first_year": "1991"
+        "division": "National League East",
+        "first_year": "1991",
+        "other_names": [
+            "Florida Marlins",
+            "Miami Marlins"
+        ]
     },
     {
         "name": "New York Yankees",
         "team_id": "NYY",
         "mlb_id": 147,
-        "first_year": "1903"
+        "division": "American League East",
+        "first_year": "1903",
+        "other_names": [
+            "Baltimore Orioles",
+            "New York Highlanders",
+            "New York Yankees"
+        ]
     },
     {
         "name": "Milwaukee Brewers",
         "team_id": "MIL",
         "mlb_id": 158,
-        "first_year": "1968"
+        "division": "National League Central",
+        "first_year": "1968",
+        "other_names": [
+            "Seattle Pilots",
+            "Milwaukee Brewers"
+        ]
     }
 ]
