@@ -162,7 +162,12 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                     else:
                         last_row = sorted_transactions.tail(1)
                         last_date = last_row.primary_date.item()
-                        if last_date <= 20150000:
+                        if last_date <= 20000000:
+                            transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
+                                                "name": format_names(retro_id=retro_id), "retro_id": retro_id,
+                                                "outcome": "retired", "date": last_date}
+                            trade_tree.append(transaction_info)
+                        elif 20150000 >= last_date > 20000000:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
                                                 "outcome": "No further transactions, likely retired", "date": last_date}

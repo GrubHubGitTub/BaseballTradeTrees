@@ -39,7 +39,7 @@
     margin: auto;
     margin-left: 50px;
     padding: 12px 18px;
-    transition: all 0.2s ease;
+    transition: all 0.5s;
     border: none;
     background: none;
    }
@@ -52,7 +52,7 @@
     border: none;
     border-radius: 50px;
     background: #005da9a5;
-    transition: all 0.3s;
+    transition: all 0.5s;
    }
 
    .ctaActive span {
@@ -61,7 +61,7 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     color: rgb(0, 0, 0);
-    transition: all 0.3s ease;
+    transition: all 0.5s;
    }
    
    .cta:before {
@@ -74,11 +74,12 @@
     background: #005da9a5;
     width: 45px;
     height: 45px;
-    transition: all 0.3s ease;
+    transition: all 0.5s ;
    }
    
    .cta span {
     position: relative;
+    transition: all 0.5s ;
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -90,6 +91,3 @@
     background: #005da9a5;
    }
    
-   .cta:active {
-    transform: scale(0.95);
-   }

@@ -104,10 +104,10 @@ export default function Home({topWAR, topTransac}) {
         <button onClick={() => {setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
               <span>Total Transactions</span>
         </button>            
-        <button onClick={() => setSliderData(TransacCards)} class={styles.cta}>
+        <button onClick={() => setSliderData(TransacCards)} className={styles.cta}>
               <span>Year Span</span>
         </button>
-        <button onClick={() => setSliderData(TransacCards)} class={styles.cta}>
+        <button onClick={() => setSliderData(TransacCards)} className={styles.cta}>
               <span>Ongoing & Year Span</span>
         </button> 
         </div>

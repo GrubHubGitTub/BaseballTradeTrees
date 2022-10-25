@@ -17,10 +17,10 @@ export default function SearchPage({tree_data}) {
         {headerName:"Tree",field:"tree_id", 
         cellRendererFramework: function(p){
             return <Link href={`/player/${p.value.slice(0,8)}/${p.value}`}>{p.value}</Link>
-          },pinned:"left", width:130},
+          }, width:130},
         {field: "from_franch", headerName:"Franchise ID", width:140},
         {field: "from_team.team_id", headerName:"Team ID", width:110},
-        {field: "from_team.team_name", headerName:"Team Name", pinned:"left"},
+        {field: "from_team.team_name", headerName:"Team Name"},
         {headerName:"Date", field:"date", 
         valueFormatter: p => { return `${p.value.toString().slice(0,4)}-${p.value.toString().slice(4,6)}-${p.value.toString().slice(6,8)}` },
         width:120},

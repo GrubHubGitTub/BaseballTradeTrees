@@ -16,13 +16,20 @@ export default function PlayerBar({data, tree_data}) {
     let link
     const from_franch = tree_data.from_franch
     if (from_franch in franchises) {
+        if (from_franch == "NYY"){
+            background = "darkgrey"
+            link = `/team_logos/${from_franch}.png`
+        }
+        else{
         background = franchises[from_franch]
         link = `/team_logos/${from_franch}.png`
+        }
     }
     else{
         background = "black"
         link = `/team_logos/MLB.png`
     }
+
 
     var batting_stats = tree_data.total_stats.batting_stats
     const b_stats =    
