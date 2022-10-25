@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import React from "react";
+import React, {useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,14 +11,16 @@ export async function getStaticProps(){
   const tree_data = require("../data/all_parent_trees_no_details.json")
 
   const topWAR = tree_data.sort((a, b) => parseFloat(b.total_stats.war_sal.WAR) - parseFloat(a.total_stats.war_sal.WAR)).slice(0,50)
-  
-  return { props: {topWAR} }
+  const topTransac =  tree_data.sort((a, b) => parseFloat(b.total_transac) - parseFloat(a.total_transac)).slice(0,50)
+  console.log(topTransac)
+
+  return { props: {topWAR, topTransac} }
 }
 
 
-export default function Home({topWAR}) {
+export default function Home({topWAR, topTransac}) {
 
-  const tradeCards = topWAR.map(trade => {
+  const WARCards = topWAR.map(trade => {
     return (
     <TradeCard data = {trade}
                 pid = {trade.tree_id}
@@ -27,6 +28,17 @@ export default function Home({topWAR}) {
     />
     )
   })
+
+  const TransacCards = topTransac.map(trade => {
+    return (
+    <TradeCard data = {trade}
+                pid = {trade.tree_id}
+                key = {trade.tree_id}
+    />
+    )
+  })
+
+  const [sliderData, setSliderData] = useState({WARCards})
 
   var settings = {
     arrows:true,
@@ -72,14 +84,18 @@ export default function Home({topWAR}) {
           <title>MLB Trade Trees- Analyze Any Trade in Baseball History</title>
         </Head>
       <h1 className={styles.mainHead}>Analyze any trade in MLB history.</h1>
-      <div className={styles.statBar}>
-          <h5>WAR </h5>
-          <h5>Transactions </h5>
-          <h5>Year </h5>
-          <h5>Ongoing </h5>
+      
+      <div>
+        <h3>View top trees by:</h3>
+        <div className={styles.statBar}>
+            <h5>WAR </h5>
+            <button onClick={setSliderData({topTransac})}><h5 >Transactions </h5></button>
+            <h5>Year </h5>
+            <h5>Ongoing </h5>
+        </div>
       </div>
       <Slider {...settings}>
-        {tradeCards}
+        {sliderData}
       </Slider>
       </div>
   )

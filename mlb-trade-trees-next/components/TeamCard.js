@@ -18,7 +18,7 @@ export default function TeamCard({data}) {
      let names = ""
      names = data.other_names.map((name) => {
         if (name == data.name){}
-        else{ return (<p className={styles.name}> {name} </p>)}
+        else{ return (<p key={name} className={styles.name}> {name} </p>)}
      })
 
     return (
