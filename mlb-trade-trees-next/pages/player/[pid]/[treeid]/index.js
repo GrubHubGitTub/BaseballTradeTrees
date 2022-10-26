@@ -558,6 +558,7 @@ export default function TreePage({ data, tree_data }) {
           <PlayerBar data={data} tree_data={tree_data}/>
           <div id="treeContainer" className={styles.treeContainer}>
             <h6>Click a transaction node to view stats</h6>
+            {/* <button onclick={d3container.chart.layout(["right","bottom","left","top"][index++%4]).render().fit()}></button> */}
             <OrgChartComponent
                 data={treeDisplay}
                 onNodeClick={onNodeClick}

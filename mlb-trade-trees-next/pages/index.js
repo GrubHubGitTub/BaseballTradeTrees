@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -32,7 +32,7 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
     slidesToShow: 3,
     slidesToScroll: 3,
     centerMode:false,
-    infinite:true,
+    infinite:false,
     initialSlide:0,
 
     responsive: [{
@@ -61,58 +61,58 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
       ]
   };
   const WARCards = 
-  <Slider {...settings}>
-  {topWAR.map(trade => {
+  topWAR.map(trade => {
     return (
     <TradeCard data = {trade}
                 pid = {trade.tree_id}
                 key = {trade.tree_id}
     />
     )
-  })}
-  </Slider>
+  })
 
   const TransacCards =   
-  <Slider {...settings}>
-    {topTransac.map(trade => {
+    topTransac.map(trade => {
       return (
       <TradeCard data = {trade}
                   pid = {trade.tree_id}
                   key = {trade.tree_id}
       />
       )
-    })}
-  </Slider>
+    })
 
   const longestCards =   
-  <Slider {...settings}>
-    {longest.map(trade => {
+    longest.map(trade => {
       return (
       <TradeCard data = {trade}
                   pid = {trade.tree_id}
                   key = {trade.tree_id}
       />
       )
-    })}
-  </Slider>
+    })
 
   const ongoingCards =   
-  <Slider {...settings}>
-    {longestOngoing.map(trade => {
+    longestOngoing.map(trade => {
       return (
       <TradeCard data = {trade}
                   pid = {trade.tree_id}
                   key = {trade.tree_id}
       />
       )
-    })}
-  </Slider>
+    })
 
   const [sliderData, setSliderData] = useState(WARCards)
   const [activeClass, setActiveClass] = useState("WARCards")
+  const [filterChange, setFilterChange] = useState(false);
 
+  const sliderRef = useRef(null);
   
-
+  useEffect(() => {
+    if (filterChange) {
+      sliderRef.current?.slickGoTo(0);
+      setFilterChange(false);
+    }
+  }, [filterChange]);
+  
   return (
       <div className={styles.homePage}>
         <Head>
@@ -123,21 +123,23 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
       <div className={styles.statHeader}>
         <h3>View top trees by:</h3>
         <div className={styles.statBar}>
-          <button onClick={() => {setSliderData(WARCards);setActiveClass("WARCards")}} className={activeClass=="WARCards" ? styles.ctaActive : styles.cta}>
+          <button onClick={() => {setFilterChange(true);setSliderData(WARCards);setActiveClass("WARCards")}} className={activeClass=="WARCards" ? styles.ctaActive : styles.cta}>
               <span>WAR Gained</span>
         </button>
-        <button onClick={() => {setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
+        <button onClick={() => {setFilterChange(true);setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
               <span>Total Transactions</span>
         </button>            
-        <button onClick={() => {setSliderData(longestCards);setActiveClass("longestCards")}} className={activeClass=="longestCards" ? styles.ctaActive : styles.cta}>
+        <button onClick={() => {setFilterChange(true);setSliderData(longestCards);setActiveClass("longestCards")}} className={activeClass=="longestCards" ? styles.ctaActive : styles.cta}>
               <span>Year Span</span>
         </button>
-        <button onClick={() => {setSliderData(ongoingCards);setActiveClass("ongoingCards")}} className={activeClass=="ongoingCards" ? styles.ctaActive : styles.cta}>
+        <button onClick={() => {setFilterChange(true);setSliderData(ongoingCards);setActiveClass("ongoingCards")}} className={activeClass=="ongoingCards" ? styles.ctaActive : styles.cta}>
               <span>Ongoing & Year Span</span>
         </button> 
         </div>
       </div>
-      {sliderData}
+      <Slider ref = {sliderRef} {...settings}>
+        {sliderData}
+      </Slider>
       </div>
   )
 }
