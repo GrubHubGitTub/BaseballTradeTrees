@@ -61,6 +61,29 @@
     background-color: lightblue;
 }
 
+.clickNode {
+    position: absolute;
+    width:400px;
+    margin-top: 31%;
+    margin-left: 1%
+}
+
+.saveButton{
+    position: absolute;
+    margin-right: 6%;
+    width:80px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.saveButton:hover{
+    background-color: #ddd;
+    color: black;
+}
+
 
 @media (max-width: 850px) {
     .statsContainer {

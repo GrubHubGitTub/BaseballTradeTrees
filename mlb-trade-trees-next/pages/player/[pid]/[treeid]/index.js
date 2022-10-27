@@ -3,7 +3,6 @@ import { OrgChart } from "../../../../org-chart-master";
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
-// import { getData } from "../../../../data/data";
 
 export async function getStaticPaths() {
   const player_data1 = require("../../../../data/all_data1.json")
@@ -47,6 +46,13 @@ export const OrgChartComponent = (props, ref) => {
     const d3Container = useRef(null);
     let chart = null;
 
+    function saveChart(){
+      chart.addNode({id:"saved",parentId:1,name:"saveButton"})
+      chart.exportImg({full:true,  filename: "test"})
+    }
+
+    props.setClick(saveChart)
+
     useEffect(() => {
         if (props.data && d3Container.current) {
         if (!chart) {
@@ -89,6 +95,10 @@ export const OrgChartComponent = (props, ref) => {
     "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
     "PIT":"Gold","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
 
+              
+              if (d.data.name == "saveButton") {
+                return "<h1> Tree downloaded from mlbtradetrees.com </h1>"
+              }
               // Comp pick node
               if ("transaction_id" in d.data && "info" in d.data) {
                 // format date
@@ -215,7 +225,6 @@ export const OrgChartComponent = (props, ref) => {
                   "/>`
                 }
                 let link
-                console.log(d.data)
                 const to_franch = d.data.to_team.team_name.to_franch
                 if (to_franch in franchises) {
                     link = `/team_logos/${to_franch}.png`
@@ -552,14 +561,20 @@ export default function TreePage({ data, tree_data }) {
       }
     }
 
+    let saveButtonPass = null
+    function saveButton() {
+      saveButtonPass()
+    }
+
     return (
         <div className={styles.treePage}>
 
           <PlayerBar data={data} tree_data={tree_data}/>
           <div id="treeContainer" className={styles.treeContainer}>
-            <h6>Click a transaction node to view stats</h6>
-            {/* <button onclick={d3container.chart.layout(["right","bottom","left","top"][index++%4]).render().fit()}></button> */}
+            <h6 className={styles.clickNode}>Click a transaction node to view stats</h6>
+            <button className={styles.saveButton} onClick={()=>saveButton()}>Save Tree</button>
             <OrgChartComponent
+                setClick={click => (saveButtonPass = click)}
                 data={treeDisplay}
                 onNodeClick={onNodeClick}
                 connections={connections}

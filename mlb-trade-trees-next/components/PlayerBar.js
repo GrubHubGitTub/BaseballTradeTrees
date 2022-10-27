@@ -37,7 +37,7 @@ export default function PlayerBar({data, tree_data}) {
             <thead>
                 <tr>
                 {Object.keys(batting_stats).map(key => (
-                    <th key={key} style={{"background-color":background, "color":"white"}}> {key} </th>                    
+                    <th key={key} style={{"backgroundColor":background, "color":"white"}}> {key} </th>                    
                 ))}
                 </tr>
             </thead>
