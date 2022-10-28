@@ -262,7 +262,9 @@ export const OrgChartComponent = (props, ref) => {
                       <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
 
                   </div>
+                  <div>
                   ${allstars}
+                  </div>
                     
                 </div>
                 `
@@ -572,7 +574,7 @@ export default function TreePage({ data, tree_data }) {
           <PlayerBar data={data} tree_data={tree_data}/>
           <div id="treeContainer" className={styles.treeContainer}>
             <h6 className={styles.clickNode}>Click a transaction node to view stats</h6>
-            <button className={styles.saveButton} onClick={()=>saveButton()}>Save Tree</button>
+            <button className={styles.saveButton} onClick={()=>saveButton()}>Save as image</button>
             <OrgChartComponent
                 setClick={click => (saveButtonPass = click)}
                 data={treeDisplay}

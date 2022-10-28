@@ -2,21 +2,17 @@ import React from "react"
 import Link from 'next/link'
 import styles from '../styles/PlayerBar.module.css'
 import Image from "next/image"
+import {franchises} from "../data/franchise_colors"
 
 
 export default function PlayerBar({data, tree_data}) {
     const from_team = tree_data.from_team.team_name
 
-    const franchises = {"ANA": "red", "ARI":"Maroon", "ATL":"indianred", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-    "CIN":"Maroon", "CLE":"Red", "COL":"RebeccaPurple","DET":"LightSlateGray", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"darkblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
-    "PIT":"Gold","SDP":"tan","SEA":"Teal","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
-
     let background 
     let link
     const from_franch = tree_data.from_franch
     if (from_franch in franchises) {
-        if (from_franch == "NYY"){
+        if (from_franch == "NYY" ){
             background = "darkgrey"
             link = `/team_logos/${from_franch}.png`
         }

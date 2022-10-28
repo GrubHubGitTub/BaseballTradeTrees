@@ -114,7 +114,8 @@
         transform: scale(0.9)
     }
     .playerName{
-        transform: scale(0.7)
+        transform: scale(0.5);
+        margin-left: 0;
     }
 
     .parentTree{
