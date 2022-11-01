@@ -103,8 +103,8 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
     );
   } else {
 
-    const [rowData, setRowData] = useState(player.retrosheet_data)
-    const [columnData, setColumnData] = useState([
+    const rowData = player.retrosheet_data
+    const columnData = [
       {field: "primary_date", headerName:"Date", valueFormatter: p => { return `${p.value.toString().slice(0,4)}-${p.value.toString().slice(4,6)}-${p.value.toString().slice(6,8)}` },
       width:150},
       {field: "from_franchise", headerName:"From Franchise",width:200},
@@ -113,16 +113,16 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
       {field: "to_franchise", headerName:"To Franchise",width:200},
       {field: "to_team", headerName:"To Team",width:200},
 
-    ])
+    ]
 
-    const defaultColDef = useMemo ( ()=> ({
-      // set every column width
-      resizable: true,
-      // make every column editable
-      sortable:true,
-      // make every column use 'text' filter by default
-      filter: 'agTextColumnFilter',
-  }),[]);
+  //   const defaultColDef = useMemo ( ()=> ({
+  //     // set every column width
+  //     resizable: true,
+  //     // make every column editable
+  //     sortable:true,
+  //     // make every column use 'text' filter by default
+  //     filter: 'agTextColumnFilter',
+  // }),[]);
 
     const dynamicHeight = Math.min(rowData.length * 2.4 + 20, 400) + 'vh'
 
@@ -143,7 +143,7 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
               
               <AgGridReact
                   reactNext={true}
-                  defaultColDef={defaultColDef}
+                  // defaultColDef={defaultColDef}
                   rowData={rowData}
                   columnDefs={columnData}>
               </AgGridReact>
