@@ -50,9 +50,12 @@ export default function Navbar({players}) {
                                                 pathname: '/player/[pid]',
                                                 query: { pid: player.retro_id },
                                             }}>   
-                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > 
-                                            <h4>{player.name}</h4> <p>{player.HOF}</p> {player.debut_year} - {player.last_year} 
-                                            </a>
+                                            {"T" in player ? 
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(view non-trade info)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
+                                            : 
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>(view trade info)</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
+                                            
+                                            
                                         </Link>
                                     )
                             })}
@@ -61,7 +64,7 @@ export default function Navbar({players}) {
                 </div>    
             
                 <Link href={randomLink()}>
-                    <button className="navbar--random" style={{"margin-left":"1%"}}>Random Player</button>
+                    <button className="navbar--random" style={{"marginLeft":"1%"}}>Random Player</button>
                 </Link>
 
             <button 

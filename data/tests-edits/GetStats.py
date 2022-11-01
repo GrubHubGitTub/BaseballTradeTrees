@@ -1,5 +1,5 @@
 import pandas as pd
-transactions = pd.read_json("stats_transactions_06092022.json")
+transactions = pd.read_json("stats_transactions_01112022.json")
 
 
 class GetStats:

@@ -8,12 +8,13 @@ PLAYERS = pd.read_csv("playerdata.csv").fillna("")
 PICKS = pd.read_csv("../comp_picks_retroid.csv")
 TEAMS = pd.read_csv("../2022/ChadwickTeams.csv")
 POSTSEASON = pd.read_csv("../2022/SeriesPost.csv")
+FRANCHISES = pd.read_json("team_info.json")
 """add franchise tags to postseason"""
 team_franchise_dict = TEAMS.set_index("teamID").to_dict()["franchID"]
 POSTSEASON["franchIDwinner"] = POSTSEASON["teamIDwinner"].map(team_franchise_dict)
 
 
-def format_names(retro_id_list=None, retro_id= None):
+def format_names(retro_id_list=None, retro_id=None):
     if retro_id_list is not None:
         player_names = {}
         for player in retro_id_list:
@@ -33,8 +34,8 @@ def format_names(retro_id_list=None, retro_id= None):
         return name
 
 
-def format_teams(team, date, to_team=False):
-    if to_team == False:
+def format_teams(team, date, to_team=False, franchise=None):
+    if to_team is False and franchise is None:
         year = int(str(date)[0:4])
         team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
         try:
@@ -42,6 +43,13 @@ def format_teams(team, date, to_team=False):
         except ValueError:
             name = team
         return name
+    elif franchise is not None:
+        franchise_row = FRANCHISES[FRANCHISES["team_id"] == franchise]
+        try:
+            franchise_name = franchise_row["name"].item()
+        except ValueError:
+            franchise_name = franchise
+        return franchise_name
     else:
         year = int(str(date)[0:4])
         team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
@@ -51,8 +59,7 @@ def format_teams(team, date, to_team=False):
         except ValueError:
             name = team
             franch = team
-        return {"name":name, "to_franch": franch}
-
+        return {"name": name, "to_franch": franch}
 
 
 def format_outcomes(outcome_code):
@@ -60,31 +67,66 @@ def format_outcomes(outcome_code):
                     "C ": "signed to another team on a conditional deal",
                     "Cr": "signed to another team on a conditional deal",
                     "D ": "rule 5 draft pick",
-                    "Dm": "lost in minor league draft",
+                    "Da": "amateur draft pick",
+                    "Df": "first year draft pick",
+                    "Dm": "minor league draft pick",
+                    "Dn": "selected in amateur draft but did not sign",
                     "Dr": "returned to original team after draft selection",
+                    "Ds": "special draft pick",
+                    "Dv": "amateur draft pick voided",
                     "F ": "free agent signing",
+                    "Fa": "amateur free agent signing",
+                    "Fb": "amateur free agent 'bonus baby' signing under the 1953 - 57 rule requiring player to stay on ML roster",
+                    "Fc": "free agent compensation pick",
                     "Fg": "became a free agent",
+                    "Fo": "free agent signing with first ML team",
+                    "Fv": "free agent signing voided",
+                    "Hb": "went on the bereavement list",
+                    "Hbr": "came off the bereavement list",
                     "Hd": "declared ineligible",
+                    "Hdr": "reinistated from the ineligible list",
                     "Hf": "demoted to the minor league",
+                    "Hfr": "promoted from the minor league",
                     "Hh": "held out",
+                    "Hhr": "ended hold out",
+                    "Hi": "went on the disabled list",
+                    "Hir": "came off the disabled list",
                     "Hm": "went into military service",
+                    "Hmr": "returned from military service",
                     "Hs": "suspended",
+                    "Hsr": "reinstated after a suspension",
                     "Hu": "unavailable but not on DL",
+                    "Hur": "returned from being unavailable",
                     "Hv": "voluntarity retired",
+                    "Hvr": "unretired",
                     "J ": "jumped teams",
+                    "Jr": "returned to original team after jumping",
                     "L ": "loaned to another team",
+                    "Lr": "returned to original team after loan",
+                    "M ": "obtained rights when entering into working agreement with minor league team",
                     "Mr": "rights returned when working agreement with minor league team ended",
                     "P ": "purchased by another team",
+                    "Pr": "returned to original team after purchase",
+                    "Pv": "purchase voided",
                     "R ": "released",
-                    "T ": "trade",
+                    "T ": "traded",
                     "Tn": "traded but refused to report",
+                    "Tp": "added to trade(usually because one of the original players refused to report or retired)",
+                    "Tv": "trade voided",
                     "U ": "unknown",
                     "Vg": "player assigned to league control",
-                    "W ": "picked off waivers",
+                    "V": "player purchased or assigned to team from league",
+                    "W ": "waiver pick",
                     "Wf": "first year waiver pick",
+                    "Wr": "returned to original team after waiver pick",
                     "Wv": "waiver pick voided",
                     "X ": "lost in expansion draft",
+                    "Xe": "premium phase of expansion draft",
+                    "Xm": "either the 1960 AL minor league expansion draft or the premium phase of the 1961 NL draft",
+                    "Xp": "added as expansion pick at a later date",
+                    "Xr": "returned to original team after expansion draft",
                     "Z ": "voluntarily retired",
+                    "Zr": "returned from voluntarily retired list",
                     "Tr": "returned to original team"
                     }
     if outcome_code in outcome_keys:
@@ -92,6 +134,16 @@ def format_outcomes(outcome_code):
     else:
         return outcome_code
 
+
+def format_retrosheet(list_of_transactions):
+    for transaction in list_of_transactions:
+        date = transaction["primary_date"]
+        transaction["type"] = format_outcomes(transaction["type"])
+        transaction["from_team"] = format_teams(date=date, team=transaction["from_team"])
+        transaction["to_team"] = format_teams(date=date, team=transaction["to_team"])
+        transaction["from_franchise"] = format_teams(franchise=transaction["from_franchise"], date=None, team=None)
+        transaction["to_franchise"] = format_teams(franchise=transaction["to_franchise"], date=None, team=None)
+    return list_of_transactions
 
 def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice, parent_retro, parent_transaction):
     """Takes a list of dictionaries of transactions, and uses the player ID, date and team choice to get a list of outcomes
@@ -113,7 +165,7 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                 search = gt(transac_id=transaction_id)
                 info = search.get_ptbnl_info()
                 tree_node = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": retro_id,
-                                    "date": date, "info": info}
+                             "date": date, "info": info}
                 trade_tree.append(tree_node)
 
             else:
@@ -124,18 +176,22 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
 
                 sorted_transactions["type_next_row"] = sorted_transactions["type"].shift(-1)
                 sorted_transactions["franchise_next_row"] = sorted_transactions["to_franchise"].shift(-1)
-                resigned1 = sorted_transactions[(sorted_transactions["type"] == "Fg") & (sorted_transactions["type_next_row"] == "R ") &
-                                   (sorted_transactions["franchise_next_row"] == sorted_transactions["from_franchise"])]
-                resigned2 = sorted_transactions[(sorted_transactions["type"] == "Fg") & (sorted_transactions["type_next_row"] == "F ") &
-                                   (sorted_transactions["franchise_next_row"] == sorted_transactions["from_franchise"])]
+                resigned1 = sorted_transactions[
+                    (sorted_transactions["type"] == "Fg") & (sorted_transactions["type_next_row"] == "R ") &
+                    (sorted_transactions["franchise_next_row"] == sorted_transactions["from_franchise"])]
+                resigned2 = sorted_transactions[
+                    (sorted_transactions["type"] == "Fg") & (sorted_transactions["type_next_row"] == "F ") &
+                    (sorted_transactions["franchise_next_row"] == sorted_transactions["from_franchise"])]
                 no_released = pd.concat([sorted_transactions, resigned1, resigned2]).drop_duplicates(keep=False)
 
                 all_outcomes = no_released[no_released["from_franchise"] == franchise_choice]
-                outcome = all_outcomes[(all_outcomes["primary_date"] >= date) & (all_outcomes["transaction_ID"] != transaction_id)]
+                outcome = all_outcomes[
+                    (all_outcomes["primary_date"] >= date) & (all_outcomes["transaction_ID"] != transaction_id)]
 
                 # fix cody ross- was purchased by a team before original trade was finalized
                 if retro_id == "rossc001" and parent_retro == "kozlb001":
-                    outcome = all_outcomes[(all_outcomes["primary_date"] >= 20060526) & (all_outcomes["transaction_ID"] != transaction_id)]
+                    outcome = all_outcomes[
+                        (all_outcomes["primary_date"] >= 20060526) & (all_outcomes["transaction_ID"] != transaction_id)]
 
                 if len(outcome.index) == 1:
                     outcome_dict = {"parentId": parent_node, "outcome": outcome}
@@ -167,7 +223,7 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
                                                 "outcome": "retired", "date": last_date}
                             trade_tree.append(transaction_info)
-                        elif 20150000 >= last_date > 20000000:
+                        elif 20100000 >= last_date > 20000000:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
                                                 "outcome": "No further transactions, likely retired", "date": last_date}
@@ -176,10 +232,11 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                         else:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
-                                                "outcome": "No further transactions, likely in organization", "date": last_date}
+                                                "outcome": "No further transactions, likely in organization",
+                                                "date": last_date}
                             trade_tree.append(transaction_info)
 
-    get_player_outcomes(connections, outcomes, trade_tree, franchise_choice,parent_retro,parent_transaction)
+    get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, parent_retro, parent_transaction)
 
 
 def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, parent_retro, parent_transaction):
@@ -200,7 +257,8 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
             player_comp_picks_year = player_comp_picks[player_comp_picks["year"] == draft_year]
             all_comp_picks = player_comp_picks_year["signed_retroid"].tolist()
             if len(all_comp_picks) > 0:
-                gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro, parent_transaction=parent_transaction)
+                gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro,
+                   parent_transaction=parent_transaction)
                 stats = gs(transaction_id=transaction_id, franch_choice=franchise_choice)
                 trade_in_stats = stats.get_trade_in_stats()
 
@@ -215,13 +273,15 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
 
             else:
                 # End branch and add node to tree
-                transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": format_names(retro_id=player_id),
+                transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
+                                    "name": format_names(retro_id=player_id),
                                     "retro_id": player_id, "outcome": format_outcomes(code),
                                     "date": outcome_date}
                 trade_tree.append(transaction_info)
 
         elif code != "T ":
-            transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "name": format_names(retro_id=player_id),
+            transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
+                                "name": format_names(retro_id=player_id),
                                 "retro_id": player_id, "outcome": format_outcomes(code), "date": outcome_date}
             trade_tree.append(transaction_info)
 
@@ -245,7 +305,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
             for node in trade_tree:
                 if "transaction_id" in node and node["transaction_id"] == transaction_id:
                     match = True
-                    connections.append({"from": len(trade_tree)+1, "to":node["id"], "label": "Tree continues"})
+                    connections.append({"from": len(trade_tree) + 1, "to": node["id"], "label": "Tree continues"})
 
                     if type(outcome["outcome"]["to_franchise"].item()) == float:
                         to_franchise = ""
@@ -257,14 +317,15 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                                  "to_team": {"team_id": outcome["outcome"]["to_team"].item(),
                                              "team_name": format_teams(team=outcome["outcome"]["to_team"].item(),
                                                                        date=outcome_date, to_team=True)},
-                                 "to_franchise":to_franchise, "date": outcome_date}
+                                 "to_franchise": to_franchise, "date": outcome_date}
                     trade_tree.append(node_info)
 
             if not match:
                 for orgnl in transactions_list:
                     if "transaction_id" in orgnl and orgnl["transaction_id"] == transaction_id:
                         match = True
-                        connections.append({"from": len(trade_tree) + 1, "to": orgnl["node_id"], "label": "Tree continues"})
+                        connections.append(
+                            {"from": len(trade_tree) + 1, "to": orgnl["node_id"], "label": "Tree continues"})
 
                         if type(outcome["outcome"]["to_franchise"].item()) == float:
                             to_franchise = ""
@@ -299,7 +360,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                 transactions_list.append(transaction_info)
 
     if len(transactions_list) > 0:
-        get_outcome_data(connections, transactions_list, trade_tree, from_franch, parent_retro,parent_transaction)
+        get_outcome_data(connections, transactions_list, trade_tree, from_franch, parent_retro, parent_transaction)
 
 
 def get_tree_totals(trade_tree):
@@ -319,7 +380,7 @@ def get_tree_totals(trade_tree):
         bat.update(total["batting_stats"])
         pitch.update(total["pitching_stats"])
         war_sal_as.update(total["other_stats"])
-        if type(total["pitching_other"]["ERA"]["in"]) == float :
+        if type(total["pitching_other"]["ERA"]["in"]) == float:
             era_p_in.append(total["pitching_other"]["ERA"]["in"])
             baopp_p_in.append(total["pitching_other"]["BAOpp"]["in"])
         if type(total["pitching_other"]["ERA"]["out"]) == float:
@@ -333,7 +394,7 @@ def get_tree_totals(trade_tree):
     baopp_p_in = [x for x in baopp_p_in if x != []]
     baopp_p_out = [x for x in baopp_p_out if x != []]
     if len(era_p_in) > 0:
-        pitch["ERA_p_in"] = format(round(sum(era_p_in) / len(era_p_in), 2) , '.2f')
+        pitch["ERA_p_in"] = format(round(sum(era_p_in) / len(era_p_in), 2), '.2f')
         pitch["BAOpp_p_in"] = format(round(sum(baopp_p_in) / len(baopp_p_in), 3), '.3f')
     if len(era_p_out) > 0:
         pitch["ERA_p_out"] = format(round(sum(era_p_out) / len(era_p_out), 2), '.2f')
@@ -368,20 +429,20 @@ all_data = []
 ongoing_tree_players = []
 player_search = []
 all_parent_trees = []
-all_parent_trees_no_detail_no_dupes=[]
+all_parent_trees_no_detail_no_dupes = []
 
 for player_transaction in retro_ids[index:]:
     print(index)
     print(player_transaction["player"])
     index += 1
 
-    if (player_transaction["from_franchise"] != "" and player_transaction["to_franchise"] != ""
-            and " " not in player_transaction["player"]) or player_transaction["type"] == "Fg":
+    if " " not in player_transaction["player"]:
 
         all_comp_picks = []
         if player_transaction["type"] == "Fg":
             player_comp_picks = PICKS[PICKS["fa_retroid"] == player_transaction["player"]]
-            player_comp_picks_year = player_comp_picks[player_comp_picks["year"] == int(str(player_transaction["primary_date"])[0:4]) + 1]
+            player_comp_picks_year = player_comp_picks[
+                player_comp_picks["year"] == int(str(player_transaction["primary_date"])[0:4]) + 1]
             all_comp_picks = player_comp_picks_year["signed_retroid"].tolist()
             if len(all_comp_picks) > 0:
                 pass
@@ -391,10 +452,10 @@ for player_transaction in retro_ids[index:]:
         transac_id = player_transaction["transaction_ID"]
         from_team = player_transaction["from_team"]
         from_franch = player_transaction["from_franchise"]
+        to_franchise = player_transaction["to_franchise"]
         transac_date = player_transaction["primary_date"]
         parent = player_transaction["player"]
         to_team = player_transaction["to_team"]
-        to_franchise = player_transaction["to_franchise"]
         tree_name = player_transaction["player"] + "_" + str(transac_id)
 
         # Get player info
@@ -419,7 +480,6 @@ for player_transaction in retro_ids[index:]:
         connections = []
         # filters DB for player's trade
         if player_transaction["type"] == "Fg":
-            print("ya")
             gt(transac_id=transac_id, franch_id=from_franch, parent_retro=parent,
                parent_transaction=transac_id)
             stats = gs(transaction_id=transac_id, franch_choice=from_franch)
@@ -430,20 +490,21 @@ for player_transaction in retro_ids[index:]:
             # add comp pick transaction to tree
 
             tree_node = {"id": 1, "parentId": "", "retro_id": player_transaction["player"],
-                                "name": name, "transaction_id": player_transaction["player"],
-                                "info": "Compensation picks", "traded_with": {}, "trade_in_stats": trade_in_stats,
-                                "date": transac_date}
+                         "name": name, "transaction_id": player_transaction["player"],
+                         "info": "Compensation picks", "traded_with": {}, "trade_in_stats": trade_in_stats,
+                         "date": transac_date}
             trade_tree.append(tree_node)
 
             # add trade to trans dict for searching
             transaction_info = {"node_id": 1, "parent": player_transaction["player"],
-                                 "date": transac_date, "from_team": from_team,
-                                 "from_franchise": from_franch, "retro_id": player_transaction["player"],
-                                 "traded_for": all_comp_picks}
+                                "date": transac_date, "from_team": from_team,
+                                "from_franchise": from_franch, "retro_id": player_transaction["player"],
+                                "traded_for": all_comp_picks}
             transactions_list.append(transaction_info)
 
         else:
-            tree_data = gt(transac_id=transac_id, franch_id=from_franch, parent_retro=parent,parent_transaction=transac_id)
+            tree_data = gt(transac_id=transac_id, franch_id=from_franch, parent_retro=parent,
+                           parent_transaction=transac_id)
             tree_data.get_trades()
             traded_with_players = format_names(retro_id_list=tree_data.get_traded_with_ids_list())
             if player_transaction["player"] in traded_with_players:
@@ -458,22 +519,26 @@ for player_transaction in retro_ids[index:]:
             # save initial trade to tree-- add additional stats in first transac search
             tree_node = {"id": 1, "parentId": "", "retro_id": player_transaction["player"], "name": name,
                          "transaction_id": transac_id, "date": transac_date,
-                         "to_team": {"team_id": to_team, "team_name": format_teams(team=to_team, date=transac_date, to_team=True)},
+                         "to_team": {"team_id": to_team,
+                                     "team_name": format_teams(team=to_team, date=transac_date, to_team=True)},
                          "to_franch": to_franchise, "traded_with": traded_with_players,
-                         "trade_in_stats": trade_in_stats, "trade_out_stats": trade_out_stats, "trade_totals": trade_totals}
+                         "trade_in_stats": trade_in_stats, "trade_out_stats": trade_out_stats,
+                         "trade_totals": trade_totals}
             trade_tree.append(tree_node)
 
             # add trade to trans dict for searching
             transaction_details = {"node_id": 1, "parent": player_transaction["player"],
                                    "retro_id": player_transaction["player"], "from_team": from_team,
                                    "from_franchise": from_franch, "to_team": to_team, "to_franch": to_franchise,
-                                   "transaction_id": transac_id, "date": transac_date, "traded_with": traded_with_players,
+                                   "transaction_id": transac_id, "date": transac_date,
+                                   "traded_with": traded_with_players,
                                    "traded_for": tree_data.get_traded_for_ids_dict()}
             transactions_list.append(transaction_details)
 
         # start the search loop
         get_outcome_data(connections=connections, transaction_list=transactions_list, trade_tree=trade_tree,
-                         franchise_choice=from_franch, parent_retro=player_transaction["player"], parent_transaction=transac_id)
+                         franchise_choice=from_franch, parent_retro=player_transaction["player"],
+                         parent_transaction=transac_id)
 
         #  calculate totals for tree
         tree_totals = get_tree_totals(trade_tree=trade_tree)
@@ -483,7 +548,8 @@ for player_transaction in retro_ids[index:]:
 
         # get parent tree
         parent_trees = pd.read_csv("ParentTrees.csv")
-        parent_row = parent_trees[(parent_trees["transaction_ID"] == transac_id) & (parent_trees["from_franch"] == from_franch)]
+        parent_row = parent_trees[
+            (parent_trees["transaction_ID"] == transac_id) & (parent_trees["from_franch"] == from_franch)]
         parent_tree_retro = parent_row["parent_tree_retro"].item()
         parent_tree_transaction_id = parent_row["parent_tree_transaction_id"].item()
         if parent_tree_retro == player_transaction["player"] or \
@@ -580,13 +646,13 @@ for player_transaction in retro_ids[index:]:
                 "HOF": hof,
                 "debut_year": debut,
                 "last_year": end,
-                "in_ongoing_trees":[],
+                "in_ongoing_trees": [],
                 "trades": [trade_output]
             }
             all_data.append(output)
 
-        if player_transaction["type"] == "Fg":
-            print(trade_output)
+
+        print(trade_output)
 
 for data in all_data:
     for player in ongoing_tree_players:
@@ -597,8 +663,8 @@ for data in all_data:
                 data["in_ongoing_trees"].append(player["tree"])
 
 for player in all_data:
-    player_search.append({"retro_id":player["retro_id"],"mlb_id":player["mlb_id"],"name":player["name"],
-                          "HOF":player["HOF"],"debut_year":player["debut_year"],"last_year":player["last_year"]})
+    player_search.append({"retro_id": player["retro_id"], "mlb_id": player["mlb_id"], "name": player["name"],
+                          "HOF": player["HOF"], "debut_year": player["debut_year"], "last_year": player["last_year"]})
 
     for trade in player["trades"]:
         if trade["largest_tree_id"] == "_":
@@ -614,13 +680,57 @@ for player in all_data:
                     if tree_transac == tree["tree_id"][9:14] and total_transac == tree["total_transac"]:
                         transac_match = True
                 if transac_match == False:
-                    no_details_tree = {key:value for (key, value) in trade.items() if key != "tree_details"}
+                    no_details_tree = {key: value for (key, value) in trade.items() if key != "tree_details"}
                     all_parent_trees_no_detail_no_dupes.append(no_details_tree)
 
             all_parent_trees.append(trade)
 
+# Get non-traded player info
+all_retro_ids = PLAYERS["PLAYERID"].to_list()
+non_traded_players = []
+for player in all_retro_ids:
+    match = False
+    for check_player in all_data:
+        if player == check_player["retro_id"]:
+            match = True
+            break
+    if not match:
+        retrosheet_search = gt(retro_id=player, non_trade=True)
+        player_retrosheet = retrosheet_search.get_non_traded_data()
+        formatted_retrosheet = format_retrosheet(player_retrosheet)
 
-split = 3500
+        if len(player_retrosheet) > 0:
+            player_name = format_names(retro_id=player)
+            player_info = PLAYERS[PLAYERS["PLAYERID"] == player]
+            if player_info.empty:
+                break
+            try:
+                mlb_id = int(player_info["key_mlbam"].item())
+            except ValueError:
+                mlb_id = ""
+            hof = player_info["HOF"].item()
+            try:
+                debut = int(player_info["mlb_played_first"].item())
+            except ValueError:
+                debut = ""
+            end = player_info["mlb_played_last"].item()
+
+            output = {"retro_id": player,
+                      "mlb_id": mlb_id,
+                      "name": player_name,
+                      "HOF": hof,
+                      "debut_year": debut,
+                      "last_year": end,
+                      "retrosheet_data": formatted_retrosheet}
+            non_traded_players.append(output)
+            player_search.append({"retro_id": player, "mlb_id": mlb_id, "name": player_name,
+                                  "HOF": hof, "debut_year": debut,
+                                  "last_year": end, "T": ""})
+
+with open("no_trades.json", "w") as file:
+    json.dump(non_traded_players, file)
+
+split = 4000
 with open("all_data1.json", "w") as file1:
     json.dump(all_data[:split], file1)
 with open("all_data2.json", "w") as file2:
@@ -633,35 +743,4 @@ with open("all_parent_trees.json", "w") as file:
     json.dump(all_parent_trees, file)
 
 with open("player_search.json", "w") as file:
-    json.dump(player_search, file, indent=4)
-
-# df = pd.read_json("output.json")
-# df.to_csv("outputcsv.csv", index= False)
-
-
-        # with open("output.json", "r+") as file:
-        #     file_data = json.load(file)
-        #     match = False
-        #     for data in file_data["player_data"]:
-        #         if data["retro_id"] == player_transaction["player"]:
-        #             data["trades"].append(trade_output)
-        #             match = True
-        #             break
-        #     if not match:
-        #         output = {
-        #             "retro_id": player_transaction["player"],
-        #             "mlb_id": mlb_id,
-        #             "name": name,
-        #             "HOF": hof,
-        #             "debut_year": debut,
-        #             "last_year": end,
-        #             "ongoing_tree": ongoing,
-        #             "trades": [trade_output]
-        #         }
-        #         file_data["player_data"].append(output)
-        #     file.seek(0)
-        #     json.dump(file_data, file, indent=4)
-
-
-
-
+    json.dump(player_search, file)

@@ -1,11 +1,12 @@
 import pandas as pd
 import csv
-transactions = pd.read_csv("stats_transactions_06092022.csv")
+transactions = pd.read_csv("stats_transactions_01112022.csv")
 
 
 class GetTransactions:
 
-    def __init__(self, transac_id=None, retro_id=None, franch_id=None, parent_retro=None, parent_transaction=None):
+    def __init__(self, transac_id=None, retro_id=None, franch_id=None, parent_retro=None, parent_transaction=None,
+                 non_trade=False):
         self.player = retro_id
         self.transac_id = transac_id
         self.franch_id = franch_id
@@ -13,9 +14,11 @@ class GetTransactions:
         self.parent_transaction = parent_transaction
         self.all_transac = None
         self.trades = None
+        self.non_trade = non_trade
         self.traded_from_franchise_list = []
         self.traded_for_ids_dict = {}
         self.traded_with_ids_list = []
+
         if self.parent_transaction is not None:
             self.write_parent_tree()
         else:
@@ -66,6 +69,14 @@ class GetTransactions:
         ptbnl = self.all_transac[self.all_transac["player"] == "PTBNL/Cash"]
         info = ptbnl["info"].tolist()
         return info
+
+    def get_non_traded_data(self):
+        self.all_transac = transactions[transactions.player == self.player]
+        filtered = self.all_transac.drop(columns=['transaction_ID', 'stats', 'info', 'player'])
+        filtered.fillna("", inplace=True)
+        all_retrosheet_info = filtered.to_dict("records")
+        return all_retrosheet_info
+
 
 
 

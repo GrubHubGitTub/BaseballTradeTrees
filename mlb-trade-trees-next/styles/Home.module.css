@@ -63,6 +63,12 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     color: #000000;
+    cursor:pointer;
+   }
+
+   .cta :hover{
+    cursor:pointer;
+
    }
    
    .cta:hover:before {

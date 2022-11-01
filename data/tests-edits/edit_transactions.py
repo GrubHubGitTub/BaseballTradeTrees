@@ -1,41 +1,46 @@
 import pandas as pd
-# transactions = pd.read_csv("../2022/tran.csv")
+transactions = pd.read_csv("../2022/tran.csv")
 
-# """filter bref files"""
-# pitching_bref = pd.read_csv("../../data/2022/war_daily_pitch.csv")
-# batting_bref = pd.read_csv("../../data/2022/war_daily_bat.csv")
-#
-# pitching_bref = pitching_bref[["name_common","age","mlb_ID","player_ID","year_ID","team_ID","stint_ID","lg_ID","WAR","salary"]]
-# batting_bref = batting_bref[["name_common","age","mlb_ID","player_ID","year_ID","team_ID","stint_ID","lg_ID","WAR","salary"]]
-# pitching_bref.to_csv("war_daily_pitch_filtered.csv", index=False)
-# batting_bref.to_csv("war_daily_bat_filtered.csv", index=False)
+"""filter bref files"""
+pitching_bref = pd.read_csv("../../data/2022/war_daily_pitch.csv")
+batting_bref = pd.read_csv("../../data/2022/war_daily_bat.csv")
 
-# """filter only columns needed"""
-# transactions = transactions[["primary_date", "transaction_ID", "player", "type", "from_team", "to_team", "info"]]
-#
-# """replace Nan with PTBNL/Cash"""
-# transactions['player'] = transactions['player'].fillna("PTBNL/Cash")
-#
-# """add franchise tags to teams"""
-# teams = pd.read_csv("./FranchiseList.csv")
-# team_franchise_dict = teams.set_index("teamIDretro").to_dict()["franchID"]
-# transactions["from_franchise"] = transactions["from_team"].map(team_franchise_dict)
-# transactions["to_franchise"] = transactions["to_team"].map(team_franchise_dict)
-# transactions = transactions[["primary_date", "transaction_ID", "player", "type", "from_franchise", "from_team",
-#                               "to_franchise", "to_team", "info"]]
+pitching_bref = pitching_bref[["name_common","age","mlb_ID","player_ID","year_ID","team_ID","stint_ID","lg_ID","WAR","salary"]]
+batting_bref = batting_bref[["name_common","age","mlb_ID","player_ID","year_ID","team_ID","stint_ID","lg_ID","WAR","salary"]]
+pitching_bref.fillna(0, inplace=True)
+batting_bref.fillna(0, inplace=True)
+
+"""filter only columns needed"""
+transactions = transactions[["primary_date", "transaction_ID", "player", "type", "from_team", "to_team", "info"]]
+
+"""replace Nan with PTBNL/Cash"""
+transactions['player'] = transactions['player'].fillna("PTBNL/Cash")
+
+"""add franchise tags to teams"""
+teams = pd.read_csv("../2022/ChadwickTeams.csv")
+teams = teams[["franchID", "teamIDretro"]]
+teams = teams.drop_duplicates()
+team_franchise_dict = teams.set_index("teamIDretro").to_dict()["franchID"]
+transactions["from_franchise"] = transactions["from_team"].map(team_franchise_dict)
+transactions["to_franchise"] = transactions["to_team"].map(team_franchise_dict)
+transactions["from_franchise"].fillna(transactions["from_team"], inplace=True)
+transactions["to_franchise"].fillna(transactions["to_team"], inplace=True)
+
+transactions = transactions[["primary_date", "transaction_ID", "player", "type", "from_franchise", "from_team",
+                              "to_franchise", "to_team", "info"]]
 # transactions.to_csv("transactionsCleaned.csv", index=False)
 
 """get stats and add to transaction database"""
 players = pd.read_csv("./playerdata.csv")
 teams = pd.read_csv("../../data/2022/ChadwickTeams.csv")
-transactions = pd.read_csv("../tests-edits/transactionsCleaned.csv")
+# transactions = pd.read_csv("../tests-edits/transactionsCleaned.csv")
 transactions = transactions.astype(str)
 picks = pd.read_csv("../comp_picks_retroid.csv")
 
 pitching = pd.read_csv("../2022/Pitching.csv").fillna(0)
 batting = pd.read_csv("../2022/Batting.csv").fillna(0)
-pitching_bref = pd.read_csv("../2022/war_daily_pitch_filtered.csv").fillna(0)
-batting_bref = pd.read_csv("../2022/war_daily_bat_filtered.csv").fillna(0)
+# pitching_bref = pd.read_csv("../2022/war_daily_pitch_filtered.csv").fillna(0)
+# batting_bref = pd.read_csv("../2022/war_daily_bat_filtered.csv").fillna(0)
 all_star = pd.read_csv("../2022/AllstarFull.csv").fillna(0)
 
 team_franchise_dict = teams.set_index("teamID").to_dict()["franchID"]
@@ -226,9 +231,9 @@ def get_stats(retro_id, to_franch, from_franch, year, typeof):
 transactions['stats'] = transactions.apply(lambda x: get_stats(x["player"], x["to_franchise"], x["from_franchise"],
                                                     (x["primary_date"])[0:4], x["type"]), axis=1)
 
-transactions = transactions.fillna('')
-transactions.to_json("stats_transactions_06092022.json")
-transactions.to_csv("stats_transactions_06092022.csv", index=False)
+transactions.fillna("", inplace=True)
+transactions.to_json("stats_transactions_01112022.json")
+transactions.to_csv("stats_transactions_01112022.csv", index=False)
 
 
 
