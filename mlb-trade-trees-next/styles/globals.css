@@ -108,6 +108,7 @@ table {
     align-items: center;
     color:black;
     text-decoration: none;
+    border-bottom: 1px solid black;
 }
 
 .dataItem h4{
@@ -118,12 +119,18 @@ table {
   color: goldenrod;
   font-weight: bold;
   font-size: 1em;
-  margin-right: 4%;
+  margin-right: auto;
 }
 
 .dataItem h5{
   margin-left: auto;
   margin-right: 1%;
+}
+
+.dataItem h6{
+  position: absolute;
+
+  margin-left: 200px;
 }
 
 .dataItem:hover{
@@ -261,9 +268,12 @@ table {
     .slick-slide > div {
       transform: scale(0.9);
     }
+    .dataItem h6{
+      margin-left: 180px;
+    }
     .searchResults {
-      right: -140px !important;
-      width: 375px;
+      right: -125px !important;
+      width: 350px;
     }
 
 }

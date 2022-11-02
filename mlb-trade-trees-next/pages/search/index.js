@@ -25,7 +25,7 @@ export default function SearchPage({tree_data}) {
         valueFormatter: p => { return `${p.value.toString().slice(0,4)}-${p.value.toString().slice(4,6)}-${p.value.toString().slice(6,8)}` },
         width:120},
         {field: "y_last", headerName:"Last Year",width:120},
-        // year span
+        {field: "year_span", headerName:"Year Span",width:120},
         {field: "ongoing", headerName:"Ongoing?",width:100},
         {field: "total_transac", headerName:"Transactions", width:110},
         {field: "total_stats.war_sal.WAR", headerName:"WAR", width:90 },
@@ -35,8 +35,8 @@ export default function SearchPage({tree_data}) {
         {field: "ws_wins", headerName:"World Series Winners",width:140},
         {field: "p_traded_away", headerName:"Players Traded Away",width:140},
         {field: "p_traded_for", headerName:"Players Traded For",width:140},
-        // players traded total
-        
+        {field: "total_players", headerName:"Total Players",width:140},
+                
         {
             headerName: "Batting Stats",
             children: [

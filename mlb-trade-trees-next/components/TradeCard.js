@@ -37,7 +37,7 @@ export default function TradeCard(props) {
         link = `/team_logos/${from_franch}.png`
     }
     else{
-        background = "black"
+        background = "dimgray"
         link = `/team_logos/MLB.png`
     }
 

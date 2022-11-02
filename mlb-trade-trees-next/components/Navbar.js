@@ -51,9 +51,9 @@ export default function Navbar({players}) {
                                                 query: { pid: player.retro_id },
                                             }}>   
                                             {"T" in player ? 
-                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(view non-trade info)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(not traded)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
                                             : 
-                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>(view trade info)</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>(traded)</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
                                             
                                             
                                         </Link>

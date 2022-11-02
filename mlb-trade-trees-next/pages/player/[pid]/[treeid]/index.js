@@ -215,14 +215,14 @@ export const OrgChartComponent = (props, ref) => {
                 // check for Allstars'
                 let allstars = ""
                 if (d.data.trade_totals.other_stats.allstars > 0) {
-                  allstars = `<img src="/team_logos/as.png" alt="Allstar"
+                  allstars = `<div><img src="/team_logos/as.png" alt="Allstar"
                   style="
                   bottom:25px;
                   left:20px;
                   position: absolute;
                   width:50px;
                   height:50px;
-                  "/>`
+                  "/></div>`
                 }
                 let link
                 const to_franch = d.data.to_team.team_name.to_franch
@@ -262,9 +262,7 @@ export const OrgChartComponent = (props, ref) => {
                       <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
 
                   </div>
-                  <div>
                   ${allstars}
-                  </div>
                     
                 </div>
                 `
