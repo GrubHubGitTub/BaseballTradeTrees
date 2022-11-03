@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from '../styles/PlayerBar.module.css'
 import Image from "next/image"
 import {franchises} from "../data/franchise_colors"
+import { style } from "d3-selection"
 
 
 export default function PlayerBar({data, tree_data}) {
@@ -75,7 +76,7 @@ export default function PlayerBar({data, tree_data}) {
 
     let parent_tree;
     if ( tree_data.largest_tree_id == "_" ) {
-        parent_tree= <p className={styles.noParent}></p>
+        parent_tree= ""
     } else { 
         var rid = tree_data.largest_tree_id.slice(0,8)
         parent_tree = 
@@ -93,34 +94,31 @@ export default function PlayerBar({data, tree_data}) {
                     alt="WSTrophy"
                     src="/team_logos/ws.gif"
                     title={year}
-                    height="60px" 
-                    width="30px"
+                    objectFit="contain" width="30%" height="60%"
                     className={styles.wsWins}/>
                     ))
     }
 
     return ( 
         <div className={styles.PlayerBar} style={{"border": `3px solid ${background}`}}>
-
-            <div className={styles.playerTeamTree}>
-                <Link href={{
+            <Link href={{
                     pathname: '/player/[pid]',
                     query: {pid: data.retro_id }}}>
                     <a className={styles.playerName}> ← {data.name} </a>
-                </Link>
+            </Link>
+                
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
                     <div className={styles.teamLogo}>
                         <Image src={link} alt="TeamLogo" objectFit="contain" width="100%" height="100%"/>
                     </div>
-                    <h2>{tree_data.y_start}-{tree_data.y_last}</h2>
-                    {world_series_wins}
-                    
+                    <h2 className={styles.years}>{tree_data.y_start}-{tree_data.y_last}</h2>
+                    <div className={styles.wsDiv}>{world_series_wins}</div>
                 </div> 
-                {parent_tree}
-            </div>
-            
+
+                            
             <div className={styles.otherStats}>
+                {parent_tree}
                 <h4>{tree_data.total_transac} {tree_data.total_transac > 1 ? "transactions" : "transaction"} </h4>
                 <h4>{other_stats.WAR > 0 ? "+" : ""}{other_stats.WAR} WAR | 
                 {salary.toString().slice(0,1) == "-" ? "" : " +"}{salary} </h4>

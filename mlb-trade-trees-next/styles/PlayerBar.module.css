@@ -1,4 +1,5 @@
 .PlayerBar {
+    position:relative;
     margin: 1% auto;
     width: 80%;
     display: flex;
@@ -11,21 +12,31 @@
 
 }
 
-.playerTeamTree{
+.teamHeader{
     display: flex;
-    justify-content: space-around;
-    width: 95%;
     align-items: center;
+    border-bottom: 1px dotted black;
+    margin-bottom: 10px;
 }
 
-.wsWins {
-    width:15px;
-    height:25px;
-    margin-bottom: 1%;
+.teamName{
+    margin-right:8px;
+}
+
+.years {
+    margin-right: 10px;
+}
+
+
+.wsDiv{
+    width:180px;
 }
 
 .playerName{
-    font-size: 0.9em;
+    position: absolute;
+    left: 20px;
+    top: 35px;
+
     font-weight: bold;
     text-decoration: none;
     width: auto;
@@ -34,7 +45,8 @@
     color: black;
     border-radius: 10px;
     box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
-    margin-right:auto
+    margin-right: auto;
+    
 }
 
 .playerName:hover{
@@ -46,7 +58,7 @@
     font-size: 0.9em;
     text-decoration: none;
     display: flex;
-    padding: 6px 8px;
+    padding: 5px;
     background-color: #f1f1f1;
     color: black;
     border-radius: 10px;
@@ -58,26 +70,13 @@
     color: black;
 }
 
-.noParent {
-    margin-left: 10%;
-}
-
-.teamHeader{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: auto;
-}
-
 .teamLogo{
     width:"100px";
     height:"100px";
-    margin-right: 7px;
+    /* margin-right: 25px; */
 }
 
-.teamName {
-    margin-right:1px;
-}
+
 
 
 .otherStats{
@@ -110,79 +109,64 @@
 @media (max-width: 420px) {
 
     .PlayerBar{
-        width:100%;
-        transform: scale(0.9)
+        width:95%;
+        margin-bottom: 10px;
     }
+
     .playerName{
-        transform: scale(0.5);
-        margin-left: 0;
+        top:10px;
+        font-size: 0.2em;
+        padding:3px;
+        text-align: center;
+    }
+
+    .teamHeader{
+        width:50%
+    }
+    
+    .wsDiv{
+        height:20px;
+    }
+
+    .wsWins {
+        transform: scale(0.2);
     }
 
     .parentTree{
-        transform: scale(0.7)
-
+        font-size: 0.2em;
+        margin-left: 10px;
+        padding:3px;
+        width:40px
     }
     
-    .teamHeader h1 {
-        font-size: 1.3em;
+    
+    .teamName {
+        font-size: 0.8em;
+        margin-right: 5px;
+        margin-left: auto;
     }
+
     .teamHeader h2 {
-        font-size: 1em;
-    }
-    .otherStats{
         font-size: 0.7em;
+        margin-right: 5px;
+    }
+
+    .teamLogo {
+        margin-right: 10px;
+    }
+
+    .otherStats{
+        font-size: 0.5em;
     }
     .allStats {
         font-size: 0.6em;
     }
+
     .statsContainer {
         align-items:flex-start;
     }
     .allStats {
         justify-content:space-between;
     }
-
-    /* .playerTeamTree{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .teamHeader h1 {
-        font-size: 0.8em;
-    }
-    .teamHeader h2 {
-        font-size: 0.8em;
-    }
-
-    .teamLogo {
-        width: 50px; 
-        height: 50px;
-    }
-    
-
-    .parentTree{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.6em;
-        padding: 2px;
-        margin-right: 1%;
-    }
-
-    .teamHeader{
-        margin-left: 5%;
-        margin-right:5%;
-        justify-content: end;
-        
-    }
-
-    .otherStats{
-        font-size: 0.6em;
-    }
-    .noParent {
-        margin-left: 15%;
-    } */
-
-
 
     }

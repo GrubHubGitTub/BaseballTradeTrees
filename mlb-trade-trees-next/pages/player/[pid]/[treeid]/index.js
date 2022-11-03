@@ -81,9 +81,10 @@ export const OrgChartComponent = (props, ref) => {
             })
             .nodeHeight((d) => {
               if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265
-              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 2) return 390
+              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 5) return 490
+              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 390
               else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
-              else return 325 
+              else return 350 
           })
             .childrenMargin((d) => 60)
             .compactMarginBetween((d) => 15)
@@ -215,14 +216,14 @@ export const OrgChartComponent = (props, ref) => {
                 // check for Allstars'
                 let allstars = []
                 if (d.data.trade_totals.other_stats.allstars > 0) {
-                  allstars = `<div><img src="/team_logos/as.png" alt="Allstar"
+                  allstars = `<img src="/team_logos/as.png" alt="AllStar"
                   style="
+                  position: absolute;
                   bottom:25px;
                   left:20px;
-                  position: absolute;
                   width:50px;
                   height:50px;
-                  "/></div>`
+                  "/>`
                 }
                 let link
                 const to_franch = d.data.to_team.team_name.to_franch
@@ -238,6 +239,7 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
+                  position:relative;
                   "
                 >
                   ${name}
@@ -255,13 +257,13 @@ export const OrgChartComponent = (props, ref) => {
                         </div>
                       </div>
                       
-                  <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
+                    <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
 
-                      <h2> ${traded_with_players} </h2>
-                      <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
-                      <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
+                        <h2> ${traded_with_players} </h2>
+                        <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
+                        <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
 
-                  </div>
+                    </div>
                   ${allstars}
                     
                 </div>
