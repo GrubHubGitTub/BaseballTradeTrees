@@ -213,7 +213,7 @@ export const OrgChartComponent = (props, ref) => {
                 // end outline 
                 
                 // check for Allstars'
-                let allstars = ""
+                let allstars = []
                 if (d.data.trade_totals.other_stats.allstars > 0) {
                   allstars = `<div><img src="/team_logos/as.png" alt="Allstar"
                   style="
