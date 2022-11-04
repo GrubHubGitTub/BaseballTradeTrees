@@ -90,7 +90,7 @@ export default function PlayerBar({data, tree_data}) {
     let world_series_wins
     if (tree_data.ws_wins.length > 0){
         world_series_wins = tree_data.ws_wins.map(year => (
-            <div className={styles.wsDiv}>
+            <div className={styles.wsDiv} key={year}>
             <Image  key={year}
                     alt="WSTrophy"
                     src="/team_logos/ws.gif"
