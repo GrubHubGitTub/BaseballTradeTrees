@@ -41,7 +41,12 @@ def format_teams(team, date, to_team=False, franchise=None):
         try:
             name = team_row["name"].item()
         except ValueError:
-            name = team
+            try:
+                year += 1
+                team_row = TEAMS[(TEAMS["teamIDretro"] == team) & (TEAMS["yearID"] == year)]
+                name = team_row["name"].item()
+            except ValueError:
+                name = team
         return name
     elif franchise is not None:
         franchise_row = FRANCHISES[FRANCHISES["team_id"] == franchise]

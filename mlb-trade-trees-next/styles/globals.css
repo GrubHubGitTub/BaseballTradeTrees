@@ -250,14 +250,9 @@ table {
   padding-top: 25px;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 842px) {
   .navbar--hamburger {
       display: block;
-  }
-
-  .navbar--random{
-    transform: scale(0.65); 
-    margin: 5px 35px 5px 0;
   }
 
   .navbar--menu ul {
@@ -338,6 +333,13 @@ table {
       width: 95% !important
     }
 
+}
+
+@media screen and (max-width: 650px) {
+  .navbar--random{
+    transform: scale(0.65); 
+    margin: 5px 35px 5px 0;
+  } 
 }
 
 

@@ -216,14 +216,13 @@ export const OrgChartComponent = (props, ref) => {
                 // check for Allstars'
                 let allstars = []
                 if (d.data.trade_totals.other_stats.allstars > 0) {
-                  allstars = `<div style="width:75px;height:75px; position:relative;">
+                  allstars = `<div style="width:75px;height:75px;">
                   <img src="/team_logos/as.png" alt="AllStar"
                   style="
-                  position:absolute;
-                  bottom:50px;
-                  left:10px;
-                  max-width:100%;
                   max-height:100%;
+                  max-width:100%;
+                  margin-top:-50px;
+                  margin-left:10px;
                   "/>
                   </div>`
                 }
@@ -241,7 +240,6 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  position:relative;
                   "
                 >
                   ${name}
