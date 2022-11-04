@@ -148,7 +148,6 @@
 
     .teamHeader{
         margin-top:5px;
-        width:75%;
         justify-content:center
     }
 
@@ -173,9 +172,8 @@
     
     
     .teamName {
-        font-size: 1em;
+        font-size: 1.3em;
         margin-right: 5px;
-        margin-left: 20px;
     }
 
     .years {
@@ -206,13 +204,20 @@
 
     @media (max-width: 700px) {
         .teamHeader{
-            width:60%;
             font-size: 80%;
+            width:80%;
+            margin-top:25px;
+
         }
         
         .playerName{
-            font-size: 0.1em;
-            max-width: 50px;
+            font-size: 0.2em;
+            padding:1px;
+            max-width: 100px;
+        }
+
+        .teamName{
+            max-width: 75px;
         }
 
         .teamLogo{
@@ -220,8 +225,12 @@
             height: 50px;
         }
 
+        .years{
+            margin-left: 10px;
+        }
+
         .wsContainer{
-            width: 75px;
+            max-width: 75px;
         }
 
         .otherStats{

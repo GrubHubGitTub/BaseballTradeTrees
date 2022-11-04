@@ -241,6 +241,7 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
+                  position:relative;
                   "
                 >
                   ${name}

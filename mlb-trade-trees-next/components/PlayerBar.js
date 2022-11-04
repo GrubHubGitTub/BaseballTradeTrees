@@ -3,7 +3,6 @@ import Link from 'next/link'
 import styles from '../styles/PlayerBar.module.css'
 import Image from "next/image"
 import {franchises} from "../data/franchise_colors"
-import { style } from "d3-selection"
 
 
 export default function PlayerBar({data, tree_data}) {
@@ -87,7 +86,7 @@ export default function PlayerBar({data, tree_data}) {
             </Link> 
     }
 
-    let world_series_wins
+    let world_series_wins = ""
     if (tree_data.ws_wins.length > 0){
         world_series_wins = tree_data.ws_wins.map(year => (
             <div className={styles.wsDiv} key={year}>
@@ -116,7 +115,8 @@ export default function PlayerBar({data, tree_data}) {
                         <Image src={link} alt="TeamLogo" layout="fill" objectFit="contain"/>
                     </div>
                     <h2 className={styles.years}>{tree_data.y_start}-{tree_data.y_last}</h2>
-                    <div className={styles.wsContainer}>{world_series_wins}</div>
+                    {world_series_wins != "" ? <div className={styles.wsContainer}>{world_series_wins}</div> : "" }
+                    
                 </div> 
 
                             
