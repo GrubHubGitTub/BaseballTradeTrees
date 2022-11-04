@@ -20,6 +20,13 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 1000px) {
+    .statBar{
+    font-size: 0.1%;
+}
+}
+
 .statBar{
 
     display: flex;

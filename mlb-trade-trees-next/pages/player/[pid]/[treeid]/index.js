@@ -140,7 +140,6 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  position: relative;
                   "
                 >
                   ${name}
@@ -217,14 +216,16 @@ export const OrgChartComponent = (props, ref) => {
                 // check for Allstars'
                 let allstars = []
                 if (d.data.trade_totals.other_stats.allstars > 0) {
-                  allstars = `<img src="/team_logos/as.png" alt="AllStar"
+                  allstars = `<div style="width:75px;height:75px; position:relative;">
+                  <img src="/team_logos/as.png" alt="AllStar"
                   style="
-                  position: absolute;
-                  bottom:25px;
-                  left:20px;
-                  width:50px;
-                  height:50px;
-                  "/>`
+                  position:absolute;
+                  bottom:50px;
+                  left:10px;
+                  max-width:100%;
+                  max-height:100%;
+                  "/>
+                  </div>`
                 }
                 let link
                 const to_franch = d.data.to_team.team_name.to_franch
@@ -240,7 +241,6 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  position:relative;
                   "
                 >
                   ${name}
@@ -311,7 +311,6 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  position: relative;
                   "
                 >
                   ${name}
@@ -369,7 +368,6 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
-                  position: relative;
                   "
                 >
                   ${name}
@@ -392,7 +390,6 @@ export const OrgChartComponent = (props, ref) => {
                   border-radius: 50px;
                   text-align:center;
                   height:${d.height}px;
-                  position: relative;
                   "
                 >
 
@@ -421,7 +418,6 @@ export const OrgChartComponent = (props, ref) => {
                   border-radius: 50px;
                   text-align:center;
                   height:${d.height}px;
-                  position: relative;
                   "
                 >
 

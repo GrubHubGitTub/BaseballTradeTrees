@@ -289,7 +289,28 @@ table {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
+  .carousel {
+    max-width: 750px;
+    height: 550px;
+  }
+  .slick-slide {
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    margin-left: auto !important;
+    
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .carousel {
+    max-width: 600px;
+    height: 550px;
+  }
+}
+
+@media screen and (max-width: 650px) {
     .carousel {
       max-width: 300px;
       height: 550px;

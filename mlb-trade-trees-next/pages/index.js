@@ -43,7 +43,8 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
         slidesToShow: 2,
         slidesToScroll: 2
       }},
-        {breakpoint: 600,
+
+        {breakpoint: 650,
           settings: {
             arrows:true,
             dots: false,
