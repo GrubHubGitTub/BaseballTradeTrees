@@ -15,31 +15,39 @@
 .teamHeader{
     display: flex;
     align-items: center;
-    border-bottom: 1px dotted black;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
 .teamName{
-    margin-right:8px;
+    margin-right:5px;
 }
 
 .years {
     margin-right: 10px;
 }
 
-
 .wsDiv{
-    width:180px;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    
+}
+
+.wsContainer{
+    display: flex;
+    max-width:200px
 }
 
 .playerName{
     position: absolute;
     left: 20px;
-    top: 35px;
+    top: 30px;
 
     font-weight: bold;
     text-decoration: none;
     width: auto;
+    
     padding: 5px;
     background-color: #f1f1f1;
     color: black;
@@ -55,29 +63,39 @@
 }
 
 .parentTree{
-    font-size: 0.9em;
-    text-decoration: none;
-    display: flex;
-    padding: 5px;
-    background-color: #f1f1f1;
+    font-size: 17px;
+    background: transparent;
     color: black;
-    border-radius: 10px;
-    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    border: solid 1px white;
+    padding: 3px 10px;
+    border-radius: 8px;
+    transition-duration: 0.2s;
+    margin-bottom:10px
 }
 
-.parentTree:hover{
-    background-color: #ddd;
-    color: black;
-}
+.parentTree:before {
+  content: "» ";
+  opacity: 0;
+  margin-left: -15px;
+  transition-duration: 0.2s;
+ }
+ 
+ .parentTree:hover:before {
+  margin-left: 0px;
+  opacity: 1;
+ }
+ 
+ .parentTree:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border: solid 1px #FD3C3C;
+  cursor: pointer;
+ }
 
 .teamLogo{
-    width:"100px";
-    height:"100px";
-    /* margin-right: 25px; */
+    position: relative;
+    width:100px;
+    height:100px;
 }
-
-
-
 
 .otherStats{
     display: flex;
@@ -106,7 +124,13 @@
     font-size: 0.8em;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 1350px) {
+    .playerName{
+        font-size: 0.5em
+    }
+}
+
+@media (max-width: 1150px) {
 
     .PlayerBar{
         width:95%;
@@ -115,22 +139,30 @@
 
     .playerName{
         top:10px;
-        font-size: 0.2em;
-        padding:3px;
+        left: 10px;
+        font-size: 0.7em;
+        max-width: 100px;
+        padding:0;
         text-align: center;
     }
 
     .teamHeader{
-        width:50%
-    }
-    
-    .wsDiv{
-        height:20px;
+        margin-top:5px;
+        width:75%;
+        justify-content:center
     }
 
-    .wsWins {
-        transform: scale(0.2);
+
+    .wsDiv{
+        width: 15px;
+        height: 15px;
     }
+
+    .wsContainer{
+        display: flex;
+        max-width:100px
+    }
+    
 
     .parentTree{
         font-size: 0.2em;
@@ -141,22 +173,23 @@
     
     
     .teamName {
-        font-size: 0.8em;
+        font-size: 1em;
         margin-right: 5px;
-        margin-left: auto;
+        margin-left: 20px;
     }
 
-    .teamHeader h2 {
-        font-size: 0.7em;
+    .years {
+        font-size: 0.9em;
         margin-right: 5px;
     }
 
     .teamLogo {
-        margin-right: 10px;
+        width: 50px;
+        height: 50px;
     }
 
     .otherStats{
-        font-size: 0.5em;
+        font-size: 0.8em;
     }
     .allStats {
         font-size: 0.6em;
@@ -169,4 +202,29 @@
         justify-content:space-between;
     }
 
+    }
+
+    @media (max-width: 700px) {
+        .teamHeader{
+            width:60%;
+            font-size: 80%;
+        }
+        
+        .playerName{
+            font-size: 0.1em;
+            max-width: 50px;
+        }
+
+        .teamLogo{
+            width: 50px;
+            height: 50px;
+        }
+
+        .wsContainer{
+            width: 75px;
+        }
+
+        .otherStats{
+            font-size: 0.5em;
+        }
     }

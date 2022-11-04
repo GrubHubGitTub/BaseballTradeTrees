@@ -62,7 +62,7 @@ table {
     border: 1px solid transparent;
     border-radius: 8px;
     outline: none;
-    background-color: #f3f3f4;
+    background-color: #FFF8EC;
     color: #0d0c22;
     transition: .3s ease;
 
@@ -75,7 +75,7 @@ table {
 .searchInput:focus, .searchInput:hover{
   outline: none;
   border-color: #FD3C3C;
-  background-color: #fff;
+  background-color: #FFF8EC;
   box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
 
@@ -140,15 +140,16 @@ table {
 .navbar--random{
     font-size: 17px;
     background: transparent;
-    color: #e1e1e1;
-    border: solid 1px white;
-    padding: 5px 10px;
+    color: #FFF8EC;
+    border: solid 1px #FFF8EC;
+    padding: 3px 10px;
     border-radius: 8px;
     transition-duration: 0.2s;
 }
 
 .navbar--random:before {
   content: "» ";
+  color: #FD3C3C;
   opacity: 0;
   margin-left: -15px;
   transition-duration: 0.2s;
@@ -177,13 +178,12 @@ table {
 
 .navbar--menu li {
     list-style-type: none;
-    
     margin: 0 1rem;
 }
 
 .navButton{
   font-size: 18px;
-  color: #e1e1e1;
+  color: #FFF8EC;
   cursor: pointer;
   position: relative;
   border: none;
@@ -225,7 +225,7 @@ table {
     width: 40px;
     padding: 0.5rem;
     border-radius: 50%;
-    background-color: #283b8b;
+    background-color: #FFF8EC;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     position: absolute;
@@ -265,11 +265,11 @@ table {
       position: absolute;
       top: 60px;
       right: 10px;
-      z-index: 1;
+      z-index: 3;
       flex-direction: column;
 
-      width: 25%;
-      height: 150px;
+      width: 200px;
+      height: 100px;
       background-color: #005CA9;
       border-radius: 15px;
 

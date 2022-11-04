@@ -171,11 +171,11 @@ export async function getServerSideProps(context) {
     
             <div className={styles.teamHeader}>
                 <h1 >{props.team.name}</h1>
-                <div>
-                <Image src={`/team_logos/${props.team.team_id}.png`} alt="TeamLogo" objectFit="contain" width="100%" height="100%"/>
+                <div className={styles.logoDiv}>
+                    <Image src={`/team_logos/${props.team.team_id}.png`} alt="TeamLogo" layout="fill" objectFit="contain"/>
                 </div>
             </div>
-
+            <h3>All Tree Info</h3>
             <div className="ag-theme-alpine" style={{ height:500, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
                 <AgGridReact
                     reactNext={true}
@@ -184,8 +184,8 @@ export async function getServerSideProps(context) {
                     columnDefs={columnData}>
                 </AgGridReact>
             </div>
-
-            <h4 style={{"margin-top":"2%", "margin-bottom":"1%"}}>Click name of highlighted player to go to his page</h4>
+            <h3 style={{"marginTop":"10px", "border-bottom":"1px solid black"}}>Current Roster Info</h3>
+            <h4 style={{"margin-bottom":"1%"}}>Click name of highlighted player to go to his page</h4>
             <div className={styles.roster}>
 
                 <div className={styles.posContainer}>

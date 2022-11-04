@@ -7,9 +7,19 @@
 .teamHeader{
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid black;
+  margin-bottom: 25px;
 }
+
+.logoDiv{
+  position: relative;
+  width: 75px;
+  height: 75px
+}
+
 .teamHeader h1{
-  padding:25px
+  padding-top: 10px;
+  margin-right: 10px;
 }
 .roster{
     display: flex;

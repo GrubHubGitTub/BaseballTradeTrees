@@ -79,23 +79,26 @@ export default function PlayerBar({data, tree_data}) {
         parent_tree= ""
     } else { 
         var rid = tree_data.largest_tree_id.slice(0,8)
-        parent_tree = 
+        parent_tree =
             <Link href={{
                 pathname: '/player/[pid]/[tid]',
                 query: {pid: rid, tid: tree_data.largest_tree_id }}}>
-                <a className={styles.parentTree}> View Parent Tree </a>
+                <button className={styles.parentTree} style={{"border":`2px solid ${background}`}}> View Parent Tree </button>
             </Link> 
     }
 
     let world_series_wins
     if (tree_data.ws_wins.length > 0){
         world_series_wins = tree_data.ws_wins.map(year => (
+            <div className={styles.wsDiv}>
             <Image  key={year}
                     alt="WSTrophy"
                     src="/team_logos/ws.gif"
                     title={year}
-                    objectFit="contain" width="30%" height="60%"
+                    layout="fill"
+                    objectFit="contain"
                     className={styles.wsWins}/>
+            </div>
                     ))
     }
 
@@ -110,10 +113,10 @@ export default function PlayerBar({data, tree_data}) {
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
                     <div className={styles.teamLogo}>
-                        <Image src={link} alt="TeamLogo" objectFit="contain" width="100%" height="100%"/>
+                        <Image src={link} alt="TeamLogo" layout="fill" objectFit="contain"/>
                     </div>
                     <h2 className={styles.years}>{tree_data.y_start}-{tree_data.y_last}</h2>
-                    <div className={styles.wsDiv}>{world_series_wins}</div>
+                    <div className={styles.wsContainer}>{world_series_wins}</div>
                 </div> 
 
                             

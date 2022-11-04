@@ -140,6 +140,7 @@ export const OrgChartComponent = (props, ref) => {
                   border:8px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
+                  position: relative;
                   "
                 >
                   ${name}
@@ -246,11 +247,12 @@ export const OrgChartComponent = (props, ref) => {
                   <div style= background-color:${outline};height:5px;"></div>
                  
                       <div style="display: flex; justify-content: center; align-items:center">
-                        <h2 style="padding-top:15px;padding-right:10px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
-                        <div style="width:75px;height:75px">
+                        <h2 style="text-align: center;padding:15px 10px 0 0; margin-left: 30px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
+                        <div style="width:100px;height:100px">
                           <img src=${link} alt="team logo"
                           style="
                           padding:10px;
+                          margin-right:30px;
                           max-width:100%;
                           max-height:100%;
                           "/>
@@ -309,6 +311,7 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
+                  position: relative;
                   "
                 >
                   ${name}
@@ -366,6 +369,7 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid ${outline};
                   border-radius: 50px;
                   height:${d.height}px;
+                  position: relative;
                   "
                 >
                   ${name}
@@ -387,7 +391,9 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid black;
                   border-radius: 50px;
                   text-align:center;
-                  height:${d.height}px;"
+                  height:${d.height}px;
+                  position: relative;
+                  "
                 >
 
                 <h2 style="
@@ -414,7 +420,9 @@ export const OrgChartComponent = (props, ref) => {
                   border:1px solid black;
                   border-radius: 50px;
                   text-align:center;
-                  height:${d.height}px;"
+                  height:${d.height}px;
+                  position: relative;
+                  "
                 >
 
                 <h2 style="

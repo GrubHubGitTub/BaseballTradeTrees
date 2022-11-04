@@ -76,7 +76,7 @@ export default function Navbar({players}) {
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
                     viewBox="0 0 20 20"
-                    fill="white">
+                    fill="#005CA9">
                     <path
                         fillRule="evenodd"
                         d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
@@ -89,7 +89,7 @@ export default function Navbar({players}) {
                 {/* change these to links */}
                     <Link href="/teams"><li><button className="navButton">Teams</button></li></Link>
                     {/* <Link href="/players"><li><button className="navButton">Players</button></li></Link> */}
-                    <Link href="/search"><li><button className="navButton">Search | Stats</button></li></Link>
+                    <Link href="/search"><li><button className="navButton">Stats and Search</button></li></Link>
                     <Link href="/about"><li><button className="navButton">About</button></li></Link>
                 </ul>
             </div>
