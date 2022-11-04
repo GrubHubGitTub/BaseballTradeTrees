@@ -70,6 +70,7 @@ export default function PlayerBar({data, tree_data}) {
         style: 'currency',
         currency: 'USD',
         maximumFractionDigits: 0,
+        minimumFractionDigits: 0 
       });
     const salary = formatter.format(other_stats.salary)
 

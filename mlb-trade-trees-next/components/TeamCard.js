@@ -5,7 +5,6 @@ import Image from "next/image";
 import {franchises} from "../data/franchise_colors"
 
 export default function TeamCard({data}) {
-    console.log(data)
     const tid = data.team_id
 
     let background 

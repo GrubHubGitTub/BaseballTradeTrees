@@ -262,6 +262,7 @@ table {
       right: 10px;
       z-index: 3;
       flex-direction: column;
+      
 
       width: 200px;
       height: 100px;
@@ -277,6 +278,7 @@ table {
 
   .navbar--menu.expanded ul {
       display: block;
+      transition: 0.2s ease-in-out;
     }
 
     .search{

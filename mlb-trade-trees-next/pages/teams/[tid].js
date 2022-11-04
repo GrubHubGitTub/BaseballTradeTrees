@@ -175,7 +175,9 @@ export async function getServerSideProps(context) {
                     <Image src={`/team_logos/${props.team.team_id}.png`} alt="TeamLogo" layout="fill" objectFit="contain"/>
                 </div>
             </div>
-            <h3>All Tree Info</h3>
+            <h3 style={{"border-bottom":"1px solid black"}}>All Tree Info</h3>
+            <h6>Click a column to filter and sort. Drag a column to the left to pin.</h6>
+
             <div className="ag-theme-alpine" style={{ height:500, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
                 <AgGridReact
                     reactNext={true}

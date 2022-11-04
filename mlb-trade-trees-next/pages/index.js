@@ -126,7 +126,7 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
         <div className={styles.statBar}>
           <button onClick={() => {setFilterChange(true);setSliderData(WARCards);setActiveClass("WARCards")}} className={activeClass=="WARCards" ? styles.ctaActive : styles.cta}>
               <span>WAR Gained</span>
-        </button>
+          </button>
         <button onClick={() => {setFilterChange(true);setSliderData(TransacCards);setActiveClass("TransacCards")}} className={activeClass=="TransacCards" ? styles.ctaActive : styles.cta}>
               <span>Total Transactions</span>
         </button>            

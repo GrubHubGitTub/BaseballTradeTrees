@@ -87,10 +87,10 @@ export default function Navbar({players}) {
                 
                 <ul> 
                 {/* change these to links */}
-                    <Link href="/teams"><li><button className="navButton">Teams</button></li></Link>
+                    <Link href="/teams"><li><button className="navButton" onClick={() => {setIsNavbarExpanded(!isNavbarExpanded);}}>Teams</button></li></Link>
                     {/* <Link href="/players"><li><button className="navButton">Players</button></li></Link> */}
-                    <Link href="/search"><li><button className="navButton">Stats and Search</button></li></Link>
-                    <Link href="/about"><li><button className="navButton">About</button></li></Link>
+                    <Link href="/search"><li><button className="navButton" onClick={() => {setIsNavbarExpanded(!isNavbarExpanded);}}>Stats and Search</button></li></Link>
+                    <Link href="/about"><li><button className="navButton" onClick={() => {setIsNavbarExpanded(!isNavbarExpanded);}}>About</button></li></Link>
                 </ul>
             </div>
         </nav>
