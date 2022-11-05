@@ -149,7 +149,6 @@ table {
 
 .navbar--random:before {
   content: "» ";
-  color: #FD3C3C;
   opacity: 0;
   margin-left: -15px;
   transition-duration: 0.2s;
@@ -162,7 +161,6 @@ table {
  
  .navbar--random:hover {
   background: rgba(0, 0, 0, 0.02);
-  border: solid 1px #FD3C3C;
   cursor: pointer;
  }
 

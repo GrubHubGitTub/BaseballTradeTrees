@@ -5,11 +5,11 @@ import Image from "next/image";
 export default function Navbar({players}) {
 
     function randomLink() {
-        var traded_players = players.filter((p) => (!("T" in p)))
+        var traded_players = players.filter((p) => (!(p.trees == "")))
         var randomplayer = traded_players[Math.floor(Math.random()*traded_players.length)]
-        // var randomid = randomplayer.trades[Math.floor(Math.random()*randomplayer.trades.length)].tree_id
+        var randomid = randomplayer.trees[Math.floor(Math.random()*randomplayer.trees.length)]
         var pid = randomplayer.retro_id
-        var url = `/player/${pid}/`
+        var url = `/player/${pid}/${randomid}`
         return url
     }
 
@@ -51,7 +51,7 @@ export default function Navbar({players}) {
                                                 pathname: '/player/[pid]',
                                                 query: { pid: player.retro_id },
                                             }}>   
-                                            {"T" in player ? 
+                                            {player.trees == "" ? 
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(not traded)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
                                             : 
                                             <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>(traded)</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
@@ -65,7 +65,7 @@ export default function Navbar({players}) {
                 </div>    
             
                 <Link href={randomLink()}>
-                    <button className="navbar--random" style={{"marginLeft":"1%"}}>Random Player</button>
+                    <button className="navbar--random" style={{"marginLeft":"1%"}}>Random Tree</button>
                 </Link>
 
             <button 

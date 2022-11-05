@@ -102,8 +102,8 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
           </div>
     );
   } else {
-
-    const rowData = player.retrosheet_data
+    const sorted_data = player.retrosheet_data.sort((a, b) => a.primary_date - b.primary_date);
+    const rowData = sorted_data
     const columnData = [
       {field: "primary_date", headerName:"Date", valueFormatter: p => { return `${p.value.toString().slice(0,4)}-${p.value.toString().slice(4,6)}-${p.value.toString().slice(6,8)}` },
       width:150},

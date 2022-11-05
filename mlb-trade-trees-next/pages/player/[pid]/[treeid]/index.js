@@ -3,6 +3,7 @@ import { OrgChart } from "../../../../org-chart-master";
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
 import styles from '../../../../styles/TreePage.module.css'
+import { franchises } from '../../../../data/franchise_colors';
 
 export async function getStaticPaths() {
   const player_data1 = require("../../../../data/all_data1.json")
@@ -91,12 +92,7 @@ export const OrgChartComponent = (props, ref) => {
             .compactMarginPair((d) => 40)
             .connections(props.connections)
             .nodeContent(function (d, i, arr, state) {
-              const franchises = {"ANA": "Maroon", "ARI":"Maroon", "ATL":"Maroon", "BAL":"darkOrange", "BOS":"maroon", "CHC":"darkBlue", "CHW":"Darkgrey", 
-    "CIN":"Maroon", "CLE":"Red", "COL":"Purple","DET":"navyblue", "FLA":"coral", "HOU":"orange", "KCR":"royalblue", 
-    "LAD": "dodgerblue","MIL":"navyblue","MIN":"maroon", "NYM":"orange","NYY":"white","OAK":"darkgreen", "PHI": "red", 
-    "PIT":"Gold","SDP":"lightbrown","SEA":"navyblue","SFG":"orange", "STL":"red", "TBD":"darkblue", "TEX":"red","TOR":"blue","WSN":"maroon"}
-
-              
+            
               if (d.data.name == "saveButton") {
                 return "<h1> Tree downloaded from mlbtradetrees.com </h1>"
               }
@@ -195,7 +191,7 @@ export const OrgChartComponent = (props, ref) => {
                     if (k.includes(" ") || k.includes("PTBNL/Cash")){
                        traded_with_players = traded_with_players + d.data.traded_with[k] + " ";
                   } else {
-                        traded_with_players = traded_with_players + "<a style='color: black' href='../" + k + "'>" + d.data.traded_with[k] + "</a> ";
+                        traded_with_players = traded_with_players + "<a style='color: black; cursor: alias' href='../" + k + "'>" + d.data.traded_with[k] + "</a> ";
                     }
                   }
                 } 
@@ -221,7 +217,7 @@ export const OrgChartComponent = (props, ref) => {
                   style="
                   max-height:100%;
                   max-width:100%;
-                  margin-top:-50px;
+                  margin-top:-75px;
                   margin-left:10px;
                   "/>
                   </div>`
@@ -258,10 +254,12 @@ export const OrgChartComponent = (props, ref) => {
                         </div>
                       </div>
                       
-                    <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
+                    <div style="display: flex; flex-direction:column;align-items: center;justify-content:flex-start;text-align:center" >
 
                         <h2> ${traded_with_players} </h2>
-                        <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
+                        <h2 style=
+                          "border: 2px solid ${outline}; border-radius:20px; font-size:2.5em; padding: 2px 15px; margin-top:20px"> 
+                            ${year}-${month}-${day} </h2>
                         <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
 
                     </div>
@@ -373,7 +371,7 @@ export const OrgChartComponent = (props, ref) => {
                   <div style= background-color:${outline};height:5px;"></div>
                   <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
 
-                    <h2 style="margin-top:10%"> ${d.data.outcome} </h2>
+                    <h2 style="margin-top:5%; font-size: 2.5em"> ${d.data.outcome} </h2>
                     <h2> ${year}-${month}-${day} </h2>
                   </div>
                 </div>
@@ -439,9 +437,11 @@ export const OrgChartComponent = (props, ref) => {
             ;  
             
             })
-            .render();
+            
+            .render().fit()
             chart.expandAll()
         }
+        
     }, [props.data, d3Container.current]);
     
     return (

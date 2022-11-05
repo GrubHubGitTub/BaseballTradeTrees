@@ -28,7 +28,7 @@ export default function Home({topWAR, topTransac, longest, longestOngoing}) {
     autoplay: true,
     autoplaySpeed: 4000,
     className: "carousel",
-    speed: 900,
+    speed: 400,
     slidesToShow: 3,
     slidesToScroll: 3,
     centerMode:false,
