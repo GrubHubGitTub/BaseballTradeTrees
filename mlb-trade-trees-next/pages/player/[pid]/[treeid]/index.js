@@ -82,9 +82,9 @@ export const OrgChartComponent = (props, ref) => {
             .nodeHeight((d) => {
               if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 5) return 490
-              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 390
+              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 425
               else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
-              else return 350 
+              else return 390 
           })
             .childrenMargin((d) => 60)
             .compactMarginBetween((d) => 15)
@@ -439,8 +439,7 @@ export const OrgChartComponent = (props, ref) => {
             ;  
             
             })
-            .render()
-            .fit();
+            .render();
             chart.expandAll()
         }
     }, [props.data, d3Container.current]);

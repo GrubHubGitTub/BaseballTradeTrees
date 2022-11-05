@@ -139,7 +139,7 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
           <div className={styles.headerBar2}>            
             <h4>This player was never traded, however you can view his transaction history below: </h4>
           </div>
-            <div className="ag-theme-alpine" style={{ height:dynamicHeight, width:"75%", marginLeft:"auto", marginRight:"auto" }}>
+            <div className="ag-theme-alpine" style={{ height:dynamicHeight, width:"85%", marginLeft:"auto", marginRight:"auto" }}>
               
               <AgGridReact
                   reactNext={true}

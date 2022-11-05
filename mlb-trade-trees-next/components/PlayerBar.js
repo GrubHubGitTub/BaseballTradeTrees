@@ -83,7 +83,7 @@ export default function PlayerBar({data, tree_data}) {
             <Link href={{
                 pathname: '/player/[pid]/[tid]',
                 query: {pid: rid, tid: tree_data.largest_tree_id }}}>
-                <button className={styles.parentTree} style={{"border":`2px solid ${background}`}}> View Parent Tree </button>
+                <a className={styles.parentTree} style={{"border":`2px solid ${background}`}}> View Parent Tree </a>
             </Link> 
     }
 
@@ -109,6 +109,7 @@ export default function PlayerBar({data, tree_data}) {
                     query: {pid: data.retro_id }}}>
                     <a className={styles.playerName}> ← {data.name} </a>
             </Link>
+            {parent_tree}
                 
                 <div className={styles.teamHeader}>
                     <h1 className={styles.teamName}>{from_team}</h1>
@@ -122,7 +123,6 @@ export default function PlayerBar({data, tree_data}) {
 
                             
             <div className={styles.otherStats}>
-                {parent_tree}
                 <h4>{tree_data.total_transac} {tree_data.total_transac > 1 ? "transactions" : "transaction"} </h4>
                 <h4>{other_stats.WAR > 0 ? "+" : ""}{other_stats.WAR} WAR | 
                 {salary.toString().slice(0,1) == "-" ? "" : " +"}{salary} </h4>

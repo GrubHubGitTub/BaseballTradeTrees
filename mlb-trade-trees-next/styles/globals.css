@@ -397,6 +397,14 @@ a {
     background-color: #DFE0DF;
   }
 
+  .footer--buttons{
+    display:flex;
+    justify-content: space-between;
+    width:180px;
+    margin-left:auto;
+    margin-right: auto;
+  }
+
 .footer--retro{
     font-size:xx-small
 }

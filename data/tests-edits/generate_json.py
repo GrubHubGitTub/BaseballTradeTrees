@@ -656,9 +656,6 @@ for player_transaction in retro_ids[index:]:
             }
             all_data.append(output)
 
-
-        print(trade_output)
-
 for data in all_data:
     for player in ongoing_tree_players:
         if player["retro_id"] == data["retro_id"]:
@@ -668,8 +665,12 @@ for data in all_data:
                 data["in_ongoing_trees"].append(player["tree"])
 
 for player in all_data:
+    all_trees = []
+    for trade in player["trades"]:
+        all_trees.append(trade["tree_id"])
     player_search.append({"retro_id": player["retro_id"], "mlb_id": player["mlb_id"], "name": player["name"],
-                          "HOF": player["HOF"], "debut_year": player["debut_year"], "last_year": player["last_year"]})
+                          "HOF": player["HOF"], "debut_year": player["debut_year"], "last_year": player["last_year"],
+                          "trees":all_trees})
 
     for trade in player["trades"]:
         if trade["largest_tree_id"] == "_":
@@ -730,7 +731,7 @@ for player in all_retro_ids:
             non_traded_players.append(output)
             player_search.append({"retro_id": player, "mlb_id": mlb_id, "name": player_name,
                                   "HOF": hof, "debut_year": debut,
-                                  "last_year": end, "T": ""})
+                                  "last_year": end, "trees": ""})
 
 with open("no_trades.json", "w") as file:
     json.dump(non_traded_players, file)

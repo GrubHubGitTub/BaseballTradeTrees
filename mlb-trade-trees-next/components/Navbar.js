@@ -5,9 +5,10 @@ import Image from "next/image";
 export default function Navbar({players}) {
 
     function randomLink() {
-        var randomplayer = players[Math.floor(Math.random()*players.length)]
-        // var randomid = randompage.trades[Math.floor(Math.random()*randompage.trades.length)].tree_id
-        var pid = randomplayer.retro_id 
+        var traded_players = players.filter((p) => (!("T" in p)))
+        var randomplayer = traded_players[Math.floor(Math.random()*traded_players.length)]
+        // var randomid = randomplayer.trades[Math.floor(Math.random()*randomplayer.trades.length)].tree_id
+        var pid = randomplayer.retro_id
         var url = `/player/${pid}/`
         return url
     }
