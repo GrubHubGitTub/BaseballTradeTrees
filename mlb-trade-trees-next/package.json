@@ -23,7 +23,8 @@
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "victory": "^36.6.8"
   },
   "devDependencies": {
     "@types/react": "18.0.21",

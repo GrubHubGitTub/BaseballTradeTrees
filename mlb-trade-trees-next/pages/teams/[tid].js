@@ -8,6 +8,9 @@ import PlayerCard from "../../components/PlayerCard";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import team_info from "../../data/team_info.json";
+import {VictoryPie, VictoryTooltip, VictoryContainer, VictoryLegend} from 'victory';
+import { franchises } from "../../data/franchise_colors";
 
 export async function getServerSideProps(context) {
     const player_data = players
@@ -50,6 +53,16 @@ export async function getServerSideProps(context) {
 
   export default function TeamPage(props) {
     const tree_data = props.team_trees
+
+    let relationship_data = []
+    team_info.map(team => {
+        var relationship_num = tree_data.filter((p) => p.to_team.team_name.to_franch === team.team_id).length
+        var team_name = team.name
+        var teamcolor = franchises[team.team_id]
+        var add_to={ name: team_name, num:relationship_num, label:team_name, color:teamcolor}
+        relationship_data.push(add_to)
+    })
+    console.log(relationship_data)
     
     const [rowData, setRowData] = useState(tree_data)
     const [columnData, setColumnData] = useState([
@@ -175,6 +188,30 @@ export async function getServerSideProps(context) {
                     <Image src={`/team_logos/${props.team.team_id}.png`} alt="TeamLogo" layout="fill" objectFit="contain"/>
                 </div>
             </div>
+
+            <VictoryPie
+                data={relationship_data}
+                padAngle={1}
+                style={{
+                    data: {
+                    fill: (d) => d.slice.data.color
+                    }
+                }}
+                // padding={{ top: 200}}
+                startAngle={90}
+                endAngle={-90}
+                x="name"
+                y="num"
+                
+                
+                labels={({ datum }) => datum.num}
+                containerComponent={<VictoryContainer preserveAspectRatio="none" responsive={true}/>}
+                // labelRadius={({ innerRadius }) => innerRadius + 30 }
+                // style={{labels:  {fontSize: 2 }}}
+                radius={({ datum }) => datum.num * 10}
+                labelComponent={<VictoryTooltip/>}  
+                />
+
             <h3 style={{"border-bottom":"1px solid black"}}>All Tree Info</h3>
             <h6>Click a column to filter and sort. Drag a column to the left to pin.</h6>
 
