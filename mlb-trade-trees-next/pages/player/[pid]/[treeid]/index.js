@@ -242,7 +242,7 @@ export const OrgChartComponent = (props, ref) => {
                   <div style= background-color:${outline};height:5px;"></div>
                  
                       <div style="display: flex; justify-content: center; align-items:center">
-                        <h2 style="text-align: center;padding:15px 10px 0 0; margin-left: 30px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
+                        <h2 style="text-align: center;padding:15px 10px 0 0; margin-left: 15px;font-size:2.3em"> → ${d.data.to_team.team_name.name} </h2>
                         <div style="width:100px;height:100px">
                           <img src=${link} alt="team logo"
                           style="

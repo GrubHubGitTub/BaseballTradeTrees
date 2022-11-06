@@ -203,14 +203,14 @@
         .teamHeader{
             font-size: 80%;
             width:80%;
-            margin-top:25px;
+            margin-top:30px;
 
         }
         
         .playerName{
             font-size: 0.2em;
             padding:1px;
-            max-width: 100px;
+            width:auto;
         }
 
         .parentTree{
@@ -219,6 +219,7 @@
         }
 
         .teamName{
+            width:auto;
             max-width: 100px;
         }
 

@@ -112,7 +112,7 @@ export default function PlayerBar({data, tree_data}) {
             {parent_tree}
                 
                 <div className={styles.teamHeader}>
-                    <h1 className={styles.teamName}>{from_team}</h1>
+                    <h1 className={styles.teamName} style={{textAlign:"center"}}>{from_team}</h1>
                     <div className={styles.teamLogo}>
                         <Image src={link} alt="TeamLogo" layout="fill" objectFit="contain"/>
                     </div>
