@@ -1,5 +1,6 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
+import { AnalyticsWrapper } from '../components/analytics';
 import player_search from "../data/player_search.json"
 
 export default function Layout({ children }) {
@@ -8,6 +9,7 @@ export default function Layout({ children }) {
     <div className='container'>
       <Navbar players={players}/>
       { children }
+      <AnalyticsWrapper />
       <Footer />
     </div> 
   );
