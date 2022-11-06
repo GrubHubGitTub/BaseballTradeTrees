@@ -82,8 +82,16 @@
     color: black;
 }
 
+@media (max-width: 450px) {
+    .treeContainer{
+        height:50vh
+
+    }
+}
+
 
 @media (max-width: 850px) {
+
     .statsContainer {
       flex-direction: column;
     }

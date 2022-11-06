@@ -437,8 +437,9 @@ export const OrgChartComponent = (props, ref) => {
             ;  
             
             })
-            
-            .render().fit()
+            .initialZoom(0.4)
+
+            .render()
             chart.expandAll()
         }
         

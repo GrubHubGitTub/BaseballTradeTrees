@@ -150,6 +150,7 @@ def format_retrosheet(list_of_transactions):
         transaction["to_franchise"] = format_teams(franchise=transaction["to_franchise"], date=None, team=None)
     return list_of_transactions
 
+
 def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice, parent_retro, parent_transaction):
     """Takes a list of dictionaries of transactions, and uses the player ID, date and team choice to get a list of outcomes
      for each player"""

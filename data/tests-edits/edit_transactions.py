@@ -232,9 +232,8 @@ transactions['stats'] = transactions.apply(lambda x: get_stats(x["player"], x["t
                                                     (x["primary_date"])[0:4], x["type"]), axis=1)
 
 transactions.fillna("", inplace=True)
-transactions.to_json("stats_transactions_01112022.json")
-transactions.to_csv("stats_transactions_01112022.csv", index=False)
-
+transactions.to_json("stats_transactions_06112022.json")
+transactions.to_csv("stats_transactions_06112022.csv", index=False)
 
 
 
