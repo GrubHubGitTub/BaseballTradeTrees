@@ -1,0 +1,188 @@
+teamIDretro,teamID,teamIDBR,franchID,name
+BS1,BS1,BOS,BNA,Boston Red Stockings
+CH1,CH1,CHI,CNA,Chicago White Stockings
+CL1,CL1,CLE,CFC,Cleveland Forest Citys
+FW1,FW1,KEK,KEK,Fort Wayne Kekiongas
+NY2,NY2,NYU,NNA,New York Mutuals
+PH1,PH1,ATH,PNA,Philadelphia Athletics
+RC1,RC1,ROK,ROK,Rockford Forest Citys
+TRO,TRO,TRO,TRO,Troy Haymakers
+WS3,WS3,OLY,OLY,Washington Olympics
+BL1,BL1,BAL,BLC,Baltimore Canaries
+BR1,BR1,ECK,ECK,Brooklyn Eckfords
+BR2,BR2,BRA,BRA,Brooklyn Atlantics
+MID,MID,MAN,MAN,Middletown Mansfields
+WS4,WS4,NAT,NAT,Washington Nationals
+BL4,BL4,MAR,MAR,Baltimore Marylands
+ELI,ELI,RES,RES,Elizabeth Resolutes
+PH2,PH2,PHI,PWS,Philadelphia Whites
+WS5,WS5,WAS,WBL,Washington Blue Legs
+CH2,CH2,CHI,CNA,Chicago White Stockings
+HR1,HR1,HAR,HNA,Hartford Dark Blues
+KEO,KEO,WES,WES,Keokuk Westerns
+NH1,NH1,NHV,NHV,New Haven Elm Citys
+PH3,PH3,CEN,CEN,Philadelphia Centennials
+SL1,SL1,SLR,SLR,St. Louis Red Stockings
+SL2,SL2,STL,SNA,St. Louis Brown Stockings
+WS6,WS6,WAS,WNT,Washington Nationals
+BSN,BSN,BSN,ATL,Boston Red Caps
+CHN,CHN,CHC,CHC,Chicago White Stockings
+CN1,CN1,CIN,CNR,Cincinnati Reds
+HAR,HAR,HAR,HAR,Hartford Dark Blues
+LS1,LS1,LOU,LGR,Louisville Grays
+NY3,NY3,NYU,NYU,New York Mutuals
+PHN,PHN,ATH,ATH,Philadelphia Athletics
+SL3,SL3,STL,SBS,St. Louis Brown Stockings
+IN1,IN1,IND,IBL,Indianapolis Blues
+ML2,ML2,MLG,MLG,Milwaukee Grays
+PRO,PRO,PRO,PRO,Providence Grays
+BFN,BFN,BUF,BUF,Buffalo Bisons
+CL2,CL2,CLV,CBL,Cleveland Blues
+SR1,SR1,SYR,SYR,Syracuse Stars
+TRN,TRN,TRO,TRT,Troy Trojans
+CN4,CN1,CIN,CNR,Cincinnati Reds
+WOR,WOR,WOR,WOR,Worcester Ruby Legs
+DTN,DTN,DTN,DTN,Detroit Wolverines
+BL5,BL2,BAL,BLO,Baltimore Orioles
+CN2,CN2,CIN,CIN,Cincinnati Red Stockings
+LS2,LS2,LOU,LOU,Louisville Eclipse
+PH4,PH4,PHA,PHA,Philadelphia Athletics
+PT1,PT1,PIT,PIT,Pittsburg Alleghenys
+SL4,SL4,STL,STL,St. Louis Brown Stockings
+BL2,BL2,BAL,BLO,Baltimore Orioles
+BSN,BSN,BSN,ATL,Boston Beaneaters
+CL5,CL5,COL,CBK,Columbus Buckeyes
+NY1,NY1,NYG,SFG,New York Gothams
+NY4,NY4,NYP,NYP,New York Metropolitans
+PHI,PHI,PHI,PHI,Philadelphia Quakers
+SL4,SL4,STL,STL,St. Louis Browns
+ALT,ALT,ALT,ALT,Altoona Mountain City
+BLU,BLU,BLU,BLU,Baltimore Monumentals
+BR3,BR3,BRO,LAD,Brooklyn Atlantics
+BSU,BSU,BOS,BRD,Boston Reds
+CHU,CHU,CPI,CPI,Chicago/Pittsburgh (Union League)
+CNU,CNU,COR,COR,Cincinnati Outlaw Reds
+IN2,IN2,IND,IHO,Indianapolis Hoosiers
+KCU,KCU,KCC,KCU,Kansas City Cowboys
+MLU,MLU,MIL,MLU,Milwaukee Brewers
+PHU,PHU,PHK,PHK,Philadelphia Keystones
+RIC,RIC,RIC,RIC,Richmond Virginians
+SLU,SLU,SLM,SLM,St. Louis Maroons
+SPU,SPU,STP,STP,St. Paul White Caps
+TL1,TL1,TOL,TOL,Toledo Blue Stockings
+WIL,WIL,WIL,WIL,Wilmington Quicksteps
+WS7,WS7,WAS,WST,Washington Nationals
+WSU,WSU,WHS,WNA,Washington Nationals
+BR3,BR3,BRO,LAD,Brooklyn Grays
+LS2,LS2,LOU,LOU,Louisville Colonels
+NY1,NY1,NYG,SFG,New York Giants
+SL5,SL5,SLM,SLM,St. Louis Maroons
+KCN,KCN,KCN,KCN,Kansas City Cowboys
+WS8,WS8,WHS,WNL,Washington Nationals
+CL3,CL3,CLE,CLV,Cleveland Blues
+IN3,IN3,IND,IND,Indianapolis Hoosiers
+PIT,PIT,PIT,PIT,Pittsburg Alleghenys
+BR3,BR3,BRO,LAD,Brooklyn Bridegrooms
+KC2,KC2,KCC,KCC,Kansas City Cowboys
+CL4,CL4,CLV,CLV,Cleveland Spiders
+CL6,CL6,COL,CLS,Columbus Solons
+BFP,BFP,BUF,BFB,Buffalo Bisons
+BL3,BL3,BAL,BLO,Baltimore Orioles
+BR4,BR4,BRG,BRG,Brooklyn Gladiators
+BRO,BRO,BRO,LAD,Brooklyn Bridegrooms
+BRP,BRP,BWW,BWW,Brooklyn Ward's Wonders
+BSP,BSP,BOS,BRS,Boston Reds
+CHN,CHN,CHC,CHC,Chicago Colts
+CHP,CHP,CHI,CHP,Chicago Pirates
+CIN,CIN,CIN,CIN,Cincinnati Reds
+CLP,CLP,CLE,CLI,Cleveland Infants
+NYP,NYP,NYI,NYI,New York Giants
+PHI,PHI,PHI,PHI,Philadelphia Phillies
+PHP,PHP,PHQ,PHQ,Philadelphia Athletics
+PTP,PTP,PBB,PBB,Pittsburgh Burghers
+RC2,RC2,ROC,ROC,Rochester Broncos
+SR2,SR2,SYR,SYS,Syracuse Stars
+TL2,TL2,TOL,TLM,Toledo Maumees
+BRO,BRO,BRO,LAD,Brooklyn Grooms
+BS2,BS2,BOS,BRS,Boston Reds
+CN3,CN3,CKK,CKK,Cincinnati Kelly's Killers
+ML3,ML3,MIL,MLA,Milwaukee Brewers
+PH4,PH4,PHA,PHQ,Philadelphia Athletics
+PIT,PIT,PIT,PIT,Pittsburgh Pirates
+WS9,WS9,WAS,WAS,Washington Statesmen
+BLN,BLN,BLN,BLO,Baltimore Orioles
+LS3,LS3,LOU,LOU,Louisville Colonels
+SLN,SLN,STL,STL,St. Louis Browns
+WSN,WAS,WHS,WAS,Washington Senators
+CHN,CHN,CHC,CHC,Chicago Orphans
+BRO,BRO,BRO,LAD,Brooklyn Superbas
+SLN,SLN,STL,STL,St. Louis Perfectos
+SLN,SLN,STL,STL,St. Louis Cardinals
+BLA,BLA,BLA,NYY,Baltimore Orioles
+BOS,BOS,BOS,BOS,Boston Americans
+CHA,CHA,CHW,CHW,Chicago White Sox
+CLE,CLE,CLE,CLE,Cleveland Blues
+DET,DET,DET,DET,Detroit Tigers
+MLA,MLA,MLA,BAL,Milwaukee Brewers
+PHA,PHA,PHA,OAK,Philadelphia Athletics
+WS1,WS1,WSH,MIN,Washington Senators
+CLE,CLE,CLE,CLE,Cleveland Bronchos
+SLA,SLA,SLB,BAL,St. Louis Browns
+CHN,CHN,CHC,CHC,Chicago Cubs
+CLE,CLE,CLE,CLE,Cleveland Naps
+NYA,NYA,NYY,NYY,New York Highlanders
+BSN,BSN,BSN,ATL,Boston Doves
+BOS,BOS,BOS,BOS,Boston Red Sox
+BRO,BRO,BRO,LAD,Brooklyn Dodgers
+BSN,BSN,BSN,ATL,Boston Rustlers
+BSN,BSN,BSN,ATL,Boston Braves
+NYA,NYA,NYY,NYY,New York Yankees
+BLF,BLF,BAL,BLT,Baltimore Terrapins
+BRF,BRF,BTT,BTT,Brooklyn Tip-Tops
+BRO,BRO,BRO,LAD,Brooklyn Robins
+BUF,BUF,BUF,BFL,Buffalo Buffeds
+CHF,CHF,CHI,CHH,Chicago Chi-Feds
+IND,IND,IND,NEW,Indianapolis Hoosiers
+KCF,KCF,KCP,KCP,Kansas City Packers
+PTF,PTF,PBS,PBS,Pittsburgh Rebels
+SLF,SLF,SLM,SLI,St. Louis Terriers
+BUF,BUF,BUF,BFL,Buffalo Blues
+CHF,CHF,CHI,CHH,Chicago Whales
+CLE,CLE,CLE,CLE,Cleveland Indians
+NEW,NEW,NEW,NEW,Newark Pepper
+BSN,BSN,BSN,ATL,Boston Bees
+PHI,PHI,PHI,PHI,Philadelphia Blue Jays
+MLN,ML1,MLN,ATL,Milwaukee Braves
+BAL,BAL,BAL,BAL,Baltimore Orioles
+CIN,CIN,CIN,CIN,Cincinnati Redlegs
+KC1,KC1,KCA,OAK,Kansas City Athletics
+LAN,LAN,LAD,LAD,Los Angeles Dodgers
+SFN,SFN,SFG,SFG,San Francisco Giants
+LAA,LAA,LAA,ANA,Los Angeles Angels
+MIN,MIN,MIN,MIN,Minnesota Twins
+WS2,WS2,WSA,TEX,Washington Senators
+HOU,HOU,HOU,HOU,Houston Colt .45's
+NYN,NYN,NYM,NYM,New York Mets
+CAL,CAL,CAL,ANA,California Angels
+HOU,HOU,HOU,HOU,Houston Astros
+ATL,ATL,ATL,ATL,Atlanta Braves
+OAK,OAK,OAK,OAK,Oakland Athletics
+KCA,KCA,KCR,KCR,Kansas City Royals
+MON,MON,MON,WSN,Montreal Expos
+SDN,SDN,SDP,SDP,San Diego Padres
+SE1,SE1,SEP,MIL,Seattle Pilots
+MIL,ML4,MIL,MIL,Milwaukee Brewers
+TEX,TEX,TEX,TEX,Texas Rangers
+SEA,SEA,SEA,SEA,Seattle Mariners
+TOR,TOR,TOR,TOR,Toronto Blue Jays
+COL,COL,COL,COL,Colorado Rockies
+FLO,FLO,FLA,FLA,Florida Marlins
+ANA,ANA,ANA,ANA,Anaheim Angels
+ARI,ARI,ARI,ARI,Arizona Diamondbacks
+MIL,MIL,MIL,MIL,Milwaukee Brewers
+TBA,TBA,TBD,TBD,Tampa Bay Devil Rays
+ANA,LAA,LAA,ANA,Los Angeles Angels of Anaheim
+WAS,WAS,WSN,WSN,Washington Nationals
+TBA,TBA,TBR,TBD,Tampa Bay Rays
+
+MIA,MIA,MIA,FLA,Miami Marlins

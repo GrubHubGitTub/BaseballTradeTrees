@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}'s Trade Tree- Analyze Baseball Trades</title>
+    <link rel="icon" href="../static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DH80VY3PJK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DH80VY3PJK');
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages:["orgchart"]});
+        {% for tree in trees: %}
+        {% for key,value in tree.items(): %}
+        google.charts.setOnLoadCallback(drawChart{{ key }});
+        {% endfor %}
+        {% endfor %}
+        {% for tree in trees: %}
+        {% for key,value in tree.items(): %}
+        const jsArrayOfItems{{ key }} = {{value[2] | tojson}};
+        function drawChart{{ key }}() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Manager');
+            data.addColumn('string', 'ToolTip');
+            data.addRows(jsArrayOfItems{{ key }});
+
+            var chart = new google.visualization.OrgChart(document.getElementById('chart_{{ key }}_div'));
+            chart.draw(data, {allowHtml:true, nodeClass: 'myNodeClass', selectedNodeClass: 'mySelectedNodeClass'});
+           }
+        {% endfor %}
+        {% endfor %}
+     </script>
+</head>
+<body>
+<!-- NAVBAR-->
+    <div id="nav-placeholder"></div>
+<!--END NAVBAR-->
+{% if trees|length == 1: %}
+<h1 class="traded-header">{{ name }} was traded 1 time:</h1>
+{% else: %}
+<h1 class="traded-header">{{ name }} was traded {{ trees|length }} times:</h1>
+{% endif %}
+
+{% for tree in trees: %}
+{% for key,value in tree.items(): %}
+<div class="wrap-collapsible" style="margin:auto">
+  <input id="collapsible{{ key }}" class="toggle" type="checkbox">
+  <label for="collapsible{{ key }}" class="lbl-toggle">
+      {{ value[0] }}
+      {% if value[1]["WAR"]["value"] == "pos": %}
+        <h5 class="WAR-pos"> Acquired: {{ value[1]["WAR"]["total_WAR_in"] }} WAR - Sent: {{ value[1]["WAR"]["total_WAR_out"] }} WAR = {{ value[1]["WAR"]["WAR_total"] }} WAR</h5>
+        {% else: %}
+         <h5 class="WAR-neg"> Acquired: {{ value[1]["WAR"]["total_WAR_in"] }} WAR - Sent: {{ value[1]["WAR"]["total_WAR_out"] }} WAR = {{ value[1]["WAR"]["WAR_total"] }} WAR</h5>
+        {% endif %}
+  </label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+        {% if value[1]["Salary"]["value"] == "pos": %}
+         <h5 class="stats-neg">Acquired: {{ value[1]["Salary"]["salary_in_cash"] }} - Sent: {{ value[1]["Salary"]["salary_out_cash"] }} = {{ value[1]["Salary"]["salary_total_cash"] }} </h5>
+        {% else: %}
+         <h5 class="stats-pos">Acquired: {{ value[1]["Salary"]["salary_in_cash"] }} - Sent: {{ value[1]["Salary"]["salary_out_cash"] }} = {{ value[1]["Salary"]["salary_total_cash"] }}</h5>
+        {% endif %}
+        {% if value[1]["G"]["value"] == "pos": %}
+         <h5 class="stats-pos">Acquired: {{ value[1]["G"]["total_G_in"] }} G - Sent: {{ value[1]["G"]["total_G_out"] }} G = {{ value[1]["G"]["G_total"] }} Games</h5>
+        {% else: %}
+         <h5 class="stats-neg">Acquired: {{ value[1]["G"]["total_G_in"] }} G - Sent: {{ value[1]["G"]["total_G_out"] }} G = {{ value[1]["G"]["G_total"] }} Games</h5>
+        {% endif %}
+        {% if value[1]["PA"]["value"] == "pos": %}
+         <h5 class="stats-pos">Acquired: {{ value[1]["PA"]["total_PA_in"] }} PA - Sent: {{ value[1]["PA"]["total_PA_out"] }} PA = {{ value[1]["PA"]["PA_total"] }} Plate Appearances</h5>
+        {% else: %}
+         <h5 class="stats-neg">Acquired: {{ value[1]["PA"]["total_PA_in"] }} - Sent: {{ value[1]["PA"]["total_PA_out"] }} = {{ value[1]["PA"]["PA_total"] }} Plate Appearances</h5>
+        {% endif %}
+        {% if value[1]["IP"]["value"] == "neg": %}
+         <h5 class="stats-pos">Acquired: {{ value[1]["IP"]["total_IP_in"] }} - Sent: {{ value[1]["IP"]["total_IP_out"] }} = {{ value[1]["IP"]["IP_total"] }} Innings Pitched</h5>
+        {% else: %}
+         <h5 class="stats-neg">Acquired: {{ value[1]["IP"]["total_IP_in"] }} - Sent: {{ value[1]["IP"]["total_IP_out"] }} = {{ value[1]["IP"]["IP_total"] }} Innings Pitched</h5>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class='chart' id="chart_{{ key }}_div"></div>
+{% endfor %}
+{% endfor %}
+
+<h6 class="error">Transactions current as of 2021 season. See an issue with this player? Please <a href="/contact">report it.</a>
+    <p>Transaction and player information was obtained from <a href="https://www.retrosheet.org">Retrosheet</a>.</p>
+    <p>View the site on <a href="https://github.com/GrubHubGitTub/BaseballTradeTrees">Github</a>.</p>
+</h6>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function(){
+      $("#nav-placeholder").load("../static/js/navbar.html");
+    });
+</script>
+</body>
+</html>

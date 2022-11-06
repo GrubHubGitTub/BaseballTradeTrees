@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MLB Trade Trees- Analyze Baseball Trades</title>
+    <link rel="icon" href="../static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DH80VY3PJK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DH80VY3PJK');
+    </script>
+    {{ JSGlue.include() }}
+</head>
+<body>
+
+<!-- NAVBAR-->
+    <div id="nav-placeholder"></div>
+<!--END NAVBAR-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header container-fluid">
+                <h1 class="main">Analyze any trade in baseball history.</h1>
+                <h3 class="main2">Search for a player to get started</h3>
+                <h4 class="main3">or view <a class ="main" href="/stats">top trees and stats.</a></h4>
+                <form id="form">
+                    <input class="form-control" id="user-input" placeholder="Enter a player">
+                    <button id="button" class="btn btn-primary">Search for trades</button>
+                    <h6 class='click'>Click the player's name to view his trade trees.</h6>
+                </form>
+            </div>
+
+            <table class="homeTable" cellpadding="10">
+                <thead>
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">MLB Debut</th>
+                </tr>
+                </thead>
+                <tbody>
+                <script src="/static/js/app.js"></script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id = "footer-placeholder"></div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function(){
+      $("#nav-placeholder").load("../static/js/navbar.html");
+    });
+
+    $(function(){
+      $("#footer-placeholder").load("../static/js/footer.html");
+    });
+</script>
+</body>
+</html>
