@@ -254,7 +254,7 @@ table {
   padding-top: 25px;
 }
 
-@media screen and (max-width: 842px) {
+@media screen and (max-width: 750px) {
   .navbar--hamburger {
       display: block;
   }
@@ -269,21 +269,25 @@ table {
       
 
       width: 200px;
-      height: 100px;
+      height: 70px;
       background-color: #005CA9;
       border-radius: 15px;
 
       display: none;
   }
   .navbar--menu li {
+    font-size: 0.5;
       text-align: center;
       margin: 0;
     }
 
   .navbar--menu.expanded ul {
+      padding-top: 7px;
+      
       display: block;
       transition: 0.2s ease-in-out;
     }
+
 
     .search{
       margin-right: 0 !important;
@@ -341,7 +345,7 @@ table {
 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 500px) {
   .navbar--random{
     transform: scale(0.65); 
     margin: 5px 35px 5px 0;

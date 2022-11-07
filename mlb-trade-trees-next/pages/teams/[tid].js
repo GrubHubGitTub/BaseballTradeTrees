@@ -214,7 +214,7 @@ export async function getServerSideProps(context) {
             <h3 style={{"border-bottom":"1px solid black"}}>All Tree Info</h3>
             <h6>Click a column to filter and sort. Drag a column to the left to pin.</h6>
 
-            <div className="ag-theme-alpine" style={{ height:500, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
+            <div className="ag-theme-alpine" style={{ height:"60vh", width:"90%", maxWidth:"2550px", marginLeft:"auto", marginRight:"auto" }}>
                 <AgGridReact
                     reactNext={true}
                     defaultColDef={defaultColDef}

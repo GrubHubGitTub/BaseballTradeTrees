@@ -39,7 +39,7 @@ export default function PlayerCard({player, team}) {
 
     let number 
     if (player.number != ""){
-        number = <h3 className={styles.playerNumber}>{player.number}</h3>
+        number = <h3 className={styles.playerNumber} style={{"border": border}}>{player.number}</h3>
     }
 
 
