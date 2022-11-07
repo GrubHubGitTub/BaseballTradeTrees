@@ -482,7 +482,7 @@ export default function TreePage({ data, tree_data }) {
               </table>
             );            
           } else {
-            trade_out_bat_table = []
+            
           }
           if (player.pitching_stats.length > 0) {
             trade_out_pitch_table.push(
@@ -502,9 +502,10 @@ export default function TreePage({ data, tree_data }) {
               </table>
             );            
           } else {
-            trade_out_pitch_table = []
+            
           }
         })}
+        console.log(trade_out_pitch_table)
         setStatsOutBat(trade_out_bat_table)
         setStatsOutPitch(trade_out_pitch_table) 
       } else {
@@ -535,7 +536,7 @@ export default function TreePage({ data, tree_data }) {
               </table>
             );            
           } else {
-            trade_in_bat_table = []
+            
           }
           if (player.pitching_stats.length > 0) {
             trade_in_pitch_table.push(
@@ -555,7 +556,7 @@ export default function TreePage({ data, tree_data }) {
               </table>
             );            
           } else {
-            trade_in_pitch_table = []
+            
           }
         })}
         setStatsInBat(trade_in_bat_table)
