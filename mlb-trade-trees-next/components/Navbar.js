@@ -52,9 +52,9 @@ export default function Navbar({players}) {
                                                 query: { pid: player.retro_id },
                                             }}>   
                                             {player.trees == "" ? 
-                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(not traded)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4><p>{player.HOF}</p> <h6>(0 trades)</h6>  <h5 >{player.debut_year} - {player.last_year} </h5></a> 
                                             : 
-                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>(traded)</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
+                                            <a className="dataItem" onClick={ () => { setFilteredData([]); }} > <h4>{player.name}</h4> <p>{player.HOF}</p> <h6>({player.trees.length} {player.trees.length > 1 ? "trades" : "trade"})</h6> <h5 >{player.debut_year} - {player.last_year}</h5></a> }
                                             
                                             
                                         </Link>

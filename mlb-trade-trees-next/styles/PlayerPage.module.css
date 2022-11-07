@@ -4,9 +4,10 @@
     align-items: center;
     padding-bottom: 50px;
 }
-.notTraded{
-    min-height: 85vh;
+#retroTable{
+    max-width: 1260px
 }
+
 .playerBar{
     width: auto;
     text-align: center;

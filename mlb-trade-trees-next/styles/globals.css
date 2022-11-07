@@ -9,6 +9,12 @@ html {
   background-color: #FFF8EC;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 table {
     margin-bottom: 5px;
 }
