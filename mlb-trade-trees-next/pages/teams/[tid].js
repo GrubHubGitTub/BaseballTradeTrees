@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import React, {useState, useMemo} from "react";
 import Link from "next/link";
 import players from "../../data/player_search.json"
@@ -181,7 +182,9 @@ export async function getServerSideProps(context) {
 
     return (
         <div className={styles.rosterPage}>
-    
+            <Head>
+              <title>{props.team.name} Current Roster and Historical Data</title>
+            </Head>
             <div className={styles.teamHeader}>
                 <h1 >{props.team.name}</h1>
                 <div className={styles.logoDiv}>

@@ -1,4 +1,4 @@
-import * as d3 from 'd3'
+import Head from "next/head";
 import { OrgChart } from "../../../../org-chart-master";
 import React, {useEffect, useRef} from "react";
 import PlayerBar from "../../../../components/PlayerBar";
@@ -574,7 +574,9 @@ export default function TreePage({ data, tree_data }) {
 
     return (
         <div className={styles.treePage}>
-
+          <Head>
+            <title>{data.name}-{tree_data.from_team.team_name}</title>
+          </Head>
           <PlayerBar data={data} tree_data={tree_data}/>
           <div id="treeContainer" className={styles.treeContainer}>
             <h6 className={styles.clickNode}>Click a transaction node to view stats</h6>

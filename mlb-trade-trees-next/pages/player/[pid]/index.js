@@ -1,4 +1,5 @@
 import React, {useState, useMemo} from "react";
+import Head from "next/head";
 import TradeCard from "../../../components/TradeCard";
 import styles from '../../../styles/PlayerPage.module.css'
 import { AgGridReact } from 'ag-grid-react';
@@ -79,6 +80,9 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
 
       return (
           <div className={styles.playerPage}>
+            <Head>
+              <title>{player.name}'s trades</title>
+            </Head>
             <div className={styles.playerBar}>
               <h1 className={styles.playerHead}>{player.name}</h1>
               <p>Debuted in <b>{player.debut_year}</b></p>
@@ -128,6 +132,9 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
 
     return (
       <div className={styles.notTraded}>
+            <Head>
+              <title>{player.name}'s transactions</title>
+            </Head>
         <div className={styles.playerPage} >
           <div className={styles.playerBar}>
             <h1 className={styles.playerHead}>{player.name}</h1>

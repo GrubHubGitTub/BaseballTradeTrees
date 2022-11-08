@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import Head from "next/head";
 import Link from "next/link";
 import styles from "../../styles/SearchPage.module.css"
 import { AgGridReact } from 'ag-grid-react';
@@ -91,6 +92,9 @@ export default function SearchPage({tree_data}) {
 
     return (
         <div className={styles.searchPage}>
+            <Head>
+              <title>All Trade Trees- Search and Sort</title>
+            </Head>
         <h5 className={styles.Note}>Click a column to filter and sort. Drag a column to the left to pin.</h5>
         <div className="ag-theme-alpine" style={{height: "80vh", maxWidth:"2550px", marginTop: "1%", marginLeft:"auto", marginRight:"auto"}}>
            <AgGridReact

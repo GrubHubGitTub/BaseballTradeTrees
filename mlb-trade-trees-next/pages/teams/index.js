@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import TeamCard from "../../components/TeamCard";
 import styles from "../../styles/AllTeams.module.css"
 import team_data from "../../data/team_info.json"
@@ -51,8 +52,11 @@ import team_data from "../../data/team_info.json"
 
         return (
             <div className={styles.teamPage}>
+                <Head>
+                    <title>Current Franchises</title>
+                </Head>
                 
-                    <h1 style={{"margin-top": "2%" }}>AL East</h1>
+                    <h1 style={{"marginTop": "2%" }}>AL East</h1>
                     <div className={styles.cardContainer}>
                     {ALE}
                     </div>
