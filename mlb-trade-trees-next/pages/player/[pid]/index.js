@@ -81,7 +81,7 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
       return (
           <div className={styles.playerPage}>
             <Head>
-              <title>{player.name}'s trades</title>
+              <title>{player.name}</title>
             </Head>
             <div className={styles.playerBar}>
               <h1 className={styles.playerHead}>{player.name}</h1>
@@ -133,7 +133,7 @@ export default function PlayerPage({ player, ongoing_trees_data }) {
     return (
       <div className={styles.notTraded}>
             <Head>
-              <title>{player.name}'s transactions</title>
+              <title>{player.name}</title>
             </Head>
         <div className={styles.playerPage} >
           <div className={styles.playerBar}>
