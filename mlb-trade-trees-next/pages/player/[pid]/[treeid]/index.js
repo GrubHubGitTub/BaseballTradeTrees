@@ -81,12 +81,17 @@ export const OrgChartComponent = (props, ref) => {
                 else return 500
             })
             .nodeHeight((d) => {
-              if ("transaction_id" in d.data && "info" in d.data) return 350
+              // continuation node
+              if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265
+              // comp pick node
+              else if ("transaction_id" in d.data && "info" in d.data) return 350
+              // transaction nodes
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 7) return 550
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 5) return 490
-              
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 425
+              // PTBNL node
               else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
+              // outcome node
               else return 390 
           })
             .childrenMargin((d) => 60)
