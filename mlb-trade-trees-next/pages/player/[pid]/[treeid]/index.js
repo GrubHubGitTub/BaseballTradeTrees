@@ -49,7 +49,7 @@ export const OrgChartComponent = (props, ref) => {
 
     function saveChart(){
       chart.addNode({id:"saved",parentId:1,name:"saveButton"})
-      chart.exportImg({full:true,  filename: "test"})
+      chart.exportImg({full:true, scale:9 })
     }
 
     props.setClick(saveChart)
@@ -71,7 +71,7 @@ export const OrgChartComponent = (props, ref) => {
               
               const trade_in_stats = nodeData.trade_in_stats
               const trade_out_stats = nodeData.trade_out_stats
-              
+             
               props.onNodeClick(trade_in_stats, trade_out_stats)
             })
 
@@ -81,8 +81,10 @@ export const OrgChartComponent = (props, ref) => {
                 else return 500
             })
             .nodeHeight((d) => {
-              if ("traded_with" in d.data && (!("trade_totals" in d.data))) return 265
+              if ("transaction_id" in d.data && "info" in d.data) return 350
+              else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 7) return 550
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 5) return 490
+              
               else if ("traded_with" in d.data && Object.keys(d.data.traded_with).length >= 1) return 425
               else if ("outcome" in d.data || d.data.name === "PTBNL/Cash") return 300
               else return 390 
@@ -129,6 +131,7 @@ export const OrgChartComponent = (props, ref) => {
                   ">  ${d.data.name} </h1> </a> `
                 }
                 // end name url
+                
                 const outline = "Orange"
 
                 return `
@@ -141,11 +144,18 @@ export const OrgChartComponent = (props, ref) => {
                   ${name}
                   <div style= background-color:${outline};height:5px;"></div>
                  
-                      
                   <div style="display: flex; flex-direction:column;align-items: center;justify-content:center;text-align:center" >
+                      
+                      <div style="display: flex; flex-direction:column;align-items: center;justify-content:flex-start;text-align:center" >
 
-                      <h2> Compensation picks for leaving team on: </h2>
-                      <h2 style="margin-top:10px"> ${year}-${month}-${day} </h2>
+                        <h2> Compensation picks for leaving team on: </h2>
+                        <h2 style=
+                          "border: 2px solid ${outline}; border-radius:20px; font-size:2.5em; padding: 2px 15px; margin-top:20px"> 
+                            ${year}-${month}-${day} </h2>
+                        <h2 style="margin-top:10px"> ${d.data.trade_totals.other_stats.WAR} WAR </h2>
+
+                      </div>
+                  
 
                   </div>
                     

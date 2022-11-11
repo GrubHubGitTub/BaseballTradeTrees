@@ -4,11 +4,11 @@ from GetStats import GetStats as gs
 from collections import Counter
 import json
 
-PLAYERS = pd.read_csv("playerdata.csv").fillna("")
-PICKS = pd.read_csv("../comp_picks_retroid.csv")
-TEAMS = pd.read_csv("../2022/ChadwickTeams.csv")
-POSTSEASON = pd.read_csv("../2022/SeriesPost.csv")
-FRANCHISES = pd.read_json("team_info.json")
+PLAYERS = pd.read_csv("create_data_output/playerdata.csv").fillna("")
+PICKS = pd.read_csv("2022 raw files/comp_picks_retroid.csv")
+TEAMS = pd.read_csv("2022 raw files/ChadwickTeams.csv")
+POSTSEASON = pd.read_csv("2022 raw files/SeriesPost.csv")
+FRANCHISES = pd.read_json("create_data_output/team_info.json")
 """add franchise tags to postseason"""
 team_franchise_dict = TEAMS.set_index("teamID").to_dict()["franchID"]
 POSTSEASON["franchIDwinner"] = POSTSEASON["teamIDwinner"].map(team_franchise_dict)
@@ -229,7 +229,7 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
                                                 "outcome": "retired", "date": last_date}
                             trade_tree.append(transaction_info)
-                        elif 20100000 >= last_date > 20000000:
+                        elif 20130000 >= last_date > 20000000:
                             transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node,
                                                 "name": format_names(retro_id=retro_id), "retro_id": retro_id,
                                                 "outcome": "No further transactions, likely retired", "date": last_date}
@@ -266,7 +266,10 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                 gt(transac_id=transaction_id, franch_id=franchise_choice, parent_retro=parent_retro,
                    parent_transaction=parent_transaction)
                 stats = gs(transaction_id=transaction_id, franch_choice=franchise_choice)
-                trade_in_stats = stats.get_trade_in_stats()
+
+                # need to flip the trade stats because of it being a comp pick and the from team is the choice.
+                trade_in_stats = stats.get_trade_out_stats()
+                trade_totals = stats.get_comp_totals()
 
                 transaction_info1 = {"node_id": len(trade_tree) + 1, "date": outcome_date, "traded_for": all_comp_picks}
                 transactions_list.append(transaction_info1)
@@ -274,7 +277,7 @@ def get_player_outcomes(connections, outcomes, trade_tree, franchise_choice, par
                 transaction_info = {"id": len(trade_tree) + 1, "parentId": parent_node, "retro_id": player_id,
                                     "name": format_names(retro_id=player_id), "transaction_id": transaction_id,
                                     "info": "Compensation picks", "traded_with": {}, "trade_in_stats": trade_in_stats,
-                                    "date": outcome_date}
+                                    "trade_out_stats": [], "trade_totals": trade_totals, "date": outcome_date}
                 trade_tree.append(transaction_info)
 
             else:
@@ -427,7 +430,7 @@ def get_ws_wins(trade_tree):
 
 
 """sort fg(with stats) and T transactions by date, then get list of all retroids """
-with open("PlayersToGenerate.json", "r") as file:
+with open("create_data_output/PlayersToGenerate.json", "r") as file:
     retro_ids = json.load(file)
 
 index = 0
@@ -489,16 +492,17 @@ for player_transaction in retro_ids[index:]:
             gt(transac_id=transac_id, franch_id=from_franch, parent_retro=parent,
                parent_transaction=transac_id)
             stats = gs(transaction_id=transac_id, franch_choice=from_franch)
-            trade_out_stats = stats.get_trade_out_stats()
-            trade_in_stats = stats.get_trade_in_stats()
-            trade_totals = stats.get_trade_totals()
+
+            # need to flip the trade stats because of it being a comp pick and the from team is the choice.
+            trade_in_stats = stats.get_trade_out_stats()
+            trade_totals = stats.get_comp_totals()
 
             # add comp pick transaction to tree
 
             tree_node = {"id": 1, "parentId": "", "retro_id": player_transaction["player"],
                          "name": name, "transaction_id": player_transaction["player"],
                          "info": "Compensation picks", "traded_with": {}, "trade_in_stats": trade_in_stats,
-                         "date": transac_date}
+                         "trade_out_stats":[], "trade_totals": trade_totals, "date": transac_date}
             trade_tree.append(tree_node)
 
             # add trade to trans dict for searching

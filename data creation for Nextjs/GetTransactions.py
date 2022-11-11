@@ -1,6 +1,6 @@
 import pandas as pd
 import csv
-transactions = pd.read_csv("stats_transactions_06112022.csv")
+transactions = pd.read_csv("create_data_output/stats_transactions_06112022.csv")
 
 
 class GetTransactions:
