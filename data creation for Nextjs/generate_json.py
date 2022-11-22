@@ -212,7 +212,7 @@ def get_outcome_data(connections, transaction_list, trade_tree, franchise_choice
                     outcome_dict = {"parentId": parent_node, "outcome": outcome}
                     outcomes.append(outcome_dict)
 
-                # if player is retired or a newer player, add to the dictionary- dates can be changed for more accuracy
+                # if player is retired or a newer player, add to the tree- dates can be changed for more accuracy
                 elif outcome.empty:
                     sorted_transactions = player_search.all_transac.sort_values(by="primary_date")
                     to_choice = sorted_transactions[sorted_transactions["to_franchise"] == franchise_choice]
