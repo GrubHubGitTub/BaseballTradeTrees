@@ -592,7 +592,7 @@ export default function TreePage({ data, tree_data }) {
           <Head>
             <title>{data.name}-{tree_data.from_team.team_name}</title>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6402274334696201"
-            crossorigin="anonymous"></script>
+            crossOrigin="anonymous"></script>
           </Head>
           <PlayerBar data={data} tree_data={tree_data}/>
           <div id="treeContainer" className={styles.treeContainer}>
